@@ -1,0 +1,169 @@
+name: Quality Check
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+  schedule:
+    # Run weekly dependency updates
+    - cron: '0 2 * * 1'
+
+jobs:
+  code-quality:
+    name: Quality Check & Auto-fix
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Run linting with auto-fix
+      - name: Lint and fix code
+        run: |
+          npm run lint -- --fix || true
+          npm run fmt || true
+
+      # Run tests
+      - name: Run tests
+        run: npm run test:run
+
+      # Run linting
+      - name: Check code quality
+        run: |
+          npm run lint || echo "Linting completed with warnings"
+          npm run fmt.check || echo "Formatting checked"
+
+      # Auto-commit fixes if any
+      - name: Auto-commit linting fixes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '🔧 Auto-fix linting and formatting issues'
+          file_pattern: '**/*.{ts,tsx,js,jsx,json,md,css}'
+          commit_user_name: 'github-actions[bot]'
+          commit_user_email: 'github-actions[bot]@users.noreply.github.com'
+          skip_dirty_check: false
+
+  dependency-update:
+    name: Update Dependencies
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-deps-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-deps-
+
+      - name: Update dependencies
+        run: |
+          npx npm-check-updates -u
+          npm install
+
+      - name: Run tests after updates
+        run: npm test || true
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: '⬆️ Update dependencies'
+          title: '⬆️ Weekly dependency updates'
+          body: |
+            Automated dependency updates by GitHub Actions.
+            
+            This PR updates all dependencies to their latest versions.
+            Please review the changes and test thoroughly before merging.
+          branch: automated/dependency-updates
+          delete-branch: true
+
+  release:
+    name: Semantic Release
+    runs-on: ubuntu-latest
+    needs: [code-quality]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      packages: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-release-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-release-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library
+        run: |
+          npm run build.lib
+          npm run build.types
+          
+  notify:
+    name: Notify Team
+    runs-on: ubuntu-latest
+    needs: [code-quality]
+    if: always()
+    
+    steps:
+      - name: Notify on completion
+        run: |
+          echo "🚀 RxOps UI Library Internal Build Complete"
+          echo "Code Quality: ${{ needs.code-quality.result }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Author: ${{ github.actor }}"

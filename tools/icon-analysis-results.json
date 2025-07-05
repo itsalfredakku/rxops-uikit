@@ -1,0 +1,1150 @@
+{
+  "correctUsage": [
+    {
+      "file": "../src/core/atoms/avatar/avatar.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "user",
+          "line": 91,
+          "usage": "<Icon icon=\"user\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/core/atoms/icon/index.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "user",
+          "line": 322,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "heart",
+          "line": 323,
+          "usage": "<Icon icon=\"heart\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 324,
+          "usage": "<Icon icon=\"calendar\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": false,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/core/molecules/data-list/data-list.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "clipboard",
+          "line": 394,
+          "usage": "<Icon icon=\"clipboard\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/core/organisms/footer/footer.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "smartphone",
+          "line": 84,
+          "usage": "<Icon icon=\"smartphone\""
+        },
+        {
+          "iconName": "monitor",
+          "line": 88,
+          "usage": "<Icon icon=\"monitor\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/core/organisms/modal/modal.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "x-circle",
+          "line": 78,
+          "usage": "<Icon icon=\"x-circle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/core/organisms/product-card/product-card.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "heart",
+          "line": 147,
+          "usage": "<Icon icon=\"heart\""
+        },
+        {
+          "iconName": "pill",
+          "line": 168,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "trending-up",
+          "line": 205,
+          "usage": "<Icon icon=\"trending-up\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 259,
+          "usage": "<Icon icon=\"file-text\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/core/organisms/toast/toast.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "check-circle",
+          "line": 56,
+          "usage": "<Icon icon=\"check-circle\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 57,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "x-circle",
+          "line": 58,
+          "usage": "<Icon icon=\"x-circle\""
+        },
+        {
+          "iconName": "pen-tool",
+          "line": 59,
+          "usage": "<Icon icon=\"pen-tool\""
+        },
+        {
+          "iconName": "pen-tool",
+          "line": 60,
+          "usage": "<Icon icon=\"pen-tool\""
+        },
+        {
+          "iconName": "x-circle",
+          "line": 104,
+          "usage": "<Icon icon=\"x-circle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/appointments/video-call/video-call.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "user",
+          "line": 224,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "user",
+          "line": 225,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "user",
+          "line": 226,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "user",
+          "line": 227,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "eye",
+          "line": 228,
+          "usage": "<Icon icon=\"eye\""
+        },
+        {
+          "iconName": "lock",
+          "line": 271,
+          "usage": "<Icon icon=\"lock\""
+        },
+        {
+          "iconName": "settings",
+          "line": 284,
+          "usage": "<Icon icon=\"settings\""
+        },
+        {
+          "iconName": "monitor",
+          "line": 301,
+          "usage": "<Icon icon=\"monitor\""
+        },
+        {
+          "iconName": "user",
+          "line": 317,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "mic-off",
+          "line": 334,
+          "usage": "<Icon icon=\"mic-off\""
+        },
+        {
+          "iconName": "mic-off",
+          "line": 363,
+          "usage": "<Icon icon=\"mic-off\""
+        },
+        {
+          "iconName": "hand",
+          "line": 364,
+          "usage": "<Icon icon=\"hand\""
+        },
+        {
+          "iconName": "x-circle",
+          "line": 381,
+          "usage": "<Icon icon=\"x-circle\""
+        },
+        {
+          "iconName": "mic-off",
+          "line": 423,
+          "usage": "<Icon icon=\"mic-off\""
+        },
+        {
+          "iconName": "video-off",
+          "line": 424,
+          "usage": "<Icon icon=\"video-off\""
+        },
+        {
+          "iconName": "hand",
+          "line": 425,
+          "usage": "<Icon icon=\"hand\""
+        },
+        {
+          "iconName": "mic-off",
+          "line": 497,
+          "usage": "<Icon icon=\"mic-off\""
+        },
+        {
+          "iconName": "mic",
+          "line": 497,
+          "usage": "<Icon icon=\"mic\""
+        },
+        {
+          "iconName": "video-off",
+          "line": 510,
+          "usage": "<Icon icon=\"video-off\""
+        },
+        {
+          "iconName": "video",
+          "line": 510,
+          "usage": "<Icon icon=\"video\""
+        },
+        {
+          "iconName": "monitor",
+          "line": 524,
+          "usage": "<Icon icon=\"monitor\""
+        },
+        {
+          "iconName": "hand",
+          "line": 538,
+          "usage": "<Icon icon=\"hand\""
+        },
+        {
+          "iconName": "stop-circle",
+          "line": 552,
+          "usage": "<Icon icon=\"stop-circle\""
+        },
+        {
+          "iconName": "record",
+          "line": 552,
+          "usage": "<Icon icon=\"record\""
+        },
+        {
+          "iconName": "phone",
+          "line": 563,
+          "usage": "<Icon icon=\"phone\""
+        },
+        {
+          "iconName": "x-circle",
+          "line": 578,
+          "usage": "<Icon icon=\"x-circle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/billing/billing-card/billing-card.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "mail",
+          "line": 313,
+          "usage": "<Icon icon=\"mail\""
+        },
+        {
+          "iconName": "printer",
+          "line": 324,
+          "usage": "<Icon icon=\"printer\""
+        },
+        {
+          "iconName": "credit-card",
+          "line": 448,
+          "usage": "<Icon icon=\"credit-card\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 457,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 466,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "edit",
+          "line": 641,
+          "usage": "<Icon icon=\"edit\""
+        },
+        {
+          "iconName": "shield",
+          "line": 684,
+          "usage": "<Icon icon=\"shield\""
+        },
+        {
+          "iconName": "plus",
+          "line": 759,
+          "usage": "<Icon icon=\"plus\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 865,
+          "usage": "<Icon icon=\"file-text\""
+        },
+        {
+          "iconName": "check",
+          "line": 932,
+          "usage": "<Icon icon=\"check\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/emergency/emergency-alert/emergency-alert.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "map-pin",
+          "line": 352,
+          "usage": "<Icon icon=\"map-pin\""
+        },
+        {
+          "iconName": "x",
+          "line": 373,
+          "usage": "<Icon icon=\"x\""
+        },
+        {
+          "iconName": "check",
+          "line": 388,
+          "usage": "<Icon icon=\"check\""
+        },
+        {
+          "iconName": "user",
+          "line": 397,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "trending-up",
+          "line": 406,
+          "usage": "<Icon icon=\"trending-up\""
+        },
+        {
+          "iconName": "check-circle",
+          "line": 415,
+          "usage": "<Icon icon=\"check-circle\""
+        },
+        {
+          "iconName": "user",
+          "line": 680,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "send",
+          "line": 708,
+          "usage": "<Icon icon=\"send\""
+        },
+        {
+          "iconName": "message-square",
+          "line": 749,
+          "usage": "<Icon icon=\"message-square\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/medical/imaging-viewer/imaging-viewer.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "zoom-in",
+          "line": 302,
+          "usage": "<Icon icon=\"zoom-in\""
+        },
+        {
+          "iconName": "rotate-cw",
+          "line": 329,
+          "usage": "<Icon icon=\"rotate-cw\""
+        },
+        {
+          "iconName": "skip-back",
+          "line": 466,
+          "usage": "<Icon icon=\"skip-back\""
+        },
+        {
+          "iconName": "skip-forward",
+          "line": 478,
+          "usage": "<Icon icon=\"skip-forward\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/medical/lab-results/lab-results.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "alert-triangle",
+          "line": 240,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "eye",
+          "line": 262,
+          "usage": "<Icon icon=\"eye\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 303,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "download",
+          "line": 344,
+          "usage": "<Icon icon=\"download\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 370,
+          "usage": "<Icon icon=\"file-text\""
+        },
+        {
+          "iconName": "filter",
+          "line": 380,
+          "usage": "<Icon icon=\"filter\""
+        },
+        {
+          "iconName": "search",
+          "line": 393,
+          "usage": "<Icon icon=\"search\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 503,
+          "usage": "<Icon icon=\"file-text\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/medical/medical-record/medical-record.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "link",
+          "line": 117,
+          "usage": "<Icon icon=\"link\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 129,
+          "usage": "<Icon icon=\"file-text\""
+        },
+        {
+          "iconName": "eye",
+          "line": 155,
+          "usage": "<Icon icon=\"eye\""
+        },
+        {
+          "iconName": "download",
+          "line": 164,
+          "usage": "<Icon icon=\"download\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/medical/medication-tracker/medication-tracker.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "pill",
+          "line": 253,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "plus",
+          "line": 270,
+          "usage": "<Icon icon=\"plus\""
+        },
+        {
+          "iconName": "trending-up",
+          "line": 286,
+          "usage": "<Icon icon=\"trending-up\""
+        },
+        {
+          "iconName": "clock",
+          "line": 296,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "bell",
+          "line": 306,
+          "usage": "<Icon icon=\"bell\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 316,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "edit",
+          "line": 481,
+          "usage": "<Icon icon=\"edit\""
+        },
+        {
+          "iconName": "trash",
+          "line": 489,
+          "usage": "<Icon icon=\"trash\""
+        },
+        {
+          "iconName": "pill",
+          "line": 500,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 609,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "shield",
+          "line": 639,
+          "usage": "<Icon icon=\"shield\""
+        },
+        {
+          "iconName": "heart",
+          "line": 674,
+          "usage": "<Icon icon=\"heart\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/patient/health-dashboard/health-dashboard.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "calendar",
+          "line": 249,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "clock",
+          "line": 253,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 278,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "check-circle",
+          "line": 338,
+          "usage": "<Icon icon=\"check-circle\""
+        },
+        {
+          "iconName": "bell",
+          "line": 347,
+          "usage": "<Icon icon=\"bell\""
+        },
+        {
+          "iconName": "plus",
+          "line": 382,
+          "usage": "<Icon icon=\"plus\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 391,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "settings",
+          "line": 395,
+          "usage": "<Icon icon=\"settings\""
+        },
+        {
+          "iconName": "bell",
+          "line": 427,
+          "usage": "<Icon icon=\"bell\""
+        },
+        {
+          "iconName": "activity",
+          "line": 465,
+          "usage": "<Icon icon=\"activity\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 500,
+          "usage": "<Icon icon=\"calendar\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/patient/medical-history/medical-history.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "file-text",
+          "line": 111,
+          "usage": "<Icon icon=\"file-text\""
+        },
+        {
+          "iconName": "clock",
+          "line": 112,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 113,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 114,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 115,
+          "usage": "<Icon icon=\"file-text\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 116,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 117,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 216,
+          "usage": "<Icon icon=\"file-text\""
+        },
+        {
+          "iconName": "filter",
+          "line": 226,
+          "usage": "<Icon icon=\"filter\""
+        },
+        {
+          "iconName": "search",
+          "line": 245,
+          "usage": "<Icon icon=\"search\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 339,
+          "usage": "<Icon icon=\"file-text\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 390,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "clock",
+          "line": 394,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "chevron-up",
+          "line": 405,
+          "usage": "<Icon icon=\"chevron-up\""
+        },
+        {
+          "iconName": "chevron-down",
+          "line": 407,
+          "usage": "<Icon icon=\"chevron-down\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/patient/patient-profile/patient-profile.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "user",
+          "line": 211,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "edit",
+          "line": 255,
+          "usage": "<Icon icon=\"edit\""
+        },
+        {
+          "iconName": "share2",
+          "line": 264,
+          "usage": "<Icon icon=\"share2\""
+        },
+        {
+          "iconName": "download",
+          "line": 272,
+          "usage": "<Icon icon=\"download\""
+        },
+        {
+          "iconName": "mail",
+          "line": 307,
+          "usage": "<Icon icon=\"mail\""
+        },
+        {
+          "iconName": "phone",
+          "line": 311,
+          "usage": "<Icon icon=\"phone\""
+        },
+        {
+          "iconName": "map-pin",
+          "line": 315,
+          "usage": "<Icon icon=\"map-pin\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 351,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "heart",
+          "line": 547,
+          "usage": "<Icon icon=\"heart\""
+        },
+        {
+          "iconName": "activity",
+          "line": 559,
+          "usage": "<Icon icon=\"activity\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 710,
+          "usage": "<Icon icon=\"alert-triangle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/patient/vitals-signs/vitals-signs.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "alert-triangle",
+          "line": 564,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "heart",
+          "line": 758,
+          "usage": "<Icon icon=\"heart\""
+        },
+        {
+          "iconName": "activity",
+          "line": 790,
+          "usage": "<Icon icon=\"activity\""
+        },
+        {
+          "iconName": "thermometer",
+          "line": 808,
+          "usage": "<Icon icon=\"thermometer\""
+        },
+        {
+          "iconName": "weight",
+          "line": 835,
+          "usage": "<Icon icon=\"weight\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 854,
+          "usage": "<Icon icon=\"alert-triangle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/provider/consultation-notes/consultation-notes.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "stethoscope",
+          "line": 357,
+          "usage": "<Icon icon=\"stethoscope\""
+        },
+        {
+          "iconName": "trending-up",
+          "line": 358,
+          "usage": "<Icon icon=\"trending-up\""
+        },
+        {
+          "iconName": "pen-tool",
+          "line": 359,
+          "usage": "<Icon icon=\"pen-tool\""
+        },
+        {
+          "iconName": "pen-tool",
+          "line": 360,
+          "usage": "<Icon icon=\"pen-tool\""
+        },
+        {
+          "iconName": "pill",
+          "line": 361,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "pen-tool",
+          "line": 362,
+          "usage": "<Icon icon=\"pen-tool\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 465,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "pen-tool",
+          "line": 802,
+          "usage": "<Icon icon=\"pen-tool\""
+        },
+        {
+          "iconName": "edit",
+          "line": 863,
+          "usage": "<Icon icon=\"edit\""
+        },
+        {
+          "iconName": "pen-tool",
+          "line": 874,
+          "usage": "<Icon icon=\"pen-tool\""
+        },
+        {
+          "iconName": "trash",
+          "line": 888,
+          "usage": "<Icon icon=\"trash\""
+        },
+        {
+          "iconName": "bell",
+          "line": 955,
+          "usage": "<Icon icon=\"bell\""
+        },
+        {
+          "iconName": "check-circle",
+          "line": 972,
+          "usage": "<Icon icon=\"check-circle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/provider/prescription-management/prescription-management.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "alert-triangle",
+          "line": 215,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "clock",
+          "line": 218,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 247,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "map-pin",
+          "line": 265,
+          "usage": "<Icon icon=\"map-pin\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 281,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "refresh-cw",
+          "line": 308,
+          "usage": "<Icon icon=\"refresh-cw\""
+        },
+        {
+          "iconName": "pill",
+          "line": 330,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "filter",
+          "line": 343,
+          "usage": "<Icon icon=\"filter\""
+        },
+        {
+          "iconName": "plus",
+          "line": 355,
+          "usage": "<Icon icon=\"plus\""
+        },
+        {
+          "iconName": "search",
+          "line": 364,
+          "usage": "<Icon icon=\"search\""
+        },
+        {
+          "iconName": "pill",
+          "line": 438,
+          "usage": "<Icon icon=\"pill\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": false,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/provider/provider-dashboard/provider-dashboard.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "user",
+          "line": 231,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "star",
+          "line": 251,
+          "usage": "<Icon icon=\"star\""
+        },
+        {
+          "iconName": "bell",
+          "line": 270,
+          "usage": "<Icon icon=\"bell\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 299,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "clock",
+          "line": 314,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "clock",
+          "line": 329,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "check",
+          "line": 344,
+          "usage": "<Icon icon=\"check\""
+        },
+        {
+          "iconName": "user",
+          "line": 421,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 456,
+          "usage": "<Icon icon=\"alert-triangle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    }
+  ],
+  "incorrectUsage": [],
+  "mixedUsage": [],
+  "missingImports": [
+    {
+      "file": "../src/core/atoms/icon/index.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "user",
+          "line": 322,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "heart",
+          "line": 323,
+          "usage": "<Icon icon=\"heart\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 324,
+          "usage": "<Icon icon=\"calendar\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": false,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "../src/healthcare/provider/prescription-management/prescription-management.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "alert-triangle",
+          "line": 215,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "clock",
+          "line": 218,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 247,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "map-pin",
+          "line": 265,
+          "usage": "<Icon icon=\"map-pin\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 281,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "refresh-cw",
+          "line": 308,
+          "usage": "<Icon icon=\"refresh-cw\""
+        },
+        {
+          "iconName": "pill",
+          "line": 330,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "filter",
+          "line": 343,
+          "usage": "<Icon icon=\"filter\""
+        },
+        {
+          "iconName": "plus",
+          "line": 355,
+          "usage": "<Icon icon=\"plus\""
+        },
+        {
+          "iconName": "search",
+          "line": 364,
+          "usage": "<Icon icon=\"search\""
+        },
+        {
+          "iconName": "pill",
+          "line": 438,
+          "usage": "<Icon icon=\"pill\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": false,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    }
+  ],
+  "stats": {
+    "totalFiles": 127,
+    "filesWithIcons": 21,
+    "correctFiles": 21,
+    "incorrectFiles": 0,
+    "mixedFiles": 0
+  }
+}

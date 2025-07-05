@@ -1,0 +1,1205 @@
+{
+  "correctUsage": [
+    {
+      "file": "src/core/atoms/avatar/avatar.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "user",
+          "line": 91,
+          "usage": "<Icon icon=\"user\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/core/atoms/icon/index.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "user",
+          "line": 322,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "heart",
+          "line": 323,
+          "usage": "<Icon icon=\"heart\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 324,
+          "usage": "<Icon icon=\"calendar\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": false,
+      "hasDirectIconImports": [
+        "ActivityIcon",
+        "AlertTriangleIcon",
+        "BellIcon",
+        "CalendarIcon",
+        "CheckCircleIcon",
+        "ChevronDownIcon",
+        "ChevronUpIcon",
+        "ClockIcon",
+        "DownloadIcon",
+        "EditIcon",
+        "EyeIcon",
+        "FileTextIcon",
+        "FilterIcon",
+        "HeartIcon",
+        "MailIcon",
+        "MapPinIcon",
+        "PhoneIcon",
+        "PillIcon",
+        "PlusIcon",
+        "RefreshCwIcon",
+        "RulerIcon",
+        "SearchIcon",
+        "SettingsIcon",
+        "StethoscopeIcon",
+        "ThermometerIcon",
+        "BrainIcon",
+        "TrendingUpIcon",
+        "TrendingDownIcon",
+        "UserIcon",
+        "WeightIcon",
+        "XCircleIcon",
+        "SmartphoneIcon",
+        "MonitorIcon",
+        "LockIcon",
+        "ClipboardIcon",
+        "PenToolIcon",
+        "ZoomInIcon",
+        "VideoIcon",
+        "VideoOffIcon",
+        "MicIcon",
+        "MicOffIcon",
+        "HandIcon",
+        "RotateCwIcon",
+        "TrashIcon",
+        "ScreenShareIcon",
+        "StopCircleIcon",
+        "RecordIcon",
+        "SkipBackIcon",
+        "SkipForwardIcon",
+        "HomeIcon",
+        "MenuIcon",
+        "XIcon",
+        "ArrowRightIcon",
+        "ArrowLeftIcon",
+        "LogOutIcon",
+        "LogInIcon",
+        "UploadIcon",
+        "CameraIcon",
+        "InfoIcon",
+        "StarIcon",
+        "FolderIcon",
+        "CopyIcon",
+        "LinkIcon",
+        "MessageSquareIcon",
+        "MessageCircleIcon",
+        "CrownIcon",
+        "HelpCircleIcon",
+        "ShieldIcon",
+        "DatabaseIcon",
+        "WifiIcon",
+        "BatteryIcon",
+        "PrinterIcon",
+        "SendIcon",
+        "BookIcon",
+        "AwardIcon",
+        "GlobeIcon",
+        "SyringeIcon",
+        "HeadphonesIcon",
+        "WheelchairIcon",
+        "ShoppingCartIcon",
+        "HospitalIcon",
+        "AmbulanceIcon",
+        "DropletIcon",
+        "BedIcon",
+        "FlaskIcon",
+        "BriefcaseMedicalIcon",
+        "QrCodeIcon",
+        "CreditCardIcon",
+        "CheckIcon",
+        "PauseIcon",
+        "PlayIcon",
+        "InfoCircleIcon",
+        "LayersIcon",
+        "CubeIcon",
+        "AtomIcon",
+        "UsersIcon",
+        "LayoutDashboardIcon"
+      ],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/core/molecules/data-list/data-list.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "clipboard",
+          "line": 395,
+          "usage": "<Icon icon=\"clipboard\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/core/organisms/footer/footer.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "smartphone",
+          "line": 84,
+          "usage": "<Icon icon=\"smartphone\""
+        },
+        {
+          "iconName": "monitor",
+          "line": 88,
+          "usage": "<Icon icon=\"monitor\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/core/organisms/modal/modal.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "x-circle",
+          "line": 78,
+          "usage": "<Icon icon=\"x-circle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/core/organisms/product-card/product-card.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "heart",
+          "line": 147,
+          "usage": "<Icon icon=\"heart\""
+        },
+        {
+          "iconName": "pill",
+          "line": 168,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "trending-up",
+          "line": 205,
+          "usage": "<Icon icon=\"trending-up\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 259,
+          "usage": "<Icon icon=\"file-text\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/core/organisms/toast/toast.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "check-circle",
+          "line": 56,
+          "usage": "<Icon icon=\"check-circle\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 57,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "x-circle",
+          "line": 58,
+          "usage": "<Icon icon=\"x-circle\""
+        },
+        {
+          "iconName": "pen-tool",
+          "line": 59,
+          "usage": "<Icon icon=\"pen-tool\""
+        },
+        {
+          "iconName": "pen-tool",
+          "line": 60,
+          "usage": "<Icon icon=\"pen-tool\""
+        },
+        {
+          "iconName": "x-circle",
+          "line": 104,
+          "usage": "<Icon icon=\"x-circle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/healthcare/billing/billing-card/billing-card.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "mail",
+          "line": 313,
+          "usage": "<Icon icon=\"mail\""
+        },
+        {
+          "iconName": "printer",
+          "line": 324,
+          "usage": "<Icon icon=\"printer\""
+        },
+        {
+          "iconName": "credit-card",
+          "line": 448,
+          "usage": "<Icon icon=\"credit-card\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 457,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 466,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "edit",
+          "line": 641,
+          "usage": "<Icon icon=\"edit\""
+        },
+        {
+          "iconName": "shield",
+          "line": 684,
+          "usage": "<Icon icon=\"shield\""
+        },
+        {
+          "iconName": "plus",
+          "line": 759,
+          "usage": "<Icon icon=\"plus\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 865,
+          "usage": "<Icon icon=\"file-text\""
+        },
+        {
+          "iconName": "check",
+          "line": 932,
+          "usage": "<Icon icon=\"check\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/healthcare/emergency/emergency-alert/emergency-alert.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "map-pin",
+          "line": 352,
+          "usage": "<Icon icon=\"map-pin\""
+        },
+        {
+          "iconName": "x",
+          "line": 373,
+          "usage": "<Icon icon=\"x\""
+        },
+        {
+          "iconName": "check",
+          "line": 388,
+          "usage": "<Icon icon=\"check\""
+        },
+        {
+          "iconName": "user",
+          "line": 397,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "trending-up",
+          "line": 406,
+          "usage": "<Icon icon=\"trending-up\""
+        },
+        {
+          "iconName": "check-circle",
+          "line": 415,
+          "usage": "<Icon icon=\"check-circle\""
+        },
+        {
+          "iconName": "user",
+          "line": 680,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "send",
+          "line": 708,
+          "usage": "<Icon icon=\"send\""
+        },
+        {
+          "iconName": "message-square",
+          "line": 749,
+          "usage": "<Icon icon=\"message-square\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/healthcare/medical/lab-results/lab-results.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "alert-triangle",
+          "line": 240,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "eye",
+          "line": 262,
+          "usage": "<Icon icon=\"eye\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 303,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "download",
+          "line": 344,
+          "usage": "<Icon icon=\"download\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 370,
+          "usage": "<Icon icon=\"file-text\""
+        },
+        {
+          "iconName": "filter",
+          "line": 380,
+          "usage": "<Icon icon=\"filter\""
+        },
+        {
+          "iconName": "search",
+          "line": 393,
+          "usage": "<Icon icon=\"search\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 503,
+          "usage": "<Icon icon=\"file-text\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/healthcare/medical/medical-record/medical-record.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "link",
+          "line": 118,
+          "usage": "<Icon icon=\"link\""
+        },
+        {
+          "iconName": "file-text",
+          "line": 130,
+          "usage": "<Icon icon=\"file-text\""
+        },
+        {
+          "iconName": "eye",
+          "line": 156,
+          "usage": "<Icon icon=\"eye\""
+        },
+        {
+          "iconName": "download",
+          "line": 165,
+          "usage": "<Icon icon=\"download\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/healthcare/medical/medication-tracker/medication-tracker.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "pill",
+          "line": 253,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "plus",
+          "line": 270,
+          "usage": "<Icon icon=\"plus\""
+        },
+        {
+          "iconName": "trending-up",
+          "line": 286,
+          "usage": "<Icon icon=\"trending-up\""
+        },
+        {
+          "iconName": "clock",
+          "line": 296,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "bell",
+          "line": 306,
+          "usage": "<Icon icon=\"bell\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 316,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "edit",
+          "line": 481,
+          "usage": "<Icon icon=\"edit\""
+        },
+        {
+          "iconName": "trash",
+          "line": 489,
+          "usage": "<Icon icon=\"trash\""
+        },
+        {
+          "iconName": "pill",
+          "line": 500,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 609,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "shield",
+          "line": 639,
+          "usage": "<Icon icon=\"shield\""
+        },
+        {
+          "iconName": "heart",
+          "line": 674,
+          "usage": "<Icon icon=\"heart\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/healthcare/patient/health-dashboard/health-dashboard.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "calendar",
+          "line": 249,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "clock",
+          "line": 253,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 278,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "check-circle",
+          "line": 338,
+          "usage": "<Icon icon=\"check-circle\""
+        },
+        {
+          "iconName": "bell",
+          "line": 347,
+          "usage": "<Icon icon=\"bell\""
+        },
+        {
+          "iconName": "plus",
+          "line": 382,
+          "usage": "<Icon icon=\"plus\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 391,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "settings",
+          "line": 395,
+          "usage": "<Icon icon=\"settings\""
+        },
+        {
+          "iconName": "bell",
+          "line": 427,
+          "usage": "<Icon icon=\"bell\""
+        },
+        {
+          "iconName": "activity",
+          "line": 465,
+          "usage": "<Icon icon=\"activity\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 500,
+          "usage": "<Icon icon=\"calendar\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/healthcare/patient/vitals-signs/vitals-signs.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "alert-triangle",
+          "line": 564,
+          "usage": "<Icon icon=\"alert-triangle\""
+        },
+        {
+          "iconName": "heart",
+          "line": 758,
+          "usage": "<Icon icon=\"heart\""
+        },
+        {
+          "iconName": "activity",
+          "line": 790,
+          "usage": "<Icon icon=\"activity\""
+        },
+        {
+          "iconName": "thermometer",
+          "line": 808,
+          "usage": "<Icon icon=\"thermometer\""
+        },
+        {
+          "iconName": "weight",
+          "line": 835,
+          "usage": "<Icon icon=\"weight\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 854,
+          "usage": "<Icon icon=\"alert-triangle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/healthcare/provider/prescription-management/prescription-management.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "pill",
+          "line": 330,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "plus",
+          "line": 355,
+          "usage": "<Icon icon=\"plus\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": false,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    },
+    {
+      "file": "src/healthcare/provider/provider-dashboard/provider-dashboard.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "user",
+          "line": 231,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "star",
+          "line": 251,
+          "usage": "<Icon icon=\"star\""
+        },
+        {
+          "iconName": "bell",
+          "line": 270,
+          "usage": "<Icon icon=\"bell\""
+        },
+        {
+          "iconName": "calendar",
+          "line": 299,
+          "usage": "<Icon icon=\"calendar\""
+        },
+        {
+          "iconName": "clock",
+          "line": 314,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "clock",
+          "line": 329,
+          "usage": "<Icon icon=\"clock\""
+        },
+        {
+          "iconName": "check",
+          "line": 344,
+          "usage": "<Icon icon=\"check\""
+        },
+        {
+          "iconName": "user",
+          "line": 421,
+          "usage": "<Icon icon=\"user\""
+        },
+        {
+          "iconName": "alert-triangle",
+          "line": 456,
+          "usage": "<Icon icon=\"alert-triangle\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": true,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    }
+  ],
+  "incorrectUsage": [
+    {
+      "file": "src/healthcare/appointments/video-call/video-call.tsx",
+      "hasIcons": true,
+      "correctUsage": [],
+      "incorrectUsage": [
+        {
+          "iconName": "UserIcon",
+          "line": 240,
+          "usage": "<UserIcon ",
+          "fullLine": "'patient': <UserIcon class=\"w-4 h-4\" />,"
+        },
+        {
+          "iconName": "UserIcon",
+          "line": 241,
+          "usage": "<UserIcon ",
+          "fullLine": "'doctor': <UserIcon class=\"w-4 h-4\" />,"
+        },
+        {
+          "iconName": "UserIcon",
+          "line": 242,
+          "usage": "<UserIcon ",
+          "fullLine": "'nurse': <UserIcon class=\"w-4 h-4\" />,"
+        },
+        {
+          "iconName": "UserIcon",
+          "line": 243,
+          "usage": "<UserIcon ",
+          "fullLine": "'specialist': <UserIcon class=\"w-4 h-4\" />,"
+        },
+        {
+          "iconName": "EyeIcon",
+          "line": 244,
+          "usage": "<EyeIcon ",
+          "fullLine": "'observer': <EyeIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "LockIcon",
+          "line": 287,
+          "usage": "<LockIcon ",
+          "fullLine": "<LockIcon class=\"w-3 h-3\" />"
+        },
+        {
+          "iconName": "SettingsIcon",
+          "line": 300,
+          "usage": "<SettingsIcon ",
+          "fullLine": "<SettingsIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "MonitorIcon",
+          "line": 317,
+          "usage": "<MonitorIcon ",
+          "fullLine": "<MonitorIcon class=\"w-16 h-16 mx-auto\" />"
+        },
+        {
+          "iconName": "UserIcon",
+          "line": 333,
+          "usage": "<UserIcon ",
+          "fullLine": "{currentUser?.avatar || <UserIcon class=\"w-8 h-8\" />}"
+        },
+        {
+          "iconName": "MicOffIcon",
+          "line": 350,
+          "usage": "<MicOffIcon ",
+          "fullLine": "You {isMuted.value && <MicOffIcon class=\"w-4 h-4 inline\" />}"
+        },
+        {
+          "iconName": "MicOffIcon",
+          "line": 379,
+          "usage": "<MicOffIcon ",
+          "fullLine": "{participant.isMuted && <span><MicOffIcon class=\"w-4 h-4 inline\" /></span>}"
+        },
+        {
+          "iconName": "HandIcon",
+          "line": 380,
+          "usage": "<HandIcon ",
+          "fullLine": "{participant.isHandRaised && <span><HandIcon class=\"w-4 h-4 inline\" /></span>}"
+        },
+        {
+          "iconName": "XCircleIcon",
+          "line": 397,
+          "usage": "<XCircleIcon ",
+          "fullLine": "<XCircleIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "MicOffIcon",
+          "line": 439,
+          "usage": "<MicOffIcon ",
+          "fullLine": "{participant.isMuted && <span class=\"text-xs\"><MicOffIcon class=\"w-3 h-3 inline\" /></span>}"
+        },
+        {
+          "iconName": "VideoOffIcon",
+          "line": 440,
+          "usage": "<VideoOffIcon ",
+          "fullLine": "{participant.isVideoOff && <span class=\"text-xs\"><VideoOffIcon class=\"w-3 h-3 inline\" /></span>}"
+        },
+        {
+          "iconName": "HandIcon",
+          "line": 441,
+          "usage": "<HandIcon ",
+          "fullLine": "{participant.isHandRaised && <span class=\"text-xs\"><HandIcon class=\"w-3 h-3 inline\" /></span>}"
+        },
+        {
+          "iconName": "MicOffIcon",
+          "line": 513,
+          "usage": "<MicOffIcon ",
+          "fullLine": "{isMuted.value ? <MicOffIcon class=\"w-4 h-4\" /> : <MicIcon class=\"w-4 h-4\" />}"
+        },
+        {
+          "iconName": "MicIcon",
+          "line": 513,
+          "usage": "<MicIcon ",
+          "fullLine": "{isMuted.value ? <MicOffIcon class=\"w-4 h-4\" /> : <MicIcon class=\"w-4 h-4\" />}"
+        },
+        {
+          "iconName": "VideoOffIcon",
+          "line": 526,
+          "usage": "<VideoOffIcon ",
+          "fullLine": "{isVideoOff.value ? <VideoOffIcon class=\"w-4 h-4\" /> : <VideoIcon class=\"w-4 h-4\" />}"
+        },
+        {
+          "iconName": "VideoIcon",
+          "line": 526,
+          "usage": "<VideoIcon ",
+          "fullLine": "{isVideoOff.value ? <VideoOffIcon class=\"w-4 h-4\" /> : <VideoIcon class=\"w-4 h-4\" />}"
+        },
+        {
+          "iconName": "ScreenShareIcon",
+          "line": 540,
+          "usage": "<ScreenShareIcon ",
+          "fullLine": "<ScreenShareIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "HandIcon",
+          "line": 554,
+          "usage": "<HandIcon ",
+          "fullLine": "<HandIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "StopCircleIcon",
+          "line": 568,
+          "usage": "<StopCircleIcon ",
+          "fullLine": "{recording?.status === 'recording' ? <StopCircleIcon class=\"w-4 h-4\" /> : <RecordIcon class=\"w-4 h-4\" />}"
+        },
+        {
+          "iconName": "RecordIcon",
+          "line": 568,
+          "usage": "<RecordIcon ",
+          "fullLine": "{recording?.status === 'recording' ? <StopCircleIcon class=\"w-4 h-4\" /> : <RecordIcon class=\"w-4 h-4\" />}"
+        },
+        {
+          "iconName": "PhoneIcon",
+          "line": 579,
+          "usage": "<PhoneIcon ",
+          "fullLine": "<PhoneIcon class=\"w-5 h-5\" />"
+        },
+        {
+          "iconName": "XCircleIcon",
+          "line": 594,
+          "usage": "<XCircleIcon ",
+          "fullLine": "<XCircleIcon class=\"w-4 h-4\" />"
+        }
+      ],
+      "hasIconImport": false,
+      "hasDirectIconImports": [
+        "UserIcon",
+        "PhoneIcon",
+        "LockIcon",
+        "SettingsIcon",
+        "VideoIcon",
+        "VideoOffIcon",
+        "MicIcon",
+        "MicOffIcon",
+        "HandIcon",
+        "XCircleIcon",
+        "ScreenShareIcon",
+        "RecordIcon",
+        "StopCircleIcon",
+        "EyeIcon",
+        "MonitorIcon"
+      ],
+      "usageType": "incorrect"
+    },
+    {
+      "file": "src/healthcare/medical/imaging-viewer/imaging-viewer.tsx",
+      "hasIcons": true,
+      "correctUsage": [],
+      "incorrectUsage": [
+        {
+          "iconName": "ZoomInIcon",
+          "line": 307,
+          "usage": "<ZoomInIcon ",
+          "fullLine": "{ tool: 'ZOOM' as const, icon: <ZoomInIcon class=\"w-4 h-4\" />, label: 'Zoom' },"
+        },
+        {
+          "iconName": "RotateCwIcon",
+          "line": 334,
+          "usage": "<RotateCwIcon ",
+          "fullLine": "<RotateCwIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "SkipBackIcon",
+          "line": 471,
+          "usage": "<SkipBackIcon ",
+          "fullLine": "<SkipBackIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "SkipForwardIcon",
+          "line": 483,
+          "usage": "<SkipForwardIcon ",
+          "fullLine": "<SkipForwardIcon class=\"w-4 h-4\" />"
+        }
+      ],
+      "hasIconImport": false,
+      "hasDirectIconImports": [
+        "ZoomInIcon",
+        "RotateCwIcon",
+        "SkipBackIcon",
+        "SkipForwardIcon"
+      ],
+      "usageType": "incorrect"
+    },
+    {
+      "file": "src/healthcare/patient/medical-history/medical-history.tsx",
+      "hasIcons": true,
+      "correctUsage": [],
+      "incorrectUsage": [
+        {
+          "iconName": "FileTextIcon",
+          "line": 224,
+          "usage": "<FileTextIcon ",
+          "fullLine": "<FileTextIcon class=\"w-5 h-5 text-primary-600\" />"
+        },
+        {
+          "iconName": "FilterIcon",
+          "line": 234,
+          "usage": "<FilterIcon ",
+          "fullLine": "<FilterIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "SearchIcon",
+          "line": 253,
+          "usage": "<SearchIcon ",
+          "fullLine": "<SearchIcon class=\"absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-neutral-400\" />"
+        },
+        {
+          "iconName": "FileTextIcon",
+          "line": 347,
+          "usage": "<FileTextIcon ",
+          "fullLine": "<FileTextIcon class=\"w-12 h-12 text-neutral-400 mx-auto mb-4\" />"
+        },
+        {
+          "iconName": "CalendarIcon",
+          "line": 398,
+          "usage": "<CalendarIcon ",
+          "fullLine": "<CalendarIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "ClockIcon",
+          "line": 402,
+          "usage": "<ClockIcon ",
+          "fullLine": "<ClockIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "ChevronUpIcon",
+          "line": 413,
+          "usage": "<ChevronUpIcon ",
+          "fullLine": "<ChevronUpIcon class=\"w-5 h-5 text-neutral-400\" />"
+        },
+        {
+          "iconName": "ChevronDownIcon",
+          "line": 415,
+          "usage": "<ChevronDownIcon ",
+          "fullLine": "<ChevronDownIcon class=\"w-5 h-5 text-neutral-400\" />"
+        }
+      ],
+      "hasIconImport": false,
+      "hasDirectIconImports": [
+        "CalendarIcon",
+        "ClockIcon",
+        "FileTextIcon",
+        "AlertTriangleIcon",
+        "ChevronDownIcon",
+        "ChevronUpIcon",
+        "FilterIcon",
+        "SearchIcon"
+      ],
+      "usageType": "incorrect"
+    },
+    {
+      "file": "src/healthcare/patient/patient-profile/patient-profile.tsx",
+      "hasIcons": true,
+      "correctUsage": [],
+      "incorrectUsage": [
+        {
+          "iconName": "UserIcon",
+          "line": 221,
+          "usage": "<UserIcon ",
+          "fullLine": "<UserIcon class=\"w-8 h-8 text-neutral-400\" />"
+        },
+        {
+          "iconName": "EditIcon",
+          "line": 265,
+          "usage": "<EditIcon ",
+          "fullLine": "<EditIcon class=\"w-5 h-5\" />"
+        },
+        {
+          "iconName": "DownloadIcon",
+          "line": 282,
+          "usage": "<DownloadIcon ",
+          "fullLine": "<DownloadIcon class=\"w-5 h-5\" />"
+        },
+        {
+          "iconName": "MailIcon",
+          "line": 317,
+          "usage": "<MailIcon ",
+          "fullLine": "<MailIcon class=\"w-4 h-4 text-neutral-400\" />"
+        },
+        {
+          "iconName": "PhoneIcon",
+          "line": 321,
+          "usage": "<PhoneIcon ",
+          "fullLine": "<PhoneIcon class=\"w-4 h-4 text-neutral-400\" />"
+        },
+        {
+          "iconName": "MapPinIcon",
+          "line": 325,
+          "usage": "<MapPinIcon ",
+          "fullLine": "<MapPinIcon class=\"w-4 h-4 text-neutral-400\" />"
+        },
+        {
+          "iconName": "AlertTriangleIcon",
+          "line": 361,
+          "usage": "<AlertTriangleIcon ",
+          "fullLine": "<AlertTriangleIcon class=\"w-4 h-4 text-orange-400\" />"
+        },
+        {
+          "iconName": "HeartIcon",
+          "line": 557,
+          "usage": "<HeartIcon ",
+          "fullLine": "<HeartIcon class=\"w-5 h-5 text-error-500\" />"
+        },
+        {
+          "iconName": "ActivityIcon",
+          "line": 569,
+          "usage": "<ActivityIcon ",
+          "fullLine": "<ActivityIcon class=\"w-5 h-5 text-primary-500\" />"
+        },
+        {
+          "iconName": "AlertTriangleIcon",
+          "line": 720,
+          "usage": "<AlertTriangleIcon ",
+          "fullLine": "<AlertTriangleIcon class=\"w-5 h-5 text-orange-600\" />"
+        }
+      ],
+      "hasIconImport": false,
+      "hasDirectIconImports": [
+        "UserIcon",
+        "PhoneIcon",
+        "MailIcon",
+        "MapPinIcon",
+        "HeartIcon",
+        "ActivityIcon",
+        "AlertTriangleIcon",
+        "EditIcon",
+        "DownloadIcon"
+      ],
+      "usageType": "incorrect"
+    },
+    {
+      "file": "src/healthcare/provider/consultation-notes/consultation-notes.tsx",
+      "hasIcons": true,
+      "correctUsage": [],
+      "incorrectUsage": [
+        {
+          "iconName": "StethoscopeIcon",
+          "line": 366,
+          "usage": "<StethoscopeIcon ",
+          "fullLine": "case 'consultation': return <StethoscopeIcon class=\"w-4 h-4\" />;"
+        },
+        {
+          "iconName": "TrendingUpIcon",
+          "line": 367,
+          "usage": "<TrendingUpIcon ",
+          "fullLine": "case 'progress': return <TrendingUpIcon class=\"w-4 h-4\" />;"
+        },
+        {
+          "iconName": "PenToolIcon",
+          "line": 368,
+          "usage": "<PenToolIcon ",
+          "fullLine": "case 'discharge': return <PenToolIcon class=\"w-4 h-4\" />;"
+        },
+        {
+          "iconName": "PenToolIcon",
+          "line": 369,
+          "usage": "<PenToolIcon ",
+          "fullLine": "case 'referral': return <PenToolIcon class=\"w-4 h-4\" />;"
+        },
+        {
+          "iconName": "PillIcon",
+          "line": 370,
+          "usage": "<PillIcon ",
+          "fullLine": "case 'prescription': return <PillIcon class=\"w-4 h-4\" />;"
+        },
+        {
+          "iconName": "PenToolIcon",
+          "line": 371,
+          "usage": "<PenToolIcon ",
+          "fullLine": "default: return <PenToolIcon class=\"w-4 h-4\" />;"
+        },
+        {
+          "iconName": "AlertTriangleIcon",
+          "line": 474,
+          "usage": "<AlertTriangleIcon ",
+          "fullLine": "<AlertTriangleIcon class=\"w-5 h-5\" />"
+        },
+        {
+          "iconName": "PenToolIcon",
+          "line": 811,
+          "usage": "<PenToolIcon ",
+          "fullLine": "<PenToolIcon class=\"w-16 h-16\" />"
+        },
+        {
+          "iconName": "EditIcon",
+          "line": 872,
+          "usage": "<EditIcon ",
+          "fullLine": "<EditIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "PenToolIcon",
+          "line": 883,
+          "usage": "<PenToolIcon ",
+          "fullLine": "<PenToolIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "TrashIcon",
+          "line": 897,
+          "usage": "<TrashIcon ",
+          "fullLine": "<TrashIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "BellIcon",
+          "line": 964,
+          "usage": "<BellIcon ",
+          "fullLine": "<BellIcon class=\"w-4 h-4\" />"
+        },
+        {
+          "iconName": "CheckCircleIcon",
+          "line": 981,
+          "usage": "<CheckCircleIcon ",
+          "fullLine": "<CheckCircleIcon class=\"w-4 h-4\" />"
+        }
+      ],
+      "hasIconImport": false,
+      "hasDirectIconImports": [
+        "StethoscopeIcon",
+        "TrendingUpIcon",
+        "PillIcon",
+        "PenToolIcon",
+        "AlertTriangleIcon",
+        "BellIcon",
+        "CheckCircleIcon",
+        "EditIcon",
+        "TrashIcon"
+      ],
+      "usageType": "incorrect"
+    }
+  ],
+  "mixedUsage": [],
+  "missingImports": [
+    {
+      "file": "src/healthcare/provider/prescription-management/prescription-management.tsx",
+      "hasIcons": true,
+      "correctUsage": [
+        {
+          "iconName": "pill",
+          "line": 330,
+          "usage": "<Icon icon=\"pill\""
+        },
+        {
+          "iconName": "plus",
+          "line": 355,
+          "usage": "<Icon icon=\"plus\""
+        }
+      ],
+      "incorrectUsage": [],
+      "hasIconImport": false,
+      "hasDirectIconImports": [],
+      "usageType": "correct"
+    }
+  ],
+  "stats": {
+    "totalFiles": 127,
+    "filesWithIcons": 21,
+    "correctFiles": 16,
+    "incorrectFiles": 5,
+    "mixedFiles": 0
+  }
+}

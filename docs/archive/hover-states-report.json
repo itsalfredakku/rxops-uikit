@@ -1,0 +1,1812 @@
+{
+  "summary": {
+    "totalComponents": 84,
+    "componentsWithHover": 49,
+    "hoverCoverage": "58%",
+    "timestamp": "2025-07-05T05:47:32.141Z"
+  },
+  "analysis": {
+    "componentsWithGoodHover": [
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/alert/alert.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:text-white",
+          "hover:bg-black",
+          "hover:bg-"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/badge/index.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-md",
+          "hover:scale-105",
+          "hover:brightness-110",
+          "hover:bg-opacity-10",
+          "hover:shadow-sm",
+          "hover:underline"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/button/button.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-lg",
+          "hover:scale-",
+          "hover:brightness-105",
+          "hover:scale-100",
+          "hover:translate-y-0",
+          "hover:shadow-none",
+          "hover:brightness-100"
+        ],
+        "interactiveElements": [
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/checkbox/checkbox.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:border-neutral-400",
+          "hover:border-primary-400"
+        ],
+        "interactiveElements": [
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/input/input.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:border-neutral-400",
+          "hover:bg-neutral-200",
+          "hover:border-error-400"
+        ],
+        "interactiveElements": [
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/link/link-text-based.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:underline",
+          "hover:decoration-2",
+          "hover:shadow-sm",
+          "hover:bg-current",
+          "hover:text-inherit"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "links",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/link/link.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:underline",
+          "hover:decoration-2",
+          "hover:shadow-sm",
+          "hover:text-inherit",
+          "hover:text-primary-700",
+          "hover:text-neutral-700",
+          "hover:text-success-700",
+          "hover:text-warning-700",
+          "hover:text-error-700",
+          "hover:text-info-700",
+          "hover:bg-primary-700",
+          "hover:bg-neutral-700",
+          "hover:bg-success-700",
+          "hover:bg-warning-700",
+          "hover:bg-error-700",
+          "hover:bg-info-700"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "links"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/switch/switch.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-md",
+          "hover:scale-105",
+          "hover:shadow-none",
+          "hover:scale-100",
+          "hover:bg-primary-darker",
+          "hover:bg-neutral-normal",
+          "hover:shadow-lg"
+        ],
+        "interactiveElements": [
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/tag/tag.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-primary-700",
+          "hover:bg-primary-50",
+          "hover:bg-primary-200",
+          "hover:bg-secondary-700",
+          "hover:bg-secondary-50",
+          "hover:bg-secondary-200",
+          "hover:bg-success-700",
+          "hover:bg-success-50",
+          "hover:bg-success-200",
+          "hover:bg-warning-700",
+          "hover:bg-warning-50",
+          "hover:bg-warning-200",
+          "hover:bg-error-700",
+          "hover:bg-error-50",
+          "hover:bg-error-200",
+          "hover:bg-neutral-700",
+          "hover:bg-neutral-50",
+          "hover:bg-neutral-200",
+          "hover:bg-black"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/textarea/textarea.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:border-neutral-400",
+          "hover:bg-neutral-200"
+        ],
+        "interactiveElements": [
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/accordion/accordion.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-neutral-50",
+          "hover:bg-primary-100"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/breadcrumb/breadcrumb.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:text-primary-dark",
+          "hover:bg-primary-lighter"
+        ],
+        "interactiveElements": [
+          "links"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/data-list/data-list.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-neutral-lighter",
+          "hover:shadow-md"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/date-time-picker/date-time-picker.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:border-neutral-400",
+          "hover:bg-neutral-200",
+          "hover:bg-neutral-100",
+          "hover:bg-transparent",
+          "hover:text-neutral-800",
+          "hover:bg-primary-700",
+          "hover:bg-primary-200"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/dropdown/dropdown.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-neutral-lighter",
+          "hover:text-neutral-darker",
+          "hover:bg-transparent"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/emergency-alert/emergency-alert.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-2xl",
+          "hover:scale-",
+          "hover:scale-105",
+          "hover:shadow-lg"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/file-upload/file-upload.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:border-neutral",
+          "hover:text-error"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/select/select.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:border-neutral-dark",
+          "hover:bg-neutral",
+          "hover:border-success-dark",
+          "hover:border-warning-dark",
+          "hover:border-error-dark"
+        ],
+        "interactiveElements": [
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/service-card/service-card.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-lg",
+          "hover:border-primary-300"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/tabs/tabs.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:text-neutral-900",
+          "hover:bg-white",
+          "hover:bg-neutral-200",
+          "hover:border-neutral-300",
+          "hover:bg-neutral-50"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/appointment-scheduler/appointment-scheduler.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:border-neutral-300",
+          "hover:bg-neutral-50"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/card/card.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-lg",
+          "hover:shadow-neutral-200",
+          "hover:-translate-y-1",
+          "hover:shadow-sm",
+          "hover:bg-neutral-50",
+          "hover:border-neutral-400",
+          "hover:bg-neutral-25",
+          "hover:scale-",
+          "hover:ring-1",
+          "hover:ring-primary-200"
+        ],
+        "interactiveElements": []
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/emergency-alert/emergency-alert.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:scale-105",
+          "hover:bg-white",
+          "hover:bg-opacity-20",
+          "hover:bg-warning-700",
+          "hover:bg-primary-700",
+          "hover:bg-orange-700",
+          "hover:bg-success-700",
+          "hover:text-neutral-700"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/footer/footer.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:text-white",
+          "hover:bg-neutral-700",
+          "hover:bg-primary-700"
+        ],
+        "interactiveElements": [
+          "buttons",
+          "links",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/medication-management/medication-management.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:border-neutral-300",
+          "hover:bg-neutral-50"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/product-card/product-card.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-lg",
+          "hover:border-primary-200",
+          "hover:bg-neutral-lightest",
+          "hover:bg-error-lightest",
+          "hover:text-error"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/vital-signs-chart/vital-signs-chart.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-neutral-50",
+          "hover:bg-neutral-25"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/uncategorized/service-card/service-card.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-lg",
+          "hover:border-primary-300"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/appointments/appointment-calendar/appointment-calendar.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-neutral-50",
+          "hover:text-neutral-900",
+          "hover:border-primary-300",
+          "hover:bg-primary-50",
+          "hover:shadow-md",
+          "hover:bg-error-50"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/appointments/video-call/video-call.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-white",
+          "hover:bg-error-600",
+          "hover:bg-primary-700",
+          "hover:bg-error-700",
+          "hover:bg-neutral-700",
+          "hover:bg-warning-700",
+          "hover:text-white"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/billing/billing-card/billing-card.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-primary-lighter",
+          "hover:border-neutral-normal"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/emergency/emergency-alert.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-error-700",
+          "hover:bg-warning-700",
+          "hover:bg-primary-700",
+          "hover:text-neutral-700",
+          "hover:bg-neutral-100"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/medical/health-package-card/health-package-card.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-lg",
+          "hover:border-primary-light",
+          "hover:text-primary-dark",
+          "hover:text-primary-darker"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/medical/imaging-viewer/imaging-viewer.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-neutral-600",
+          "hover:text-primary-400"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/medical/medical-record/medical-record.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-md",
+          "hover:text-primary-darker",
+          "hover:underline"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/medical/medication-tracker/medication-tracker.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:text-neutral-700",
+          "hover:border-neutral-300",
+          "hover:bg-neutral-50",
+          "hover:text-primary-600",
+          "hover:bg-primary-50",
+          "hover:text-error-600",
+          "hover:bg-error-50",
+          "hover:text-primary-500"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/patient/medical-history/medical-history.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-neutral-light",
+          "hover:bg-primary-darker",
+          "hover:bg-primary-lighter",
+          "hover:shadow-md",
+          "hover:bg-neutral-lighter",
+          "hover:text-primary-darker"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/patient/patient-profile/patient-profile.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-xl",
+          "hover:-translate-y-1",
+          "hover:text-primary-600",
+          "hover:bg-white",
+          "hover:shadow-md",
+          "hover:text-neutral-800",
+          "hover:bg-neutral-50",
+          "hover:border-neutral-300"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/provider/consultation-notes/consultation-notes.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-neutral-50",
+          "hover:bg-primary-700",
+          "hover:text-primary-800",
+          "hover:text-warning-800",
+          "hover:bg-warning-700",
+          "hover:text-success-800",
+          "hover:bg-success-700",
+          "hover:shadow-md",
+          "hover:text-primary-600",
+          "hover:bg-primary-50",
+          "hover:text-success-600",
+          "hover:bg-success-50",
+          "hover:text-error-600",
+          "hover:bg-error-50"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/provider/doctor-card/doctor-card.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-lg",
+          "hover:opacity-100",
+          "hover:bg-error-100",
+          "hover:text-error-600",
+          "hover:text-primary-700"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      }
+    ],
+    "componentsNeedingHover": [
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/avatar/avatar.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/link/link-text-based-demo.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "links"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/logo/logo.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "links"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/text/text.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/form-field/form-field.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/pagination/pagination.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/split-button/split-button.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/data-grid/data-grid.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/modal/modal.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/table/table.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/toast/toast.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/patient/vitals-signs/vitals-signs.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/layouts/stack/index.tsx",
+        "hasHoverStates": false,
+        "hoverClasses": [],
+        "interactiveElements": [
+          "buttons"
+        ]
+      }
+    ],
+    "componentsWithBasicHover": [
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/radio/radio.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:border-neutral-400"
+        ],
+        "interactiveElements": [
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/tooltip/tooltip.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:scale-105"
+        ],
+        "interactiveElements": [
+          "click-handlers"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/search-filter/search-filter.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:text-neutral-darker"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/demo.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-neutral-lighter"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/appointments/appointment-card/appointment-card.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-md"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/medical/lab-results/lab-results.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-md"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/patient/health-dashboard/health-dashboard.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-md"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/provider/prescription-management/prescription-management.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:shadow-md"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      },
+      {
+        "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/provider/provider-dashboard/provider-dashboard.tsx",
+        "hasHoverStates": true,
+        "hoverClasses": [
+          "hover:bg-neutral-lighter"
+        ],
+        "interactiveElements": [
+          "click-handlers",
+          "buttons",
+          "form-elements"
+        ]
+      }
+    ]
+  },
+  "details": [
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/alert/alert.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:text-white",
+        "hover:bg-black",
+        "hover:bg-"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/avatar/avatar.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/badge/index.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-md",
+        "hover:scale-105",
+        "hover:brightness-110",
+        "hover:bg-opacity-10",
+        "hover:shadow-sm",
+        "hover:underline"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/button/button.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-lg",
+        "hover:scale-",
+        "hover:brightness-105",
+        "hover:scale-100",
+        "hover:translate-y-0",
+        "hover:shadow-none",
+        "hover:brightness-100"
+      ],
+      "interactiveElements": [
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/checkbox/checkbox.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:border-neutral-400",
+        "hover:border-primary-400"
+      ],
+      "interactiveElements": [
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/divider/divider.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/icon/index.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/input/input.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:border-neutral-400",
+        "hover:bg-neutral-200",
+        "hover:border-error-400"
+      ],
+      "interactiveElements": [
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/link/link-text-based-demo.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "links"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/link/link-text-based.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:underline",
+        "hover:decoration-2",
+        "hover:shadow-sm",
+        "hover:bg-current",
+        "hover:text-inherit"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "links",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/link/link.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:underline",
+        "hover:decoration-2",
+        "hover:shadow-sm",
+        "hover:text-inherit",
+        "hover:text-primary-700",
+        "hover:text-neutral-700",
+        "hover:text-success-700",
+        "hover:text-warning-700",
+        "hover:text-error-700",
+        "hover:text-info-700",
+        "hover:bg-primary-700",
+        "hover:bg-neutral-700",
+        "hover:bg-success-700",
+        "hover:bg-warning-700",
+        "hover:bg-error-700",
+        "hover:bg-info-700"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "links"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/logo/logo.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "links"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/progress-bar/progress-bar.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/radio/radio.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:border-neutral-400"
+      ],
+      "interactiveElements": [
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/spinner/spinner.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/switch/switch.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-md",
+        "hover:scale-105",
+        "hover:shadow-none",
+        "hover:scale-100",
+        "hover:bg-primary-darker",
+        "hover:bg-neutral-normal",
+        "hover:shadow-lg"
+      ],
+      "interactiveElements": [
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/tag/tag.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-primary-700",
+        "hover:bg-primary-50",
+        "hover:bg-primary-200",
+        "hover:bg-secondary-700",
+        "hover:bg-secondary-50",
+        "hover:bg-secondary-200",
+        "hover:bg-success-700",
+        "hover:bg-success-50",
+        "hover:bg-success-200",
+        "hover:bg-warning-700",
+        "hover:bg-warning-50",
+        "hover:bg-warning-200",
+        "hover:bg-error-700",
+        "hover:bg-error-50",
+        "hover:bg-error-200",
+        "hover:bg-neutral-700",
+        "hover:bg-neutral-50",
+        "hover:bg-neutral-200",
+        "hover:bg-black"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/text/index.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/text/text.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/textarea/textarea.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:border-neutral-400",
+        "hover:bg-neutral-200"
+      ],
+      "interactiveElements": [
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/atoms/tooltip/tooltip.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:scale-105"
+      ],
+      "interactiveElements": [
+        "click-handlers"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/accordion/accordion.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-neutral-50",
+        "hover:bg-primary-100"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/breadcrumb/breadcrumb.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:text-primary-dark",
+        "hover:bg-primary-lighter"
+      ],
+      "interactiveElements": [
+        "links"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/data-list/data-list.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-neutral-lighter",
+        "hover:shadow-md"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/date-time-picker/date-time-picker.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:border-neutral-400",
+        "hover:bg-neutral-200",
+        "hover:bg-neutral-100",
+        "hover:bg-transparent",
+        "hover:text-neutral-800",
+        "hover:bg-primary-700",
+        "hover:bg-primary-200"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/dropdown/dropdown.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-neutral-lighter",
+        "hover:text-neutral-darker",
+        "hover:bg-transparent"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/emergency-alert/emergency-alert.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-2xl",
+        "hover:scale-",
+        "hover:scale-105",
+        "hover:shadow-lg"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/file-upload/file-upload.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:border-neutral",
+        "hover:text-error"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/form-field/form-field.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/metric-card/metric-card.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/pagination/pagination.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/search-filter/search-filter.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:text-neutral-darker"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/select/select.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:border-neutral-dark",
+        "hover:bg-neutral",
+        "hover:border-success-dark",
+        "hover:border-warning-dark",
+        "hover:border-error-dark"
+      ],
+      "interactiveElements": [
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/service-card/service-card.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-lg",
+        "hover:border-primary-300"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/split-button/split-button.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/molecules/tabs/tabs.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:text-neutral-900",
+        "hover:bg-white",
+        "hover:bg-neutral-200",
+        "hover:border-neutral-300",
+        "hover:bg-neutral-50"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/appointment-scheduler/appointment-scheduler.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:border-neutral-300",
+        "hover:bg-neutral-50"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/card/card.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-lg",
+        "hover:shadow-neutral-200",
+        "hover:-translate-y-1",
+        "hover:shadow-sm",
+        "hover:bg-neutral-50",
+        "hover:border-neutral-400",
+        "hover:bg-neutral-25",
+        "hover:scale-",
+        "hover:ring-1",
+        "hover:ring-primary-200"
+      ],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/container/container.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/data-grid/data-grid.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/emergency-alert/emergency-alert.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:scale-105",
+        "hover:bg-white",
+        "hover:bg-opacity-20",
+        "hover:bg-warning-700",
+        "hover:bg-primary-700",
+        "hover:bg-orange-700",
+        "hover:bg-success-700",
+        "hover:text-neutral-700"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/footer/footer.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:text-white",
+        "hover:bg-neutral-700",
+        "hover:bg-primary-700"
+      ],
+      "interactiveElements": [
+        "buttons",
+        "links",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/footer/index.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/form/form.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/header/header.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/list/list.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/medication-management/medication-management.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:border-neutral-300",
+        "hover:bg-neutral-50"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/modal/modal.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/product-card/product-card.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-lg",
+        "hover:border-primary-200",
+        "hover:bg-neutral-lightest",
+        "hover:bg-error-lightest",
+        "hover:text-error"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/skeleton/skeleton.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/table/table.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/toast/toast.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/organisms/vital-signs-chart/vital-signs-chart.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-neutral-50",
+        "hover:bg-neutral-25"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/uncategorized/form-validation/form-validation.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/core/uncategorized/service-card/service-card.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-lg",
+        "hover:border-primary-300"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/demo.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-neutral-lighter"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/entry.dev.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/entry.ssr.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/appointments/appointment-calendar/appointment-calendar.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-neutral-50",
+        "hover:text-neutral-900",
+        "hover:border-primary-300",
+        "hover:bg-primary-50",
+        "hover:shadow-md",
+        "hover:bg-error-50"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/appointments/appointment-card/appointment-card.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-md"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/appointments/video-call/video-call.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-white",
+        "hover:bg-error-600",
+        "hover:bg-primary-700",
+        "hover:bg-error-700",
+        "hover:bg-neutral-700",
+        "hover:bg-warning-700",
+        "hover:text-white"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/billing/billing-card/billing-card.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-primary-lighter",
+        "hover:border-neutral-normal"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/emergency/emergency-alert.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-error-700",
+        "hover:bg-warning-700",
+        "hover:bg-primary-700",
+        "hover:text-neutral-700",
+        "hover:bg-neutral-100"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/emergency/health-metric/health-metric.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/medical/health-package-card/health-package-card.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-lg",
+        "hover:border-primary-light",
+        "hover:text-primary-dark",
+        "hover:text-primary-darker"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/medical/imaging-viewer/imaging-viewer.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-neutral-600",
+        "hover:text-primary-400"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/medical/lab-results/lab-results.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-md"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/medical/medical-record/medical-record.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-md",
+        "hover:text-primary-darker",
+        "hover:underline"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/medical/medication-tracker/medication-tracker.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:text-neutral-700",
+        "hover:border-neutral-300",
+        "hover:bg-neutral-50",
+        "hover:text-primary-600",
+        "hover:bg-primary-50",
+        "hover:text-error-600",
+        "hover:bg-error-50",
+        "hover:text-primary-500"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/patient/health-dashboard/health-dashboard.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-md"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/patient/medical-history/medical-history.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-neutral-light",
+        "hover:bg-primary-darker",
+        "hover:bg-primary-lighter",
+        "hover:shadow-md",
+        "hover:bg-neutral-lighter",
+        "hover:text-primary-darker"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/patient/patient-profile/patient-profile.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-xl",
+        "hover:-translate-y-1",
+        "hover:text-primary-600",
+        "hover:bg-white",
+        "hover:shadow-md",
+        "hover:text-neutral-800",
+        "hover:bg-neutral-50",
+        "hover:border-neutral-300"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/patient/vitals-signs/vitals-signs.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/provider/consultation-notes/consultation-notes.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-neutral-50",
+        "hover:bg-primary-700",
+        "hover:text-primary-800",
+        "hover:text-warning-800",
+        "hover:bg-warning-700",
+        "hover:text-success-800",
+        "hover:bg-success-700",
+        "hover:shadow-md",
+        "hover:text-primary-600",
+        "hover:bg-primary-50",
+        "hover:text-success-600",
+        "hover:bg-success-50",
+        "hover:text-error-600",
+        "hover:bg-error-50"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/provider/doctor-card/doctor-card.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-lg",
+        "hover:opacity-100",
+        "hover:bg-error-100",
+        "hover:text-error-600",
+        "hover:text-primary-700"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/provider/prescription-management/prescription-management.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:shadow-md"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/healthcare/provider/provider-dashboard/provider-dashboard.tsx",
+      "hasHoverStates": true,
+      "hoverClasses": [
+        "hover:bg-neutral-lighter"
+      ],
+      "interactiveElements": [
+        "click-handlers",
+        "buttons",
+        "form-elements"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/layouts/column/index.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/layouts/layout.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/layouts/row/index.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/layouts/stack/index.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": [
+        "buttons"
+      ]
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/layouts/variants.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/root.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    },
+    {
+      "path": "/Volumes/EXT/RxOps/uikit/src/utils/validation/form-validation.tsx",
+      "hasHoverStates": false,
+      "hoverClasses": [],
+      "interactiveElements": []
+    }
+  ]
+}

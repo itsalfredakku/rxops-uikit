@@ -1,0 +1,19 @@
+{
+  "name": "component-index-management",
+  "version": "1.0.0",
+  "description": "Scripts for maintaining RxOps UI component index and registry",
+  "scripts": {
+    "index:scan": "node tools/component-indexer.js",
+    "index:report": "node tools/component-indexer.js --report-only",
+    "index:validate": "node tools/validate-components.js",
+    "index:migrate": "node tools/migration-tracker.js",
+    "index:stats": "node -e \"const data = require('./docs/development/COMPONENT_REGISTRY.json'); console.log('Components:', data.stats.total, 'Migrated:', data.stats.migrated);\""
+  },
+  "keywords": [
+    "component-indexing",
+    "design-system", 
+    "atomic-design",
+    "healthcare-ui",
+    "maintenance"
+  ]
+}

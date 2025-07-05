@@ -1,0 +1,2378 @@
+{
+  "summary": {
+    "totalFiles": 0,
+    "compliantFiles": 62,
+    "complianceScore": 0,
+    "emergencyOverrides": 28,
+    "motionSafetyViolations": 56
+  },
+  "fileResults": {
+    "core/atoms/alert/alert.tsx": {
+      "path": "core/atoms/alert/alert.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "core/atoms/avatar/avatar.tsx": {
+      "path": "core/atoms/avatar/avatar.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/atoms/badge/index.tsx": {
+      "path": "core/atoms/badge/index.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/atoms/button/button.test.tsx": {
+      "path": "core/atoms/button/button.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/atoms/button/button.tsx": {
+      "path": "core/atoms/button/button.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": true,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/atoms/checkbox/checkbox.tsx": {
+      "path": "core/atoms/checkbox/checkbox.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "core/atoms/divider/divider.tsx": {
+      "path": "core/atoms/divider/divider.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/atoms/icon/index.tsx": {
+      "path": "core/atoms/icon/index.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "core/atoms/input/index.ts": {
+      "path": "core/atoms/input/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/atoms/input/input.tsx": {
+      "path": "core/atoms/input/input.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "core/atoms/link/link-text-based-demo.tsx": {
+      "path": "core/atoms/link/link-text-based-demo.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/atoms/link/link-text-based.tsx": {
+      "path": "core/atoms/link/link-text-based.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/atoms/link/link.tsx": {
+      "path": "core/atoms/link/link.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/atoms/logo/logo.tsx": {
+      "path": "core/atoms/logo/logo.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/atoms/progress-bar/index.ts": {
+      "path": "core/atoms/progress-bar/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/atoms/progress-bar/progress-bar.tsx": {
+      "path": "core/atoms/progress-bar/progress-bar.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/atoms/radio/radio.tsx": {
+      "path": "core/atoms/radio/radio.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "core/atoms/spinner/spinner.tsx": {
+      "path": "core/atoms/spinner/spinner.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/atoms/switch/switch.tsx": {
+      "path": "core/atoms/switch/switch.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/atoms/tag/index.ts": {
+      "path": "core/atoms/tag/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/atoms/tag/tag.tsx": {
+      "path": "core/atoms/tag/tag.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/atoms/text/index.tsx": {
+      "path": "core/atoms/text/index.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/atoms/text/text.tsx": {
+      "path": "core/atoms/text/text.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/atoms/textarea/textarea.tsx": {
+      "path": "core/atoms/textarea/textarea.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "core/atoms/tooltip/tooltip.tsx": {
+      "path": "core/atoms/tooltip/tooltip.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/molecules/accordion/__tests__/accordion.test.tsx": {
+      "path": "core/molecules/accordion/__tests__/accordion.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/accordion/accordion.tsx": {
+      "path": "core/molecules/accordion/accordion.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/molecules/accordion/index.ts": {
+      "path": "core/molecules/accordion/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/breadcrumb/breadcrumb.tsx": {
+      "path": "core/molecules/breadcrumb/breadcrumb.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/molecules/data-list/data-list.tsx": {
+      "path": "core/molecules/data-list/data-list.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/molecules/date-time-picker/date-time-picker.tsx": {
+      "path": "core/molecules/date-time-picker/date-time-picker.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/molecules/date-time-picker/index.ts": {
+      "path": "core/molecules/date-time-picker/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/dropdown/dropdown.tsx": {
+      "path": "core/molecules/dropdown/dropdown.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/molecules/emergency-alert/__tests__/emergency-alert.test.tsx": {
+      "path": "core/molecules/emergency-alert/__tests__/emergency-alert.test.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/molecules/emergency-alert/emergency-alert.tsx": {
+      "path": "core/molecules/emergency-alert/emergency-alert.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": true,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/emergency-alert/index.ts": {
+      "path": "core/molecules/emergency-alert/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/file-upload/file-upload.tsx": {
+      "path": "core/molecules/file-upload/file-upload.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "core/molecules/file-upload/index.ts": {
+      "path": "core/molecules/file-upload/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/form-field/form-field.tsx": {
+      "path": "core/molecules/form-field/form-field.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/metric-card/index.ts": {
+      "path": "core/molecules/metric-card/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/metric-card/metric-card.tsx": {
+      "path": "core/molecules/metric-card/metric-card.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/pagination/pagination.tsx": {
+      "path": "core/molecules/pagination/pagination.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/search-filter/index.ts": {
+      "path": "core/molecules/search-filter/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/search-filter/search-filter.tsx": {
+      "path": "core/molecules/search-filter/search-filter.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "core/molecules/select/index.ts": {
+      "path": "core/molecules/select/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/select/select.tsx": {
+      "path": "core/molecules/select/select.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "core/molecules/service-card/service-card.tsx": {
+      "path": "core/molecules/service-card/service-card.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/molecules/split-button/split-button.tsx": {
+      "path": "core/molecules/split-button/split-button.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/molecules/tabs/tabs.tsx": {
+      "path": "core/molecules/tabs/tabs.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/organisms/appointment-scheduler/appointment-scheduler.tsx": {
+      "path": "core/organisms/appointment-scheduler/appointment-scheduler.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "core/organisms/card/card.tsx": {
+      "path": "core/organisms/card/card.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/organisms/card/index.ts": {
+      "path": "core/organisms/card/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/container/container.tsx": {
+      "path": "core/organisms/container/container.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/data-grid/data-grid.tsx": {
+      "path": "core/organisms/data-grid/data-grid.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/organisms/emergency-alert/__tests__/emergency-alert-best-practices.test.tsx": {
+      "path": "core/organisms/emergency-alert/__tests__/emergency-alert-best-practices.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/emergency-alert/__tests__/emergency-alert.test.tsx": {
+      "path": "core/organisms/emergency-alert/__tests__/emergency-alert.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/emergency-alert/emergency-alert.tsx": {
+      "path": "core/organisms/emergency-alert/emergency-alert.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/organisms/emergency-alert/index.ts": {
+      "path": "core/organisms/emergency-alert/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/footer/footer.tsx": {
+      "path": "core/organisms/footer/footer.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/organisms/footer/index.tsx": {
+      "path": "core/organisms/footer/index.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/form/form.tsx": {
+      "path": "core/organisms/form/form.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/header/header.tsx": {
+      "path": "core/organisms/header/header.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/list/list.tsx": {
+      "path": "core/organisms/list/list.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/medication-management/__tests__/medication-management.test.tsx": {
+      "path": "core/organisms/medication-management/__tests__/medication-management.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/medication-management/index.ts": {
+      "path": "core/organisms/medication-management/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/medication-management/medication-management.tsx": {
+      "path": "core/organisms/medication-management/medication-management.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/organisms/modal/modal.tsx": {
+      "path": "core/organisms/modal/modal.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/product-card/product-card.tsx": {
+      "path": "core/organisms/product-card/product-card.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/organisms/skeleton/skeleton.tsx": {
+      "path": "core/organisms/skeleton/skeleton.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/organisms/table/table.tsx": {
+      "path": "core/organisms/table/table.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/toast/toast.tsx": {
+      "path": "core/organisms/toast/toast.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "core/organisms/vital-signs-chart/__tests__/vital-signs-chart.test.tsx": {
+      "path": "core/organisms/vital-signs-chart/__tests__/vital-signs-chart.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/vital-signs-chart/index.ts": {
+      "path": "core/organisms/vital-signs-chart/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "core/organisms/vital-signs-chart/vital-signs-chart.tsx": {
+      "path": "core/organisms/vital-signs-chart/vital-signs-chart.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/appointments/appointment-calendar/__tests__/appointment-calendar-best-practices.test.tsx": {
+      "path": "healthcare/appointments/appointment-calendar/__tests__/appointment-calendar-best-practices.test.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/appointments/appointment-calendar/__tests__/appointment-calendar.test.tsx": {
+      "path": "healthcare/appointments/appointment-calendar/__tests__/appointment-calendar.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/appointments/appointment-calendar/appointment-calendar.tsx": {
+      "path": "healthcare/appointments/appointment-calendar/appointment-calendar.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/appointments/appointment-calendar/index.ts": {
+      "path": "healthcare/appointments/appointment-calendar/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/appointments/appointment-card/appointment-card.test.tsx": {
+      "path": "healthcare/appointments/appointment-card/appointment-card.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/appointments/appointment-card/appointment-card.tsx": {
+      "path": "healthcare/appointments/appointment-card/appointment-card.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/appointments/video-call/__tests__/video-call.test.tsx": {
+      "path": "healthcare/appointments/video-call/__tests__/video-call.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/appointments/video-call/index.ts": {
+      "path": "healthcare/appointments/video-call/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/appointments/video-call/video-call.tsx": {
+      "path": "healthcare/appointments/video-call/video-call.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/billing/billing-card/__tests__/billing-card.test.tsx": {
+      "path": "healthcare/billing/billing-card/__tests__/billing-card.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/billing/billing-card/billing-card.tsx": {
+      "path": "healthcare/billing/billing-card/billing-card.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "healthcare/billing/billing-card/index.ts": {
+      "path": "healthcare/billing/billing-card/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/emergency/health-metric/health-metric.tsx": {
+      "path": "healthcare/emergency/health-metric/health-metric.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/emergency/emergency-alert.tsx": {
+      "path": "healthcare/emergency/emergency-alert.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/emergency/index.ts": {
+      "path": "healthcare/emergency/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/medical/health-package-card/health-package-card.tsx": {
+      "path": "healthcare/medical/health-package-card/health-package-card.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/medical/imaging-viewer/__tests__/imaging-viewer.test.tsx": {
+      "path": "healthcare/medical/imaging-viewer/__tests__/imaging-viewer.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/medical/imaging-viewer/imaging-viewer.tsx": {
+      "path": "healthcare/medical/imaging-viewer/imaging-viewer.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/medical/imaging-viewer/index.ts": {
+      "path": "healthcare/medical/imaging-viewer/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/medical/lab-results/__tests__/lab-results.test.tsx": {
+      "path": "healthcare/medical/lab-results/__tests__/lab-results.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/medical/lab-results/index.ts": {
+      "path": "healthcare/medical/lab-results/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/medical/lab-results/lab-results.tsx": {
+      "path": "healthcare/medical/lab-results/lab-results.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/medical/medical-record/medical-record.tsx": {
+      "path": "healthcare/medical/medical-record/medical-record.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/medical/medication-tracker/__tests__/medication-tracker-best-practices.test.tsx": {
+      "path": "healthcare/medical/medication-tracker/__tests__/medication-tracker-best-practices.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/medical/medication-tracker/__tests__/medication-tracker.test.tsx": {
+      "path": "healthcare/medical/medication-tracker/__tests__/medication-tracker.test.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "healthcare/medical/medication-tracker/index.ts": {
+      "path": "healthcare/medical/medication-tracker/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/medical/medication-tracker/medication-tracker.tsx": {
+      "path": "healthcare/medical/medication-tracker/medication-tracker.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "healthcare/patient/health-dashboard/__tests__/health-dashboard.test.tsx": {
+      "path": "healthcare/patient/health-dashboard/__tests__/health-dashboard.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/patient/health-dashboard/health-dashboard.tsx": {
+      "path": "healthcare/patient/health-dashboard/health-dashboard.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/patient/health-dashboard/index.ts": {
+      "path": "healthcare/patient/health-dashboard/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/patient/medical-history/__tests__/medical-history.test.tsx": {
+      "path": "healthcare/patient/medical-history/__tests__/medical-history.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/patient/medical-history/index.ts": {
+      "path": "healthcare/patient/medical-history/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/patient/medical-history/medical-history.tsx": {
+      "path": "healthcare/patient/medical-history/medical-history.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/patient/patient-profile/__tests__/patient-profile.integration.test.tsx": {
+      "path": "healthcare/patient/patient-profile/__tests__/patient-profile.integration.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/patient/patient-profile/__tests__/patient-profile.test.tsx": {
+      "path": "healthcare/patient/patient-profile/__tests__/patient-profile.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/patient/patient-profile/index.ts": {
+      "path": "healthcare/patient/patient-profile/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/patient/patient-profile/patient-profile.tsx": {
+      "path": "healthcare/patient/patient-profile/patient-profile.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "healthcare/patient/vitals-signs/index.ts": {
+      "path": "healthcare/patient/vitals-signs/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/patient/vitals-signs/vitals-signs.tsx": {
+      "path": "healthcare/patient/vitals-signs/vitals-signs.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/provider/consultation-notes/__tests__/consultation-notes.integration.test.tsx": {
+      "path": "healthcare/provider/consultation-notes/__tests__/consultation-notes.integration.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/provider/consultation-notes/__tests__/consultation-notes.simple.test.tsx": {
+      "path": "healthcare/provider/consultation-notes/__tests__/consultation-notes.simple.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/provider/consultation-notes/__tests__/consultation-notes.test.tsx": {
+      "path": "healthcare/provider/consultation-notes/__tests__/consultation-notes.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/provider/consultation-notes/consultation-notes.tsx": {
+      "path": "healthcare/provider/consultation-notes/consultation-notes.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/provider/consultation-notes/index.ts": {
+      "path": "healthcare/provider/consultation-notes/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/provider/doctor-card/doctor-card.tsx": {
+      "path": "healthcare/provider/doctor-card/doctor-card.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    },
+    "healthcare/provider/prescription-management/__tests__/prescription-management.test.tsx": {
+      "path": "healthcare/provider/prescription-management/__tests__/prescription-management.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/provider/prescription-management/index.ts": {
+      "path": "healthcare/provider/prescription-management/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/provider/prescription-management/prescription-management.tsx": {
+      "path": "healthcare/provider/prescription-management/prescription-management.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        },
+        {
+          "type": "emergency-override",
+          "severity": "critical",
+          "message": "Emergency component lacks proper motion override for patient safety",
+          "impact": "Critical alerts may not be visible to users with reduced motion preferences"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": false,
+        "healthcareTiming": true
+      },
+      "complianceScore": 33
+    },
+    "healthcare/provider/provider-dashboard/__tests__/provider-dashboard-new.test.tsx": {
+      "path": "healthcare/provider/provider-dashboard/__tests__/provider-dashboard-new.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/provider/provider-dashboard/__tests__/provider-dashboard.test.tsx": {
+      "path": "healthcare/provider/provider-dashboard/__tests__/provider-dashboard.test.tsx",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/provider/provider-dashboard/index.ts": {
+      "path": "healthcare/provider/provider-dashboard/index.ts",
+      "hasMotionProperties": false,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": false,
+      "violations": [],
+      "compliance": {
+        "motionSensitivity": true,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 100
+    },
+    "healthcare/provider/provider-dashboard/provider-dashboard.tsx": {
+      "path": "healthcare/provider/provider-dashboard/provider-dashboard.tsx",
+      "hasMotionProperties": true,
+      "hasMotionReduceSupport": false,
+      "isEmergencyComponent": true,
+      "violations": [
+        {
+          "type": "motion-sensitivity",
+          "severity": "high",
+          "message": "Component uses motion properties without motion-reduce support",
+          "impact": "Accessibility violation for users with vestibular disorders"
+        }
+      ],
+      "compliance": {
+        "motionSensitivity": false,
+        "emergencyOverride": true,
+        "healthcareTiming": true
+      },
+      "complianceScore": 67
+    }
+  },
+  "violations": [],
+  "recommendations": [
+    {
+      "priority": "high",
+      "category": "overall-compliance",
+      "title": "Improve Motion Accessibility Compliance",
+      "description": "Only 0% of files are compliant. Target: 95%+",
+      "action": "Add motion-reduce classes to all components with animations",
+      "medicalImpact": "Essential for healthcare workers with vestibular disorders"
+    },
+    {
+      "priority": "critical",
+      "category": "patient-safety",
+      "title": "Fix Emergency Component Motion Accessibility",
+      "description": "23 emergency components lack proper motion override",
+      "action": "Implement motion-reduce:animate-pulse for critical patient safety alerts",
+      "medicalImpact": "PATIENT SAFETY - critical alerts must be visible to all users"
+    },
+    {
+      "priority": "high",
+      "category": "accessibility",
+      "title": "Address Motion Safety Violations",
+      "description": "56 components violate motion accessibility",
+      "action": "Add prefers-reduced-motion support to all animated components",
+      "medicalImpact": "Legal compliance requirement for healthcare accessibility"
+    }
+  ],
+  "healthcareSpecificIssues": [
+    {
+      "file": "core/atoms/alert/alert.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/atoms/button/button.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/atoms/checkbox/checkbox.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/atoms/icon/index.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/atoms/input/input.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/atoms/radio/radio.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/atoms/textarea/textarea.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/molecules/file-upload/file-upload.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/molecules/search-filter/search-filter.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/molecules/select/select.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/organisms/appointment-scheduler/appointment-scheduler.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "core/organisms/toast/toast.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/appointments/video-call/__tests__/video-call.test.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/billing/billing-card/billing-card.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/emergency/health-metric/health-metric.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/medical/medication-tracker/__tests__/medication-tracker.test.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/medical/medication-tracker/medication-tracker.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/patient/health-dashboard/__tests__/health-dashboard.test.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/patient/health-dashboard/index.ts",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/patient/medical-history/__tests__/medical-history.test.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/patient/patient-profile/__tests__/patient-profile.test.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/patient/patient-profile/patient-profile.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    },
+    {
+      "file": "healthcare/provider/prescription-management/prescription-management.tsx",
+      "issue": "Emergency component lacks motion override",
+      "severity": "critical",
+      "patientSafetyImpact": "Critical alerts may not be visible",
+      "recommendation": "Add motion-reduce:animate-pulse for life-threatening alerts"
+    }
+  ],
+  "totalFiles": null
+}

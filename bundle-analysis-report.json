@@ -1,0 +1,782 @@
+{
+  "timestamp": "2025-07-05T20:34:52.336Z",
+  "bundles": {
+    "index.qwik.mjs": {
+      "size": 13288,
+      "sizeKB": 12.98,
+      "withinTarget": true,
+      "target": "250KB"
+    },
+    "index.qwik.cjs": {
+      "size": 18127,
+      "sizeKB": 17.7,
+      "withinTarget": true,
+      "target": "250KB"
+    }
+  },
+  "components": {
+    "atoms": {
+      "count": 26,
+      "totalSize": 226452,
+      "averageSize": 8710,
+      "components": {
+        "alert": {
+          "size": 6732,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 6.57
+        },
+        "avatar": {
+          "size": 2430,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 2.37
+        },
+        "badge": {
+          "size": 6588,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 6.43
+        },
+        "button": {
+          "size": 7687,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 2
+          },
+          "sizeKB": 7.51
+        },
+        "checkbox": {
+          "size": 6442,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 6.29
+        },
+        "code-block": {
+          "size": 23769,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 23.21
+        },
+        "divider": {
+          "size": 1323,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 1.29
+        },
+        "icon": {
+          "size": 8416,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 8.22
+        },
+        "image": {
+          "size": 17844,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 17.43
+        },
+        "input": {
+          "size": 5645,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 5.51
+        },
+        "kbd": {
+          "size": 3894,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 3.8
+        },
+        "link": {
+          "size": 28111,
+          "files": 3,
+          "fileTypes": {
+            "tsx": 3
+          },
+          "sizeKB": 27.45
+        },
+        "logo": {
+          "size": 1532,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 1.5
+        },
+        "metric-card": {
+          "size": 3473,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 3.39
+        },
+        "progress-bar": {
+          "size": 7642,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 7.46
+        },
+        "radio": {
+          "size": 6320,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 6.17
+        },
+        "rating": {
+          "size": 13439,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 13.12
+        },
+        "slider": {
+          "size": 19884,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 19.42
+        },
+        "spinner": {
+          "size": 3636,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 3.55
+        },
+        "status-indicator": {
+          "size": 7985,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 7.8
+        },
+        "switch": {
+          "size": 4569,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 4.46
+        },
+        "tag": {
+          "size": 10235,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 10
+        },
+        "text": {
+          "size": 7368,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 2
+          },
+          "sizeKB": 7.2
+        },
+        "textarea": {
+          "size": 11905,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 11.63
+        },
+        "toggle": {
+          "size": 3907,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 3.82
+        },
+        "tooltip": {
+          "size": 5676,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 5.54
+        }
+      }
+    },
+    "molecules": {
+      "count": 19,
+      "totalSize": 229006,
+      "averageSize": 12053,
+      "components": {
+        "accordion": {
+          "size": 9599,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 9.37
+        },
+        "breadcrumb": {
+          "size": 5105,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 4.99
+        },
+        "calendar": {
+          "size": 20707,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 20.22
+        },
+        "command-palette": {
+          "size": 21381,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 20.88
+        },
+        "data-list": {
+          "size": 15162,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 14.81
+        },
+        "date-time-picker": {
+          "size": 12891,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 12.59
+        },
+        "drawer": {
+          "size": 13029,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 12.72
+        },
+        "dropdown": {
+          "size": 4538,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 4.43
+        },
+        "emergency-alert": {
+          "size": 22335,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 21.81
+        },
+        "file-upload": {
+          "size": 13466,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 13.15
+        },
+        "form-field": {
+          "size": 1466,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 1.43
+        },
+        "pagination": {
+          "size": 2717,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 2.65
+        },
+        "popover": {
+          "size": 15547,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 15.18
+        },
+        "search-filter": {
+          "size": 16715,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 16.32
+        },
+        "select": {
+          "size": 9338,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 9.12
+        },
+        "split-button": {
+          "size": 2429,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 2.37
+        },
+        "stepper": {
+          "size": 13841,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 13.52
+        },
+        "tabs": {
+          "size": 6654,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 6.5
+        },
+        "timeline": {
+          "size": 22086,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 21.57
+        }
+      }
+    },
+    "organisms": {
+      "count": 17,
+      "totalSize": 155189,
+      "averageSize": 9129,
+      "components": {
+        "appointment-scheduler": {
+          "size": 20869,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 20.38
+        },
+        "card": {
+          "size": 5708,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 5.57
+        },
+        "container": {
+          "size": 1734,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 1.69
+        },
+        "data-grid": {
+          "size": 14087,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 13.76
+        },
+        "emergency-alert": {
+          "size": 34739,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 1,
+            "ts": 1
+          },
+          "sizeKB": 33.92
+        },
+        "footer": {
+          "size": 11908,
+          "files": 2,
+          "fileTypes": {
+            "tsx": 2
+          },
+          "sizeKB": 11.63
+        },
+        "form": {
+          "size": 1900,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 1.86
+        },
+        "header": {
+          "size": 2700,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 2.64
+        },
+        "list": {
+          "size": 1654,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 1.62
+        },
+        "medication-management": {
+          "size": 17621,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 17.21
+        },
+        "modal": {
+          "size": 2713,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 2.65
+        },
+        "product-card": {
+          "size": 9770,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 9.54
+        },
+        "service-card": {
+          "size": 2578,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 2.52
+        },
+        "skeleton": {
+          "size": 2669,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 2.61
+        },
+        "table": {
+          "size": 3727,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 3.64
+        },
+        "toast": {
+          "size": 3946,
+          "files": 1,
+          "fileTypes": {
+            "tsx": 1
+          },
+          "sizeKB": 3.85
+        },
+        "vital-signs-chart": {
+          "size": 16866,
+          "files": 2,
+          "fileTypes": {
+            "ts": 1,
+            "tsx": 1
+          },
+          "sizeKB": 16.47
+        }
+      }
+    }
+  },
+  "healthcare": {
+    "totalComponents": 19,
+    "clinicalComponents": 5,
+    "categories": {
+      "appointments": {
+        "count": 3,
+        "totalSize": 82756,
+        "averageSize": 27585,
+        "components": {
+          "appointment-calendar": {
+            "size": 51963,
+            "files": 2,
+            "fileTypes": {
+              "tsx": 1,
+              "ts": 1
+            },
+            "sizeKB": 50.75
+          },
+          "appointment-card": {
+            "size": 6946,
+            "files": 2,
+            "fileTypes": {
+              "tsx": 2
+            },
+            "sizeKB": 6.78
+          },
+          "video-call": {
+            "size": 23847,
+            "files": 2,
+            "fileTypes": {
+              "ts": 1,
+              "tsx": 1
+            },
+            "sizeKB": 23.29
+          }
+        }
+      },
+      "billing": {
+        "count": 1,
+        "totalSize": 43240,
+        "averageSize": 43240,
+        "components": {
+          "billing-card": {
+            "size": 43240,
+            "files": 2,
+            "fileTypes": {
+              "tsx": 1,
+              "ts": 1
+            },
+            "sizeKB": 42.23
+          }
+        }
+      },
+      "emergency": {
+        "count": 2,
+        "totalSize": 8382,
+        "averageSize": 4191,
+        "components": {
+          "emergency-alert": {
+            "size": 8382,
+            "files": 2,
+            "fileTypes": {
+              "tsx": 1,
+              "ts": 1
+            },
+            "sizeKB": 8.19
+          },
+          "health-metric": {
+            "size": 0,
+            "files": 1,
+            "fileTypes": {
+              "tsx": 1
+            },
+            "sizeKB": 0
+          }
+        }
+      },
+      "medical": {
+        "count": 5,
+        "totalSize": 88879,
+        "averageSize": 17776,
+        "components": {
+          "health-package-card": {
+            "size": 11209,
+            "files": 2,
+            "fileTypes": {
+              "tsx": 1,
+              "ts": 1
+            },
+            "sizeKB": 10.95
+          },
+          "imaging-viewer": {
+            "size": 18097,
+            "files": 2,
+            "fileTypes": {
+              "tsx": 1,
+              "ts": 1
+            },
+            "sizeKB": 17.67
+          },
+          "lab-results": {
+            "size": 19047,
+            "files": 2,
+            "fileTypes": {
+              "ts": 1,
+              "tsx": 1
+            },
+            "sizeKB": 18.6
+          },
+          "medical-record": {
+            "size": 7768,
+            "files": 1,
+            "fileTypes": {
+              "tsx": 1
+            },
+            "sizeKB": 7.59
+          },
+          "medication-tracker": {
+            "size": 32758,
+            "files": 2,
+            "fileTypes": {
+              "ts": 1,
+              "tsx": 1
+            },
+            "sizeKB": 31.99
+          }
+        }
+      },
+      "patient": {
+        "count": 4,
+        "totalSize": 118397,
+        "averageSize": 29599,
+        "components": {
+          "health-dashboard": {
+            "size": 20873,
+            "files": 2,
+            "fileTypes": {
+              "tsx": 1,
+              "ts": 1
+            },
+            "sizeKB": 20.38
+          },
+          "medical-history": {
+            "size": 20661,
+            "files": 2,
+            "fileTypes": {
+              "ts": 1,
+              "tsx": 1
+            },
+            "sizeKB": 20.18
+          },
+          "patient-profile": {
+            "size": 33833,
+            "files": 2,
+            "fileTypes": {
+              "ts": 1,
+              "tsx": 1
+            },
+            "sizeKB": 33.04
+          },
+          "vitals-signs": {
+            "size": 43030,
+            "files": 2,
+            "fileTypes": {
+              "ts": 1,
+              "tsx": 1
+            },
+            "sizeKB": 42.02
+          }
+        }
+      },
+      "provider": {
+        "count": 4,
+        "totalSize": 101137,
+        "averageSize": 25284,
+        "components": {
+          "consultation-notes": {
+            "size": 40466,
+            "files": 2,
+            "fileTypes": {
+              "tsx": 1,
+              "ts": 1
+            },
+            "sizeKB": 39.52
+          },
+          "doctor-card": {
+            "size": 15904,
+            "files": 1,
+            "fileTypes": {
+              "tsx": 1
+            },
+            "sizeKB": 15.53
+          },
+          "prescription-management": {
+            "size": 17580,
+            "files": 2,
+            "fileTypes": {
+              "ts": 1,
+              "tsx": 1
+            },
+            "sizeKB": 17.17
+          },
+          "provider-dashboard": {
+            "size": 27187,
+            "files": 2,
+            "fileTypes": {
+              "ts": 1,
+              "tsx": 1
+            },
+            "sizeKB": 26.55
+          }
+        }
+      }
+    }
+  },
+  "performance": {},
+  "recommendations": []
+}

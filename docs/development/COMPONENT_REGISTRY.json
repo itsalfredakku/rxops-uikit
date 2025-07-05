@@ -1,0 +1,1016 @@
+{
+  "metadata": {
+    "generatedAt": "2025-07-04T16:39:50.285Z",
+    "version": "1.0.0",
+    "totalComponents": 44
+  },
+  "stats": {
+    "total": 44,
+    "migrated": 1,
+    "needsMigration": 26,
+    "stable": 4
+  },
+  "components": {
+    "atoms": [
+      {
+        "name": "alert",
+        "category": "atoms",
+        "file": "core/atoms/alert/alert.tsx",
+        "lastModified": "2025-07-04",
+        "size": 6226,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Alert"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "avatar",
+        "category": "atoms",
+        "file": "core/atoms/avatar/avatar.tsx",
+        "lastModified": "2025-07-04",
+        "size": 2430,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Avatar"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "badge",
+        "category": "atoms",
+        "file": "core/atoms/badge/index.tsx",
+        "lastModified": "2025-07-04",
+        "size": 5560,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Badge"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "button",
+        "category": "atoms",
+        "file": "core/atoms/button/button.tsx",
+        "lastModified": "2025-07-04",
+        "size": 6033,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Button"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": true,
+        "complexity": "high"
+      },
+      {
+        "name": "checkbox",
+        "category": "atoms",
+        "file": "core/atoms/checkbox/checkbox.tsx",
+        "lastModified": "2025-07-04",
+        "size": 6442,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Checkbox"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "divider",
+        "category": "atoms",
+        "file": "core/atoms/divider/divider.tsx",
+        "lastModified": "2025-07-04",
+        "size": 1323,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Divider"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "low"
+      },
+      {
+        "name": "icon",
+        "category": "atoms",
+        "file": "core/atoms/icon/index.tsx",
+        "lastModified": "2025-07-04",
+        "size": 8416,
+        "status": "stable",
+        "migrationStatus": "migrated",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": false,
+        "hasBaseProps": false,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Icon",
+          "default: Icon"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "very-high"
+      },
+      {
+        "name": "input",
+        "category": "atoms",
+        "file": "core/atoms/input/input.tsx",
+        "lastModified": "2025-07-04",
+        "size": 5315,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Input"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "link",
+        "category": "atoms",
+        "file": "core/atoms/link/link-text-based-demo.tsx",
+        "lastModified": "2025-07-04",
+        "size": 9183,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": false,
+        "hasTypescript": false,
+        "accessibility": false,
+        "exports": [
+          "default: component"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "very-high"
+      },
+      {
+        "name": "logo",
+        "category": "atoms",
+        "file": "core/atoms/logo/logo.tsx",
+        "lastModified": "2025-07-04",
+        "size": 1532,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Logo"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "radio",
+        "category": "atoms",
+        "file": "core/atoms/radio/radio.tsx",
+        "lastModified": "2025-07-04",
+        "size": 6320,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Radio"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "spinner",
+        "category": "atoms",
+        "file": "core/atoms/spinner/spinner.tsx",
+        "lastModified": "2025-07-04",
+        "size": 3636,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Spinner"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "switch",
+        "category": "atoms",
+        "file": "core/atoms/switch/switch.tsx",
+        "lastModified": "2025-07-04",
+        "size": 4414,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Switch"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "text",
+        "category": "atoms",
+        "file": "core/atoms/text/index.tsx",
+        "lastModified": "2025-07-04",
+        "size": 311,
+        "status": "stable",
+        "migrationStatus": "n/a",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": false,
+        "hasBaseProps": false,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [],
+        "dependencies": [],
+        "hasTests": false,
+        "complexity": "low"
+      },
+      {
+        "name": "textarea",
+        "category": "atoms",
+        "file": "core/atoms/textarea/textarea.tsx",
+        "lastModified": "2025-07-04",
+        "size": 11905,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Textarea"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "very-high"
+      },
+      {
+        "name": "tooltip",
+        "category": "atoms",
+        "file": "core/atoms/tooltip/tooltip.tsx",
+        "lastModified": "2025-07-04",
+        "size": 5605,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Tooltip"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      }
+    ],
+    "molecules": [
+      {
+        "name": "breadcrumb",
+        "category": "molecules",
+        "file": "core/molecules/breadcrumb/breadcrumb.tsx",
+        "lastModified": "2025-07-04",
+        "size": 5074,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Breadcrumb"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "data-list",
+        "category": "molecules",
+        "file": "core/molecules/data-list/data-list.tsx",
+        "lastModified": "2025-07-04",
+        "size": 14734,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "DataList"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "very-high"
+      },
+      {
+        "name": "date-time-picker",
+        "category": "molecules",
+        "file": "core/molecules/date-time-picker/date-time-picker.tsx",
+        "lastModified": "2025-07-04",
+        "size": 12752,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "DateTimePicker",
+          "AppointmentDatePicker"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "very-high"
+      },
+      {
+        "name": "dropdown",
+        "category": "molecules",
+        "file": "core/molecules/dropdown/dropdown.tsx",
+        "lastModified": "2025-07-04",
+        "size": 4158,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Dropdown"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "file-upload",
+        "category": "molecules",
+        "file": "core/molecules/file-upload/file-upload.tsx",
+        "lastModified": "2025-07-04",
+        "size": 13092,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "FileUpload",
+          "MedicalDocumentUpload"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "very-high"
+      },
+      {
+        "name": "form-field",
+        "category": "molecules",
+        "file": "core/molecules/form-field/form-field.tsx",
+        "lastModified": "2025-07-04",
+        "size": 1360,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "FormField"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "pagination",
+        "category": "molecules",
+        "file": "core/molecules/pagination/pagination.tsx",
+        "lastModified": "2025-07-04",
+        "size": 2217,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Pagination"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "search-filter",
+        "category": "molecules",
+        "file": "core/molecules/search-filter/search-filter.tsx",
+        "lastModified": "2025-07-04",
+        "size": 16829,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "SearchAndFilter",
+          "DoctorSearch",
+          "AppointmentSearch"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "very-high"
+      },
+      {
+        "name": "select",
+        "category": "molecules",
+        "file": "core/molecules/select/select.tsx",
+        "lastModified": "2025-07-04",
+        "size": 9200,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Select"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "split-button",
+        "category": "molecules",
+        "file": "core/molecules/split-button/split-button.tsx",
+        "lastModified": "2025-07-04",
+        "size": 2393,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "SplitButton"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "tabs",
+        "category": "molecules",
+        "file": "core/molecules/tabs/tabs.tsx",
+        "lastModified": "2025-07-04",
+        "size": 6041,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Tabs",
+          "TabPanel"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      }
+    ],
+    "organisms": [
+      {
+        "name": "card",
+        "category": "organisms",
+        "file": "core/organisms/card/card.tsx",
+        "lastModified": "2025-07-04",
+        "size": 4709,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "CardHeader",
+          "CardBody",
+          "CardFooter",
+          "Card"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "container",
+        "category": "organisms",
+        "file": "core/organisms/container/container.tsx",
+        "lastModified": "2025-07-04",
+        "size": 1734,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Container"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "data-grid",
+        "category": "organisms",
+        "file": "core/organisms/data-grid/data-grid.tsx",
+        "lastModified": "2025-07-04",
+        "size": 13774,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "DataGrid"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "very-high"
+      },
+      {
+        "name": "footer",
+        "category": "organisms",
+        "file": "core/organisms/footer/footer.tsx",
+        "lastModified": "2025-07-04",
+        "size": 9799,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": false,
+        "hasTypescript": false,
+        "accessibility": false,
+        "exports": [
+          "default: component"
+        ],
+        "dependencies": [
+          "@builder.io/qwik",
+          "@rxops/uikit"
+        ],
+        "hasTests": false,
+        "complexity": "very-high"
+      },
+      {
+        "name": "form",
+        "category": "organisms",
+        "file": "core/organisms/form/form.tsx",
+        "lastModified": "2025-07-04",
+        "size": 1790,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Form",
+          "FormSection"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "header",
+        "category": "organisms",
+        "file": "core/organisms/header/header.tsx",
+        "lastModified": "2025-07-04",
+        "size": 3765,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Header",
+          "default: Header"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "list",
+        "category": "organisms",
+        "file": "core/organisms/list/list.tsx",
+        "lastModified": "2025-07-04",
+        "size": 1654,
+        "status": "stable",
+        "migrationStatus": "n/a",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": false,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "List",
+          "ListItem"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "modal",
+        "category": "organisms",
+        "file": "core/organisms/modal/modal.tsx",
+        "lastModified": "2025-07-04",
+        "size": 2315,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Modal"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "product-card",
+        "category": "organisms",
+        "file": "core/organisms/product-card/product-card.tsx",
+        "lastModified": "2025-07-04",
+        "size": 9429,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "ProductCard",
+          "default: ProductCard"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "very-high"
+      },
+      {
+        "name": "skeleton",
+        "category": "organisms",
+        "file": "core/organisms/skeleton/skeleton.tsx",
+        "lastModified": "2025-07-04",
+        "size": 2669,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Skeleton",
+          "DoctorCardSkeleton",
+          "HealthMetricSkeleton"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "table",
+        "category": "organisms",
+        "file": "core/organisms/table/table.tsx",
+        "lastModified": "2025-07-04",
+        "size": 3600,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Table",
+          "TableHeader",
+          "TableBody",
+          "TableRow",
+          "TableCell"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "toast",
+        "category": "organisms",
+        "file": "core/organisms/toast/toast.tsx",
+        "lastModified": "2025-07-04",
+        "size": 3605,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Toast",
+          "ToastContainer"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      }
+    ],
+    "healthcare": [],
+    "layouts": [
+      {
+        "name": "column",
+        "category": "layouts",
+        "file": "layouts/column/index.tsx",
+        "lastModified": "2025-07-04",
+        "size": 4983,
+        "status": "stabilizing",
+        "migrationStatus": "partial",
+        "hasAtomicComponents": true,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Column"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "layout",
+        "category": "layouts",
+        "file": "layouts/layout.tsx",
+        "lastModified": "2025-07-04",
+        "size": 8812,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": true,
+        "exports": [
+          "Layout",
+          "default: Layout"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      },
+      {
+        "name": "row",
+        "category": "layouts",
+        "file": "layouts/row/index.tsx",
+        "lastModified": "2025-07-04",
+        "size": 1688,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Row"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "stack",
+        "category": "layouts",
+        "file": "layouts/stack/index.tsx",
+        "lastModified": "2025-07-04",
+        "size": 2381,
+        "status": "needs-migration",
+        "migrationStatus": "pending",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": true,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "Stack"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "medium"
+      },
+      {
+        "name": "variants",
+        "category": "layouts",
+        "file": "layouts/variants.tsx",
+        "lastModified": "2025-07-04",
+        "size": 3632,
+        "status": "stable",
+        "migrationStatus": "n/a",
+        "hasAtomicComponents": false,
+        "hasHtmlElements": false,
+        "hasBaseProps": true,
+        "hasTypescript": true,
+        "accessibility": false,
+        "exports": [
+          "EmptyLayout",
+          "PublicLayout",
+          "AuthLayout",
+          "UserLayout",
+          "AdminLayout",
+          "ProviderLayout"
+        ],
+        "dependencies": [
+          "@builder.io/qwik"
+        ],
+        "hasTests": false,
+        "complexity": "high"
+      }
+    ],
+    "utilities": []
+  }
+}

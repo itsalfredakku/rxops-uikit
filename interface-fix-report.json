@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-07-05T20:47:47.929Z",
+  "filesModified": 1,
+  "totalFixes": 3,
+  "fixDetails": [
+    {
+      "file": "/src/showcase/healthcare-gallery.tsx",
+      "fixes": [
+        "Badge: intent → variant",
+        "Alert: standardize variant names",
+        "EmergencyAlert: type → severity"
+      ]
+    }
+  ]
+}
