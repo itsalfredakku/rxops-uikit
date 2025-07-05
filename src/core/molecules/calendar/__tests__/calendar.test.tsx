@@ -1,6 +1,6 @@
 /**
  * Calendar Component Tests
- * Healthcare-focused calendar component testing
+ * Medical industry-focused calendar component testing
  */
 
 import { describe, it, expect } from 'vitest';

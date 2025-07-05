@@ -1,6 +1,6 @@
 /**
  * UIKit Component Testing Infrastructure
- * Comprehensive testing utilities for healthcare-focused Qwik components
+ * Comprehensive testing utilities for Medical industry-focused Qwik components
  */
 
 import { createDOM } from '@builder.io/qwik/testing';

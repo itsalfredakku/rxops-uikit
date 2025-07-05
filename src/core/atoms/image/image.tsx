@@ -1,6 +1,6 @@
 /**
  * Image Component
- * Healthcare-focused image component with medical imaging support
+ * Medical industry-focused image component with medical imaging support
  * 
  * Features:
  * - Medical image formats (DICOM, X-ray, MRI, CT scan support)

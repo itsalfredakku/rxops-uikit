@@ -1,6 +1,6 @@
 /**
  * Calendar Component
- * Healthcare-focused calendar component for scheduling and date selection
+ * Medical industry-focused calendar component for scheduling and date selection
  * 
  * Features:
  * - Multiple view modes (month, week, day)

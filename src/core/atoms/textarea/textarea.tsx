@@ -330,12 +330,13 @@ export const Textarea = component$<TextareaProps>((props) => {
   const isAtMaxLength = effectiveMaxLength && characterCount.value >= effectiveMaxLength;
 
   return (
-    <div 
-      class={wrapperClass} 
-      style={style}
-      data-testid={testId}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={wrapperClass} 
+        style={style}
+        data-testid={testId}
+        {...rest}
+      >
       {label && (
         <label 
           for={textareaId} 
@@ -402,6 +403,7 @@ export const Textarea = component$<TextareaProps>((props) => {
           </p>
         )}
       </div>
+    </div>
     </div>
   );
 });

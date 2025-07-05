@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Import Updater for RxOps UI Restructuring
+ * Import Updater for RxOpsRestructuring
  * 
  * This script updates import statements across the codebase
  * to match the new component locations.

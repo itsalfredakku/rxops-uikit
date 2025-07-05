@@ -1,4 +1,4 @@
-# Component Props Standards - RxOps UI Library
+# Component Props Standards - RxOpsLibrary
 
 ## ✅ REQUIRED: Native Props Forwarding Pattern
 
@@ -278,7 +278,7 @@ export const Button = component$<ButtonProps>((props) => {
 
 ## 🎉 **Result: Maximum Flexibility**
 
-With this pattern, ALL RxOps UI components become **drop-in replacements** for native HTML elements while adding our design system enhancements. Users get:
+With this pattern, ALL RxOpscomponents become **drop-in replacements** for native HTML elements while adding our design system enhancements. Users get:
 
 - ✅ **Full native HTML compatibility**
 - ✅ **All native events and attributes**  

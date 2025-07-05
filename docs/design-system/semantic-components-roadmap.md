@@ -2,7 +2,7 @@
 
 ## Overview
 
-This roadmap outlines the planned evolution of RxOps UI components toward semantic-first design principles. Each component will be enhanced to automatically infer styling from semantic meaning and purpose.
+This roadmap outlines the planned evolution of RxOpscomponents toward semantic-first design principles. Each component will be enhanced to automatically infer styling from semantic meaning and purpose.
 
 ## Phase 1: Foundation Components
 
@@ -86,7 +86,7 @@ This roadmap outlines the planned evolution of RxOps UI components toward semant
 <Input type="tel" />       // Auto phone formatting + phone icon
 ```
 
-**Type-Based Enhancements** (Healthcare-Focused):
+**Type-Based Enhancements** (Medical industry-focused):
 | Input Type | Automatic Behavior | Visual Enhancements | Healthcare Context |
 |------------|-------------------|-------------------|-------------------|
 | `email` | Email validation pattern | @ icon, email keyboard | Patient contact info |
@@ -175,7 +175,7 @@ This roadmap outlines the planned evolution of RxOps UI components toward semant
 - Screen reader navigation
 
 **Implementation Plan**:
-- [ ] Create semantic layout component library
+- [ ] Create semantic layout UIKit
 - [ ] Add proper ARIA landmarks
 - [ ] Create responsive layout patterns
 - [ ] Integrate with design tokens
@@ -283,7 +283,7 @@ This roadmap outlines the planned evolution of RxOps UI components toward semant
 <Textarea purpose="emergency" />                      // Emergency communication styling
 ```
 
-**Purpose-Based Enhancements** (Healthcare-Focused):
+**Purpose-Based Enhancements** (Medical industry-focused):
 | Purpose | Automatic Behavior | Healthcare Context | Default Rows | Max Length |
 |---------|-------------------|-------------------|--------------|------------|
 | `notes` | Clinical documentation | "Enter clinical notes and observations..." | 4 | 2000 |

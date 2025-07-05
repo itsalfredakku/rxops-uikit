@@ -1,7 +1,7 @@
 {
   "name": "@rxops/uikit",
   "version": "0.0.1",
-  "description": "RxOps UI Component Library - Simple, modern, and accessible components for healthcare applications",
+  "description": "RxOps UIKit - Simple, modern, and accessible components for healthcare applications",
   "main": "./lib/index.qwik.mjs",
   "qwik": "./lib/index.qwik.mjs",
   "types": "./lib-types/index.d.ts",
@@ -23,7 +23,6 @@
   "private": false,
   "type": "module",
   "scripts": {
-    "dev": "vite --mode ssr --open",
     "build": "qwik build",
     "build.lib": "vite build --mode lib",
     "build.types": "tsc --project tsconfig.types.json",

@@ -1,7 +1,7 @@
 ```mermaid
 graph TB
-    %% RxOps UI Component Architecture
-    subgraph "🏗️ RxOps UI Architecture System"
+    %% RxOpsComponent Architecture
+    subgraph "🏗️ RxOpsArchitecture System"
         
         %% Design System Foundation
         subgraph "🎨 Design System Foundation"

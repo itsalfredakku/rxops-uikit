@@ -1,7 +1,7 @@
 {
   "name": "component-index-management",
   "version": "1.0.0",
-  "description": "Scripts for maintaining RxOps UI component index and registry",
+  "description": "Scripts for maintaining RxOpscomponent index and registry",
   "scripts": {
     "index:scan": "node tools/component-indexer.js",
     "index:report": "node tools/component-indexer.js --report-only",

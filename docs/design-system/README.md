@@ -2,7 +2,7 @@
 
 ## 📚 Complete Documentation Index
 
-Welcome to the comprehensive documentation for RxOps UI's semantic-first design approach. This collection of documents provides everything you need to understand, implement, and migrate to semantic-first component design.
+Welcome to the comprehensive documentation for RxOps UIKit's semantic-first design approach. This collection of documents provides everything you need to understand, implement, and migrate to semantic-first component design.
 
 ## 🎯 Quick Start
 

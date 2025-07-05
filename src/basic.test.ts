@@ -7,7 +7,7 @@ describe('UI Library Tests', () => {
   });
 
   it('should handle string operations', () => {
-    const testString = 'RxOps UI Components';
+    const testString = 'RxOpsComponents';
     expect(testString).toContain('UI');
     expect(testString.length).toBeGreaterThan(0);
   });

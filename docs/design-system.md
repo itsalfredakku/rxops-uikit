@@ -1,4 +1,4 @@
-# 🎨 RxOps UI Design System
+# 🎨 RxOpsDesign System
 
 ## Overview
 
@@ -461,4 +461,4 @@ import { Button, Alert } from '@rxops/uikit/core';
 const PatientChart = lazy(() => import('@rxops/uikit/healthcare'));
 ```
 
-This design system ensures consistency, accessibility, and healthcare-specific optimization across all RxOps UI components. For implementation details, see the individual component documentation in `COMPONENT_GUIDE.md`.
+This design system ensures consistency, accessibility, and healthcare-specific optimization across all RxOpscomponents. For implementation details, see the individual component documentation in `COMPONENT_GUIDE.md`.

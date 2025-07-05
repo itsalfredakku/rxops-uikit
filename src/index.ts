@@ -149,7 +149,7 @@ export { Drawer, Sidebar } from "./core/molecules/drawer/index";
 // =====================================
 export { useValidation, healthcareValidationRules } from "./utils/validation/form-validation";
 
-// Motion Accessibility Utilities (Healthcare-focused)
+// Motion Accessibility Utilities (Medical industry-focused)
 export { 
   useMotionPreference,
   getAnimationClasses,

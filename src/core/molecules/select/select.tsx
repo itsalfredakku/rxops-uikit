@@ -211,12 +211,13 @@ export const Select = component$<SelectProps>((props) => {
   }, {} as Record<string, SelectOption[]>);
 
   return (
-    <div 
-      class={wrapperClass}
-      style={style}
-      data-testid={testId}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={wrapperClass}
+        style={style}
+        data-testid={testId}
+        {...rest}
+      >
       {/* Label */}
       {label && (
         <label 
@@ -307,6 +308,7 @@ export const Select = component$<SelectProps>((props) => {
           {error || helperText}
         </p>
       )}
+    </div>
     </div>
   );
 });

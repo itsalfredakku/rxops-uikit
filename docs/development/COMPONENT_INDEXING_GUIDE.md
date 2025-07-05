@@ -1,6 +1,6 @@
 # 🔍 Component Indexing & Management System
 
-> **Automated Component Discovery**: Comprehensive system for maintaining, tracking, and managing all components in the RxOps UI library with atomic design classification and migration monitoring.
+> **Automated Component Discovery**: Comprehensive system for maintaining, tracking, and managing all components in the RxOpslibrary with atomic design classification and migration monitoring.
 
 ## 🎯 **System Overview**
 

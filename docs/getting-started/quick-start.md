@@ -1,6 +1,6 @@
 # 🚀 Quick Start Guide
 
-Get up and running with RxOps UI components in minutes.
+Get up and running with RxOpscomponents in minutes.
 
 ## 🏥 Healthcare Dashboard Example
 

@@ -157,47 +157,49 @@ export const Input = component$<InputProps>((props) => {
   );
 
   return (
-    <div class={fullWidth ? "w-full" : "w-auto"}>
-      {/* Label */}
-      {label && (
-        <label for={inputId} class={labelClasses}>
-          {label}
-        </label>
-      )}
-      
-      {/* Input Element */}
-      <input
-        id={inputId}
-        type={type}
-        class={inputClasses}
-        style={inputStyle}
-        disabled={disabled}
-        required={required}
-        placeholder={placeholder}
-        value={value}
-        defaultValue={defaultValue}
-        name={name}
-        min={min}
-        max={max}
-        accept={accept}
-        step={step}
-        aria-invalid={hasError}
-        aria-describedby={
-          (error || helperText) ? `${inputId}-helper` : undefined
-        }
-        {...rest}
-      />
-      
-      {/* Helper Text / Error Message */}
-      {(error || helperText) && (
-        <p
-          id={`${inputId}-helper`}
-          class={helperClasses}
-          role={error ? "alert" : undefined}
-        >
-          {error || helperText}
-        </p>
-      )}
+    <div class="themed-content">
+      <div class={fullWidth ? "w-full" : "w-auto"}>
+        {/* Label */}
+        {label && (
+          <label for={inputId} class={labelClasses}>
+            {label}
+          </label>
+        )}
+        
+        {/* Input Element */}
+        <input
+          id={inputId}
+          type={type}
+          class={inputClasses}
+          style={inputStyle}
+          disabled={disabled}
+          required={required}
+          placeholder={placeholder}
+          value={value}
+          defaultValue={defaultValue}
+          name={name}
+          min={min}
+          max={max}
+          accept={accept}
+          step={step}
+          aria-invalid={hasError}
+          aria-describedby={
+            (error || helperText) ? `${inputId}-helper` : undefined
+          }
+          {...rest}
+        />
+        
+        {/* Helper Text / Error Message */}
+        {(error || helperText) && (
+          <p
+            id={`${inputId}-helper`}
+            class={helperClasses}
+            role={error ? "alert" : undefined}
+          >
+            {error || helperText}
+          </p>
+        )}
+      </div>
     </div>
   );
 });

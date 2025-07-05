@@ -65,37 +65,39 @@ export const Modal = component$<ModalProps>((props) => {
   }
 
   return (
-    <div class={modalClasses} style={style} onClick$={handleBackdropClick} {...rest}>
-      <div class={contentClasses} onClick$={(e) => e.stopPropagation()}>
-        {showHeader && (
-          <Row alignItems="center" justifyContent="between" class="modal-header p-4 border-b border-neutral-200">
-            {title && (
-              <Text as="h2" class="modal-title">{title}</Text>
-            )}
-            {closable && (
-              <Button
-                class="modal-close"
-                onClick$={handleClose}
-                aria-label="Close modal"
-                intent="neutral"
-                variant="text"
-                size="sm"
-              >
-                <Icon icon="x-circle" class="w-5 h-5" />
-              </Button>
-            )}
-          </Row>
-        )}
+    <div class="themed-content">
+      <div class={modalClasses} style={style} onClick$={handleBackdropClick} {...rest}>
+        <div class={contentClasses} onClick$={(e) => e.stopPropagation()}>
+          {showHeader && (
+            <Row alignItems="center" justifyContent="between" class="modal-header p-4 border-b border-neutral-200">
+              {title && (
+                <Text as="h2" class="modal-title">{title}</Text>
+              )}
+              {closable && (
+                <Button
+                  class="modal-close"
+                  onClick$={handleClose}
+                  aria-label="Close modal"
+                  intent="neutral"
+                  variant="text"
+                  size="sm"
+                >
+                  <Icon icon="x-circle" class="w-5 h-5" />
+                </Button>
+              )}
+            </Row>
+          )}
 
-        <Column class="modal-body p-4">
-          <Slot />
-        </Column>
+          <Column class="modal-body p-4">
+            <Slot />
+          </Column>
 
-        {showFooter && (
-          <Row justifyContent="end" gap="3" class="modal-footer p-4 border-t border-neutral-200 bg-neutral-50">
-            <Slot name="footer" />
-          </Row>
-        )}
+          {showFooter && (
+            <Row justifyContent="end" gap="3" class="modal-footer p-4 border-t border-neutral-200 bg-neutral-50">
+              <Slot name="footer" />
+            </Row>
+          )}
+        </div>
       </div>
     </div>
   );

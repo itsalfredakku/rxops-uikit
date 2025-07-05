@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
+/* RxOps Theme System */
+@import "./design-system/theme-system.css";
+@import "./design-system/healthcare-semantics.css";
+
 /**
  * RxOps Design System - Global Styles
- * Modern CSS foundation with custom properties for dynamic theming
+ * Modern CSS foundation with dynamic healthcare theming
  */
 
 :root {
@@ -155,6 +159,42 @@ body {
 
 *:focus:not(:focus-visible) {
   outline: none;
+}
+
+/* Enhanced focus-visible for keyboard navigation */
+*:focus-visible {
+  outline: 3px solid rgb(var(--color-primary));
+  outline-offset: 2px;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3);
+  z-index: 10;
+  position: relative;
+}
+
+/* High contrast mode enhanced focus */
+@media (prefers-contrast: high) {
+  *:focus-visible {
+    outline: 4px solid #000;
+    outline-offset: 2px;
+    background-color: #ffff00;
+    color: #000;
+  }
+}
+
+/* Emergency action focus override for patient safety */
+.emergency-priority:focus-visible {
+  outline: 4px solid rgb(var(--color-error));
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
+  animation: focus-pulse 1s infinite;
+}
+
+@keyframes focus-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5);
+  }
+  50% { 
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.3);
+  }
 }
 
 /* Modern scrollbar */

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides comprehensive examples of semantic-first component usage, demonstrating how semantic meaning drives styling and behavior in the RxOps UI library.
+This document provides comprehensive examples of semantic-first component usage, demonstrating how semantic meaning drives styling and behavior in the RxOpslibrary.
 
 ## Text Component Examples
 

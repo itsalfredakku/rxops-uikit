@@ -1,6 +1,6 @@
 /**
  * Timeline Component
- * Healthcare-focused timeline for medical history, treatment progress, and clinical events
+ * Medical industry-focused timeline for medical history, treatment progress, and clinical events
  * 
  * Features:
  * - Medical timeline variants (treatment, medication, appointments, vitals)

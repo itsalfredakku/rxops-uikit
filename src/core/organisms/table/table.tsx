@@ -48,13 +48,19 @@ export const Table = component$<TableProps>((props) => {
 
   if (responsive) {
     return (
-      <div class="table-responsive">
-        {TableElement}
+      <div class="themed-content">
+        <div class="table-responsive">
+          {TableElement}
+        </div>
       </div>
     );
   }
 
-  return TableElement;
+  return (
+    <div class="themed-content">
+      {TableElement}
+    </div>
+  );
 });
 
 export const TableHeader = component$<BaseComponentProps<HTMLTableSectionElement>>((props) => {
@@ -66,13 +72,15 @@ export const TableHeader = component$<BaseComponentProps<HTMLTableSectionElement
   } = props;
 
   return (
-    <thead 
-      class={mergeClasses("table-header", qwikClass, className)}
-      style={style}
-      {...rest}
-    >
-      <Slot />
-    </thead>
+    <div class="themed-content">
+      <thead 
+        class={mergeClasses("table-header", qwikClass, className)}
+        style={style}
+        {...rest}
+      >
+        <Slot />
+      </thead>
+    </div>
   );
 });
 
@@ -85,13 +93,15 @@ export const TableBody = component$<BaseComponentProps<HTMLTableSectionElement>>
   } = props;
 
   return (
-    <tbody 
-      class={mergeClasses("table-body", qwikClass, className)}
-      style={style}
-      {...rest}
-    >
-      <Slot />
-    </tbody>
+    <div class="themed-content">
+      <tbody 
+        class={mergeClasses("table-body", qwikClass, className)}
+        style={style}
+        {...rest}
+      >
+        <Slot />
+      </tbody>
+    </div>
   );
 });
 
@@ -119,13 +129,15 @@ export const TableRow = component$<TableRowProps>((props) => {
   );
 
   return (
-    <tr 
-      class={rowClasses} 
-      style={style}
-      {...rest}
-    >
-      <Slot />
-    </tr>
+    <div class="themed-content">
+      <tr 
+        class={rowClasses} 
+        style={style}
+        {...rest}
+      >
+        <Slot />
+      </tr>
+    </div>
   );
 });
 
@@ -160,19 +172,21 @@ export const TableCell = component$<TableCellProps>((props) => {
   const CellElement = header ? "th" : "td";
 
   return (
-    <CellElement 
-      class={cellClasses} 
-      style={style}
-      {...rest}
-    >
-      <Row alignItems="center" justifyContent={align === "center" ? "center" : align === "right" ? "end" : "start"}>
-        <Slot />
-        {sortable && (
-          <span class="table-sort-icon ml-2">
-            {sortDirection === "asc" ? "↑" : sortDirection === "desc" ? "↓" : "↕"}
-          </span>
-        )}
-      </Row>
-    </CellElement>
+    <div class="themed-content">
+      <CellElement 
+        class={cellClasses} 
+        style={style}
+        {...rest}
+      >
+        <Row alignItems="center" justifyContent={align === "center" ? "center" : align === "right" ? "end" : "start"}>
+          <Slot />
+          {sortable && (
+            <span class="table-sort-icon ml-2">
+              {sortDirection === "asc" ? "↑" : sortDirection === "desc" ? "↓" : "↕"}
+            </span>
+          )}
+        </Row>
+      </CellElement>
+    </div>
   );
 });

@@ -1,6 +1,6 @@
 /**
  * Code Block Component
- * Healthcare-focused code display for medical protocols, scripts, and technical documentation
+ * Medical industry-focused code display for medical protocols, scripts, and technical documentation
  * 
  * Features:
  * - Medical protocol display with syntax highlighting

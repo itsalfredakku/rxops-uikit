@@ -1,6 +1,6 @@
 /**
  * Slider/Range Component
- * Healthcare-focused range input component for medical measurements
+ * Medical industry-focused range input component for medical measurements
  * 
  * Features:
  * - Medical measurement ranges (vital signs, pain scales, dosages)

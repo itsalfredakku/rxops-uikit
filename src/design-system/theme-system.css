@@ -1,0 +1,160 @@
+/**
+ * RxOps UIKit - Healthcare Theme System
+ * Graceful CSS-based theme enhancement that preserves semantic colors
+ */
+
+/* ========================================
+   THEME SYSTEM FOUNDATION
+   ======================================== */
+
+:root {
+  /* Theme modifiers - control how existing colors are adjusted */
+  --theme-brightness: 0;        /* -20 to +20 (percentage) */
+  --theme-saturation: 100%;     /* 70% to 130% (percentage) */
+  --theme-contrast: 1;          /* 0.8 to 1.5 (multiplier) */
+  --theme-warmth: 0;            /* -10 to +10 (hue shift) */
+  
+  /* Healthcare theme state */
+  --theme-context: 'clinical';
+  --theme-mode: 'light';
+}
+
+/* ========================================
+   HEALTHCARE THEME CONTEXTS
+   ======================================== */
+
+/* Clinical Theme - Professional medical environment */
+.theme-clinical {
+  --theme-saturation: 85%;      /* Slightly muted for professional look */
+  --theme-contrast: 1.1;        /* Better readability */
+  --theme-warmth: -5;           /* Cooler tones */
+  --theme-brightness: 0;        /* Neutral brightness */
+  --theme-context: 'clinical';
+}
+
+/* Comfort Theme - Patient-facing interfaces */
+.theme-comfort {
+  --theme-saturation: 100%;     /* Natural saturation */
+  --theme-contrast: 1.05;       /* Slightly enhanced contrast */
+  --theme-warmth: 10;           /* Warmer, more inviting */
+  --theme-brightness: 5;        /* Slightly brighter */
+  --theme-context: 'comfort';
+}
+
+/* High Contrast Theme - Accessibility and medical devices */
+.theme-high-contrast {
+  --theme-saturation: 120%;     /* More vivid colors */
+  --theme-contrast: 1.4;        /* Maximum contrast for accessibility */
+  --theme-warmth: 0;            /* Neutral temperature */
+  --theme-brightness: 0;        /* Standard brightness */
+  --theme-context: 'high-contrast';
+}
+
+/* Vibrant Theme - Pediatric and wellness applications */
+.theme-vibrant {
+  --theme-saturation: 130%;     /* Rich, vibrant colors */
+  --theme-contrast: 1.15;       /* Enhanced contrast */
+  --theme-warmth: 5;            /* Slightly warmer */
+  --theme-brightness: 10;       /* Brighter for energy */
+  --theme-context: 'vibrant';
+}
+
+/* ========================================
+   THEME APPLICATION
+   ======================================== */
+
+/* Apply theme modifiers using CSS filters (graceful, non-breaking) */
+.themed-content {
+  filter: 
+    brightness(calc(100% + var(--theme-brightness) * 1%))
+    saturate(var(--theme-saturation))
+    contrast(var(--theme-contrast))
+    hue-rotate(calc(var(--theme-warmth) * 1deg));
+  
+  /* Smooth transitions between themes */
+  transition: filter 0.3s ease-in-out;
+}
+
+/* Theme-aware component enhancements */
+.themed-content * {
+  /* Inherit theme adjustments for all child elements */
+  filter: inherit;
+}
+
+/* ========================================
+   DARK MODE INTEGRATION
+   ======================================== */
+
+/* Enhanced dark mode with theme context awareness */
+.dark.theme-clinical {
+  --theme-brightness: -5;       /* Slightly darker for clinical night shifts */
+  --theme-contrast: 1.2;        /* Higher contrast in dark mode */
+}
+
+.dark.theme-comfort {
+  --theme-warmth: 15;           /* Extra warmth in dark mode */
+  --theme-saturation: 90%;      /* Slightly less saturated */
+}
+
+.dark.theme-high-contrast {
+  --theme-contrast: 1.5;        /* Maximum contrast in dark mode */
+  --theme-brightness: 5;        /* Slightly brighter text areas */
+}
+
+.dark.theme-vibrant {
+  --theme-saturation: 110%;     /* Maintain vibrancy in dark mode */
+  --theme-brightness: 0;        /* Standard brightness */
+}
+
+/* ========================================
+   MOTION & ANIMATION PREFERENCES
+   ======================================== */
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .themed-content {
+    transition: none;
+  }
+}
+
+/* Emergency override - instant theme changes for patient safety */
+.theme-emergency-override {
+  transition: none !important;
+  filter: 
+    brightness(110%) 
+    saturate(150%) 
+    contrast(1.5) !important;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+/* Optimize themes for printing medical documents */
+@media print {
+  .themed-content {
+    filter: none !important;
+    --theme-brightness: 0;
+    --theme-saturation: 80%;
+    --theme-contrast: 1.3;
+  }
+}
+
+/* ========================================
+   THEME DEBUGGING (Development only)
+   ======================================== */
+
+/* Visual indicator for current theme (remove in production) */
+.theme-debug::before {
+  content: 'Theme: ' var(--theme-context) ' | Mode: ' var(--theme-mode);
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 9999;
+  pointer-events: none;
+}

@@ -1,6 +1,6 @@
 /**
  * Popover Component
- * Healthcare-focused interactive popover for complex content display and user interactions
+ * Medical industry-focused interactive popover for complex content display and user interactions
  * 
  * Features:
  * - Medical information popovers with structured content

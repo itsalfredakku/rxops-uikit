@@ -2,7 +2,7 @@
 
 ## Quick Start
 
-Install RxOps UI components in your healthcare application:
+Install RxOpscomponents in your healthcare application:
 
 ```bash
 npm install @rxops/uikit
@@ -78,7 +78,7 @@ const customStyles = {
 
 ## TypeScript Support
 
-RxOps UI is built with TypeScript and provides full type definitions:
+RxOpsis built with TypeScript and provides full type definitions:
 
 ```typescript
 import type { 

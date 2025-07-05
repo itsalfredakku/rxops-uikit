@@ -167,22 +167,23 @@ export const Tag = component$<TagProps>((props) => {
   const Component = props.clickable && !props.disabled ? 'button' : 'span';
 
   return (
-    <Component
-      type={props.clickable ? 'button' : undefined}
-      class={mergeClasses(
-        getVariantClasses(),
-        sizeClasses[props.size || 'md'],
-        props.clickable && !props.disabled ? 'cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50' : '',
-        props.disabled ? 'opacity-50 cursor-not-allowed' : '',
-        props.class
-      )}
-      onClick$={props.clickable ? handleClick : undefined}
-      disabled={props.disabled}
-      aria-label={props.label}
-      data-healthcare-element="tag"
-      data-healthcare-size={props.size || 'md'}
-      {...props}
-    >
+    <div class="themed-content">
+      <Component
+        type={props.clickable ? 'button' : undefined}
+        class={mergeClasses(
+          getVariantClasses(),
+          sizeClasses[props.size || 'md'],
+          props.clickable && !props.disabled ? 'cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50' : '',
+          props.disabled ? 'opacity-50 cursor-not-allowed' : '',
+          props.class
+        )}
+        onClick$={props.clickable ? handleClick : undefined}
+        disabled={props.disabled}
+        aria-label={props.label}
+        data-healthcare-element="tag"
+        data-healthcare-size={props.size || 'md'}
+        {...props}
+      >
       {/* Icon */}
       {props.icon && (
         <Icon 
@@ -223,6 +224,7 @@ export const Tag = component$<TagProps>((props) => {
         </button>
       )}
     </Component>
+    </div>
   );
 });
 
@@ -264,14 +266,15 @@ export const TagGroup = component$<TagGroupProps>((props) => {
   const { tags: _tags, size, wrap, maxVisible: _maxVisible, onRemove$, onTagClick$, class: className, ...divProps } = props;
 
   return (
-    <div 
-      class={mergeClasses(
-        "tag-group flex gap-2",
-        wrap ? "flex-wrap" : "flex-nowrap",
-        className
-      )}
-      {...divProps}
-    >
+    <div class="themed-content">
+      <div 
+        class={mergeClasses(
+          "tag-group flex gap-2",
+          wrap ? "flex-wrap" : "flex-nowrap",
+          className
+        )}
+        {...divProps}
+      >
       {props.tags ? (
         <>
           {visibleTags?.map((tag) => (
@@ -301,6 +304,7 @@ export const TagGroup = component$<TagGroupProps>((props) => {
       ) : (
         <Slot />
       )}
+    </div>
     </div>
   );
 });

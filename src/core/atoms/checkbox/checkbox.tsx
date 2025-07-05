@@ -161,12 +161,13 @@ export const Checkbox = component$<CheckboxProps>((props) => {
   });
 
   return (
-    <div 
-      class={wrapperClass} 
-      style={style}
-      data-testid={testId}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={wrapperClass} 
+        style={style}
+        data-testid={testId}
+        {...rest}
+      >
       <div class={controlClass}>
         <input
           type="checkbox"
@@ -225,6 +226,7 @@ export const Checkbox = component$<CheckboxProps>((props) => {
           )}
         </div>
       )}
+    </div>
     </div>
   );
 });

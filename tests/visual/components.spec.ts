@@ -8,7 +8,7 @@ test.describe('Healthcare Components Visual Tests & Demo Screenshots', () => {
     await page.waitForTimeout(1000);
   });
 
-  test('Component Library Overview - Full Demo', async ({ page }) => {
+  test('UIKit Overview - Full Demo', async ({ page }) => {
     // Take a full page screenshot for the main README hero image
     await expect(page).toHaveScreenshot('demo-overview.png', {
       fullPage: true,

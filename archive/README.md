@@ -27,7 +27,7 @@ This directory contains historical documentation files that have been consolidat
 ### **For Historical Context**
 These files document the development journey and decision-making process. Useful for:
 - Understanding why certain architectural decisions were made
-- Reviewing the evolution of the component library
+- Reviewing the evolution of the UIKit
 - Learning from the development process
 
 ### **For Reference**

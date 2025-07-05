@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Animation Analysis Script for RxOps UI Kit
+ * Animation Analysis Script for RxOpsKit
  * 
  * Analyzes component animations for healthcare optimization:
  * - Medical-appropriate animation timing

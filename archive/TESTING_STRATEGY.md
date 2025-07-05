@@ -1,4 +1,4 @@
-# 🧪 RxOps UI Testing Strategy
+# 🧪 RxOpsTesting Strategy
 
 ## Testing Infrastructure Setup
 

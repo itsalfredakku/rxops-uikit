@@ -2,7 +2,7 @@
 
 ## Overview
 
-The RxOps UI library is evolving toward a **semantic-first approach** where component styling and behavior are primarily driven by the semantic meaning and purpose of the content, rather than purely visual styling decisions.
+The RxOpslibrary is evolving toward a **semantic-first approach** where component styling and behavior are primarily driven by the semantic meaning and purpose of the content, rather than purely visual styling decisions.
 
 ## Philosophy
 

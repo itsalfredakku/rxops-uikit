@@ -19,7 +19,7 @@ export const HealthcareComponentGallery = component$(() => {
           RxOps Healthcare Component Gallery
         </h1>
         <p class="text-lg text-gray-600 mb-4">
-          Interactive showcase of our healthcare-focused UI components
+          Interactive showcase of our Medical industry-focused UI components
         </p>
         <div class="flex flex-wrap gap-2 mb-6">
           <Badge variant="flat" color="success" size="sm">

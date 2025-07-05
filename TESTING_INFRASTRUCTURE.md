@@ -80,7 +80,7 @@ healthcareTestPatterns.emergencyTesting(component, emergencyProps)
 #### **Calendar Component Tests**
 **Location:** `src/core/molecules/calendar/__tests__/calendar.test.tsx`
 
-**Healthcare-Focused Features:**
+**Medical industry-focused Features:**
 - ✅ Appointment scheduling integration
 - ✅ Medical appointment validation
 - ✅ Accessibility compliance

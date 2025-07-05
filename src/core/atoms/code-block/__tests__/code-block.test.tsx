@@ -1,6 +1,6 @@
 /**
  * Code Block Component Tests
- * Healthcare-focused code display component testing
+ * Medical industry-focused code display component testing
  */
 
 import { describe, it, expect } from 'vitest';

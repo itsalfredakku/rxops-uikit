@@ -1,10 +1,10 @@
-# 🏥 RxOps UI Component Library
+# 🏥 RxOps UIKit
 
 <div align="center">
 
-![RxOps UI Overview](docs/images/hero-image.png)
+![RxOpsOverview](docs/images/hero-image.png)
 
-**A modern, healthcare-focused UI component library built with Qwik**
+**A modern, Medical industry-focused UI UIKit built with Qwik**
 
 [![npm version](https://badge.fury.io/js/@rxops%2Fui.svg)](https://badge.fury.io/js/@rxops%2Fui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -17,7 +17,7 @@
 
 ## ✨ Features
 
-- 🏥 **Healthcare-focused** components designed for medical applications
+- 🏥 **Medical industry-focused** components designed for medical applications
 - ⚡ **Qwik-powered** for maximum performance and minimal JavaScript
 - 🎨 **Modern design** with Tailwind CSS and healthcare color palette
 - ♿ **Accessibility-first** with WCAG 2.1 AA compliance

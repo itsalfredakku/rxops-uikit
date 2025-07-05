@@ -1,6 +1,6 @@
 /**
  * Performance Monitoring & Bundle Size Tracking
- * Healthcare-focused performance metrics for UIKit components
+ * Medical industry-focused performance metrics for UIKit components
  */
 
 // Bundle size targets for healthcare applications

@@ -1,6 +1,6 @@
-# 🤝 Contributing to RxOps UI
+# 🤝 Contributing to RxOps UIKit
 
-Welcome to the RxOps UI component library! We're excited to have you contribute to our healthcare-focused UI components.
+Welcome to the RxOps UIKit! We're excited to have you contribute to our Medical industry-focused UI components.
 
 ## 🚀 Quick Start
 

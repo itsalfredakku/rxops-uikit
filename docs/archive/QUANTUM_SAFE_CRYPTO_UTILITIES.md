@@ -2,7 +2,7 @@
 
 ## 🎯 Overview
 
-Client-side quantum-safe cryptographic utilities for the RxOps UI Kit. This provides secure encryption capabilities for frontend applications including user, provider, and team portals.
+Client-side quantum-safe cryptographic utilities for the RxOpsKit. This provides secure encryption capabilities for frontend applications including user, provider, and team portals.
 
 ## 📋 Implementation Scope
 

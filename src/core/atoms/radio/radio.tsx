@@ -158,12 +158,13 @@ export const Radio = component$<RadioProps>((props) => {
   );
 
   return (
-    <div 
-      class={groupClass} 
-      style={style}
-      data-testid={testId}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={groupClass} 
+        style={style}
+        data-testid={testId}
+        {...rest}
+      >
       <div class="radio-options">
         {options.map((option) => {
           const isChecked = internalValue.value === option.value;
@@ -227,5 +228,6 @@ export const Radio = component$<RadioProps>((props) => {
         </div>
       )}
     </div>
+  </div>
   );
 });

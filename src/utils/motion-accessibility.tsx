@@ -1,5 +1,5 @@
 /**
- * Motion Sensitivity Utilities for RxOps UI Kit
+ * Motion Sensitivity Utilities for RxOpsKit
  * 
  * Provides healthcare-compliant motion reduction utilities that respect
  * user preferences while maintaining critical medical alert functionality.

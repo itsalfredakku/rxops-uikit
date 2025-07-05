@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide ensures that all semantic props in the RxOps UI library are relatable, intuitive, and consistent. Good prop names should immediately convey their purpose and be easy for developers to remember and understand.
+This guide ensures that all semantic props in the RxOpslibrary are relatable, intuitive, and consistent. Good prop names should immediately convey their purpose and be easy for developers to remember and understand.
 
 ## Core Prop Naming Principles
 

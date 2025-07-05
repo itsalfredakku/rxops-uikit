@@ -111,14 +111,16 @@ const CardBase = component$<CardProps>((props) => {
   const cardStyle = mergeStyles(undefined, style);
 
   return (
-    <div
-      class={cardClasses}
-      style={cardStyle}
-      role={interactive ? "button" : undefined}
-      tabIndex={interactive ? 0 : undefined}
-      {...rest}
-    >
-      <Slot />
+    <div class="themed-content">
+      <div
+        class={cardClasses}
+        style={cardStyle}
+        role={interactive ? "button" : undefined}
+        tabIndex={interactive ? 0 : undefined}
+        {...rest}
+      >
+        <Slot />
+      </div>
     </div>
   );
 });

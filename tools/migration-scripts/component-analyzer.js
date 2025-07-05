@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Component Analyzer for RxOps UI Restructuring
+ * Component Analyzer for RxOpsRestructuring
  * 
  * This script analyzes the current components and categorizes them
  * according to atomic design principles and healthcare domains.
@@ -155,7 +155,7 @@ function generateMigrationPlan(components) {
 }
 
 function main() {
-  console.log('🔍 Analyzing RxOps UI components...\n');
+  console.log('🔍 Analyzing RxOpscomponents...\n');
 
   const components = analyzeComponents();
   const migrationPlan = generateMigrationPlan(components);

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Playwright Visual Testing Setup for RxOps UI Kit
+ * Playwright Visual Testing Setup for RxOpsKit
  * 
  * Captures baseline screenshots for all components and establishes
  * visual regression testing framework for healthcare UI compliance.
@@ -57,7 +57,7 @@ const HEALTHCARE_TEST_CONFIG = {
   dataStates: ['empty', 'loading', 'populated', 'error', 'critical-alert']
 };
 
-test.describe('RxOps UI Kit - Visual Regression Testing', () => {
+test.describe('RxOpsKit - Visual Regression Testing', () => {
   
   test.beforeEach(async ({ page }) => {
     // Navigate to the UI Kit showcase

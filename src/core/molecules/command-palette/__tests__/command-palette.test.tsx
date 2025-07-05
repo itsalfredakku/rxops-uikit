@@ -1,6 +1,6 @@
 /**
  * Command Palette Component Tests
- * Healthcare-focused command palette component testing
+ * Medical industry-focused command palette component testing
  */
 
 import { describe, it, expect } from 'vitest';

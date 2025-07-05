@@ -209,7 +209,7 @@ npm run build:production
 
 ### **Week 2-3: Mobile Exploration**
 - **Mobile design system adaptation**
-- **React Native component library setup**
+- **React Native UIKit setup**
 - **Cross-platform design patterns**
 
 ### **Week 4+: Full Parallel Development**

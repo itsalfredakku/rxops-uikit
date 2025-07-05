@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
- * Playwright Configuration for RxOps UI Kit Healthcare Testing
+ * Playwright Configuration for RxOpsKit Healthcare Testing
  * 
  * Optimized for medical device compatibility and clinical workflow validation.
  * Includes specialized testing for healthcare environments, accessibility compliance,

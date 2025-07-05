@@ -1,7 +1,7 @@
 # Icon Standardization Plan (ICON-001)
 
 ## Overview
-Standardize all icon usage across the RxOps UI library to use the unified `<Icon>` component exclusively, eliminating multiple icon patterns and improving consistency.
+Standardize all icon usage across the RxOpslibrary to use the unified `<Icon>` component exclusively, eliminating multiple icon patterns and improving consistency.
 
 ## Current State Analysis
 

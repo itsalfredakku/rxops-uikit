@@ -1,7 +1,7 @@
 /**
  * Design System Type Tokens
  * 
- * Centralized type definitions for consistent component APIs across the RxOps UI library.
+ * Centralized type definitions for consistent component APIs across the RxOpslibrary.
  * These tokens ensure all components follow the same patterns for variants, colors, sizes, etc.
  */
 

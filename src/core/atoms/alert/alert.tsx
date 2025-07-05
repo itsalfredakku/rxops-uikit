@@ -145,54 +145,56 @@ export const Alert = component$<AlertProps>((props) => {
       data-testid={testId || dataTestId}
       {...rest}
     >
-      {/* Icon */}
-      <div class="flex-shrink-0">
-        <Slot name="icon">
-          {colorIcons[color]}
-        </Slot>
-      </div>
-      
-      {/* Content */}
-      <div class="flex-1 min-w-0">
-        {title && (
-          <h3 class="text-sm font-medium mb-1">
-            {title}
-          </h3>
-        )}
-        <div class="text-sm">
-          <Slot />
-        </div>
-      </div>
-      
-      {/* Close Button */}
-      {closable && (
+      <div class="themed-content">
+        {/* Icon */}
         <div class="flex-shrink-0">
-          <button
-            type="button"
-            class={[
-              "inline-flex rounded-md p-1.5 transition-colors duration-200",
-              variant === "filled" ? "text-white/80 hover:text-white hover:bg-black/10" :
-              variant === "outlined" ? (
-                color === "info" ? "text-info-darker hover:bg-info-lighter" :
-                color === "success" ? "text-success-darker hover:bg-success-lighter" :
-                color === "warning" ? "text-warning-darker hover:bg-warning-lighter" :
-                "text-error-darker hover:bg-error-lighter"
-              ) : (
-                color === "info" ? "text-info-darker hover:bg-info-light" :
-                color === "success" ? "text-success-darker hover:bg-success-light" :
-                color === "warning" ? "text-warning-darker hover:bg-warning-light" :
-                "text-error-darker hover:bg-error-light"
-              )
-            ].join(" ")}
-            onClick$={handleClose}
-            aria-label="Close alert"
-          >
-            <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-            </svg>
-          </button>
+          <Slot name="icon">
+            {colorIcons[color]}
+          </Slot>
         </div>
-      )}
+        
+        {/* Content */}
+        <div class="flex-1 min-w-0">
+          {title && (
+            <h3 class="text-sm font-medium mb-1">
+              {title}
+            </h3>
+          )}
+          <div class="text-sm">
+            <Slot />
+          </div>
+        </div>
+        
+        {/* Close Button */}
+        {closable && (
+          <div class="flex-shrink-0">
+            <button
+              type="button"
+              class={[
+                "inline-flex rounded-md p-1.5 transition-colors duration-200",
+                variant === "filled" ? "text-white/80 hover:text-white hover:bg-black/10" :
+                variant === "outlined" ? (
+                  color === "info" ? "text-info-darker hover:bg-info-lighter" :
+                  color === "success" ? "text-success-darker hover:bg-success-lighter" :
+                  color === "warning" ? "text-warning-darker hover:bg-warning-lighter" :
+                  "text-error-darker hover:bg-error-lighter"
+                ) : (
+                  color === "info" ? "text-info-darker hover:bg-info-light" :
+                  color === "success" ? "text-success-darker hover:bg-success-light" :
+                  color === "warning" ? "text-warning-darker hover:bg-warning-light" :
+                  "text-error-darker hover:bg-error-light"
+                )
+              ].join(" ")}
+              onClick$={handleClose}
+              aria-label="Close alert"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+              </svg>
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 });

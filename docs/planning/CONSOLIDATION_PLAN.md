@@ -68,7 +68,7 @@ docs/
 - ✅ Root `README.md` enhancement
 
 **Result:** One authoritative project overview with:
-- What is RxOps UI Kit
+- What is RxOpsKit
 - Architecture overview
 - Getting started quickly
 - Key features & benefits
@@ -120,7 +120,7 @@ docs/
 
 ### **`docs/README.md`** - Project Hub
 ```markdown
-# RxOps UI Kit Documentation
+# RxOpsKit Documentation
 
 ## Quick Navigation
 - 🚀 [Quick Start](./QUICK_START.md) - Get running in 5 minutes

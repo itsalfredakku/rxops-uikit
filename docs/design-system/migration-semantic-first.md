@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide helps you migrate from the traditional "styling-first" approach to the new "semantic-first" approach in the RxOps UI library. The semantic-first approach reduces component complexity while improving accessibility and developer experience.
+This guide helps you migrate from the traditional "styling-first" approach to the new "semantic-first" approach in the RxOpslibrary. The semantic-first approach reduces component complexity while improving accessibility and developer experience.
 
 ## Migration Philosophy
 

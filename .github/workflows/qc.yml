@@ -162,7 +162,7 @@ jobs:
     steps:
       - name: Notify on completion
         run: |
-          echo "🚀 RxOps UI Library Internal Build Complete"
+          echo "🚀 RxOpsLibrary Internal Build Complete"
           echo "Code Quality: ${{ needs.code-quality.result }}"
           echo "Commit: ${{ github.sha }}"
           echo "Branch: ${{ github.ref }}"

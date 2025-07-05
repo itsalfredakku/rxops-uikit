@@ -57,7 +57,7 @@ Replace all `<div class="flex">` with `Row`, `Column`, and `Stack` components.
    ```
 
 ## Note
-This layout migration contributes to the overall goal of creating a more consistent, maintainable, and semantically clear component library.
+This layout migration contributes to the overall goal of creating a more consistent, maintainable, and semantically clear UIKit.
 
 ---
 Last Updated: July 3, 2025

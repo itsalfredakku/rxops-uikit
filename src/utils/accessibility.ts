@@ -1,6 +1,6 @@
 /**
  * Accessibility Audit & WCAG 2.1 AA Compliance
- * Healthcare-focused accessibility testing and validation
+ * Medical industry-focused accessibility testing and validation
  */
 
 // WCAG 2.1 AA compliance targets for healthcare

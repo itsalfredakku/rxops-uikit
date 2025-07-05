@@ -99,12 +99,13 @@ export const Switch = component$<SwitchProps>((props) => {
   );
 
   return (
-    <div 
-      class={wrapperClasses} 
-      style={style}
-      data-testid={testId} 
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={wrapperClasses} 
+        style={style}
+        data-testid={testId} 
+        {...rest}
+      >
       <label 
         for={switchId} 
         class={`flex items-center gap-3 cursor-pointer ${disabled ? "cursor-not-allowed opacity-50" : ""}`}
@@ -156,6 +157,7 @@ export const Switch = component$<SwitchProps>((props) => {
           {description}
         </p>
       )}
+    </div>
     </div>
   );
 });

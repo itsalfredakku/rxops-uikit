@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Motion Accessibility Testing Script for RxOps UI Kit
+ * Motion Accessibility Testing Script for RxOpsKit
  * 
  * Tests motion sensitivity compliance and healthcare animation effectiveness.
  * Validates that our motion accessibility improvements work correctly.

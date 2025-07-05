@@ -1,6 +1,6 @@
 /**
  * Command Palette Component
- * Healthcare-focused command launcher with search, keyboard shortcuts, and workflows
+ * Medical industry-focused command launcher with search, keyboard shortcuts, and workflows
  * 
  * Features:
  * - Fast command search and execution

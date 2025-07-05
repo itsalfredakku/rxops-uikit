@@ -146,8 +146,10 @@ export const Badge = component$<BadgeProps>((props) => {
   const finalStyle = mergeStyles(undefined, style);
 
   return (
-    <span class={finalClass} style={finalStyle} {...rest}>
-      <Slot />
-    </span>
+    <div class="themed-content">
+      <span class={finalClass} style={finalStyle} {...rest}>
+        <Slot />
+      </span>
+    </div>
   );
 });

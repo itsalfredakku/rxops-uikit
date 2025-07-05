@@ -302,7 +302,7 @@ This approach:
 - **Respects** your existing semantic color system
 - **Enhances** rather than replaces
 - **Minimal** code changes required
-- **Healthcare-focused** without complexity
+- **Medical industry-focused** without complexity
 - **Gracefully** degrades if not supported
 
 The result is a sophisticated theme system that looks professional, meets healthcare needs, and maintains our semantic color architecture! 🎨🏥
