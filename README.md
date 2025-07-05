@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![RxOpsOverview](docs/images/hero-image.png)
+![RxOps](docs/images/logo.png)
 
 **A modern, Medical industry-focused UI UIKit built with Qwik**
 
