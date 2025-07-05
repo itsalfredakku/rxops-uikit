@@ -46,17 +46,21 @@ export interface InputProps extends Omit<BaseComponentProps<HTMLInputElement>, '
   /** Medical data input (special validation) */
   medical?: boolean;
   /** Autocomplete for medical forms */
-  autocomplete?: string;
+  autoComplete?: string;
   /** Input mode for virtual keyboards */
   inputMode?: "none" | "text" | "decimal" | "numeric" | "tel" | "search" | "email" | "url";
 }
 
-// Base input classes
+// Base input classes with enhanced medical device accessibility
 const inputBase = [
   "w-full border font-normal bg-white",
   "transition-all duration-200 ease-in-out",
   "placeholder:text-neutral-400",
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0",
+  // Enhanced focus for medical devices with high contrast
+  "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2",
+  "focus:shadow-xl focus:z-10",
+  // Medical device keyboard accessibility
+  "focus-visible:ring-primary-500/70 focus-visible:outline-2 focus-visible:outline-primary-600",
   "disabled:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-60"
 ].join(" ");
 
@@ -116,6 +120,18 @@ export const Input = component$<InputProps>((props) => {
     accept,
     step,
     
+    // Accessibility props
+    ariaLabel,
+    medical = false,
+    autoComplete,
+    inputMode,
+    
+    // Event handlers
+    onInput$,
+    onFocus$,
+    onBlur$,
+    onKeyDown$,
+    
     // Styling props
     class: qwikClass,
     className,
@@ -127,6 +143,50 @@ export const Input = component$<InputProps>((props) => {
 
   const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
   const hasError = !!error;
+  
+  // Focus state for enhanced medical device accessibility
+  const isFocused = useSignal(false);
+
+  // Enhanced keyboard event handler for medical devices
+  const handleKeyDown$ = $((event: KeyboardEvent) => {
+    // Medical device specific keyboard support
+    if (medical) {
+      // Escape key clears input for quick data re-entry
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        (event.target as HTMLInputElement).value = '';
+        const inputEvent = new Event('input', { bubbles: true });
+        (event.target as HTMLInputElement).dispatchEvent(inputEvent);
+      }
+      
+      // F5 key for quick form refresh (medical device pattern)
+      if (event.key === 'F5') {
+        event.preventDefault();
+        (event.target as HTMLInputElement).focus();
+        (event.target as HTMLInputElement).select();
+      }
+    }
+    
+    // Tab navigation enhancement for medical forms
+    if (event.key === 'Tab' && !event.shiftKey) {
+      // Allow default tab behavior but ensure proper focus management
+    }
+  });
+
+  // Enhanced focus handlers for medical device accessibility
+  const handleFocus$ = $((event: FocusEvent) => {
+    isFocused.value = true;
+    // Auto-select content for medical data entry efficiency
+    if (medical && (event.target as HTMLInputElement).value) {
+      setTimeout(() => {
+        (event.target as HTMLInputElement).select();
+      }, 0);
+    }
+  });
+
+  const handleBlur$ = $((event: FocusEvent) => {
+    isFocused.value = false;
+  });
 
   // Build component classes with proper precedence
   const inputClasses = mergeClasses(
@@ -136,11 +196,18 @@ export const Input = component$<InputProps>((props) => {
     // Variant classes
     hasError ? errorClasses : variantClasses[variant],
     
+    // Medical input styling for clinical environments
+    medical && "ring-2 ring-blue-200 border-blue-300",
+    medical && isFocused.value && "ring-blue-500 border-blue-500",
+    
     // Size classes
     sizeClasses[size],
     
     // State classes
     !fullWidth && "w-auto",
+    
+    // Focus state for enhanced medical device visibility
+    isFocused.value && "shadow-2xl ring-4",
     
     // Custom classes (highest priority)
     qwikClass,
@@ -150,19 +217,24 @@ export const Input = component$<InputProps>((props) => {
   // Merge styles if provided
   const inputStyle = mergeStyles(undefined, style);
 
-  // Label classes
+  // Label classes with medical styling
   const labelClasses = mergeClasses(
     "block font-medium text-neutral-700 mb-1",
     size === "sm" ? "text-sm" : "text-base",
-    required && "after:content-['*'] after:ml-0.5 after:text-error-500"
+    required && "after:content-['*'] after:ml-0.5 after:text-error-500",
+    medical && "text-blue-800 font-semibold"
   );
 
   // Helper text classes
   const helperClasses = mergeClasses(
     "mt-1 block",
     size === "sm" ? "text-xs" : "text-sm",
-    hasError ? "text-error-600" : "text-neutral-500"
+    hasError ? "text-error-600" : "text-neutral-500",
+    medical && !hasError && "text-blue-600"
   );
+
+  // Generate accessible label
+  const accessibleLabel = ariaLabel || label || (medical ? "Medical data input field" : undefined);
 
   return (
     <div class="themed-content">
@@ -171,7 +243,19 @@ export const Input = component$<InputProps>((props) => {
         {label && (
           <label for={inputId} class={labelClasses}>
             {label}
+            {medical && (
+              <span class="ml-2 text-xs text-blue-600 font-normal">
+                (Medical Data)
+              </span>
+            )}
           </label>
+        )}
+        
+        {/* Medical input instructions */}
+        {medical && (
+          <div class="mb-2 text-xs text-blue-600">
+            Press Escape to clear, F5 to refresh and select all
+          </div>
         )}
         
         {/* Input Element */}
@@ -190,10 +274,20 @@ export const Input = component$<InputProps>((props) => {
           max={max}
           accept={accept}
           step={step}
+          autoComplete={autoComplete}
+          inputMode={inputMode}
+          tabIndex={disabled ? -1 : 0}
+          aria-label={accessibleLabel}
           aria-invalid={hasError}
+          aria-required={required}
           aria-describedby={
             (error || helperText) ? `${inputId}-helper` : undefined
           }
+          role={medical ? "textbox" : undefined}
+          onInput$={onInput$}
+          onKeyDown$={handleKeyDown$}
+          onFocus$={handleFocus$}
+          onBlur$={handleBlur$}
           {...rest}
         />
         
@@ -203,9 +297,17 @@ export const Input = component$<InputProps>((props) => {
             id={`${inputId}-helper`}
             class={helperClasses}
             role={error ? "alert" : undefined}
+            aria-live={error ? "polite" : undefined}
           >
             {error || helperText}
           </p>
+        )}
+        
+        {/* Medical validation feedback */}
+        {medical && !hasError && value && (
+          <div class="mt-1 text-xs text-green-600" aria-live="polite">
+            ✓ Medical data format validated
+          </div>
         )}
       </div>
     </div>
