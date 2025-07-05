@@ -237,22 +237,23 @@ export const Image = component$<ImageProps>((props) => {
   };
 
   return (
-    <div
-      class={mergeClasses(
-        'image-container relative inline-block overflow-hidden',
-        aspectClasses[props.aspect || 'auto'],
-        radiusClasses[props.radius || 'md'],
-        getVariantClasses(),
-        props.zoomable ? 'cursor-zoom-in group' : '',
-        isZoomed.value ? 'fixed inset-4 z-50 cursor-zoom-out' : '',
-        props.class
-      )}
-      style={containerStyles}
-      onClick$={props.zoomable || props.onClick$ ? handleImageClick : undefined}
-      data-healthcare-element="image"
-      data-medical-type={props.healthcare?.type}
-      {...props}
-    >
+    <div class="themed-content">
+      <div
+        class={mergeClasses(
+          'image-container relative inline-block overflow-hidden',
+          aspectClasses[props.aspect || 'auto'],
+          radiusClasses[props.radius || 'md'],
+          getVariantClasses(),
+          props.zoomable ? 'cursor-zoom-in group' : '',
+          isZoomed.value ? 'fixed inset-4 z-50 cursor-zoom-out' : '',
+          props.class
+        )}
+        style={containerStyles}
+        onClick$={props.zoomable || props.onClick$ ? handleImageClick : undefined}
+        data-healthcare-element="image"
+        data-medical-type={props.healthcare?.type}
+        {...props}
+      >
       {/* Loading Placeholder */}
       {isLoading.value && props.showLoader !== false && (
         <div class="absolute inset-0 flex items-center justify-center bg-neutral-100 animate-pulse">
@@ -339,6 +340,7 @@ export const Image = component$<ImageProps>((props) => {
         <div class="fixed inset-0 bg-black/80 backdrop-blur-sm -z-10" />
       )}
     </div>
+    </div>
   );
 });
 
@@ -381,13 +383,14 @@ export const ImageGallery = component$<ImageGalleryProps>((props) => {
   };
 
   return (
-    <div
-      class={mergeClasses(
-        'image-gallery grid gap-4',
-        gridCols[props.columns || 3],
-        props.class
-      )}
-    >
+    <div class="themed-content">
+      <div
+        class={mergeClasses(
+          'image-gallery grid gap-4',
+          gridCols[props.columns || 3],
+          props.class
+        )}
+      >
       {props.images.map((image) => (
         <div key={image.id} class="flex flex-col gap-2">
           <Image
@@ -408,6 +411,7 @@ export const ImageGallery = component$<ImageGalleryProps>((props) => {
           )}
         </div>
       ))}
+    </div>
     </div>
   );
 });
@@ -436,7 +440,8 @@ export const MedicalImageViewer = component$<MedicalImageViewerProps>((props) =>
   const showMetadataPanel = useSignal(props.showMetadata || false);
 
   return (
-    <div class="medical-image-viewer flex flex-col bg-black rounded-lg overflow-hidden">
+    <div class="themed-content">
+      <div class="medical-image-viewer flex flex-col bg-black rounded-lg overflow-hidden">
       {/* Header with controls */}
       <div class="flex items-center justify-between bg-neutral-900 px-4 py-2">
         <div class="flex items-center gap-2">
@@ -547,6 +552,7 @@ export const MedicalImageViewer = component$<MedicalImageViewerProps>((props) =>
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 });

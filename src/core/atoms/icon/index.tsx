@@ -348,29 +348,35 @@ export const Icon = component$<IconProps>((props) => {
     // Fallback for unknown icons - could log a warning in development
     console.warn(`Icon "${icon}" not found. Available icons:`, Object.keys(iconMap));
     return (
-      <svg 
-        class={finalClass || "w-5 h-5"} 
-        width={size} 
-        height={size} 
-        style={finalStyle}
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        stroke-width="2" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"
-        {...rest}
-      >
-        <circle cx="12" cy="12" r="10" />
-        <line x1="12" y1="8" x2="12" y2="12" />
-        <line x1="12" y1="16" x2="12.01" y2="16" />
-      </svg>
+      <div class="themed-content">
+        <svg 
+          class={finalClass || "w-5 h-5"} 
+          width={size} 
+          height={size} 
+          style={finalStyle}
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+          {...rest}
+        >
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+      </div>
     );
   }
   
-  return <IconComponent 
-    class={finalClass} 
-  />;
+  return (
+    <div class="themed-content">
+      <IconComponent 
+        class={finalClass} 
+      />
+    </div>
+  );
 });
 
 export default Icon;

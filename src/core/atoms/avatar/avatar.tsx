@@ -66,31 +66,33 @@ export const Avatar = component$<AvatarProps>((props) => {
   const initials = name ? getInitials(name) : null;
 
   return (
-    <div 
-      class={avatarClasses} 
-      style={style}
-      role="img" 
-      aria-label={displayName} 
-      {...rest}
-    >
-      {src ? (
-        <img
-          src={src}
-          alt={displayName}
-          class="w-full h-full object-cover"
-          loading="lazy"
-          width="50"
-          height="50"
-        />
-      ) : initials ? (
-        <span class="select-none leading-none" aria-hidden="true">
-          {initials}
-        </span>
-      ) : (
-        <span class="select-none leading-none text-[0.8em] flex items-center justify-center" aria-hidden="true">
-          {fallbackIcon || <Icon icon="user" class="w-4 h-4" />}
-        </span>
-      )}
+    <div class="themed-content">
+      <div 
+        class={avatarClasses} 
+        style={style}
+        role="img" 
+        aria-label={displayName} 
+        {...rest}
+      >
+        {src ? (
+          <img
+            src={src}
+            alt={displayName}
+            class="w-full h-full object-cover"
+            loading="lazy"
+            width="50"
+            height="50"
+          />
+        ) : initials ? (
+          <span class="select-none leading-none" aria-hidden="true">
+            {initials}
+          </span>
+        ) : (
+          <span class="select-none leading-none text-[0.8em] flex items-center justify-center" aria-hidden="true">
+            {fallbackIcon || <Icon icon="user" class="w-4 h-4" />}
+          </span>
+        )}
+      </div>
     </div>
   );
 });

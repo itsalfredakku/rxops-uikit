@@ -241,30 +241,38 @@ export const Text = component$<TextProps>((props) => {
   };
 
   // Render based on element type
-  switch (as) {
-    case 'h1':
-      return <h1 {...elementProps}><Slot /></h1>;
-    case 'h2':
-      return <h2 {...elementProps}><Slot /></h2>;
-    case 'h3':
-      return <h3 {...elementProps}><Slot /></h3>;
-    case 'h4':
-      return <h4 {...elementProps}><Slot /></h4>;
-    case 'h5':
-      return <h5 {...elementProps}><Slot /></h5>;
-    case 'h6':
-      return <h6 {...elementProps}><Slot /></h6>;
-    case 'p':
-      return <p {...elementProps}><Slot /></p>;
-    case 'span':
-      return <span {...elementProps}><Slot /></span>;
-    case 'div':
-      return <div {...elementProps}><Slot /></div>;
-    case 'small':
-      return <small {...elementProps}><Slot /></small>;
-    case 'label':
-      return <label {...elementProps}><Slot /></label>;
-    default:
-      return <p {...elementProps}><Slot /></p>;
-  }
+  const renderTextElement = () => {
+    switch (as) {
+      case 'h1':
+        return <h1 {...elementProps}><Slot /></h1>;
+      case 'h2':
+        return <h2 {...elementProps}><Slot /></h2>;
+      case 'h3':
+        return <h3 {...elementProps}><Slot /></h3>;
+      case 'h4':
+        return <h4 {...elementProps}><Slot /></h4>;
+      case 'h5':
+        return <h5 {...elementProps}><Slot /></h5>;
+      case 'h6':
+        return <h6 {...elementProps}><Slot /></h6>;
+      case 'p':
+        return <p {...elementProps}><Slot /></p>;
+      case 'span':
+        return <span {...elementProps}><Slot /></span>;
+      case 'div':
+        return <div {...elementProps}><Slot /></div>;
+      case 'small':
+        return <small {...elementProps}><Slot /></small>;
+      case 'label':
+        return <label {...elementProps}><Slot /></label>;
+      default:
+        return <p {...elementProps}><Slot /></p>;
+    }
+  };
+
+  return (
+    <div class="themed-content">
+      {renderTextElement()}
+    </div>
+  );
 });

@@ -1,4 +1,4 @@
-import { component$, Slot } from "@builder.io/qwik";
+import { component$, Slot, useSignal, $ } from "@builder.io/qwik";
 import type { BaseComponentProps, VariantProps, InteractiveProps } from "../../../design-system/props";
 import { mergeClasses } from "../../../design-system/props";
 import { createColorVariant, getInteractiveClasses } from "../../../design-system/token-utils";
@@ -41,9 +41,15 @@ export interface ButtonProps extends
    * Legacy prop for backward compatibility 
    */
   color?: VariantProps['color'];
+  /** ARIA label for accessibility */
+  ariaLabel?: string;
+  /** Emergency/critical button for medical devices */
+  emergency?: boolean;
+  /** Medical device keyboard shortcut (F1-F12) */
+  shortcut?: string;
 }
 
-// Base button classes using design tokens with enhanced hover states
+// Base button classes using design tokens with enhanced hover states and medical device accessibility
 const buttonBase = [
   "inline-flex items-center justify-center font-medium leading-none",
   "border cursor-pointer select-none whitespace-nowrap relative overflow-hidden",
@@ -52,11 +58,17 @@ const buttonBase = [
   "transform transition-all duration-200 ease-out",
   "hover:shadow-lg hover:scale-[1.02] hover:brightness-105",
   "active:scale-[0.98] active:shadow-sm",
-  "focus:ring-2 focus:ring-offset-2 focus:ring-primary-500",
+  // Medical device keyboard accessibility with high contrast focus
+  "focus:outline-none focus:ring-4 focus:ring-primary-500/50 focus:ring-offset-2",
+  "focus:shadow-2xl focus:z-10",
+  // Enhanced focus for medical devices in clinical lighting
+  "focus-visible:ring-4 focus-visible:ring-primary-600/70 focus-visible:ring-offset-2",
+  "focus-visible:outline-2 focus-visible:outline-primary-600",
   // Reduced motion support
   "motion-reduce:transition-colors motion-reduce:hover:scale-100 motion-reduce:hover:transform-none",
   // Disabled state override
-  "disabled:hover:scale-100 disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:hover:brightness-100"
+  "disabled:hover:scale-100 disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:hover:brightness-100",
+  "disabled:cursor-not-allowed disabled:opacity-60"
 ].join(" ");
 
 // Semantic intent-based styling using design tokens
@@ -113,6 +125,14 @@ export const Button = component$<ButtonProps>((props) => {
     leftIcon = false,
     rightIcon = false,
     
+    // Accessibility props
+    ariaLabel,
+    emergency = false,
+    shortcut,
+    
+    // Event handlers
+    onClick$,
+    
     // Styling props
     class: qwikClass,
     className,
@@ -122,6 +142,46 @@ export const Button = component$<ButtonProps>((props) => {
     ...rest
   } = props;
 
+  // Focus state for enhanced medical device accessibility
+  const isFocused = useSignal(false);
+
+  // Enhanced keyboard event handler for medical devices
+  const handleKeyDown$ = $((event: KeyboardEvent) => {
+    // Medical device keyboard support
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      // Trigger click if not disabled - use native click() method
+      if (!disabled && !loading) {
+        (event.target as HTMLElement).click();
+      }
+    }
+
+    // Emergency button escape functionality
+    if (emergency && event.key === 'Escape') {
+      event.preventDefault();
+      event.stopPropagation();
+      // Emergency buttons should lose focus on escape for quick navigation
+      (event.target as HTMLElement).blur();
+    }
+
+    // Medical device shortcut support
+    if (shortcut && event.key === shortcut && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+      if (!disabled && !loading) {
+        (event.target as HTMLElement).click();
+      }
+    }
+  });
+
+  // Enhanced focus handlers for medical device accessibility
+  const handleFocus$ = $((event: FocusEvent) => {
+    isFocused.value = true;
+  });
+
+  const handleBlur$ = $((event: FocusEvent) => {
+    isFocused.value = false;
+  });
+
   // Build component classes with proper precedence
   const buttonClasses = mergeClasses(
     // Base component classes with enhanced hover states
@@ -129,6 +189,10 @@ export const Button = component$<ButtonProps>((props) => {
     
     // Intent-based styling (preferred - takes precedence if provided)
     intent ? intentStyles[intent] : undefined,
+    
+    // Emergency button styling for medical devices
+    emergency && "ring-2 ring-red-500 ring-offset-2 bg-red-600 text-white border-red-700",
+    emergency && "hover:bg-red-700 focus:ring-red-500",
     
     // Legacy variant + color combination (fallback)
     !intent ? variantClasses[variant] : undefined,
@@ -147,10 +211,16 @@ export const Button = component$<ButtonProps>((props) => {
     leftIcon && "pl-2",
     rightIcon && "pr-2",
     
+    // Focus state for enhanced medical device visibility
+    isFocused.value && "shadow-2xl ring-4",
+    
     // Custom classes (highest priority)
     qwikClass,
     className
   );
+
+  // Generate accessible label
+  const accessibleLabel = ariaLabel || (emergency ? "Emergency action button" : undefined);
 
   return (
     <button
@@ -158,19 +228,43 @@ export const Button = component$<ButtonProps>((props) => {
       class={buttonClasses}
       style={style}
       disabled={disabled || loading}
+      tabIndex={disabled ? -1 : 0}
       aria-busy={loading}
+      aria-label={accessibleLabel}
+      aria-describedby={shortcut ? `${shortcut}-shortcut` : undefined}
+      role="button"
+      onClick$={onClick$}
+      onKeyDown$={handleKeyDown$}
+      onFocus$={handleFocus$}
+      onBlur$={handleBlur$}
       {...rest}
     >
       <div class="themed-content">
+        {/* Medical device shortcut indicator */}
+        {shortcut && (
+          <span 
+            id={`${shortcut}-shortcut`}
+            class="sr-only"
+          >
+            Keyboard shortcut: {shortcut}
+          </span>
+        )}
+        
+        {/* Emergency indicator for medical devices */}
+        {emergency && (
+          <span class="sr-only">
+            Emergency function - Press Escape to cancel
+          </span>
+        )}
+        
         {/* Loading Spinner with Motion Sensitivity */}
         {loading && (
-          <span class="inline-flex shrink-0">
+          <span class="inline-flex shrink-0" aria-hidden="true">
             <svg
               class="animate-spin motion-reduce:animate-pulse h-4 w-4"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              aria-hidden="true"
             >
               <circle
                 class="opacity-25"
@@ -193,6 +287,13 @@ export const Button = component$<ButtonProps>((props) => {
         <span class={loading ? "sr-only" : undefined}>
           <Slot />
         </span>
+        
+        {/* Loading state announcement */}
+        {loading && (
+          <span class="sr-only" aria-live="polite">
+            Loading, please wait
+          </span>
+        )}
       </div>
     </button>
   );

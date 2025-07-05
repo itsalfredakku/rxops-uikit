@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useSignal, $ } from "@builder.io/qwik";
 import type { BaseComponentProps } from "../../../design-system/props";
 import { mergeClasses, mergeStyles } from "../../../design-system/props";
 import type { ComponentSize, FormVariant } from "../../../design-system/types";
@@ -41,6 +41,14 @@ export interface InputProps extends Omit<BaseComponentProps<HTMLInputElement>, '
   accept?: string;
   /** Step value (for number inputs) */
   step?: string | number;
+  /** ARIA label for accessibility */
+  ariaLabel?: string;
+  /** Medical data input (special validation) */
+  medical?: boolean;
+  /** Autocomplete for medical forms */
+  autocomplete?: string;
+  /** Input mode for virtual keyboards */
+  inputMode?: "none" | "text" | "decimal" | "numeric" | "tel" | "search" | "email" | "url";
 }
 
 // Base input classes

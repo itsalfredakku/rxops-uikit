@@ -12,25 +12,25 @@
   /* Map clinical semantics to WCAG-compliant semantic colors */
   --color-critical-lighter: #fee2e2;  /* 1.14:1 - Decorative only */
   --color-critical-light: #fca5a5;    /* 1.93:1 - Background only */
-  --color-critical-normal: #b91c1c;   /* 5.94:1 - Patient safety ✅ */ */
+  --color-critical-normal: #b91c1c;   /* 5.94:1 - Patient safety ✅ */
   --color-critical-dark: #b91c1c;     /* 5.94:1 - WCAG AAA compliant ✅ */
   --color-critical-darker: #7f1d1d;   /* 8.24:1 - Maximum accessibility ✅ */
   
   --color-urgent-lighter: #fef3c7;    /* 1.09:1 - Decorative only */
   --color-urgent-light: #fde047;      /* 1.27:1 - Background only */
-  --color-urgent-normal: #b45309;     /* 5.08:1 - Medical alerts ✅ */ */
+  --color-urgent-normal: #b45309;     /* 5.08:1 - Medical alerts ✅ */
   --color-urgent-dark: #a16207;       /* 5.85:1 - WCAG AAA compliant ✅ */
   --color-urgent-darker: #713f12;     /* 8.36:1 - Maximum accessibility ✅ */
   
   --color-routine-lighter: #e0f2fe;   /* 1.04:1 - Decorative only */
   --color-routine-light: #7dd3fc;     /* 1.58:1 - Background only */
-  --color-routine-normal: #0369a1;      /* 6.44:1 - Information ✅ */ */
+  --color-routine-normal: #0369a1;      /* 6.44:1 - Information ✅ */
   --color-routine-dark: #0369a1;      /* 6.44:1 - WCAG AAA compliant ✅ */
   --color-routine-darker: #0c4a6e;    /* 8.78:1 - Maximum accessibility ✅ */
   
   --color-stable-lighter: #dcfce7;    /* 1.07:1 - Decorative only */
   --color-stable-light: #86efac;      /* 1.46:1 - Background only */
-  --color-stable-normal: #15803d;     /* 6.12:1 - Positive status ✅ */ */
+  --color-stable-normal: #15803d;     /* 6.12:1 - Positive status ✅ */
   --color-stable-dark: #15803d;       /* 6.12:1 - WCAG AAA compliant ✅ */
   --color-stable-darker: #14532d;     /* 8.05:1 - Maximum accessibility ✅ */
   

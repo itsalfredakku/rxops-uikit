@@ -310,19 +310,21 @@ export const Link = component$<LinkProps>(({
   );
 
   return (
-    <a
-      href={disabled ? undefined : href}
-      target={target}
-      rel={finalRel}
-      download={download}
-      class={finalClasses}
-      data-testid={testId}
-      onClick$={handleClick}
-      aria-disabled={disabled}
-      {...rest}
-    >
-      {content}
-    </a>
+    <div class="themed-content">
+      <a
+        href={disabled ? undefined : href}
+        target={target}
+        rel={finalRel}
+        download={download}
+        class={finalClasses}
+        data-testid={testId}
+        onClick$={handleClick}
+        aria-disabled={disabled}
+        {...rest}
+      >
+        {content}
+      </a>
+    </div>
   );
 });
 
