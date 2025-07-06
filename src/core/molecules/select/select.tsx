@@ -175,14 +175,54 @@ export const Select = component$<SelectProps>((props) => {
     }
   });
 
-  const selectClass = selectVariants({
+  // Enhanced keyboard event handler for medical device select accessibility
+  const handleKeyDown$ = $((event: KeyboardEvent) => {
+    // Enter key to open/activate select
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (!disabled) {
+        (event.target as HTMLSelectElement).click();
+      }
+    }
+    
+    // Escape key to close and clear selection
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      (event.target as HTMLSelectElement).blur();
+    }
+    
+    // Home/End keys for quick navigation
+    if (event.key === 'Home') {
+      event.preventDefault();
+      if (!disabled) {
+        const select = event.target as HTMLSelectElement;
+        select.selectedIndex = 0;
+        handleChange(event);
+      }
+    }
+    
+    if (event.key === 'End') {
+      event.preventDefault();
+      if (!disabled) {
+        const select = event.target as HTMLSelectElement;
+        select.selectedIndex = select.options.length - 1;
+        handleChange(event);
+      }
+    }
+  });
+
+  const selectClass = mergeClasses(selectVariants({
     [getVariantClass()]: true,
     size,
     disabled,
     className: [
       !fullWidth && "w-auto"
     ].filter(Boolean).join(" ")
-  });
+  }),
+  // Enhanced focus indicators for clinical environments
+  "focus:ring-4 focus:ring-primary-500/70 focus:ring-offset-2",
+  "focus:shadow-lg focus:border-primary-600"
+  );
 
   const labelClass = labelVariants({
     [size]: true,
@@ -244,6 +284,8 @@ export const Select = component$<SelectProps>((props) => {
             ].filter(Boolean).join(" ") || undefined
           }
           onChange$={handleChange}
+          onKeyDown$={handleKeyDown$}
+          tabIndex={disabled ? -1 : 0}
         >
           {!multiple && placeholder && (
             <option value="" disabled={!!selectedValue.value}>

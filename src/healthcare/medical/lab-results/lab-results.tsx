@@ -93,8 +93,8 @@ export const LabResults = component$<LabResultsProps>((props) => {
     normal: 'bg-success-100 text-success-800 border-success-light',
     high: 'bg-error-100 text-error-800 border-error-light',
     low: 'bg-primary-100 text-primary-800 border-primary-200',
-    critical: 'bg-error-200 text-error-900 border-red-300',
-    abnormal: 'bg-warning-100 text-warning-800 border-yellow-200'
+    critical: 'bg-error-200 text-error-900 border-error-light',
+    abnormal: 'bg-warning-100 text-warning-800 border-warning-light'
   };
 
   // Convert status to Badge component props
@@ -124,7 +124,7 @@ export const LabResults = component$<LabResultsProps>((props) => {
   const trendColors = {
     up: 'text-error-500',
     down: 'text-primary-500',
-    stable: 'text-neutral-500'
+    stable: 'text-neutral-normal'
   };
 
   // Get unique categories
@@ -282,7 +282,7 @@ export const LabResults = component$<LabResultsProps>((props) => {
           )}
 
           {showTrends && result.previousValue && (
-            <Card variant="flat" padding="2" class="bg-neutral-50">
+            <Card variant="flat" padding="2" class="bg-neutral-lighter">
               <Row alignItems="center" justifyContent="between" class="text-sm">
                 <Text color="gray-600">Previous:</Text>
                 <Text weight="medium">
@@ -297,7 +297,7 @@ export const LabResults = component$<LabResultsProps>((props) => {
             </Card>
           )}
 
-          <Column class="border-t border-neutral-100 pt-3" gap="2">
+          <Column class="border-t border-neutral-lighter pt-3" gap="2">
             <Row alignItems="center" justifyContent="between" class="text-sm">
               <Text color="gray-600" class="flex items-center">
                 <Icon icon="calendar" class="w-4 h-4 mr-1" />
@@ -352,19 +352,20 @@ export const LabResults = component$<LabResultsProps>((props) => {
   });
 
   const containerClasses = mergeClasses(
-    'lab-results bg-white rounded-lg shadow-sm border border-neutral-200',
+    'lab-results bg-white rounded-lg shadow-sm border border-neutral-light',
     qwikClass,
     className
   );
 
   return (
-    <Card
-      class={containerClasses}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <Card
+        class={containerClasses}
+        style={style}
+        {...rest}
+      >
       {/* Header */}
-      <Card.Body class="border-b border-neutral-200">
+      <Card.Body class="border-b border-neutral-light">
         <Row alignItems="center" justifyContent="between" class="mb-4">
           <Row alignItems="center" gap="3">
             <Icon icon="file-text" class="w-5 h-5 text-primary-600" />
@@ -390,7 +391,7 @@ export const LabResults = component$<LabResultsProps>((props) => {
             hint="Search by test name, date, or result values"
           >
             <Row alignItems="center" class="relative">
-              <Icon icon="search" class="w-4 h-4 absolute left-3 text-neutral-400" />
+              <Icon icon="search" class="w-4 h-4 absolute left-3 text-neutral-light" />
               <Input
                 type="text"
                 placeholder="Search lab results..."
@@ -405,10 +406,10 @@ export const LabResults = component$<LabResultsProps>((props) => {
 
         {/* Filters Panel */}
         {showFiltersPanel.value && (
-          <Card class="mt-4 p-4 bg-neutral-50 rounded-md">
+          <Card class="mt-4 p-4 bg-neutral-lighter rounded-md">
             <Row gap="4">
               <Column size={{ sm: 1, md: 4 }}>
-                <label class="block text-sm font-medium text-neutral-700 mb-1">Categories</label>
+                <label class="block text-sm font-medium text-neutral-dark mb-1">Categories</label>
                 <select
                   multiple
                   value={filters.categories}
@@ -417,7 +418,7 @@ export const LabResults = component$<LabResultsProps>((props) => {
                     filters.categories = Array.from(select.selectedOptions).map(option => option.value);
                     onFilterChange && onFilterChange(filters);
                   }}
-                  class="w-full px-3 py-1.5 text-sm border border-neutral-300 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-1 focus:ring-blue-500"
+                  class="w-full px-3 py-1.5 text-sm border border-neutral-light rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-1 focus:ring-primary-normal"
                 >
                   {categories.map(category => (
                     <option key={category} value={category}>{category}</option>
@@ -425,7 +426,7 @@ export const LabResults = component$<LabResultsProps>((props) => {
                 </select>
               </Column>
               <Column size={{ sm: 1, md: 4 }}>
-                <label class="block text-sm font-medium text-neutral-700 mb-1">Status</label>
+                <label class="block text-sm font-medium text-neutral-dark mb-1">Status</label>
                 <select
                   multiple
                   value={filters.status}
@@ -434,7 +435,7 @@ export const LabResults = component$<LabResultsProps>((props) => {
                     filters.status = Array.from(select.selectedOptions).map(option => option.value);
                     onFilterChange && onFilterChange(filters);
                   }}
-                  class="w-full px-3 py-1.5 text-sm border border-neutral-300 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-1 focus:ring-blue-500"
+                  class="w-full px-3 py-1.5 text-sm border border-neutral-light rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-1 focus:ring-primary-normal"
                 >
                   <option value="normal">Normal</option>
                   <option value="high">High</option>
@@ -484,9 +485,9 @@ export const LabResults = component$<LabResultsProps>((props) => {
                       filters.criticalOnly = (e.target as HTMLInputElement).checked;
                       onFilterChange && onFilterChange(filters);
                     }}
-                    class="h-4 w-4 text-primary-600 focus:ring-blue-500 border-neutral-300 rounded"
+                    class="h-4 w-4 text-primary-600 focus:ring-primary-normal border-neutral-light rounded"
                   />
-                  <label for="criticalOnly" class="ml-2 text-sm text-neutral-700">
+                  <label for="criticalOnly" class="ml-2 text-sm text-neutral-dark">
                     Critical Only
                   </label>
                 </Row>
@@ -500,7 +501,7 @@ export const LabResults = component$<LabResultsProps>((props) => {
       <div class="p-4">
         {filteredResults.length === 0 ? (
           <div class="text-center py-8">
-            <Icon icon="file-text" class="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+            <Icon icon="file-text" class="w-12 h-12 text-neutral-light mx-auto mb-4" />
             <Text as="p" color="muted">No lab results found</Text>
           </div>
         ) : (
@@ -527,5 +528,6 @@ export const LabResults = component$<LabResultsProps>((props) => {
         )}
       </div>
     </Card>
+    </div>
   );
 });

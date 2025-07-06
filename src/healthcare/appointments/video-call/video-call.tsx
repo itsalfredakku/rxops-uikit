@@ -216,7 +216,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
   const connectionQualityColor = {
     'excellent': 'bg-success-500',
     'good': 'bg-warning-500', 
-    'poor': 'bg-orange-500',
+    'poor': 'bg-warning-normal',
     'disconnected': 'bg-error-500'
   };
 
@@ -229,17 +229,18 @@ export const VideoCall = component$<VideoCallProps>((props) => {
   };
 
   const containerClasses = mergeClasses(
-    'relative bg-neutral-900 text-white h-full min-h-screen font-sans overflow-hidden',
+    'relative bg-neutral-darker text-white h-full min-h-screen font-sans overflow-hidden',
     qwikClass,
     className
   );
 
   return (
-    <div 
-      class={containerClasses}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={containerClasses}
+        style={style}
+        {...rest}
+      >
       {/* Header */}
       <div class="absolute top-0 left-0 right-0 z-20 bg-gradient-to-b from-black/50 to-transparent p-4">
         <Row alignItems="center" justifyContent="between">
@@ -254,7 +255,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
             </Row>
             
             {duration && (
-              <div class="text-sm text-neutral-300">
+              <div class="text-sm text-neutral-light">
                 Duration: {formatDuration(duration)}
               </div>
             )}
@@ -293,15 +294,15 @@ export const VideoCall = component$<VideoCallProps>((props) => {
         {/* Primary video area */}
         <div class="flex-1 relative">
           {/* Main video stream */}
-          <Row alignItems="center" justifyContent="center" class="absolute inset-0 bg-neutral-800">
+          <Row alignItems="center" justifyContent="center" class="absolute inset-0 bg-neutral-darker">
             {screenShare?.isActive ? (
-              <Row alignItems="center" justifyContent="center" class="w-full h-full bg-neutral-700">
+              <Row alignItems="center" justifyContent="center" class="w-full h-full bg-neutral-darker">
                 <div class="text-center">
                   <div class="text-6xl mb-4">
                     <Icon icon="monitor" class="w-16 h-16 mx-auto" />
                   </div>
                   <div class="text-xl font-medium mb-2">Screen Sharing</div>
-                  <div class="text-neutral-400">
+                  <div class="text-neutral-light">
                     Shared by {screenShare.sharedByName || 'Unknown'}
                   </div>
                 </div>
@@ -309,15 +310,15 @@ export const VideoCall = component$<VideoCallProps>((props) => {
             ) : (
               <Row gap="4" class="p-4 h-full w-full">
                 {/* Current user video */}
-                <Column size={{ sm: 12, md: 6 }} class="relative bg-neutral-800 rounded-lg overflow-hidden">
+                <Column size={{ sm: 12, md: 6 }} class="relative bg-neutral-darker rounded-lg overflow-hidden">
                   {isVideoOff.value ? (
-                    <Row alignItems="center" justifyContent="center" class="h-full bg-neutral-700">
+                    <Row alignItems="center" justifyContent="center" class="h-full bg-neutral-darker">
                       <div class="text-center">
                         <Row justifyContent="center" class="text-4xl mb-2">
                           {currentUser?.avatar || <Icon icon="user" class="w-8 h-8" />}
                         </Row>
                         <div class="font-medium">{currentUser?.name || 'You'}</div>
-                        <div class="text-sm text-neutral-400">{roleIcons[currentUserRole]} {currentUserRole}</div>
+                        <div class="text-sm text-neutral-light">{roleIcons[currentUserRole]} {currentUserRole}</div>
                       </div>
                     </Row>
                   ) : (
@@ -337,20 +338,20 @@ export const VideoCall = component$<VideoCallProps>((props) => {
 
                 {/* Other participants */}
                 {otherParticipants.slice(0, 3).map((participant) => (
-                  <Column key={participant.id} size={{ sm: 12, md: 6 }} class="relative bg-neutral-800 rounded-lg overflow-hidden">
+                  <Column key={participant.id} size={{ sm: 12, md: 6 }} class="relative bg-neutral-darker rounded-lg overflow-hidden">
                     {participant.isVideoOff ? (
-                      <Row alignItems="center" justifyContent="center" class="h-full bg-neutral-700">
+                      <Row alignItems="center" justifyContent="center" class="h-full bg-neutral-darker">
                         <div class="text-center">
                           <div class="text-4xl mb-2">{participant.avatar || roleIcons[participant.role]}</div>
                           <div class="font-medium">{participant.name}</div>
-                          <div class="text-sm text-neutral-400">{roleIcons[participant.role]} {participant.role}</div>
+                          <div class="text-sm text-neutral-light">{roleIcons[participant.role]} {participant.role}</div>
                           {participant.location && (
-                            <div class="text-xs text-neutral-500 mt-1">{participant.location}</div>
+                            <div class="text-xs text-neutral-normal mt-1">{participant.location}</div>
                           )}
                         </div>
                       </Row>
                     ) : (
-                      <Row alignItems="center" justifyContent="center" class="w-full h-full bg-gradient-to-br from-blue-900 to-blue-700">
+                      <Row alignItems="center" justifyContent="center" class="w-full h-full bg-gradient-to-br from-primary-darker to-primary-dark">
                         <div class="text-center">
                           <div class="text-4xl mb-2">{participant.avatar || roleIcons[participant.role]}</div>
                           <div class="font-medium">{participant.name}</div>
@@ -366,7 +367,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
                         'w-2 h-2 rounded-full ml-1',
                         participant.connectionStatus === 'connected' ? 'bg-success-500' :
                         participant.connectionStatus === 'connecting' ? 'bg-warning-500' :
-                        participant.connectionStatus === 'poor' ? 'bg-orange-500' :
+                        participant.connectionStatus === 'poor' ? 'bg-warning-normal' :
                         'bg-error-500'
                       ]}></div>
                     </Row>
@@ -392,15 +393,15 @@ export const VideoCall = component$<VideoCallProps>((props) => {
 
         {/* Sidebar */}
         {(showParticipants || showChat) && (
-          <Stack class="w-80 bg-neutral-800 border-l border-neutral-700">
+          <Stack class="w-80 bg-neutral-darker border-l border-neutral-darker">
             {/* Participants */}
             {showParticipants && (
-              <div class="p-4 border-b border-neutral-700">
+              <div class="p-4 border-b border-neutral-darker">
                 <Text as="h3" weight="semibold" color="white">
                   <Row alignItems="center" justifyContent="between" class="mb-3">
                   <span>Participants ({participants.length})</span>
                   {maxParticipants && (
-                    <span class="text-xs text-neutral-400">
+                    <span class="text-xs text-neutral-light">
                       Max: {maxParticipants}
                     </span>
                   )}
@@ -408,7 +409,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
                 </Text>
                 <Stack gap="2" class="max-h-48 overflow-y-auto">
                   {participants.map((participant) => (
-                    <Row alignItems="center" justifyContent="between" class="p-2 bg-neutral-700 rounded" key={participant.id}>
+                    <Row alignItems="center" justifyContent="between" class="p-2 bg-neutral-darker rounded" key={participant.id}>
                       <Row alignItems="center" gap="2">
                         <div class="text-lg">{participant.avatar || roleIcons[participant.role]}</div>
                         <div>
@@ -416,7 +417,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
                             <span>{participant.name}</span>
                             {participant.isHost && <span class="text-xs bg-primary-600 px-1 rounded">HOST</span>}
                           </Row>
-                          <div class="text-xs text-neutral-400">{participant.role}</div>
+                          <div class="text-xs text-neutral-light">{participant.role}</div>
                         </div>
                       </Row>
                       <Row alignItems="center" gap="1">
@@ -427,7 +428,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
                           'w-2 h-2 rounded-full',
                           participant.connectionStatus === 'connected' ? 'bg-success-500' :
                           participant.connectionStatus === 'connecting' ? 'bg-warning-500' :
-                          participant.connectionStatus === 'poor' ? 'bg-orange-500' :
+                          participant.connectionStatus === 'poor' ? 'bg-warning-normal' :
                           'bg-error-500'
                         ]}></div>
                       </Row>
@@ -440,14 +441,14 @@ export const VideoCall = component$<VideoCallProps>((props) => {
             {/* Chat */}
             {showChat && (
               <Stack class="flex-1">
-                <div class="p-4 border-b border-neutral-700">
+                <div class="p-4 border-b border-neutral-darker">
                   <Text as="h3" weight="semibold" color="white">Chat</Text>
                 </div>
                 <div class="flex-1 p-4 overflow-y-auto">
                   <Stack gap="2">
                     {chatMessages.value.map((msg) => (
-                      <div key={msg.id} class="bg-neutral-700 p-2 rounded">
-                        <div class="text-xs text-neutral-400 mb-1">
+                      <div key={msg.id} class="bg-neutral-darker p-2 rounded">
+                        <div class="text-xs text-neutral-light mb-1">
                           {participants.find(p => p.id === msg.sender)?.name || 'Unknown'}
                         </div>
                         <div class="text-sm">{msg.message}</div>
@@ -455,13 +456,13 @@ export const VideoCall = component$<VideoCallProps>((props) => {
                     ))}
                   </Stack>
                 </div>
-                <div class="p-4 border-t border-neutral-700">
+                <div class="p-4 border-t border-neutral-darker">
                   <Row gap="2">
                     <input
                       type="text"
                       bind:value={chatMessage}
                       placeholder="Type a message..."
-                      class="flex-1 bg-neutral-700 border border-neutral-600 rounded px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:border-primary-500"
+                      class="flex-1 bg-neutral-darker border border-neutral-dark rounded px-3 py-2 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:border-primary-500"
                       onKeyDown$={(e) => {
                         if (e.key === 'Enter') {
                           sendChatMessage();
@@ -490,7 +491,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
             onClick$={toggleMute}
             class={[
               'p-4 rounded-full text-white transition-colors',
-              isMuted.value ? 'bg-error-600 hover:bg-error-700' : 'bg-neutral-600 hover:bg-neutral-700'
+              isMuted.value ? 'bg-error-600 hover:bg-error-700' : 'bg-neutral-dark hover:bg-neutral-darker'
             ]}
           >
             <Tooltip content={isMuted.value ? 'Unmute' : 'Mute'}>
@@ -503,7 +504,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
             onClick$={toggleVideo}
             class={[
               'p-4 rounded-full text-white transition-colors',
-              isVideoOff.value ? 'bg-error-600 hover:bg-error-700' : 'bg-neutral-600 hover:bg-neutral-700'
+              isVideoOff.value ? 'bg-error-600 hover:bg-error-700' : 'bg-neutral-dark hover:bg-neutral-darker'
             ]}
           >
             <Tooltip content={isVideoOff.value ? 'Turn on video' : 'Turn off video'}>
@@ -517,7 +518,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
               onClick$={startScreenShare}
               class={[
                 'p-4 rounded-full text-white transition-colors',
-                screenShare?.isActive ? 'bg-primary-600 hover:bg-primary-700' : 'bg-neutral-600 hover:bg-neutral-700'
+                screenShare?.isActive ? 'bg-primary-600 hover:bg-primary-700' : 'bg-neutral-dark hover:bg-neutral-darker'
               ]}
             >
               <Tooltip content="Screen share">
@@ -531,7 +532,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
             onClick$={toggleHandRaise}
             class={[
               'p-4 rounded-full text-white transition-colors',
-              isHandRaised.value ? 'bg-warning-600 hover:bg-warning-700' : 'bg-neutral-600 hover:bg-neutral-700'
+              isHandRaised.value ? 'bg-warning-600 hover:bg-warning-700' : 'bg-neutral-dark hover:bg-neutral-darker'
             ]}
           >
             <Tooltip content={isHandRaised.value ? 'Lower hand' : 'Raise hand'}>
@@ -545,7 +546,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
               onClick$={toggleRecording}
               class={[
                 'p-4 rounded-full text-white transition-colors',
-                recording?.status === 'recording' ? 'bg-error-600 hover:bg-error-700' : 'bg-neutral-600 hover:bg-neutral-700'
+                recording?.status === 'recording' ? 'bg-error-600 hover:bg-error-700' : 'bg-neutral-dark hover:bg-neutral-darker'
               ]}
             >
               <Tooltip content={recording?.status === 'recording' ? 'Stop recording' : 'Start recording'}>
@@ -568,12 +569,12 @@ export const VideoCall = component$<VideoCallProps>((props) => {
 
       {/* Settings panel */}
       {showSettings.value && (
-        <div class="absolute top-16 right-4 bg-neutral-800 border border-neutral-600 rounded-lg p-4 z-30 w-64">
+        <div class="absolute top-16 right-4 bg-neutral-darker border border-neutral-dark rounded-lg p-4 z-30 w-64">
           <Row alignItems="center" justifyContent="between" class="mb-4">
             <Text as="h3" weight="semibold" color="white">Call Settings</Text>
             <button
               onClick$={() => showSettings.value = false}
-              class="text-neutral-400 hover:text-white"
+              class="text-neutral-light hover:text-white"
             >
               <Icon icon="x-circle" class="w-4 h-4" />
             </button>
@@ -591,7 +592,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
             {recording && (
               <div>
                 <label class="block text-sm font-medium mb-1">Recording Status</label>
-                <div class="text-sm text-neutral-300">
+                <div class="text-sm text-neutral-light">
                   {recording.status === 'recording' ? 
                     `Recording for ${Math.floor((recording.duration || 0) / 60)}m` :
                     'Not recording'
@@ -607,6 +608,7 @@ export const VideoCall = component$<VideoCallProps>((props) => {
           </Stack>
         </div>
       )}
+    </div>
     </div>
   );
 });

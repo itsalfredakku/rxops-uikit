@@ -89,19 +89,19 @@ export const PrescriptionManagement = component$<PrescriptionManagementProps>((p
   });
 
   const _statusColors = {
-    active: 'bg-success-100 text-success-800 border-green-200',
-    expired: 'bg-error-100 text-error-800 border-red-200',
-    discontinued: 'bg-neutral-100 text-neutral-800 border-neutral-200',
-    pending: 'bg-warning-100 text-warning-800 border-yellow-200',
+    active: 'bg-success-100 text-success-800 border-success-light',
+    expired: 'bg-error-100 text-error-800 border-error-light',
+    discontinued: 'bg-neutral-lighter text-neutral-darker border-neutral-light',
+    pending: 'bg-warning-100 text-warning-800 border-warning-light',
     completed: 'bg-primary-100 text-primary-800 border-primary-200'
   };
 
   const _routeColors = {
     oral: 'bg-primary-50 text-primary-700',
     topical: 'bg-success-50 text-success-700',
-    injection: 'bg-purple-50 text-purple-700',
-    inhaled: 'bg-orange-50 text-orange-700',
-    sublingual: 'bg-pink-50 text-pink-700'
+    injection: 'bg-primary-lighter text-primary-dark',
+    inhaled: 'bg-warning-lighter text-warning-dark',
+    sublingual: 'bg-error-lighter text-error-dark'
   };
 
   // Filter prescriptions
@@ -212,7 +212,7 @@ export const PrescriptionManagement = component$<PrescriptionManagementProps>((p
           </div>
           <div class="flex items-center space-x-2">
             {isExpiringSoon(prescription.expiryDate) && (
-              <Icon icon="alert-triangle" class="w-5 h-5 text-orange-500" />
+              <Icon icon="alert-triangle" class="w-5 h-5 text-warning-normal" />
             )}
             {prescription.refillsRemaining <= 2 && prescription.refillsRemaining > 0 && (
               <Icon icon="clock" class="w-5 h-5 text-warning-500" />
@@ -222,46 +222,46 @@ export const PrescriptionManagement = component$<PrescriptionManagementProps>((p
 
         <div class="space-y-2 mb-4">
           <div class="flex justify-between text-sm">
-            <span class="text-neutral-600">Strength:</span>
+            <span class="text-neutral-normal">Strength:</span>
             <span class="font-medium">{prescription.strength}</span>
           </div>
           <div class="flex justify-between text-sm">
-            <span class="text-neutral-600">Dosage:</span>
+            <span class="text-neutral-normal">Dosage:</span>
             <span class="font-medium">{prescription.dosage}</span>
           </div>
           <div class="flex justify-between text-sm">
-            <span class="text-neutral-600">Frequency:</span>
+            <span class="text-neutral-normal">Frequency:</span>
             <span class="font-medium">{prescription.frequency}</span>
           </div>
           <div class="flex justify-between text-sm">
-            <span class="text-neutral-600">Refills:</span>
-            <span class={`font-medium ${prescription.refillsRemaining <= 2 ? 'text-orange-600' : 'text-neutral-900'}`}>
+            <span class="text-neutral-normal">Refills:</span>
+            <span class={`font-medium ${prescription.refillsRemaining <= 2 ? 'text-warning-normal' : 'text-neutral-darker'}`}>
               {prescription.refillsRemaining} of {prescription.totalRefills}
             </span>
           </div>
         </div>
 
-        <div class="border-t border-neutral-100 pt-3 space-y-2">
+        <div class="border-t border-neutral-lighter pt-3 space-y-2">
           <div class="flex items-center justify-between text-sm">
-            <span class="text-neutral-600 flex items-center">
+            <span class="text-neutral-normal flex items-center">
               <Icon icon="calendar" class="w-4 h-4 mr-1" />
               Expires:
             </span>
-            <span class={`font-medium ${isExpiringSoon(prescription.expiryDate) ? 'text-orange-600' : 'text-neutral-900'}`}>
+            <span class={`font-medium ${isExpiringSoon(prescription.expiryDate) ? 'text-warning-normal' : 'text-neutral-darker'}`}>
               {formatDate(prescription.expiryDate)}
               {daysUntilExpiry <= 30 && daysUntilExpiry > 0 && (
-                <span class="ml-1 text-xs text-orange-500">
+                <span class="ml-1 text-xs text-warning-normal">
                   ({daysUntilExpiry} days)
                 </span>
               )}
             </span>
           </div>
           <div class="flex items-center justify-between text-sm">
-            <span class="text-neutral-600">Prescriber:</span>
+            <span class="text-neutral-normal">Prescriber:</span>
             <span class="font-medium">Dr. {prescription.prescriber}</span>
           </div>
           <div class="flex items-center justify-between text-sm">
-            <span class="text-neutral-600 flex items-center">
+            <span class="text-neutral-normal flex items-center">
               <Icon icon="map-pin" class="w-4 h-4 mr-1" />
               Pharmacy:
             </span>
@@ -316,148 +316,150 @@ export const PrescriptionManagement = component$<PrescriptionManagementProps>((p
 
   // Create merged class names for consistent styling
   const prescriptionManagementClasses = mergeClasses(
-    "prescription-management bg-white rounded-lg shadow-sm border border-neutral-200",
+    "prescription-management bg-white rounded-lg shadow-sm border border-neutral-light",
     qwikClass,
     className
   );
 
   return (
-    <div class={prescriptionManagementClasses} style={style} {...rest}>
-      {/* Header */}
-      <div class="border-b border-neutral-200 p-4">
-        <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center space-x-3">
-            <Icon icon="pill" class="w-5 h-5 text-primary-600" />
-            <Text as="h3" weight="semibold" size="lg" color="blue-900">Prescription Management</Text>
-            <span class="text-sm text-neutral-500">({filteredPrescriptions.length} prescriptions)</span>
+    <div class="themed-content">
+      <div class={prescriptionManagementClasses} style={style} {...rest}>
+        {/* Header */}
+        <div class="border-b border-neutral-light p-4">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center space-x-3">
+              <Icon icon="pill" class="w-5 h-5 text-primary-600" />
+              <Text as="h3" weight="semibold" size="lg" color="blue-900">Prescription Management</Text>
+              <span class="text-sm text-neutral-normal">({filteredPrescriptions.length} prescriptions)</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              {showFilters && (
+                <Button
+                  onClick$={() => showFiltersPanel.value = !showFiltersPanel.value}
+                  variant="outlined"
+                  color="secondary"
+                  size="sm"
+                  leftIcon={true}
+                >
+                  <Icon icon="filter" class="w-4 h-4 mr-1" />
+                  Filters
+                </Button>
+              )}
+              {isEditable && onAddPrescription && (
+                <Button
+                  onClick$={onAddPrescription}
+                  variant="elevated"
+                  color="primary"
+                  size="sm"
+                  leftIcon={true}
+                >
+                  <Icon icon="plus" class="w-4 h-4 mr-1" />
+                  Add Prescription
+                </Button>
+              )}
+            </div>
           </div>
-          <div class="flex items-center space-x-2">
-            {showFilters && (
-              <Button
-                onClick$={() => showFiltersPanel.value = !showFiltersPanel.value}
-                variant="outlined"
-                color="secondary"
-                size="sm"
-                leftIcon={true}
-              >
-                <Icon icon="filter" class="w-4 h-4 mr-1" />
-                Filters
-              </Button>
-            )}
-            {isEditable && onAddPrescription && (
-              <Button
-                onClick$={onAddPrescription}
-                variant="elevated"
-                color="primary"
-                size="sm"
-                leftIcon={true}
-              >
-                <Icon icon="plus" class="w-4 h-4 mr-1" />
-                Add Prescription
-              </Button>
-            )}
+
+          {/* Search */}
+          <div class="relative">
+            <Icon icon="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-neutral-light" />
+            <input
+              type="text"
+              placeholder="Search prescriptions..."
+              value={searchTerm.value}
+              onInput$={(e) => handleSearchChange((e.target as HTMLInputElement).value)}
+              class="w-full pl-10 pr-4 py-2 border border-neutral-light rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-2 focus:ring-primary-normal focus:border-transparent"
+            />
           </div>
+
+          {/* Filters Panel */}
+          {showFiltersPanel.value && (
+            <div class="mt-4 p-4 bg-neutral-lighter rounded-md">
+              <Row gap="4">
+                <Column size={{ sm: 12, md: 3 }}>
+                  <label class="block text-sm font-medium text-neutral-dark mb-1">Status</label>
+                  <select
+                    multiple
+                    value={filters.status}
+                    onChange$={(e) => {
+                      const select = e.target as HTMLSelectElement;
+                      filters.status = Array.from(select.selectedOptions).map(option => option.value);
+                      onFilterChange && onFilterChange(filters);
+                    }}
+                    class="w-full px-3 py-1.5 text-sm border border-neutral-light rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-1 focus:ring-primary-normal"
+                  >
+                    <option value="active">Active</option>
+                    <option value="expired">Expired</option>
+                    <option value="discontinued">Discontinued</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                  </select>
+                </Column>
+                <Column size={{ sm: 12, md: 3 }}>
+                  <label class="block text-sm font-medium text-neutral-dark mb-1">Expiring Within</label>
+                  <select
+                    value={filters.expiringWithin || ''}
+                    onChange$={(e) => {
+                      const value = (e.target as HTMLSelectElement).value;
+                      filters.expiringWithin = value ? parseInt(value) : undefined;
+                      onFilterChange && onFilterChange(filters);
+                    }}
+                    class="w-full px-3 py-1.5 text-sm border border-neutral-light rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-1 focus:ring-primary-normal"
+                  >
+                    <option value="">Any time</option>
+                    <option value="7">7 days</option>
+                    <option value="30">30 days</option>
+                    <option value="90">90 days</option>
+                  </select>
+                </Column>
+                <Column size={{ sm: 12, md: 3 }} class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="needsRefill"
+                    checked={filters.needsRefill}
+                    onChange$={(e) => {
+                      filters.needsRefill = (e.target as HTMLInputElement).checked;
+                      onFilterChange && onFilterChange(filters);
+                    }}
+                    class="h-4 w-4 text-primary-600 focus:ring-primary-normal border-neutral-light rounded"
+                  />
+                  <label for="needsRefill" class="ml-2 text-sm text-neutral-dark">
+                    Needs Refill
+                  </label>
+                </Column>
+              </Row>
+            </div>
+          )}
         </div>
 
-        {/* Search */}
-        <div class="relative">
-          <Icon icon="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-neutral-400" />
-          <input
-            type="text"
-            placeholder="Search prescriptions..."
-            value={searchTerm.value}
-            onInput$={(e) => handleSearchChange((e.target as HTMLInputElement).value)}
-            class="w-full pl-10 pr-4 py-2 border border-neutral-300 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
-
-        {/* Filters Panel */}
-        {showFiltersPanel.value && (
-          <div class="mt-4 p-4 bg-neutral-50 rounded-md">
+        {/* Content */}
+        <div class="p-4">
+          {filteredPrescriptions.length === 0 ? (
+            <div class="text-center py-8">
+              <Icon icon="pill" class="w-12 h-12 text-neutral-light mx-auto mb-4" />
+              <Text as="p" color="gray-500">No prescriptions found</Text>
+              {isEditable && onAddPrescription && (
+                <Button
+                  onClick$={onAddPrescription}
+                  variant="text"
+                  color="primary"
+                  size="sm"
+                  class="mt-4"
+                >
+                  Add the first prescription
+                </Button>
+              )}
+            </div>
+          ) : (
             <Row gap="4">
-              <Column size={{ sm: 12, md: 3 }}>
-                <label class="block text-sm font-medium text-neutral-700 mb-1">Status</label>
-                <select
-                  multiple
-                  value={filters.status}
-                  onChange$={(e) => {
-                    const select = e.target as HTMLSelectElement;
-                    filters.status = Array.from(select.selectedOptions).map(option => option.value);
-                    onFilterChange && onFilterChange(filters);
-                  }}
-                  class="w-full px-3 py-1.5 text-sm border border-neutral-300 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-1 focus:ring-blue-500"
-                >
-                  <option value="active">Active</option>
-                  <option value="expired">Expired</option>
-                  <option value="discontinued">Discontinued</option>
-                  <option value="pending">Pending</option>
-                  <option value="completed">Completed</option>
-                </select>
-              </Column>
-              <Column size={{ sm: 12, md: 3 }}>
-                <label class="block text-sm font-medium text-neutral-700 mb-1">Expiring Within</label>
-                <select
-                  value={filters.expiringWithin || ''}
-                  onChange$={(e) => {
-                    const value = (e.target as HTMLSelectElement).value;
-                    filters.expiringWithin = value ? parseInt(value) : undefined;
-                    onFilterChange && onFilterChange(filters);
-                  }}
-                  class="w-full px-3 py-1.5 text-sm border border-neutral-300 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-1 focus:ring-blue-500"
-                >
-                  <option value="">Any time</option>
-                  <option value="7">7 days</option>
-                  <option value="30">30 days</option>
-                  <option value="90">90 days</option>
-                </select>
-              </Column>
-              <Column size={{ sm: 12, md: 3 }} class="flex items-center">
-                <input
-                  type="checkbox"
-                  id="needsRefill"
-                  checked={filters.needsRefill}
-                  onChange$={(e) => {
-                    filters.needsRefill = (e.target as HTMLInputElement).checked;
-                    onFilterChange && onFilterChange(filters);
-                  }}
-                  class="h-4 w-4 text-primary-600 focus:ring-blue-500 border-neutral-300 rounded"
-                />
-                <label for="needsRefill" class="ml-2 text-sm text-neutral-700">
-                  Needs Refill
-                </label>
-              </Column>
+              {filteredPrescriptions.map((prescription) => (
+                <Column key={prescription.id} size={{ sm: 12, md: 6, lg: 4 }}>
+                  <PrescriptionCard prescription={prescription} />
+                </Column>
+              ))}
             </Row>
-          </div>
-        )}
-      </div>
-
-      {/* Content */}
-      <div class="p-4">
-        {filteredPrescriptions.length === 0 ? (
-          <div class="text-center py-8">
-            <Icon icon="pill" class="w-12 h-12 text-neutral-400 mx-auto mb-4" />
-            <Text as="p" color="gray-500">No prescriptions found</Text>
-            {isEditable && onAddPrescription && (
-              <Button
-                onClick$={onAddPrescription}
-                variant="text"
-                color="primary"
-                size="sm"
-                class="mt-4"
-              >
-                Add the first prescription
-              </Button>
-            )}
-          </div>
-        ) : (
-          <Row gap="4">
-            {filteredPrescriptions.map((prescription) => (
-              <Column key={prescription.id} size={{ sm: 12, md: 6, lg: 4 }}>
-                <PrescriptionCard prescription={prescription} />
-              </Column>
-            ))}
-          </Row>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

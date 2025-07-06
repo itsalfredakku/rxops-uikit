@@ -11,7 +11,7 @@
  * - Half-star and custom icon support
  */
 
-import { component$, useSignal } from '@builder.io/qwik';
+import { component$, useSignal, $, useStore } from '@builder.io/qwik';
 import type { BaseComponentProps } from '../../../design-system/props';
 import { mergeClasses } from '../../../design-system/props';
 
@@ -114,11 +114,11 @@ const getRatingItemClasses = (
   ].join(' ') : '';
   
   const intentClasses = {
-    neutral: active ? 'text-neutral-600' : 'text-neutral-300',
-    primary: active ? 'text-primary-500' : 'text-neutral-300',
-    warning: active ? 'text-warning-500' : 'text-neutral-300',
-    error: active ? 'text-error-500' : 'text-neutral-300',
-    success: active ? 'text-success-500' : 'text-neutral-300',
+    neutral: active ? 'text-neutral-normal' : 'text-neutral-light',
+    primary: active ? 'text-primary-500' : 'text-neutral-light',
+    warning: active ? 'text-warning-500' : 'text-neutral-light',
+    error: active ? 'text-error-500' : 'text-neutral-light',
+    success: active ? 'text-success-500' : 'text-neutral-light',
   };
   
   return mergeClasses(
@@ -217,6 +217,13 @@ export interface RatingProps extends BaseComponentProps<HTMLDivElement> {
    * @default false
    */
   disabled?: boolean;
+  
+  /** Medical device keyboard support with enhanced focus indicators */
+  medicalDeviceMode?: boolean;
+  /** Enable healthcare workflow shortcuts */
+  enableWorkflowShortcuts?: boolean;
+  /** Rating context for healthcare applications */
+  ratingContext?: 'pain-scale' | 'satisfaction' | 'severity' | 'compliance' | 'quality' | 'default';
 }
 
 // Main Rating Component
@@ -237,12 +244,36 @@ export const Rating = component$<RatingProps>((props) => {
     showValue = false,
     allowClear = false,
     disabled = false,
+    medicalDeviceMode = false,
+    enableWorkflowShortcuts = false,
+    ratingContext = 'default',
     class: className = '',
     ...rest
   } = props;
 
   const hoverValue = useSignal<number>(0);
   const displayValue = hoverValue.value || value;
+
+  // Handle rating click/selection
+  const handleRatingClick = (rating: number) => {
+    if (disabled || readOnly) return;
+    
+    // Allow clearing if allowClear is enabled and same value is clicked
+    const newValue = allowClear && value === rating ? 0 : rating;
+    
+    // Trigger onChange event if provided (treat as custom event)
+    if (rest.onChange$) {
+      const customEvent = new CustomEvent('change', { detail: newValue });
+      if (typeof rest.onChange$ === 'function') {
+        rest.onChange$(customEvent, null as any);
+      }
+    }
+  };
+
+  // Medical device keyboard state
+  const keyboardState = useStore({
+    instructionsId: `rating-instructions-${Math.random().toString(36).substr(2, 9)}`,
+  });
 
   const getIcon = (filled: boolean) => {
     const iconClass = size === 'xs' ? 'w-3 h-3' : 
@@ -269,6 +300,35 @@ export const Rating = component$<RatingProps>((props) => {
       const isActive = displayValue >= i;
       const isPartiallyActive = displayValue > i - step && displayValue < i;
       
+      // Generate healthcare context labels
+      const getHealthcareLabel = (rating: number) => {
+        if (medicalDeviceMode) {
+          if (ratingContext === 'pain-scale') {
+            if (rating <= 2) return 'Mild pain';
+            if (rating <= 4) return 'Moderate pain';
+            if (rating <= 6) return 'Severe pain';
+            if (rating <= 8) return 'Very severe pain';
+            return 'Worst possible pain';
+          } else if (ratingContext === 'satisfaction') {
+            if (rating <= 2) return 'Very dissatisfied';
+            if (rating <= 4) return 'Dissatisfied';
+            if (rating <= 6) return 'Neutral';
+            if (rating <= 8) return 'Satisfied';
+            return 'Very satisfied';
+          } else if (ratingContext === 'quality') {
+            if (rating <= 2) return 'Poor quality';
+            if (rating <= 4) return 'Fair quality';
+            if (rating <= 6) return 'Good quality';
+            if (rating <= 8) return 'Very good quality';
+            return 'Excellent quality';
+          }
+        }
+        return labels[i - 1] || '';
+      };
+
+      const healthcareLabel = getHealthcareLabel(i);
+      const ariaLabel = `Rate ${i} out of ${max}${healthcareLabel ? ': ' + healthcareLabel : ''}`;
+      
       items.push(
         <button
           key={i}
@@ -278,7 +338,91 @@ export const Rating = component$<RatingProps>((props) => {
           tabIndex={readOnly ? -1 : 0}
           onMouseEnter$={() => !readOnly && !disabled && (hoverValue.value = i)}
           onMouseLeave$={() => !readOnly && !disabled && (hoverValue.value = 0)}
-          aria-label={`Rate ${i} out of ${max}${labels[i - 1] ? ': ' + labels[i - 1] : ''}`}
+          onClick$={() => !readOnly && !disabled && handleRatingClick(i)}
+          onKeyDown$={(event) => {
+            if (readOnly || disabled) return;
+            
+            const currentTarget = event.target as HTMLButtonElement;
+            const currentRating = parseInt(currentTarget.dataset.rating || '0');
+            
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              handleRatingClick(currentRating);
+            } else if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+              event.preventDefault();
+              const nextRating = Math.min(currentRating + step, max);
+              const nextButton = currentTarget.parentElement?.querySelector(`[data-rating="${nextRating}"]`) as HTMLButtonElement;
+              if (nextButton) {
+                nextButton.focus();
+                if (medicalDeviceMode && enableWorkflowShortcuts) {
+                  hoverValue.value = nextRating;
+                }
+              }
+            } else if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
+              event.preventDefault();
+              const prevRating = Math.max(currentRating - step, step);
+              const prevButton = currentTarget.parentElement?.querySelector(`[data-rating="${prevRating}"]`) as HTMLButtonElement;
+              if (prevButton) {
+                prevButton.focus();
+                if (medicalDeviceMode && enableWorkflowShortcuts) {
+                  hoverValue.value = prevRating;
+                }
+              }
+            } else if (event.key === 'Home') {
+              event.preventDefault();
+              const firstButton = currentTarget.parentElement?.querySelector(`[data-rating="${step}"]`) as HTMLButtonElement;
+              if (firstButton) {
+                firstButton.focus();
+                if (medicalDeviceMode && enableWorkflowShortcuts) {
+                  hoverValue.value = step;
+                }
+              }
+            } else if (event.key === 'End') {
+              event.preventDefault();
+              const lastButton = currentTarget.parentElement?.querySelector(`[data-rating="${max}"]`) as HTMLButtonElement;
+              if (lastButton) {
+                lastButton.focus();
+                if (medicalDeviceMode && enableWorkflowShortcuts) {
+                  hoverValue.value = max;
+                }
+              }
+            } else if (event.key === 'Escape') {
+              event.preventDefault();
+              hoverValue.value = 0;
+              currentTarget.blur();
+            } else if (medicalDeviceMode && enableWorkflowShortcuts) {
+              // Quick rating shortcuts for medical contexts
+              if (ratingContext === 'pain-scale') {
+                if (event.key === '0') {
+                  event.preventDefault();
+                  handleRatingClick(0);
+                } else if (event.key === '5') {
+                  event.preventDefault();
+                  handleRatingClick(5);
+                }
+              } else if (ratingContext === 'satisfaction') {
+                if (event.key === '1') {
+                  event.preventDefault();
+                  handleRatingClick(1);
+                } else if (event.key === '3') {
+                  event.preventDefault();
+                  handleRatingClick(3);
+                } else if (event.key === '5') {
+                  event.preventDefault();
+                  handleRatingClick(5);
+                }
+              }
+            }
+            
+            // Number key direct selection
+            const numberKey = parseInt(event.key);
+            if (!isNaN(numberKey) && numberKey >= 1 && numberKey <= max) {
+              event.preventDefault();
+              handleRatingClick(numberKey);
+            }
+          }}
+          aria-label={ariaLabel}
+          aria-describedby={medicalDeviceMode ? keyboardState.instructionsId : undefined}
           data-rating={i}
         >
           {getIcon(isActive || isPartiallyActive)}
@@ -290,44 +434,61 @@ export const Rating = component$<RatingProps>((props) => {
   };
 
   return (
-    <div
-      class={mergeClasses(getRatingClasses(size, variant, healthcare), className)}
-      role="radiogroup"
-      aria-label={`Rating out of ${max}`}
-      data-healthcare={healthcare}
-      data-readonly={readOnly}
-      data-value={value}
-      {...rest}
-    >
-      {/* Rating Items */}
-      <div class="flex items-center gap-1">
-        {generateRatingItems()}
+    <div class="themed-content">
+      <div
+        class={mergeClasses(getRatingClasses(size, variant, healthcare), className)}
+        role="radiogroup"
+        aria-label={`Rating out of ${max}`}
+        data-healthcare={healthcare}
+        data-readonly={readOnly}
+        data-value={value}
+        {...rest}
+      >
+        {/* Rating Items */}
+        <div class="flex items-center gap-1">
+          {generateRatingItems()}
+          
+          {/* Clear Button */}
+          {allowClear && value > 0 && !readOnly && !disabled && (
+            <button
+              type="button"
+              class="ml-2 text-neutral-light hover:text-neutral-normal text-sm"
+              aria-label="Clear rating"
+            >
+              ×
+            </button>
+          )}
+        </div>
         
-        {/* Clear Button */}
-        {allowClear && value > 0 && !readOnly && !disabled && (
-          <button
-            type="button"
-            class="ml-2 text-neutral-400 hover:text-neutral-600 text-sm"
-            aria-label="Clear rating"
+        {/* Value Display */}
+        {showValue && (
+          <span class="ml-2 text-sm text-neutral-normal">
+            {value}{max && `/${max}`}
+          </span>
+        )}
+        
+        {/* Labels */}
+        {showLabels && labels[Math.ceil(displayValue) - 1] && (
+          <span class="ml-2 text-sm text-neutral-dark">
+            {labels[Math.ceil(displayValue) - 1]}
+          </span>
+        )}
+        
+        {/* Medical Device Keyboard Instructions */}
+        {medicalDeviceMode && (
+          <div 
+            id={keyboardState.instructionsId}
+            class="sr-only"
           >
-            ×
-          </button>
+            Rating controls: Use arrow keys to navigate, Enter or Space to select, 
+            number keys for direct selection, Home/End for first/last rating, 
+            Escape to cancel.
+            {ratingContext === 'pain-scale' && ' Quick access: 0 for no pain, 5 for moderate pain.'}
+            {ratingContext === 'satisfaction' && ' Quick access: 1, 3, 5 for different satisfaction levels.'}
+            {enableWorkflowShortcuts && ' Healthcare shortcuts enabled.'}
+          </div>
         )}
       </div>
-      
-      {/* Value Display */}
-      {showValue && (
-        <span class="ml-2 text-sm text-neutral-600">
-          {value}{max && `/${max}`}
-        </span>
-      )}
-      
-      {/* Labels */}
-      {showLabels && labels[Math.ceil(displayValue) - 1] && (
-        <span class="ml-2 text-sm text-neutral-700">
-          {labels[Math.ceil(displayValue) - 1]}
-        </span>
-      )}
     </div>
   );
 });
@@ -360,7 +521,7 @@ export const PainScaleRating = component$<{
   
   return (
     <div class={mergeClasses('pain-scale-rating', className)}>
-      <div class="mb-2 text-sm font-medium text-neutral-900">
+      <div class="mb-2 text-sm font-medium text-neutral-darker">
         Pain Level (0-10 scale)
       </div>
       <Rating
@@ -403,7 +564,7 @@ export const SatisfactionRating = component$<{
   
   return (
     <div class={mergeClasses('satisfaction-rating', className)}>
-      <div class="mb-2 text-sm font-medium text-neutral-900">
+      <div class="mb-2 text-sm font-medium text-neutral-darker">
         {title}
       </div>
       <Rating
@@ -445,7 +606,7 @@ export const SeverityRating = component$<{
   
   return (
     <div class={mergeClasses('severity-rating', className)}>
-      <div class="mb-2 text-sm font-medium text-neutral-900">
+      <div class="mb-2 text-sm font-medium text-neutral-darker">
         {condition} Severity
       </div>
       <Rating
@@ -487,7 +648,7 @@ export const NumericScaleRating = component$<{
   
   return (
     <div class={mergeClasses('numeric-scale-rating', className)}>
-      <div class="mb-2 text-sm font-medium text-neutral-900">
+      <div class="mb-2 text-sm font-medium text-neutral-darker">
         {title} ({min}-{max})
       </div>
       <div class="flex items-center gap-2">
@@ -504,7 +665,7 @@ export const NumericScaleRating = component$<{
                 'focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1',
                 isActive 
                   ? 'bg-primary-500 border-primary-500 text-white' 
-                  : 'border-neutral-300 text-neutral-700 hover:border-primary-300',
+                  : 'border-neutral-light text-neutral-dark hover:border-primary-300',
                 readOnly ? 'cursor-default' : 'cursor-pointer hover:scale-105'
               )}
               disabled={readOnly}

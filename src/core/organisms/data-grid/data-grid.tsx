@@ -1,4 +1,4 @@
-import { component$, useSignal, $, type QRL, Slot, type JSXNode } from "@builder.io/qwik";
+import { component$, useSignal, $, type QRL, Slot, type JSXNode, useStore } from "@builder.io/qwik";
 import { Table, TableHeader, TableBody, TableRow, TableCell } from "../table/table";
 import { Button } from "../../atoms/button/button";
 import { Spinner } from "../../atoms/spinner/spinner";
@@ -70,6 +70,16 @@ export interface DataGridProps extends Omit<BaseComponentProps<HTMLDivElement>, 
   allowColumnReorder?: boolean;
   allowColumnHiding?: boolean;
   exportable?: boolean;
+  /** Medical device keyboard support with enhanced focus indicators */
+  medicalDeviceMode?: boolean;
+  /** Emergency mode for critical medical data grids */
+  emergencyMode?: boolean;
+  /** Enable healthcare workflow shortcuts */
+  enableWorkflowShortcuts?: boolean;
+  /** Data grid context for healthcare applications */
+  gridContext?: 'patient-records' | 'lab-results' | 'medication-history' | 'vital-signs' | 'appointment-schedule' | 'emergency-log' | 'default';
+  /** Enable row-based keyboard navigation */
+  keyboardNavigable?: boolean;
 }
 
 export const DataGrid = component$<DataGridProps>((props) => {
@@ -98,6 +108,11 @@ export const DataGrid = component$<DataGridProps>((props) => {
     allowColumnReorder: _allowColumnReorder = false,
     allowColumnHiding: _allowColumnHiding = false,
     exportable: _exportable = false,
+    medicalDeviceMode = false,
+    emergencyMode = false,
+    enableWorkflowShortcuts = false,
+    gridContext = 'default',
+    keyboardNavigable = false,
     virtualScrolling: _virtualScrolling = false,
     pageSize: _pageSize,
     striped: _striped = false,
@@ -118,6 +133,196 @@ export const DataGrid = component$<DataGridProps>((props) => {
     show: false,
     record: null,
     index: -1
+  });
+
+  // Enhanced keyboard state for medical devices
+  const keyboardState = useStore({
+    focusedRowIndex: -1,
+    focusedColumnIndex: -1,
+    emergencyHighlight: false,
+    shortcutPressed: false,
+    isEditing: false,
+    searchQuery: '',
+    searchTimeout: null as any
+  });
+
+  // Enhanced keyboard support for medical devices
+  const handleKeyDown = $((event: KeyboardEvent) => {
+    if (event.defaultPrevented) return;
+
+    // Quick search in medical device mode
+    if (medicalDeviceMode && /^[a-zA-Z0-9]$/.test(event.key) && !keyboardState.isEditing) {
+      keyboardState.searchQuery += event.key.toLowerCase();
+      
+      // Clear search after 1 second
+      if (keyboardState.searchTimeout) {
+        clearTimeout(keyboardState.searchTimeout);
+      }
+      keyboardState.searchTimeout = setTimeout(() => {
+        keyboardState.searchQuery = '';
+      }, 1000);
+
+      // Find matching row based on first visible column
+      const firstColumn = columns.find(col => !col.hidden);
+      if (firstColumn && data.length > 0) {
+        const matchIndex = data.findIndex((record, index) => 
+          index > keyboardState.focusedRowIndex && 
+          String(record[firstColumn.key]).toLowerCase().startsWith(keyboardState.searchQuery)
+        );
+        if (matchIndex !== -1) {
+          keyboardState.focusedRowIndex = matchIndex;
+        }
+      }
+      return;
+    }
+
+    // Healthcare workflow shortcuts
+    if (enableWorkflowShortcuts) {
+      const isCtrlOrCmd = event.ctrlKey || event.metaKey;
+      
+      if (isCtrlOrCmd) {
+        switch (event.key.toLowerCase()) {
+          case 'a':
+            // Select all rows
+            if (selectable === 'multiple') {
+              event.preventDefault();
+              const allRows = data.map((_, index) => index);
+              selectedRowsSignal.value = allRows;
+              onSelectionChange$?.(allRows);
+              keyboardState.shortcutPressed = true;
+              setTimeout(() => keyboardState.shortcutPressed = false, 200);
+            }
+            break;
+          case 'e':
+            // Emergency action
+            if (emergencyMode && keyboardState.focusedRowIndex >= 0) {
+              event.preventDefault();
+              keyboardState.emergencyHighlight = true;
+              setTimeout(() => keyboardState.emergencyHighlight = false, 1000);
+            }
+            break;
+          case 'f':
+            // Start search mode
+            event.preventDefault();
+            keyboardState.searchQuery = '';
+            break;
+          case 'r':
+            // Refresh data (emit event for parent to handle)
+            event.preventDefault();
+            keyboardState.shortcutPressed = true;
+            setTimeout(() => keyboardState.shortcutPressed = false, 200);
+            break;
+        }
+      }
+    }
+
+    // Keyboard navigation for medical devices
+    if (keyboardNavigable && data.length > 0) {
+      switch (event.key) {
+        case 'ArrowDown':
+          event.preventDefault();
+          keyboardState.focusedRowIndex = Math.min(data.length - 1, keyboardState.focusedRowIndex + 1);
+          break;
+        case 'ArrowUp':
+          event.preventDefault();
+          keyboardState.focusedRowIndex = Math.max(0, keyboardState.focusedRowIndex - 1);
+          break;
+        case 'ArrowLeft':
+          event.preventDefault();
+          keyboardState.focusedColumnIndex = Math.max(0, keyboardState.focusedColumnIndex - 1);
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          keyboardState.focusedColumnIndex = Math.min(columns.length - 1, keyboardState.focusedColumnIndex + 1);
+          break;
+        case 'Home':
+          event.preventDefault();
+          if (event.ctrlKey) {
+            keyboardState.focusedRowIndex = 0;
+            keyboardState.focusedColumnIndex = 0;
+          } else {
+            keyboardState.focusedColumnIndex = 0;
+          }
+          break;
+        case 'End':
+          event.preventDefault();
+          if (event.ctrlKey) {
+            keyboardState.focusedRowIndex = data.length - 1;
+            keyboardState.focusedColumnIndex = columns.length - 1;
+          } else {
+            keyboardState.focusedColumnIndex = columns.length - 1;
+          }
+          break;
+        case 'PageDown':
+          event.preventDefault();
+          keyboardState.focusedRowIndex = Math.min(data.length - 1, keyboardState.focusedRowIndex + 10);
+          break;
+        case 'PageUp':
+          event.preventDefault();
+          keyboardState.focusedRowIndex = Math.max(0, keyboardState.focusedRowIndex - 10);
+          break;
+        case 'Enter':
+        case ' ':
+          // Select row or click
+          if (keyboardState.focusedRowIndex >= 0 && keyboardState.focusedRowIndex < data.length) {
+            event.preventDefault();
+            const record = data[keyboardState.focusedRowIndex];
+            
+            if (selectable) {
+              // Toggle selection
+              const isSelected = selectedRowsSignal.value.includes(keyboardState.focusedRowIndex);
+              let newSelection: number[];
+              
+              if (selectable === 'single') {
+                newSelection = isSelected ? [] : [keyboardState.focusedRowIndex];
+              } else {
+                newSelection = isSelected 
+                  ? selectedRowsSignal.value.filter(i => i !== keyboardState.focusedRowIndex)
+                  : [...selectedRowsSignal.value, keyboardState.focusedRowIndex];
+              }
+              
+              selectedRowsSignal.value = newSelection;
+              onSelectionChange$?.(newSelection);
+            } else {
+              // Row click
+              onRowClick$?.(record, keyboardState.focusedRowIndex);
+            }
+          }
+          break;
+        case 'Escape':
+          // Clear selection and highlights
+          keyboardState.focusedRowIndex = -1;
+          keyboardState.focusedColumnIndex = -1;
+          keyboardState.emergencyHighlight = false;
+          keyboardState.searchQuery = '';
+          keyboardState.isEditing = false;
+          break;
+      }
+    }
+
+    // Context-specific shortcuts
+    switch (gridContext) {
+      case 'emergency-log':
+        if (event.key === 'F1') {
+          event.preventDefault();
+          keyboardState.emergencyHighlight = true;
+        }
+        break;
+      case 'lab-results':
+        if (event.key === 'F2') {
+          event.preventDefault();
+          // In real implementation, this would highlight abnormal results
+          keyboardState.shortcutPressed = true;
+        }
+        break;
+      case 'vital-signs':
+        if (event.key === 'F3') {
+          event.preventDefault();
+          // In real implementation, this would highlight critical values
+          keyboardState.emergencyHighlight = true;
+        }
+        break;
+    }
   });
 
   const handleSort = $((columnKey: string) => {
@@ -249,16 +454,44 @@ export const DataGrid = component$<DataGridProps>((props) => {
     "data-grid",
     loading && "data-grid-loading",
     compact && "data-grid-compact",
+    medicalDeviceMode && "medical-device-mode",
+    emergencyMode && "emergency-mode",
+    enableWorkflowShortcuts && "workflow-shortcuts-enabled",
+    keyboardNavigable && "keyboard-navigable",
+    gridContext !== 'default' && `grid-context-${gridContext}`,
+    keyboardState.emergencyHighlight && "emergency-highlight",
+    keyboardState.shortcutPressed && "shortcut-pressed",
     qwikClass,
     className
   );
 
+  // Enhanced ARIA attributes for medical contexts
+  const gridRole = medicalDeviceMode ? 'grid' : undefined;
+  const ariaLabel = medicalDeviceMode 
+    ? `${gridContext} data grid - Medical device mode enabled${keyboardNavigable ? ' - Keyboard navigable' : ''}`
+    : undefined;
+
+  const ariaDescription = [
+    emergencyMode && 'Emergency data grid',
+    enableWorkflowShortcuts && 'Ctrl+A select all, Ctrl+F search, Ctrl+R refresh',
+    keyboardNavigable && 'Arrow keys to navigate, Enter to select, Space to toggle',
+    gridContext !== 'default' && `${gridContext} context`
+  ].filter(Boolean).join('. ');
+
   return (
-    <Stack 
-      class={dataGridClasses}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <Stack 
+        class={dataGridClasses}
+        style={style}
+        onKeyDown$={handleKeyDown}
+        tabIndex={medicalDeviceMode && keyboardNavigable ? 0 : undefined}
+        role={gridRole}
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescription ? 'data-grid-description' : undefined}
+        aria-rowcount={data.length}
+        aria-colcount={columns.filter(col => !col.hidden).length}
+        {...rest}
+      >
       {loading && (
         <Stack class="absolute inset-0 bg-surface opacity-75 transition-colors duration-200 z-10" alignItems="center" justifyContent="center">
           <Row alignItems="center" gap="3">
@@ -402,6 +635,37 @@ export const DataGrid = component$<DataGridProps>((props) => {
           />
         </Stack>
       )}
+
+      {/* Search indicator for medical devices */}
+      {medicalDeviceMode && keyboardState.searchQuery && (
+        <div 
+          class="search-indicator absolute top-2 right-2 bg-primary-100 border border-primary-300 rounded px-2 py-1 text-sm z-20"
+          role="status"
+          aria-live="polite"
+        >
+          Search: {keyboardState.searchQuery}
+        </div>
+      )}
+
+      {/* Medical device keyboard shortcuts help */}
+      {medicalDeviceMode && enableWorkflowShortcuts && (
+        <div 
+          id="data-grid-description"
+          class="medical-shortcuts-help p-2 border-t border-neutral-light bg-neutral-lighter text-xs"
+        >
+          <div class="flex flex-wrap gap-4 text-neutral-normal">
+            <span><kbd>Ctrl+A</kbd> Select All</span>
+            <span><kbd>Ctrl+F</kbd> Search</span>
+            <span><kbd>Ctrl+R</kbd> Refresh</span>
+            <span><kbd>←→↑↓</kbd> Navigate</span>
+            <span><kbd>Enter</kbd> Select</span>
+            <span><kbd>PgUp/PgDn</kbd> Page</span>
+            <span><kbd>Home/End</kbd> First/Last</span>
+            <span><kbd>Esc</kbd> Clear</span>
+          </div>
+        </div>
+      )}
     </Stack>
+    </div>
   );
 });

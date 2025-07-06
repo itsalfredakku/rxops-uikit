@@ -105,21 +105,121 @@ export const Dropdown = component$<DropdownProps>((props) => {
     getSizeClasses(size)
   );
 
+  // Enhanced keyboard event handler for medical device dropdown accessibility
+  const handleKeyDown$ = $((event: KeyboardEvent) => {
+    if (!disabled) {
+      switch (event.key) {
+        case 'Enter':
+        case ' ':
+          event.preventDefault();
+          handleToggle();
+          break;
+          
+        case 'Escape':
+          event.preventDefault();
+          if (isOpen.value) {
+            isOpen.value = false;
+          }
+          (event.target as HTMLElement).blur();
+          break;
+          
+        case 'ArrowDown':
+          event.preventDefault();
+          if (!isOpen.value) {
+            handleToggle();
+          } else {
+            // Focus first menu item
+            setTimeout(() => {
+              const firstItem = dropdownRef.value?.querySelector('button[role="menuitem"]') as HTMLElement;
+              if (firstItem) firstItem.focus();
+            }, 0);
+          }
+          break;
+          
+        case 'ArrowUp':
+          event.preventDefault();
+          if (!isOpen.value) {
+            handleToggle();
+          } else {
+            // Focus last menu item
+            setTimeout(() => {
+              const items = dropdownRef.value?.querySelectorAll('button[role="menuitem"]');
+              const lastItem = items?.[items.length - 1] as HTMLElement;
+              if (lastItem) lastItem.focus();
+            }, 0);
+          }
+          break;
+      }
+    }
+  });
+
+  // Menu item keyboard navigation
+  const handleMenuKeyDown$ = $((event: KeyboardEvent) => {
+    const items = Array.from(dropdownRef.value?.querySelectorAll('button[role="menuitem"]:not([disabled])') || []);
+    const currentIndex = items.indexOf(event.target as HTMLElement);
+    
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        const nextIndex = (currentIndex + 1) % items.length;
+        (items[nextIndex] as HTMLElement)?.focus();
+        break;
+        
+      case 'ArrowUp':
+        event.preventDefault();
+        const prevIndex = currentIndex === 0 ? items.length - 1 : currentIndex - 1;
+        (items[prevIndex] as HTMLElement)?.focus();
+        break;
+        
+      case 'Home':
+        event.preventDefault();
+        (items[0] as HTMLElement)?.focus();
+        break;
+        
+      case 'End':
+        event.preventDefault();
+        (items[items.length - 1] as HTMLElement)?.focus();
+        break;
+        
+      case 'Escape':
+        event.preventDefault();
+        isOpen.value = false;
+        // Focus trigger
+        const trigger = dropdownRef.value?.querySelector('[tabindex="0"]') as HTMLElement;
+        if (trigger) trigger.focus();
+        break;
+    }
+  });
+
   return (
-    <Column 
-      ref={dropdownRef}
-      class={dropdownClasses}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <Column 
+        ref={dropdownRef}
+        class={dropdownClasses}
+        style={style}
+        onKeyDown$={handleKeyDown$}
+        {...rest}
+      >
       {/* Trigger slot - will be replaced by actual trigger content */}
-      <Column onClick$={trigger === "click" ? handleToggle : undefined}>
+      <Column 
+        onClick$={trigger === "click" ? handleToggle : undefined}
+        tabIndex={disabled ? -1 : 0}
+        role="button"
+        aria-haspopup="menu"
+        aria-expanded={isOpen.value}
+        aria-label="Open dropdown menu"
+      >
         <Slot name="trigger" />
       </Column>
 
       {/* Dropdown Menu */}
       {isOpen.value && (
-        <Stack class={menuClasses}>
+        <Stack 
+          class={menuClasses}
+          role="menu"
+          aria-orientation="vertical"
+          onKeyDown$={handleMenuKeyDown$}
+        >
           {items.map((item) => (
             <Column key={item.id}>
               {item.divider && <Column class="border-t border-neutral-light my-1" />}
@@ -127,6 +227,7 @@ export const Dropdown = component$<DropdownProps>((props) => {
                 type="button"
                 class={mergeClasses(
                   "flex items-center w-full px-4 py-2 text-sm text-neutral-darker hover:bg-neutral-lighter hover:text-neutral-darker cursor-pointer transition-colors duration-150",
+                  "focus:ring-4 focus:ring-primary-500/70 focus:ring-offset-2 focus:bg-neutral-lighter",
                   item.disabled && "opacity-50 cursor-not-allowed hover:bg-transparent hover:text-neutral-darker",
                   item.divider && "border-t border-neutral-light mt-1 pt-1"
                 )}
@@ -134,6 +235,8 @@ export const Dropdown = component$<DropdownProps>((props) => {
                 disabled={item.disabled}
                 variant="text"
                 size={size}
+                role="menuitem"
+                tabIndex={-1}
               >
                 <Row alignItems="center" gap="3">
                   {item.icon && (
@@ -146,6 +249,7 @@ export const Dropdown = component$<DropdownProps>((props) => {
           ))}
         </Stack>
       )}
-    </Column>
+      </Column>
+    </div>
   );
 });

@@ -45,7 +45,9 @@
         "testMatch": [
           "**/visual-regression.spec.ts",
           "**/accessibility.spec.ts",
-          "**/healthcare-workflows.spec.ts"
+          "**/a11y-implementation.spec.ts",
+          "**/healthcare-workflows.spec.ts",
+          "**/visual/components.spec.ts"
         ],
         "timeout": 30000
       },
@@ -61,7 +63,9 @@
         "testMatch": [
           "**/visual-regression.spec.ts",
           "**/accessibility.spec.ts",
-          "**/healthcare-workflows.spec.ts"
+          "**/a11y-implementation.spec.ts",
+          "**/healthcare-workflows.spec.ts",
+          "**/visual/components.spec.ts"
         ],
         "timeout": 30000
       },
@@ -77,7 +81,9 @@
         "testMatch": [
           "**/visual-regression.spec.ts",
           "**/accessibility.spec.ts",
-          "**/healthcare-workflows.spec.ts"
+          "**/a11y-implementation.spec.ts",
+          "**/healthcare-workflows.spec.ts",
+          "**/visual/components.spec.ts"
         ],
         "timeout": 30000
       },
@@ -93,7 +99,9 @@
         "testMatch": [
           "**/visual-regression.spec.ts",
           "**/accessibility.spec.ts",
-          "**/healthcare-workflows.spec.ts"
+          "**/a11y-implementation.spec.ts",
+          "**/healthcare-workflows.spec.ts",
+          "**/visual/components.spec.ts"
         ],
         "timeout": 30000
       }
@@ -118,8 +126,8 @@
     }
   ],
   "stats": {
-    "startTime": "2025-07-05T13:32:31.350Z",
-    "duration": 30232.248,
+    "startTime": "2025-07-05T23:55:59.563Z",
+    "duration": 562.305,
     "expected": 0,
     "skipped": 0,
     "unexpected": 0,

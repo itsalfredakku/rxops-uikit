@@ -251,8 +251,8 @@ export default component$(() => {
           Usage Examples
         </Text>
         
-        <div class="bg-neutral-100 p-4 rounded-lg">
-          <pre class="text-sm text-neutral-800">
+        <div class="bg-neutral-lighter p-4 rounded-lg">
+          <pre class="text-sm text-neutral-darker">
 {`// Basic link with typography
 <Link href="/page" textStyle="body" color="primary">
   Internal Link

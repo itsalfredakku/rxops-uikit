@@ -1,4 +1,4 @@
-import { component$, Slot, useSignal, $ } from "@builder.io/qwik";
+import { component$, Slot, useSignal, useStore, $ } from "@builder.io/qwik";
 import type { BaseComponentProps, VariantProps, InteractiveProps } from "../../../design-system/props";
 import { mergeClasses } from "../../../design-system/props";
 import { createColorVariant, getInteractiveClasses } from "../../../design-system/token-utils";
@@ -47,6 +47,14 @@ export interface ButtonProps extends
   emergency?: boolean;
   /** Medical device keyboard shortcut (F1-F12) */
   shortcut?: string;
+  /** Medical device keyboard support with enhanced focus indicators */
+  medicalDeviceMode?: boolean;
+  /** Enable healthcare workflow shortcuts */
+  enableWorkflowShortcuts?: boolean;
+  /** Button context for healthcare applications */
+  buttonContext?: 'emergency' | 'medication' | 'patient-action' | 'data-entry' | 'navigation' | 'default';
+  /** Confirmation required for destructive actions */
+  requireConfirmation?: boolean;
 }
 
 // Base button classes using design tokens with enhanced hover states and medical device accessibility
@@ -129,6 +137,10 @@ export const Button = component$<ButtonProps>((props) => {
     ariaLabel,
     emergency = false,
     shortcut,
+    medicalDeviceMode = false,
+    enableWorkflowShortcuts = false,
+    buttonContext = 'default',
+    requireConfirmation = false,
     
     // Event handlers
     onClick$,
@@ -145,14 +157,44 @@ export const Button = component$<ButtonProps>((props) => {
   // Focus state for enhanced medical device accessibility
   const isFocused = useSignal(false);
 
+  // Medical device keyboard state
+  const keyboardState = useStore({
+    confirmationPending: false,
+    instructionsId: `button-instructions-${Math.random().toString(36).substr(2, 9)}`,
+  });
+
+  // Handle confirmation for destructive actions
+  const handleConfirmedAction = $(() => {
+    if (requireConfirmation && !keyboardState.confirmationPending) {
+      keyboardState.confirmationPending = true;
+      // Reset confirmation after 3 seconds
+      setTimeout(() => {
+        keyboardState.confirmationPending = false;
+      }, 3000);
+      return;
+    }
+    
+    // Reset confirmation state and trigger button click
+    keyboardState.confirmationPending = false;
+    // Use native click to trigger the onClick$ handler
+    const button = document.querySelector(`[data-button-id="${keyboardState.instructionsId}"]`) as HTMLButtonElement;
+    if (button) {
+      button.click();
+    }
+  });
+
   // Enhanced keyboard event handler for medical devices
   const handleKeyDown$ = $((event: KeyboardEvent) => {
     // Medical device keyboard support
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      // Trigger click if not disabled - use native click() method
+      
       if (!disabled && !loading) {
-        (event.target as HTMLElement).click();
+        if (requireConfirmation) {
+          handleConfirmedAction();
+        } else {
+          (event.target as HTMLElement).click();
+        }
       }
     }
 
@@ -168,8 +210,41 @@ export const Button = component$<ButtonProps>((props) => {
     if (shortcut && event.key === shortcut && (event.ctrlKey || event.metaKey)) {
       event.preventDefault();
       if (!disabled && !loading) {
-        (event.target as HTMLElement).click();
+        if (requireConfirmation) {
+          handleConfirmedAction();
+        } else {
+          (event.target as HTMLElement).click();
+        }
       }
+    }
+
+    // Healthcare workflow shortcuts based on context
+    if (medicalDeviceMode && enableWorkflowShortcuts && !disabled && !loading) {
+      if (buttonContext === 'emergency') {
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          // Cancel emergency action
+          (event.target as HTMLElement).blur();
+        }
+      } else if (buttonContext === 'medication') {
+        if (event.ctrlKey && event.key === 'm') {
+          event.preventDefault();
+          // Quick medication action
+          (event.target as HTMLElement).click();
+        }
+      } else if (buttonContext === 'patient-action') {
+        if (event.ctrlKey && event.key === 'p') {
+          event.preventDefault();
+          // Quick patient action
+          (event.target as HTMLElement).click();
+        }
+      }
+    }
+
+    // Confirmation reset on Escape
+    if (keyboardState.confirmationPending && event.key === 'Escape') {
+      event.preventDefault();
+      keyboardState.confirmationPending = false;
     }
   });
 
@@ -191,8 +266,13 @@ export const Button = component$<ButtonProps>((props) => {
     intent ? intentStyles[intent] : undefined,
     
     // Emergency button styling for medical devices
-    emergency && "ring-2 ring-red-500 ring-offset-2 bg-red-600 text-white border-red-700",
-    emergency && "hover:bg-red-700 focus:ring-red-500",
+    emergency && "ring-2 ring-error-normal ring-offset-2 bg-error-normal text-white border-error-dark",
+    emergency && "hover:bg-error-dark focus:ring-error-normal",
+    
+    // Medical device enhancements
+    medicalDeviceMode && "focus:ring-4 focus:ring-offset-2",
+    medicalDeviceMode && emergency && "focus:ring-error-normal",
+    requireConfirmation && keyboardState.confirmationPending && "ring-4 ring-warning-500 bg-warning-50",
     
     // Legacy variant + color combination (fallback)
     !intent ? variantClasses[variant] : undefined,
@@ -220,7 +300,9 @@ export const Button = component$<ButtonProps>((props) => {
   );
 
   // Generate accessible label
-  const accessibleLabel = ariaLabel || (emergency ? "Emergency action button" : undefined);
+  const accessibleLabel = ariaLabel || 
+    (emergency ? "Emergency action button" : undefined) ||
+    (requireConfirmation && keyboardState.confirmationPending ? "Press again to confirm" : undefined);
 
   return (
     <button
@@ -231,9 +313,13 @@ export const Button = component$<ButtonProps>((props) => {
       tabIndex={disabled ? -1 : 0}
       aria-busy={loading}
       aria-label={accessibleLabel}
-      aria-describedby={shortcut ? `${shortcut}-shortcut` : undefined}
+      aria-describedby={medicalDeviceMode ? keyboardState.instructionsId : (shortcut ? `${shortcut}-shortcut` : undefined)}
+      aria-pressed={requireConfirmation && keyboardState.confirmationPending ? "true" : undefined}
       role="button"
-      onClick$={onClick$}
+      data-button-id={keyboardState.instructionsId}
+      data-emergency={emergency}
+      data-context={buttonContext}
+      onClick$={requireConfirmation ? handleConfirmedAction : onClick$}
       onKeyDown$={handleKeyDown$}
       onFocus$={handleFocus$}
       onBlur$={handleBlur$}
@@ -288,11 +374,34 @@ export const Button = component$<ButtonProps>((props) => {
           <Slot />
         </span>
         
+        {/* Confirmation state indicator */}
+        {requireConfirmation && keyboardState.confirmationPending && (
+          <span class="sr-only" aria-live="assertive">
+            Press again to confirm action
+          </span>
+        )}
+        
         {/* Loading state announcement */}
         {loading && (
           <span class="sr-only" aria-live="polite">
             Loading, please wait
           </span>
+        )}
+        
+        {/* Medical Device Keyboard Instructions */}
+        {medicalDeviceMode && (
+          <div 
+            id={keyboardState.instructionsId}
+            class="sr-only"
+          >
+            Button controls: Press Enter or Space to activate.
+            {emergency && ' Emergency button - Escape to cancel.'}
+            {requireConfirmation && ' Destructive action - requires confirmation.'}
+            {shortcut && ` Shortcut: ${shortcut}.`}
+            {enableWorkflowShortcuts && buttonContext === 'medication' && ' Quick access: Ctrl+M.'}
+            {enableWorkflowShortcuts && buttonContext === 'patient-action' && ' Quick access: Ctrl+P.'}
+            {enableWorkflowShortcuts && ' Healthcare shortcuts enabled.'}
+          </div>
         )}
       </div>
     </button>

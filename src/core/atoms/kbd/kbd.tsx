@@ -46,9 +46,9 @@ const sizeClasses = {
 };
 
 const variantClasses = {
-  default: 'bg-neutral-100 border border-neutral-200 text-neutral-700 shadow-sm',
-  outlined: 'bg-transparent border border-neutral-300 text-neutral-600',
-  subtle: 'bg-neutral-50 border border-neutral-150 text-neutral-600',
+  default: 'bg-neutral-lighter border border-neutral-light text-neutral-dark shadow-sm',
+  outlined: 'bg-transparent border border-neutral-light text-neutral-normal',
+  subtle: 'bg-neutral-lighter border border-neutral-lighter text-neutral-normal',
 };
 
 const healthcareClasses = {
@@ -80,12 +80,14 @@ export const Kbd = component$<KbdProps>((props) => {
   ];
 
   return (
-    <kbd
-      class={mergeClasses(...baseClasses, className)}
-      {...rest}
-    >
-      <Slot />
-    </kbd>
+    <div class="themed-content">
+      <kbd
+        class={mergeClasses(...baseClasses, className)}
+        {...rest}
+      >
+        <Slot />
+      </kbd>
+    </div>
   );
 });
 
@@ -112,27 +114,29 @@ export const KbdSequence = component$<KbdSequenceProps>((props) => {
   } = props;
 
   return (
-    <span
-      class={mergeClasses('kbd-sequence inline-flex items-center gap-1', className)}
-      {...rest}
-    >
-      {keys.map((key, index) => (
-        <>
-          <Kbd
-            key={index}
-            size={size}
-            variant={variant}
-            platform={platform}
-            healthcare={healthcare}
-          >
-            {key}
-          </Kbd>
-          {index < keys.length - 1 && (
-            <span class="text-neutral-400 text-sm">{separator}</span>
-          )}
-        </>
-      ))}
-    </span>
+    <div class="themed-content">
+      <span
+        class={mergeClasses('kbd-sequence inline-flex items-center gap-1', className)}
+        {...rest}
+      >
+        {keys.map((key, index) => (
+          <>
+            <Kbd
+              key={index}
+              size={size}
+              variant={variant}
+              platform={platform}
+              healthcare={healthcare}
+            >
+              {key}
+            </Kbd>
+            {index < keys.length - 1 && (
+              <span class="text-neutral-light text-sm">{separator}</span>
+            )}
+          </>
+        ))}
+      </span>
+    </div>
   );
 });
 

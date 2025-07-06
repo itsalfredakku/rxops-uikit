@@ -8,13 +8,14 @@
  * - Medical device friendly (large touch targets)
  * - Clinical workflow integration
  * - Emergency/safety toggle variants
+ * - Full medical device keyboard support
  */
 
-import { component$ } from '@builder.io/qwik';
+import { component$, $ } from '@builder.io/qwik';
 import { Switch, type SwitchProps } from '../switch/switch';
 import { mergeClasses } from '../../../design-system/props';
 
-export interface ToggleProps extends SwitchProps {
+export interface ToggleProps extends Omit<SwitchProps, 'context'> {
   /** Healthcare context for the toggle */
   context?: 'medication' | 'alarm' | 'monitoring' | 'emergency' | 'privacy' | 'safety' | 'default';
   /** High contrast mode for medical devices */
@@ -25,7 +26,7 @@ export interface ToggleProps extends SwitchProps {
 
 /**
  * Healthcare Toggle Component
- * Enhanced switch for medical environments
+ * Enhanced switch for medical environments with comprehensive keyboard accessibility
  */
 export const Toggle = component$<ToggleProps>((props) => {
   const {
@@ -55,18 +56,31 @@ export const Toggle = component$<ToggleProps>((props) => {
     className
   );
 
+  // Determine medical device settings based on context
+  const medicalDeviceMode = emergency || context === 'emergency' || context === 'alarm' || context === 'safety';
+  const enableWorkflowShortcuts = context !== 'default';
+  const requireConfirmation = emergency || context === 'emergency' || context === 'medication';
+
   return (
-    <Switch
-      {...switchProps}
-      size={size}
-      class={toggleClasses}
-    />
+    <div class="themed-content">
+      <Switch
+        {...switchProps}
+        size={size}
+        class={toggleClasses}
+        medicalDeviceMode={medicalDeviceMode}
+        enableWorkflowShortcuts={enableWorkflowShortcuts}
+        requireConfirmation={requireConfirmation}
+        emergencyMode={emergency}
+        aria-label={props['aria-label'] || `${context} toggle control`}
+        aria-describedby={props['aria-describedby'] || `${context}-toggle-description`}
+      />
+    </div>
   );
 });
 
 /**
  * Medication Toggle
- * For medication administration controls
+ * For medication administration controls with confirmation
  */
 export const MedicationToggle = component$<Omit<ToggleProps, 'context'>>((props) => {
   return (
@@ -74,13 +88,14 @@ export const MedicationToggle = component$<Omit<ToggleProps, 'context'>>((props)
       {...props}
       context="medication"
       label={props.label || 'Medication Active'}
+      size="lg"
     />
   );
 });
 
 /**
  * Alarm Toggle
- * For medical alarm system controls
+ * For medical alarm system controls with high contrast
  */
 export const AlarmToggle = component$<Omit<ToggleProps, 'context'>>((props) => {
   return (
@@ -89,6 +104,7 @@ export const AlarmToggle = component$<Omit<ToggleProps, 'context'>>((props) => {
       context="alarm"
       label={props.label || 'Alarm Enabled'}
       highContrast={true}
+      size="lg"
     />
   );
 });
@@ -103,13 +119,14 @@ export const MonitoringToggle = component$<Omit<ToggleProps, 'context'>>((props)
       {...props}
       context="monitoring"
       label={props.label || 'Monitoring Active'}
+      size="lg"
     />
   );
 });
 
 /**
  * Emergency Toggle
- * For emergency system controls with high visibility
+ * For emergency system controls with maximum visibility and confirmation
  */
 export const EmergencyToggle = component$<Omit<ToggleProps, 'context' | 'emergency'>>((props) => {
   return (
@@ -134,13 +151,14 @@ export const PrivacyToggle = component$<Omit<ToggleProps, 'context'>>((props) =>
       {...props}
       context="privacy"
       label={props.label || 'Privacy Protection'}
+      size="lg"
     />
   );
 });
 
 /**
  * Safety Toggle
- * For safety system and protocol controls
+ * For safety system and protocol controls with high contrast
  */
 export const SafetyToggle = component$<Omit<ToggleProps, 'context'>>((props) => {
   return (
@@ -149,6 +167,7 @@ export const SafetyToggle = component$<Omit<ToggleProps, 'context'>>((props) => 
       context="safety"
       label={props.label || 'Safety System'}
       highContrast={true}
+      size="lg"
     />
   );
 });

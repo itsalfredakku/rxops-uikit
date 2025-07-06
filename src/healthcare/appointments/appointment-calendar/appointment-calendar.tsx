@@ -444,12 +444,12 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
   const getAppointmentPriority = $((priority: Appointment['priority']) => {
     switch (priority) {
       case 'critical':
-        return 'border-l-4 border-red-500 bg-gradient-to-r from-red-50 to-red-100/80 text-red-900 shadow-lg ring-1 ring-red-200';
+        return 'border-l-4 border-error-normal bg-gradient-to-r from-error-lighter to-error-lighter/80 text-error-darker shadow-lg ring-1 ring-error-light';
       case 'urgent':
-        return 'border-l-4 border-orange-500 bg-gradient-to-r from-orange-50 to-orange-100/80 text-orange-900 shadow-md ring-1 ring-orange-200';
+        return 'border-l-4 border-warning-normal bg-gradient-to-r from-warning-lighter to-warning-lighter/80 text-warning-darker shadow-md ring-1 ring-orange-200';
       case 'routine':
       default:
-        return 'border-l-4 border-blue-500 bg-gradient-to-r from-blue-50 to-blue-100/80 text-blue-900 shadow-sm ring-1 ring-blue-200';
+        return 'border-l-4 border-primary-normal bg-gradient-to-r from-info-lighter to-info-lighter/80 text-primary-darker shadow-sm ring-1 ring-blue-200';
     }
   });
 
@@ -457,32 +457,32 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
   const getAppointmentStatus = $((status: Appointment['status']) => {
     switch (status) {
       case 'confirmed':
-        return 'bg-gradient-to-r from-emerald-100 to-emerald-200/80 text-emerald-800 shadow-sm ring-1 ring-emerald-300';
+        return 'bg-gradient-to-r from-success-lighter to-success-light text-success-darker shadow-sm ring-1 ring-success-light';
       case 'in-progress':
-        return 'bg-gradient-to-r from-blue-100 to-blue-200/80 text-blue-800 shadow-sm ring-1 ring-blue-300 animate-pulse';
+        return 'bg-gradient-to-r from-primary-lighter to-primary-light text-primary-darker shadow-sm ring-1 ring-info-light animate-pulse';
       case 'completed':
-        return 'bg-gradient-to-r from-gray-100 to-gray-200/80 text-gray-800 shadow-sm ring-1 ring-gray-300';
+        return 'bg-gradient-to-r from-surface-light to-surface-light text-text-secondary shadow-sm ring-1 ring-surface-normal';
       case 'cancelled':
-        return 'bg-gradient-to-r from-red-100 to-red-200/80 text-red-800 shadow-sm ring-1 ring-red-300';
+        return 'bg-gradient-to-r from-error-lighter to-error-light text-error-darker shadow-sm ring-1 ring-error-light';
       case 'no-show':
-        return 'bg-gradient-to-r from-amber-100 to-amber-200/80 text-amber-800 shadow-sm ring-1 ring-amber-300';
+        return 'bg-gradient-to-r from-warning-lighter to-warning-light text-warning-darker shadow-sm ring-1 ring-warning-light';
       case 'scheduled':
       default:
-        return 'bg-gradient-to-r from-indigo-100 to-indigo-200/80 text-indigo-800 shadow-sm ring-1 ring-indigo-300';
+        return 'bg-gradient-to-r from-primary-lighter to-primary-light text-primary-darker shadow-sm ring-1 ring-primary-light';
     }
   });
 
   // Get provider color scheme
   const getProviderColors = $((providerId: string) => {
     const colorSchemes = [
-      'from-purple-50 to-purple-100 border-purple-300 text-purple-900',
-      'from-emerald-50 to-emerald-100 border-emerald-300 text-emerald-900', 
-      'from-rose-50 to-rose-100 border-rose-300 text-rose-900',
-      'from-amber-50 to-amber-100 border-amber-300 text-amber-900',
-      'from-cyan-50 to-cyan-100 border-cyan-300 text-cyan-900',
-      'from-indigo-50 to-indigo-100 border-indigo-300 text-indigo-900',
-      'from-pink-50 to-pink-100 border-pink-300 text-pink-900',
-      'from-teal-50 to-teal-100 border-teal-300 text-teal-900'
+      'from-accent-lighter to-accent-lighter border-primary-light text-primary-darker',
+      'from-success-lighter to-success-lighter border-success-light text-success-darker', 
+      'from-error-lighter to-error-lighter border-error-light text-error-darker',
+      'from-warning-lighter to-warning-lighter border-warning-light text-warning-darker',
+      'from-info-lighter to-info-lighter border-info-light text-info-darker',
+      'from-primary-lighter to-primary-lighter border-primary-light text-primary-darker',
+      'from-error-lighter to-error-lighter border-error-light text-error-darker',
+      'from-info-lighter to-info-lighter border-info-light text-info-darker'
     ];
     
     // Use hash of provider ID to consistently assign colors
@@ -495,17 +495,18 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
   });
 
   const rootClasses = mergeClasses(
-    'appointment-calendar w-full h-full bg-gradient-to-br from-white to-blue-50/30 rounded-xl shadow-lg border border-blue-100/50 backdrop-blur-sm',
+    'appointment-calendar w-full h-full bg-gradient-to-br from-white to-info-lighter/30 rounded-xl shadow-lg border border-info-lighter/50 backdrop-blur-sm',
     qwikClass,
     className
   );
 
   return (
-    <div 
-      class={rootClasses}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={rootClasses}
+        style={style}
+        {...rest}
+      >
       {/* Loading State */}
       {isLoading && (
         <div class="flex flex-col items-center justify-center h-64 space-y-3">
@@ -528,14 +529,14 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
 
       {/* Calendar Header */}
       {!isLoading && !error && (
-        <div class="calendar-header border-b border-blue-200/50 bg-gradient-to-r from-blue-50/50 to-indigo-50/30 backdrop-blur-sm p-6">
+        <div class="calendar-header border-b border-info-light/50 bg-gradient-to-r from-info-lighter/50 to-info-lighter/30 backdrop-blur-sm p-6">
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             {/* Navigation Controls */}
             <div class="flex items-center gap-3">
               <button
                 type="button"
                 onClick$={() => handleDateNavigation('prev')}
-                class="p-3 rounded-xl border border-blue-200 bg-white/80 backdrop-blur-sm text-blue-700 transition-all duration-300 hover:bg-blue-50 hover:shadow-md hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 active:scale-95"
+                class="p-3 rounded-xl border border-info-light bg-white/80 backdrop-blur-sm text-primary-dark transition-all duration-300 hover:bg-info-lighter hover:shadow-md hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-normal focus-visible:ring-offset-2 active:scale-95"
                 aria-label="Previous period"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -546,7 +547,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
               <button
                 type="button"
                 onClick$={() => handleDateNavigation('today')}
-                class="px-4 py-3 rounded-xl border border-blue-200 bg-white/80 backdrop-blur-sm text-sm font-semibold text-blue-700 transition-all duration-300 hover:bg-blue-50 hover:shadow-md hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 active:scale-95"
+                class="px-4 py-3 rounded-xl border border-info-light bg-white/80 backdrop-blur-sm text-sm font-semibold text-primary-dark transition-all duration-300 hover:bg-info-lighter hover:shadow-md hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-normal focus-visible:ring-offset-2 active:scale-95"
               >
                 Today
               </button>
@@ -554,7 +555,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
               <button
                 type="button"
                 onClick$={() => handleDateNavigation('next')}
-                class="p-3 rounded-xl border border-blue-200 bg-white/80 backdrop-blur-sm text-blue-700 transition-all duration-300 hover:bg-blue-50 hover:shadow-md hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 active:scale-95"
+                class="p-3 rounded-xl border border-info-light bg-white/80 backdrop-blur-sm text-primary-dark transition-all duration-300 hover:bg-info-lighter hover:shadow-md hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-normal focus-visible:ring-offset-2 active:scale-95"
                 aria-label="Next period"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -562,7 +563,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                 </svg>
               </button>
               
-              <Text as="h2" weight="semibold" size="xl" color="blue-900" class="ml-6 bg-gradient-to-r from-blue-900 to-indigo-900 bg-clip-text text-transparent">
+              <Text as="h2" weight="semibold" size="xl" color="blue-900" class="ml-6 bg-gradient-to-r from-primary-darker to-primary-darker bg-clip-text text-transparent">
                 {currentDate.value.toLocaleDateString('en-US', { 
                   year: 'numeric', 
                   month: 'long',
@@ -572,7 +573,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
             </div>
 
             {/* View Toggle */}
-            <div class="flex items-center gap-1 bg-white/60 backdrop-blur-sm rounded-xl p-1.5 shadow-sm border border-blue-100">
+            <div class="flex items-center gap-1 bg-white/60 backdrop-blur-sm rounded-xl p-1.5 shadow-sm border border-info-lighter">
               {(['month', 'week', 'day', 'list'] as const).map((view) => (
                 <button
                   key={view}
@@ -580,8 +581,8 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                   onClick$={() => handleViewChange(view)}
                   class={`px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
                     currentView.value === view
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg scale-105'
-                      : 'text-blue-700 hover:text-blue-900 hover:bg-blue-50/50 hover:scale-102'
+                      ? 'bg-gradient-to-r from-info-dark to-info-dark text-white shadow-lg scale-105'
+                      : 'text-primary-dark hover:text-primary-darker hover:bg-info-lighter/50 hover:scale-102'
                   }`}
                 >
                   {view.charAt(0).toUpperCase() + view.slice(1)}
@@ -596,7 +597,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
             <div class="flex-1">
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="h-5 w-5 text-info-normal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                 </div>
@@ -607,7 +608,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                   onInput$={(e) => {
                     searchState.query = (e.target as HTMLInputElement).value;
                   }}
-                  class="w-full pl-10 pr-4 py-3 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-xl shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus:border-blue-500 transition-all duration-300 hover:bg-white/90"
+                  class="w-full pl-10 pr-4 py-3 bg-white/80 backdrop-blur-sm border border-info-light rounded-xl shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-normal focus-visible:ring-offset-2 focus:border-primary-normal transition-all duration-300 hover:bg-white/90"
                   aria-label="Search appointments"
                 />
               </div>
@@ -623,7 +624,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                   const select = e.target as HTMLSelectElement;
                   searchState.filterProvider = Array.from(select.selectedOptions).map(opt => opt.value);
                 }}
-                class="px-4 py-3 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-xl shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all duration-300 hover:bg-white/90 min-w-48"
+                class="px-4 py-3 bg-white/80 backdrop-blur-sm border border-info-light rounded-xl shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-normal focus-visible:ring-offset-2 transition-all duration-300 hover:bg-white/90 min-w-48"
                 aria-label="Filter by provider"
               >
                 <option value="">All Providers</option>
@@ -641,7 +642,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                   const value = (e.target as HTMLSelectElement).value;
                   searchState.filterType = value ? [value as Appointment['type']] : [];
                 }}
-                class="px-4 py-3 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-xl shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all duration-300 hover:bg-white/90 min-w-40"
+                class="px-4 py-3 bg-white/80 backdrop-blur-sm border border-info-light rounded-xl shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-normal focus-visible:ring-offset-2 transition-all duration-300 hover:bg-white/90 min-w-40"
                 aria-label="Filter by appointment type"
               >
                 <option value="">All Types</option>
@@ -659,7 +660,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                   const value = (e.target as HTMLSelectElement).value;
                   searchState.filterStatus = value ? [value as Appointment['status']] : [];
                 }}
-                class="px-4 py-3 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-xl shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all duration-300 hover:bg-white/90 min-w-36"
+                class="px-4 py-3 bg-white/80 backdrop-blur-sm border border-info-light rounded-xl shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-normal focus-visible:ring-offset-2 transition-all duration-300 hover:bg-white/90 min-w-36"
                 aria-label="Filter by appointment status"
               >
                 <option value="">All Statuses</option>
@@ -684,7 +685,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
               {/* Weekday Headers */}
               <Row gap="2">
                 {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-                  <div key={day} class="bg-gradient-to-r from-blue-50 to-indigo-50 py-3 text-center text-sm font-semibold text-blue-900 rounded-lg shadow-sm border border-blue-200/50">
+                  <div key={day} class="bg-gradient-to-r from-info-lighter to-info-lighter py-3 text-center text-sm font-semibold text-primary-darker rounded-lg shadow-sm border border-info-light/50">
                     {day}
                   </div>
                 ))}
@@ -703,8 +704,8 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                         <div
                           key={dayIndex}
                           class={`min-h-32 p-3 rounded-xl shadow-sm border transition-all duration-300 cursor-pointer hover:shadow-md hover:scale-102 ${
-                            !isCurrentMonth ? 'bg-gray-50/50 text-gray-400 border-gray-200' : 'bg-white/80 backdrop-blur-sm border-blue-200/50'
-                          } ${isToday ? 'bg-gradient-to-br from-blue-100 to-indigo-100 border-blue-400 ring-2 ring-blue-300/50' : ''}`}
+                            !isCurrentMonth ? 'bg-neutral-lighter/50 text-neutral-light border-neutral-light' : 'bg-white/80 backdrop-blur-sm border-info-light/50'
+                          } ${isToday ? 'bg-gradient-to-br from-primary-lighter to-primary-lighter border-primary-normal ring-2 ring-info-light/50' : ''}`}
                           onClick$={() => {
                             if (rest.allowBooking && isCurrentMonth) {
                               currentDate.value = date;
@@ -712,7 +713,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                             }
                           }}
                         >
-                          <div class={`text-sm font-semibold ${isToday ? 'text-blue-700' : isCurrentMonth ? 'text-gray-900' : 'text-gray-400'}`}>
+                          <div class={`text-sm font-semibold ${isToday ? 'text-primary-dark' : isCurrentMonth ? 'text-neutral-darker' : 'text-neutral-light'}`}>
                             {date.getDate()}
                           </div>
                           
@@ -734,7 +735,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                               </div>
                             ))}
                             {dayAppointments.length > 3 && (
-                              <div class="text-xs text-blue-600 font-medium bg-blue-50 rounded px-2 py-1">
+                              <div class="text-xs text-primary-normal font-medium bg-info-lighter rounded px-2 py-1">
                                 +{dayAppointments.length - 3} more
                               </div>
                             )}
@@ -755,7 +756,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                 {/* Time column */}
                 <div class="space-y-12 pt-12">
                   {Array.from({ length: 9 }, (_, i) => i + 8).map((hour) => (
-                    <div key={hour} class="text-sm font-medium text-blue-600 text-right pr-3 py-1">
+                    <div key={hour} class="text-sm font-medium text-primary-normal text-right pr-3 py-1">
                       {hour}:00
                     </div>
                   ))}
@@ -771,13 +772,13 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                       {/* Day header */}
                       <div class={`text-center py-4 mb-3 rounded-xl shadow-sm border transition-all duration-300 ${
                         isToday 
-                          ? 'bg-gradient-to-r from-blue-100 to-indigo-100 border-blue-300 ring-1 ring-blue-300/50' 
-                          : 'bg-white/80 backdrop-blur-sm border-blue-200/50'
+                          ? 'bg-gradient-to-r from-primary-lighter to-primary-lighter border-info-light ring-1 ring-info-light/50' 
+                          : 'bg-white/80 backdrop-blur-sm border-info-light/50'
                       }`}>
-                        <div class="text-sm font-semibold text-blue-700">
+                        <div class="text-sm font-semibold text-primary-dark">
                           {date.toLocaleDateString('en-US', { weekday: 'short' })}
                         </div>
-                        <div class={`text-xl font-bold ${isToday ? 'text-blue-700' : 'text-gray-900'}`}>
+                        <div class={`text-xl font-bold ${isToday ? 'text-primary-dark' : 'text-neutral-darker'}`}>
                           {date.getDate()}
                         </div>
                       </div>
@@ -787,8 +788,8 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                         {generateTimeSlots(date).map((slot) => (
                           <div
                             key={slot.time}
-                            class={`h-12 border-t border-blue-100/50 cursor-pointer transition-all duration-300 hover:bg-blue-50/50 rounded-md ${
-                              !slot.available ? 'bg-gray-100/50' : ''
+                            class={`h-12 border-t border-info-lighter/50 cursor-pointer transition-all duration-300 hover:bg-info-lighter/50 rounded-md ${
+                              !slot.available ? 'bg-neutral-lighter/50' : ''
                             }`}
                             onClick$={() => {
                               if (slot.available && rest.allowBooking) {
@@ -828,7 +829,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
               <Row gap="6">
                 {/* Time slots */}
                 <div class="flex-1 space-y-3">
-                  <Text as="h3" weight="semibold" size="xl" color="blue-900" class="mb-6 bg-gradient-to-r from-blue-900 to-indigo-900 bg-clip-text text-transparent">
+                  <Text as="h3" weight="semibold" size="xl" color="blue-900" class="mb-6 bg-gradient-to-r from-primary-darker to-primary-darker bg-clip-text text-transparent">
                     {currentDate.value.toLocaleDateString('en-US', { 
                       weekday: 'long', 
                       year: 'numeric', 
@@ -847,8 +848,8 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                         key={slot.time}
                         class={`p-4 border rounded-xl cursor-pointer transition-all duration-300 shadow-sm ${
                           slot.available 
-                            ? 'border-blue-200 bg-white/80 backdrop-blur-sm hover:border-blue-300 hover:bg-blue-50/50 hover:scale-102' 
-                            : 'border-gray-300 bg-gray-50/80'
+                            ? 'border-info-light bg-white/80 backdrop-blur-sm hover:border-info-light hover:bg-info-lighter/50 hover:scale-102' 
+                            : 'border-neutral-light bg-neutral-lighter/80'
                         }`}
                         onClick$={() => {
                           if (slot.available && rest.allowBooking) {
@@ -858,12 +859,12 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                           }
                         }}
                       >
-                        <div class="font-semibold text-blue-700 text-lg">{slot.time}</div>
+                        <div class="font-semibold text-primary-dark text-lg">{slot.time}</div>
                         {appointments.length > 0 ? (
                           appointments.map((appointment) => (
                             <div key={appointment.id} class="mt-3 space-y-2">
-                              <div class="text-lg font-semibold text-gray-900">{appointment.patientName}</div>
-                              <div class="text-sm text-gray-600">{appointment.reasonForVisit}</div>
+                              <div class="text-lg font-semibold text-neutral-darker">{appointment.patientName}</div>
+                              <div class="text-sm text-neutral-normal">{appointment.reasonForVisit}</div>
                               <div class="flex items-center gap-3">
                                 <span class={`inline-block px-3 py-1.5 text-xs font-medium rounded-full ${getAppointmentStatus(appointment.status)}`}>
                                   {appointment.status}
@@ -875,7 +876,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                             </div>
                           ))
                         ) : (
-                          <div class="text-sm text-blue-600 mt-1 font-medium">Available for booking</div>
+                          <div class="text-sm text-primary-normal mt-1 font-medium">Available for booking</div>
                         )}
                       </div>
                     );
@@ -883,44 +884,44 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                 </div>
 
                 {/* Appointment details sidebar */}
-                <div class="w-80 bg-gradient-to-br from-blue-50/50 to-indigo-50/30 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-blue-200/50">
+                <div class="w-80 bg-gradient-to-br from-info-lighter/50 to-info-lighter/30 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-info-light/50">
                   <Text as="h3" weight="semibold" size="lg" color="blue-900" class="mb-6">Appointment Details</Text>
                   {selectedAppointment.value ? (
                     <div class="space-y-4">
-                      <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-blue-200/30">
-                        <label class="block text-sm font-semibold text-blue-700 mb-2">Patient</label>
+                      <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-info-light/30">
+                        <label class="block text-sm font-semibold text-primary-dark mb-2">Patient</label>
                         <Text as="p" size="md" color="gray-900" class="font-medium">{selectedAppointment.value.patientName}</Text>
                       </div>
-                      <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-blue-200/30">
-                        <label class="block text-sm font-semibold text-blue-700 mb-2">Provider</label>
+                      <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-info-light/30">
+                        <label class="block text-sm font-semibold text-primary-dark mb-2">Provider</label>
                         <Text as="p" size="md" color="gray-900" class="font-medium">{selectedAppointment.value.providerName}</Text>
                       </div>
-                      <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-blue-200/30">
-                        <label class="block text-sm font-semibold text-blue-700 mb-2">Time</label>
+                      <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-info-light/30">
+                        <label class="block text-sm font-semibold text-primary-dark mb-2">Time</label>
                         <Text as="p" size="md" color="gray-900" class="font-medium">
                           {selectedAppointment.value.startTime} - {selectedAppointment.value.endTime}
                         </Text>
                       </div>
-                      <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-blue-200/30">
-                        <label class="block text-sm font-semibold text-blue-700 mb-2">Reason</label>
+                      <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-info-light/30">
+                        <label class="block text-sm font-semibold text-primary-dark mb-2">Reason</label>
                         <Text as="p" size="md" color="gray-900" class="font-medium">{selectedAppointment.value.reasonForVisit}</Text>
                       </div>
-                      <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-blue-200/30">
-                        <label class="block text-sm font-semibold text-blue-700 mb-2">Status</label>
+                      <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-info-light/30">
+                        <label class="block text-sm font-semibold text-primary-dark mb-2">Status</label>
                         <span class={`inline-block px-3 py-2 text-sm font-medium rounded-full ${getAppointmentStatus(selectedAppointment.value.status)}`}>
                           {selectedAppointment.value.status}
                         </span>
                       </div>
                       {selectedAppointment.value.notes && (
-                        <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-blue-200/30">
-                          <label class="block text-sm font-semibold text-blue-700 mb-2">Notes</label>
+                        <div class="p-4 bg-white/80 rounded-lg shadow-sm border border-info-light/30">
+                          <label class="block text-sm font-semibold text-primary-dark mb-2">Notes</label>
                           <Text as="p" size="sm" color="gray-900" class="font-medium">{selectedAppointment.value.notes}</Text>
                         </div>
                       )}
                     </div>
                   ) : (
                     <div class="text-center py-8">
-                      <svg class="mx-auto h-16 w-16 text-blue-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="mx-auto h-16 w-16 text-info-light mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                       </svg>
                       <Text as="p" size="sm" color="blue-600" class="font-medium">Select an appointment to view details</Text>
@@ -938,7 +939,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                 {getFilteredAppointments().map((appointment) => (
                   <div
                     key={appointment.id}
-                    class={`p-6 border rounded-xl cursor-pointer transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-102 bg-white/80 backdrop-blur-sm border-blue-200/50 ${getAppointmentPriority(appointment.priority)}`}
+                    class={`p-6 border rounded-xl cursor-pointer transition-all duration-300 shadow-sm hover:shadow-lg hover:scale-102 bg-white/80 backdrop-blur-sm border-info-light/50 ${getAppointmentPriority(appointment.priority)}`}
                     onClick$={() => handleAppointmentClick(appointment)}
                   >
                     <div class="flex justify-between items-start">
@@ -952,7 +953,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                             {appointment.type}
                           </span>
                         </div>
-                        <div class="flex items-center gap-2 text-blue-700 mb-2">
+                        <div class="flex items-center gap-2 text-primary-dark mb-2">
                           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                           </svg>
@@ -961,7 +962,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                           </Text>
                         </div>
                         <Text as="p" size="md" color="gray-900" class="mb-3 font-medium">{appointment.reasonForVisit}</Text>
-                        <div class="flex items-center gap-6 text-sm text-gray-600">
+                        <div class="flex items-center gap-6 text-sm text-neutral-normal">
                           <div class="flex items-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -980,7 +981,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                         {rest.allowRescheduling && appointment.status === 'scheduled' && (
                           <button
                             type="button"
-                            class="px-4 py-2 text-sm font-semibold text-blue-700 border-2 border-blue-600 rounded-lg transition-all duration-300 hover:bg-blue-50 hover:scale-105 active:scale-95"
+                            class="px-4 py-2 text-sm font-semibold text-primary-dark border-2 border-primary-normal rounded-lg transition-all duration-300 hover:bg-info-lighter hover:scale-105 active:scale-95"
                             onClick$={(e) => {
                               e.stopPropagation();
                               // Handle reschedule
@@ -992,7 +993,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                         {rest.allowCancellation && ['scheduled', 'confirmed'].includes(appointment.status) && (
                           <button
                             type="button"
-                            class="px-4 py-2 text-sm font-semibold text-red-700 border-2 border-red-600 rounded-lg transition-all duration-300 hover:bg-red-50 hover:scale-105 active:scale-95"
+                            class="px-4 py-2 text-sm font-semibold text-error-dark border-2 border-error-normal rounded-lg transition-all duration-300 hover:bg-error-lighter hover:scale-105 active:scale-95"
                             onClick$={(e) => {
                               e.stopPropagation();
                               if (rest.onAppointmentCancel) {
@@ -1010,7 +1011,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
                 
                 {getFilteredAppointments().length === 0 && (
                   <div class="text-center py-16">
-                    <svg class="mx-auto h-20 w-20 text-blue-300 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="mx-auto h-20 w-20 text-info-light mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     <Text as="h3" weight="semibold" size="lg" color="blue-700" class="mb-2">No appointments found</Text>
@@ -1168,6 +1169,7 @@ export const AppointmentCalendar = component$<AppointmentCalendarProps>((props) 
           </Button>
         </div>
       </Modal>
+    </div>
     </div>
   );
 });

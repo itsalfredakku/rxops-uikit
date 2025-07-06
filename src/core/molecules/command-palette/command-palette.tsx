@@ -615,11 +615,11 @@ export const CommandPalette = component$<CommandPaletteProps>((props) => {
   );
 
   const paletteClasses = mergeClasses(
-    'command-palette bg-white rounded-lg shadow-2xl border border-neutral-200',
+    'command-palette bg-white rounded-lg shadow-2xl border border-neutral-light',
     'w-full max-w-2xl mx-4',
     compact ? 'max-h-80' : 'max-h-96',
     'overflow-hidden',
-    highContrast && 'border-2 border-neutral-800 bg-white'
+    highContrast && 'border-2 border-neutral-darker bg-white'
   );
 
   const inputClasses = mergeClasses(
@@ -630,19 +630,20 @@ export const CommandPalette = component$<CommandPaletteProps>((props) => {
 
   const commandItemClasses = (command: Command, index: number) => mergeClasses(
     'command-item flex items-center px-4 py-3 cursor-pointer transition-colors',
-    'border-b border-neutral-100 last:border-b-0',
+    'border-b border-neutral-lighter last:border-b-0',
     index === selectedIndex.value && 'bg-primary-50',
     command.disabled && 'opacity-50 cursor-not-allowed',
-    command.emergencyCommand && 'bg-red-50 border-red-200',
+    command.emergencyCommand && 'bg-error-lighter border-error-light',
     compact && 'py-2',
-    highContrast && index === selectedIndex.value && 'bg-neutral-800 text-white'
+    highContrast && index === selectedIndex.value && 'bg-neutral-darker text-white'
   );
 
   return (
-    <div class={containerClasses} onClick$={closeCommandPalette} {...rest}>
-      <div class={paletteClasses} onClick$={(e) => e.stopPropagation()}>
+    <div class="themed-content">
+      <div class={containerClasses} onClick$={closeCommandPalette} {...rest}>
+        <div class={paletteClasses} onClick$={(e) => e.stopPropagation()}>
         {/* Search Input */}
-        <div class="command-search border-b border-neutral-200">
+        <div class="command-search border-b border-neutral-light">
           <Input
             ref={inputRef}
             class={inputClasses}
@@ -656,7 +657,7 @@ export const CommandPalette = component$<CommandPaletteProps>((props) => {
         {/* Commands List */}
         <div class="command-list overflow-y-auto max-h-80">
           {state.filteredCommands.length === 0 ? (
-            <div class="p-8 text-center text-neutral-500">
+            <div class="p-8 text-center text-neutral-normal">
               <Text>No commands found</Text>
             </div>
           ) : (
@@ -688,7 +689,7 @@ export const CommandPalette = component$<CommandPaletteProps>((props) => {
                       {categoryConfig[command.category].label}
                     </Badge>
                     {favoriteCommands.includes(command.id) && (
-                      <span class="text-yellow-500">⭐</span>
+                      <span class="text-warning-normal">⭐</span>
                     )}
                   </div>
                   {command.description && (
@@ -727,7 +728,7 @@ export const CommandPalette = component$<CommandPaletteProps>((props) => {
         </div>
 
         {/* Footer */}
-        <div class="command-footer flex items-center justify-between px-4 py-2 bg-neutral-50 border-t">
+        <div class="command-footer flex items-center justify-between px-4 py-2 bg-neutral-lighter border-t">
           <div class="flex items-center space-x-2">
             <Kbd size="sm">↑↓</Kbd>
             <Text size="xs" color="gray-500">Navigate</Text>
@@ -744,6 +745,7 @@ export const CommandPalette = component$<CommandPaletteProps>((props) => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 });

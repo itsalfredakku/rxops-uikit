@@ -165,63 +165,63 @@ export const Timeline = component$<TimelineProps>((props) => {
   const eventTypeConfig = {
     appointment: {
       icon: 'calendar' as IconName,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100',
-      borderColor: 'border-blue-200'
+      color: 'text-primary-normal',
+      bgColor: 'bg-info-lighter',
+      borderColor: 'border-info-light'
     },
     medication: {
       icon: 'pill' as IconName,
-      color: 'text-green-600',
-      bgColor: 'bg-green-100',
-      borderColor: 'border-green-200'
+      color: 'text-success-normal',
+      bgColor: 'bg-success-lighter',
+      borderColor: 'border-success-light'
     },
     procedure: {
       icon: 'activity' as IconName,
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-100',
-      borderColor: 'border-purple-200'
+      color: 'text-primary-normal',
+      bgColor: 'bg-primary-lighter',
+      borderColor: 'border-primary-light'
     },
     lab: {
       icon: 'flask' as IconName,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-100',
-      borderColor: 'border-orange-200'
+      color: 'text-warning-normal',
+      bgColor: 'bg-warning-lighter',
+      borderColor: 'border-warning-light'
     },
     vital: {
       icon: 'heart' as IconName,
-      color: 'text-red-600',
-      bgColor: 'bg-red-100',
-      borderColor: 'border-red-200'
+      color: 'text-error-normal',
+      bgColor: 'bg-error-lighter',
+      borderColor: 'border-error-light'
     },
     note: {
       icon: 'file-text' as IconName,
-      color: 'text-neutral-600',
-      bgColor: 'bg-neutral-100',
-      borderColor: 'border-neutral-200'
+      color: 'text-neutral-normal',
+      bgColor: 'bg-neutral-lighter',
+      borderColor: 'border-neutral-light'
     },
     emergency: {
       icon: 'alert-triangle' as IconName,
-      color: 'text-red-700',
-      bgColor: 'bg-red-200',
-      borderColor: 'border-red-300'
+      color: 'text-error-dark',
+      bgColor: 'bg-error-light',
+      borderColor: 'border-error-light'
     },
     discharge: {
       icon: 'log-out' as IconName,
-      color: 'text-green-700',
-      bgColor: 'bg-green-100',
-      borderColor: 'border-green-200'
+      color: 'text-success-dark',
+      bgColor: 'bg-success-lighter',
+      borderColor: 'border-success-light'
     },
     admission: {
       icon: 'log-in' as IconName,
-      color: 'text-blue-700',
-      bgColor: 'bg-blue-100',
-      borderColor: 'border-blue-200'
+      color: 'text-primary-dark',
+      bgColor: 'bg-info-lighter',
+      borderColor: 'border-info-light'
     },
     surgery: {
       icon: 'activity' as IconName,
-      color: 'text-purple-700',
-      bgColor: 'bg-purple-100',
-      borderColor: 'border-purple-200'
+      color: 'text-primary-dark',
+      bgColor: 'bg-primary-lighter',
+      borderColor: 'border-primary-light'
     }
   };
 
@@ -267,7 +267,7 @@ export const Timeline = component$<TimelineProps>((props) => {
         "flex items-center justify-center w-8 h-8 rounded-full border-2",
         config.bgColor,
         config.borderColor,
-        event.priority === 'critical' ? 'animate-pulse ring-2 ring-red-400' : ''
+        event.priority === 'critical' ? 'animate-pulse ring-2 ring-error-normal' : ''
       )}>
         <Icon 
           icon={iconName} 
@@ -315,7 +315,7 @@ export const Timeline = component$<TimelineProps>((props) => {
             </div>
             
             {(props.showDate || props.showTime) && (
-              <div class="flex items-center gap-2 text-sm text-neutral-600">
+              <div class="flex items-center gap-2 text-sm text-neutral-normal">
                 {props.showDate && (
                   <span>{formatDate(event.timestamp)}</span>
                 )}
@@ -341,7 +341,7 @@ export const Timeline = component$<TimelineProps>((props) => {
         {event.description && (
           <Text 
             size="sm" 
-            class="text-neutral-700 mb-2"
+            class="text-neutral-dark mb-2"
           >
             {event.description}
           </Text>
@@ -349,7 +349,7 @@ export const Timeline = component$<TimelineProps>((props) => {
 
         {/* Event Metadata */}
         {event.metadata && (
-          <div class="text-xs text-neutral-600 space-y-1">
+          <div class="text-xs text-neutral-normal space-y-1">
             {event.metadata.provider && (
               <div>Provider: {event.metadata.provider}</div>
             )}
@@ -364,7 +364,7 @@ export const Timeline = component$<TimelineProps>((props) => {
                 <span>Value: {event.metadata.value}</span>
                 {event.metadata.unit && <span>{event.metadata.unit}</span>}
                 {event.metadata.normalRange && (
-                  <span class="text-neutral-500">(Normal: {event.metadata.normalRange})</span>
+                  <span class="text-neutral-normal">(Normal: {event.metadata.normalRange})</span>
                 )}
               </div>
             )}
@@ -376,7 +376,7 @@ export const Timeline = component$<TimelineProps>((props) => {
 
         {/* PHI Protection Indicator */}
         {event.healthcare?.containsPHI && (
-          <div class="mt-2 flex items-center gap-1 text-xs text-amber-600">
+          <div class="mt-2 flex items-center gap-1 text-xs text-warning-dark">
             <Icon icon="shield" size={12} />
             <span>Protected Health Information</span>
           </div>
@@ -390,7 +390,7 @@ export const Timeline = component$<TimelineProps>((props) => {
     
     return (
       <div class="timeline-connector flex justify-center">
-        <div class="w-0.5 h-6 bg-neutral-200" />
+        <div class="w-0.5 h-6 bg-neutral-light" />
       </div>
     );
   };
@@ -408,12 +408,13 @@ export const Timeline = component$<TimelineProps>((props) => {
     { 'all': visibleEvents };
 
   return (
-    <div
-      class={mergeClasses(
+    <div class="themed-content">
+      <div
+        class={mergeClasses(
         'timeline',
         orientation === 'horizontal' ? 'flex overflow-x-auto' : 'space-y-4',
         theme === 'dark' ? 'dark' : '',
-        theme === 'clinical' ? 'bg-neutral-50 p-4 rounded-lg border' : '',
+        theme === 'clinical' ? 'bg-neutral-lighter p-4 rounded-lg border' : '',
         qwikClass || className
       )}
       data-healthcare-element="timeline"
@@ -421,7 +422,7 @@ export const Timeline = component$<TimelineProps>((props) => {
     >
       {/* Timeline Filter Controls */}
       {interactive && (
-        <div class="timeline-controls mb-4 p-3 bg-neutral-50 rounded-lg border">
+        <div class="timeline-controls mb-4 p-3 bg-neutral-lighter rounded-lg border">
           <Text size="sm" weight="medium" class="mb-2">Filter Events:</Text>
           <div class="flex flex-wrap gap-2">
             {Object.keys(eventTypeConfig).map((type) => {
@@ -434,7 +435,7 @@ export const Timeline = component$<TimelineProps>((props) => {
                   type="button"
                   class={mergeClasses(
                     "flex items-center gap-1 px-2 py-1 rounded text-xs transition-colors",
-                    isActive ? config.bgColor + ' ' + config.borderColor + ' border' : 'bg-white border border-neutral-200 hover:bg-neutral-50'
+                    isActive ? config.bgColor + ' ' + config.borderColor + ' border' : 'bg-white border border-neutral-light hover:bg-neutral-lighter'
                   )}
                   onClick$={() => {
                     const newFilter = isActive
@@ -445,8 +446,8 @@ export const Timeline = component$<TimelineProps>((props) => {
                     onFilter?.(newFilter);
                   }}
                 >
-                  <Icon icon={config.icon} size={12} class={isActive ? config.color : 'text-neutral-500'} />
-                  <span class={isActive ? config.color : 'text-neutral-600'}>
+                  <Icon icon={config.icon} size={12} class={isActive ? config.color : 'text-neutral-normal'} />
+                  <span class={isActive ? config.color : 'text-neutral-normal'}>
                     {type.charAt(0).toUpperCase() + type.slice(1)}
                   </span>
                 </button>
@@ -461,10 +462,10 @@ export const Timeline = component$<TimelineProps>((props) => {
         <div key={dateGroup} class="timeline-group">
           {props.groupByDate && dateGroup !== 'all' && (
             <div class="timeline-date-header mb-3">
-              <Text size="lg" weight="semibold" class="text-neutral-800">
+              <Text size="lg" weight="semibold" class="text-neutral-darker">
                 {dateGroup}
               </Text>
-              <div class="h-px bg-neutral-200 mt-1" />
+              <div class="h-px bg-neutral-light mt-1" />
             </div>
           )}
           
@@ -516,11 +517,11 @@ export const Timeline = component$<TimelineProps>((props) => {
       {/* Empty State */}
       {filteredEvents.length === 0 && (
         <div class="timeline-empty text-center py-8">
-          <Icon icon="clock" size={48} class="text-neutral-400 mx-auto mb-3" />
-          <Text size="lg" class="text-neutral-600 mb-2">
+          <Icon icon="clock" size={48} class="text-neutral-light mx-auto mb-3" />
+          <Text size="lg" class="text-neutral-normal mb-2">
             No timeline events found
           </Text>
-          <Text size="sm" class="text-neutral-500">
+          <Text size="sm" class="text-neutral-normal">
             {activeFilter.value.length > 0 
               ? 'Try adjusting your filters to see more events'
               : 'Timeline events will appear here when available'
@@ -528,6 +529,7 @@ export const Timeline = component$<TimelineProps>((props) => {
           </Text>
         </div>
       )}
+    </div>
     </div>
   );
 });
@@ -563,15 +565,15 @@ export const MedicalTimeline = component$<MedicalTimelineProps>((props) => {
     <div class="medical-timeline bg-white rounded-lg border shadow-sm">
       {/* Patient Header */}
       {props.patient && (
-        <div class="medical-timeline-header p-4 border-b bg-neutral-50">
+        <div class="medical-timeline-header p-4 border-b bg-neutral-lighter">
           <div class="flex items-center gap-3">
             <Icon icon="user" size={20} class="text-primary-600" />
             <div>
-              <Text size="lg" weight="semibold" class="text-neutral-900">
+              <Text size="lg" weight="semibold" class="text-neutral-darker">
                 Medical Timeline - {props.patient.name}
               </Text>
               {props.patient.dateOfBirth && (
-                <Text size="sm" class="text-neutral-600">
+                <Text size="sm" class="text-neutral-normal">
                   DOB: {new Date(props.patient.dateOfBirth).toLocaleDateString()}
                 </Text>
               )}

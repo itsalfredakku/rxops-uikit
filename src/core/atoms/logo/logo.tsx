@@ -55,18 +55,20 @@ export const Logo = component$<LogoProps>((props) => {
   const content = <img {...imgProps} />;
 
   return (
-    <div 
-      class={logoClasses}
-      style={style}
-      {...rest}
-    >
-      {href ? (
-        <a href={href} class="block w-full h-full">
-          {content}
-        </a>
-      ) : (
-        content
-      )}
+    <div class="themed-content">
+      <div 
+        class={logoClasses}
+        style={style}
+        {...rest}
+      >
+        {href ? (
+          <a href={href} class="block w-full h-full">
+            {content}
+          </a>
+        ) : (
+          content
+        )}
+      </div>
     </div>
   );
 });

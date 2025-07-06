@@ -16,6 +16,12 @@ export interface AlertProps extends Omit<BaseComponentProps<HTMLDivElement>, 'ch
   // Legacy prop support (deprecated)
   /** @deprecated Use color instead */
   severity?: AlertColor;
+  /** ARIA label for accessibility */
+  ariaLabel?: string;
+  /** Emergency alert for medical devices */
+  emergency?: boolean;
+  /** Auto-dismiss timeout (ms) */
+  autoDismiss?: number;
 }
 
 // Alert variant configuration
@@ -106,6 +112,9 @@ export const Alert = component$<AlertProps>((props) => {
     title,
     closable = false,
     onClose,
+    ariaLabel,
+    emergency = false,
+    autoDismiss,
     class: qwikClass,
     className,
     style,
@@ -118,6 +127,34 @@ export const Alert = component$<AlertProps>((props) => {
   const color = colorProp || severity || "info";
 
   const isVisible: Signal<boolean> = useSignal(true);
+  
+  // Focus state for enhanced medical device accessibility
+  const isFocused = useSignal(false);
+
+  // Enhanced keyboard event handler for emergency alerts
+  const handleKeyDown$ = $((event: KeyboardEvent) => {
+    if (!closable) return;
+    
+    // Enter/Space to dismiss alert
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleClose();
+    }
+    
+    // Emergency alerts: Escape to acknowledge
+    if (emergency && event.key === 'Escape') {
+      event.preventDefault();
+      handleClose();
+    }
+  });
+  
+  const handleFocus$ = $((event: FocusEvent) => {
+    isFocused.value = true;
+  });
+
+  const handleBlur$ = $((event: FocusEvent) => {
+    isFocused.value = false;
+  });
 
   const handleClose = $(() => {
     isVisible.value = false;
@@ -128,10 +165,24 @@ export const Alert = component$<AlertProps>((props) => {
     [`${color}-${variant}`]: true
   });
 
-  const finalClass = mergeClasses(alertClass, qwikClass, className);
+  // Enhanced alert classes with medical device focus support
+  const finalClass = mergeClasses(
+    alertClass, 
+    // Medical device keyboard accessibility
+    closable && "focus:outline-none focus:ring-4 focus:ring-primary-500/50 focus:ring-offset-2",
+    closable && "focus:shadow-2xl focus:z-10",
+    closable && "focus-visible:ring-4 focus-visible:ring-primary-600/70",
+    emergency && closable && "focus:ring-error-normal/70 focus:ring-offset-2",
+    emergency && closable && isFocused.value && "shadow-2xl ring-4 ring-error-normal",
+    qwikClass, 
+    className
+  );
   
   // Merge styles if provided
   const finalStyle = mergeStyles(undefined, style);
+
+  // Generate accessible label
+  const accessibleLabel = ariaLabel || (emergency ? "Emergency medical alert" : "Alert message");
 
   if (!isVisible.value) {
     return null;
@@ -141,11 +192,25 @@ export const Alert = component$<AlertProps>((props) => {
     <div
       class={finalClass}
       style={finalStyle}
-      role="alert"
+      tabIndex={closable ? 0 : -1}
+      aria-label={accessibleLabel}
+      aria-live={emergency ? "assertive" : "polite"}
+      aria-atomic="true"
+      role={emergency ? "alertdialog" : "alert"}
+      onKeyDown$={closable ? handleKeyDown$ : undefined}
+      onFocus$={closable ? handleFocus$ : undefined}
+      onBlur$={closable ? handleBlur$ : undefined}
       data-testid={testId || dataTestId}
       {...rest}
     >
       <div class="themed-content">
+        {/* Emergency indicator for medical devices */}
+        {emergency && (
+          <span class="sr-only">
+            Emergency medical alert - Press Enter or Space to acknowledge, Escape to dismiss
+          </span>
+        )}
+        
         {/* Icon */}
         <div class="flex-shrink-0">
           <Slot name="icon">
@@ -158,6 +223,11 @@ export const Alert = component$<AlertProps>((props) => {
           {title && (
             <h3 class="text-sm font-medium mb-1">
               {title}
+              {emergency && (
+                <span class="ml-2 text-xs font-normal">
+                  [EMERGENCY]
+                </span>
+              )}
             </h3>
           )}
           <div class="text-sm">
@@ -172,6 +242,9 @@ export const Alert = component$<AlertProps>((props) => {
               type="button"
               class={[
                 "inline-flex rounded-md p-1.5 transition-colors duration-200",
+                // Enhanced focus for medical devices
+                "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-1",
+                "focus:shadow-lg",
                 variant === "filled" ? "text-white/80 hover:text-white hover:bg-black/10" :
                 variant === "outlined" ? (
                   color === "info" ? "text-info-darker hover:bg-info-lighter" :
@@ -186,9 +259,10 @@ export const Alert = component$<AlertProps>((props) => {
                 )
               ].join(" ")}
               onClick$={handleClose}
-              aria-label="Close alert"
+              aria-label={emergency ? "Acknowledge emergency alert" : "Close alert"}
+              tabIndex={0}
             >
-              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
               </svg>
             </button>

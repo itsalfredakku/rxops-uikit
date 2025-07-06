@@ -89,12 +89,13 @@ export const HealthPackageCard = component$<HealthPackageCardProps>((props) => {
   const discountSavings = pkg.originalPrice - pkg.discountedPrice;
 
   return (
-    <div 
-      class={cardClasses}
-      style={style}
-      data-testid={testId}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={cardClasses}
+        style={style}
+        data-testid={testId}
+        {...rest}
+      >
       {/* Popular/Recommended Badge */}
       {(pkg.popular || pkg.recommended) && (
         <div class="absolute top-0 left-0 right-0 bg-gradient-to-r from-primary-normal to-primary-dark text-white text-center py-1">
@@ -329,6 +330,7 @@ export const HealthPackageCard = component$<HealthPackageCardProps>((props) => {
           </Row>
         </Row>
       </div>
+    </div>
     </div>
   );
 });

@@ -284,7 +284,8 @@ export default component$<BillingCardProps>((props) => {
   );
 
   return (
-    <Card class={billingCardClasses} style={style} {...rest}>
+    <div class="themed-content">
+      <Card class={billingCardClasses} style={style} {...rest}>
       {/* Header */}
       <Card.Body class="border-b border-neutral-light">
         <Row alignItems="center" justifyContent="between" class="mb-4">
@@ -1108,5 +1109,6 @@ export default component$<BillingCardProps>((props) => {
         </Row>
       </Modal>
     </Card>
+    </div>
   );
 });

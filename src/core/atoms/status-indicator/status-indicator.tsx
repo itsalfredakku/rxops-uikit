@@ -10,7 +10,7 @@
  * - Medical device compatibility
  */
 
-import { component$, Slot } from "@builder.io/qwik";
+import { component$, Slot, useStore, $ } from "@builder.io/qwik";
 import { BaseComponentProps, mergeClasses } from "../../../design-system/props";
 import type { Color } from "../../../design-system/types";
 
@@ -79,11 +79,22 @@ export interface StatusIndicatorProps extends BaseComponentProps<HTMLSpanElement
    * Override color (advanced use)
    */
   color?: Color;
+  
+  /** Medical device keyboard support with enhanced focus indicators */
+  medicalDeviceMode?: boolean;
+  /** Enable healthcare workflow shortcuts */
+  enableWorkflowShortcuts?: boolean;
+  /** Status context for healthcare applications */
+  statusContext?: 'patient-monitoring' | 'medication-tracking' | 'emergency-alert' | 'system-status' | 'workflow' | 'default';
+  /** Make status interactive (focusable) */
+  interactive?: boolean;
+  /** Callback when status is activated (clicked or Enter pressed) */
+  onActivate?: () => void;
 }
 
 const stateColors = {
   active: 'bg-success-500 text-success-50',
-  inactive: 'bg-neutral-400 text-neutral-50',
+  inactive: 'bg-neutral-normal text-neutral-lighter',
   warning: 'bg-warning-500 text-warning-50',
   error: 'bg-error-500 text-error-50',
   success: 'bg-success-500 text-success-50',
@@ -94,15 +105,15 @@ const stateColors = {
 };
 
 const highContrastColors = {
-  active: 'bg-green-600 text-white border-2 border-green-800',
-  inactive: 'bg-neutral-600 text-white border-2 border-neutral-800',
-  warning: 'bg-yellow-600 text-black border-2 border-yellow-800',
-  error: 'bg-red-600 text-white border-2 border-red-800',
-  success: 'bg-green-600 text-white border-2 border-green-800',
-  pending: 'bg-blue-600 text-white border-2 border-blue-800',
-  processing: 'bg-indigo-600 text-white border-2 border-indigo-800',
-  critical: 'bg-red-700 text-white border-2 border-red-900',
-  stable: 'bg-green-500 text-white border-2 border-green-700',
+  active: 'bg-success-normal text-white border-2 border-success-darker',
+  inactive: 'bg-neutral-dark text-white border-2 border-neutral-darker',
+  warning: 'bg-warning-normal text-black border-2 border-warning-darker',
+  error: 'bg-error-normal text-white border-2 border-error-darker',
+  success: 'bg-success-normal text-white border-2 border-success-darker',
+  pending: 'bg-primary-normal text-white border-2 border-primary-darker',
+  processing: 'bg-primary-normal text-white border-2 border-primary-darker',
+  critical: 'bg-error-dark text-white border-2 border-error-darker',
+  stable: 'bg-success-normal text-white border-2 border-success-dark',
 };
 
 const sizeClasses = {
@@ -156,9 +167,26 @@ export const StatusIndicator = component$<StatusIndicatorProps>((props) => {
     pulse = false,
     highContrast = false,
     color: _color, // Mark as unused with underscore
+    medicalDeviceMode = false,
+    enableWorkflowShortcuts = false,
+    statusContext = 'default',
+    interactive = false,
+    onActivate,
     class: className,
     ...rest
   } = props;
+
+  // Medical device keyboard state
+  const keyboardState = useStore({
+    instructionsId: `status-instructions-${Math.random().toString(36).substr(2, 9)}`,
+  });
+
+  // Handle status activation (click or keyboard)
+  const handleActivate = $(() => {
+    if (interactive && onActivate) {
+      onActivate();
+    }
+  });
 
   const colorClasses = highContrast ? highContrastColors[state] : stateColors[state];
   const pulseClass = pulse && (state === 'critical' || state === 'error') ? 'animate-pulse' : '';
@@ -173,26 +201,93 @@ export const StatusIndicator = component$<StatusIndicatorProps>((props) => {
     // Healthcare accessibility
     'focus:outline-none focus:ring-2 focus:ring-offset-1',
     state === 'critical' ? 'focus:ring-error-500' : 'focus:ring-primary-500',
+    // Medical device enhancements
+    medicalDeviceMode && 'focus:ring-2 focus:ring-offset-2',
+    interactive && 'cursor-pointer hover:opacity-80 transition-opacity',
   ];
 
   return (
-    <span
-      class={mergeClasses(...baseClasses, className)}
-      role="status"
-      aria-label={label || `${type} status: ${state}`}
-      title={label || `${type} status: ${state}`}
-      {...rest}
-    >
-      {variant === 'dot' || variant === 'bar' ? null : (
-        <Slot>
-          {variant === 'icon' ? (
-            <StatusIcon state={state} />
-          ) : (
-            <span class="capitalize">{state}</span>
-          )}
-        </Slot>
+    <div class="themed-content">
+      <span
+        class={mergeClasses(...baseClasses, className)}
+        role={interactive ? "button" : "status"}
+        tabIndex={interactive ? 0 : -1}
+        aria-label={label || `${type} status: ${state}${interactive ? ', press Enter to activate' : ''}`}
+        aria-describedby={medicalDeviceMode ? keyboardState.instructionsId : undefined}
+        title={label || `${type} status: ${state}`}
+        onClick$={interactive ? handleActivate : undefined}
+        onKeyDown$={(event) => {
+          if (!interactive) return;
+          
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            handleActivate();
+          } else if (event.key === 'Escape') {
+            event.preventDefault();
+            (event.target as HTMLElement).blur();
+          } else if (medicalDeviceMode && enableWorkflowShortcuts) {
+            // Healthcare workflow shortcuts based on context
+            if (statusContext === 'patient-monitoring') {
+              if (event.key === 'v') {
+                event.preventDefault();
+                // Navigate to vitals (would be handled by parent component)
+                console.log('Navigate to vitals');
+              } else if (event.key === 'a') {
+                event.preventDefault();
+                // Navigate to alerts
+                console.log('Navigate to alerts');
+              }
+            } else if (statusContext === 'medication-tracking') {
+              if (event.key === 'm') {
+                event.preventDefault();
+                // Navigate to medications
+                console.log('Navigate to medications');
+              } else if (event.key === 'd') {
+                event.preventDefault();
+                // Navigate to dosage details
+                console.log('Navigate to dosage');
+              }
+            } else if (statusContext === 'emergency-alert') {
+              if (event.key === 'e') {
+                event.preventDefault();
+                // Escalate emergency
+                console.log('Escalate emergency');
+              } else if (event.key === 'c') {
+                event.preventDefault();
+                // Clear alert (if authorized)
+                console.log('Clear alert');
+              }
+            }
+          }
+        }}
+        {...rest}
+      >
+        {variant === 'dot' || variant === 'bar' ? null : (
+          <Slot>
+            {variant === 'icon' ? (
+              <StatusIcon state={state} />
+            ) : (
+              <span class="capitalize">{state}</span>
+            )}
+          </Slot>
+        )}
+      </span>
+      
+      {/* Medical Device Keyboard Instructions */}
+      {medicalDeviceMode && interactive && (
+        <div 
+          id={keyboardState.instructionsId}
+          class="sr-only"
+        >
+          Interactive status indicator: Press Enter or Space to activate.
+          {enableWorkflowShortcuts && statusContext === 'patient-monitoring' && ' Quick access: V for vitals, A for alerts.'}
+          {enableWorkflowShortcuts && statusContext === 'medication-tracking' && ' Quick access: M for medications, D for dosage.'}
+          {enableWorkflowShortcuts && statusContext === 'emergency-alert' && ' Quick access: E to escalate, C to clear alert.'}
+          {enableWorkflowShortcuts && ' Healthcare shortcuts enabled.'}
+          Escape to exit focus.
+        </div>
       )}
-    </span>
+    </div>
   );
 });
 

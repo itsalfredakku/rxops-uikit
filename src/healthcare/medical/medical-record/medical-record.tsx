@@ -73,11 +73,12 @@ export const MedicalRecordCard = component$<MedicalRecordCardProps>((props) => {
   );
 
   return (
-    <div 
-      class={cardClasses}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={cardClasses}
+        style={style}
+        {...rest}
+      >
       <div class="p-4">
         <Row alignItems="start" justifyContent="between" class="mb-3">
           <Row alignItems="center" gap="3">
@@ -167,6 +168,7 @@ export const MedicalRecordCard = component$<MedicalRecordCardProps>((props) => {
           </Row>
         </Row>
       </div>
+    </div>
     </div>
   );
 });

@@ -79,8 +79,9 @@ export const Toast = component$<ToastProps>(({
   }
 
   return (
-    <div 
-      class={toastClasses}
+    <div class="themed-content">
+      <div 
+        class={toastClasses}
       style={style}
       {...rest}
     >
@@ -122,6 +123,7 @@ export const Toast = component$<ToastProps>(({
           />
         </div>
       )}
+    </div>
     </div>
   );
 });

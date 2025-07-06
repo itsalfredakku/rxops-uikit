@@ -1,4 +1,4 @@
-import { component$, useTask$, useSignal } from "@builder.io/qwik";
+import { component$, useTask$, useSignal, useStore, $ } from "@builder.io/qwik";
 import { BaseComponentProps, mergeClasses } from "../../../design-system/props";
 import { Text } from "../../atoms/text/text";
 import { Icon, type IconName } from "../../atoms/icon";
@@ -32,6 +32,16 @@ export interface ProgressBarProps extends BaseComponentProps<HTMLDivElement> {
     critical?: boolean;
     target?: number;
   };
+  /** Medical device keyboard support with enhanced focus indicators */
+  medicalDeviceMode?: boolean;
+  /** Enable healthcare workflow shortcuts */
+  enableWorkflowShortcuts?: boolean;
+  /** Progress context for healthcare applications */
+  progressContext?: 'vital-monitoring' | 'treatment-progress' | 'medication-schedule' | 'file-transfer' | 'default';
+  /** Make progress bar interactive (focusable) */
+  interactive?: boolean;
+  /** Callback when progress bar is activated (clicked or Enter pressed) */
+  onActivate?: () => void;
 }
 
 export const ProgressBar = component$<ProgressBarProps>((props) => {
@@ -61,6 +71,18 @@ export const ProgressBar = component$<ProgressBarProps>((props) => {
     if (props.variant === 'medical' || props.variant === 'animated') {
       animationActive.value = true;
       setTimeout(() => animationActive.value = false, 1000);
+    }
+  });
+
+  // Medical device keyboard state
+  const keyboardState = useStore({
+    instructionsId: `progress-instructions-${Math.random().toString(36).substr(2, 9)}`,
+  });
+
+  // Handle progress bar activation (click or keyboard)
+  const handleActivate = $(() => {
+    if (props.interactive && props.onActivate) {
+      props.onActivate();
     }
   });
 
@@ -121,7 +143,7 @@ export const ProgressBar = component$<ProgressBarProps>((props) => {
     if (!props.healthcareContext) return null;
     
     if (percentage >= 100) {
-      return <Icon icon="check-circle" size={16} class="text-success-600" />;
+      return <Icon icon="check-circle" size={16} class="text-success-normal" />;
     }
     
     if (props.healthcareContext.critical && percentage < 50) {
@@ -146,7 +168,118 @@ export const ProgressBar = component$<ProgressBarProps>((props) => {
   };
 
   return (
-    <div class={mergeClasses("progress-bar-container", props.class)} {...props}>
+    <div class="themed-content">
+      <div 
+        class={mergeClasses(
+          "progress-bar-container",
+          // Medical device enhancements
+          props.medicalDeviceMode && "focus:outline-none focus:ring-2 focus:ring-offset-1",
+          props.healthcareContext?.critical ? "focus:ring-error-500" : "focus:ring-primary-500",
+          props.interactive && "cursor-pointer hover:opacity-80 transition-opacity",
+          props.medicalDeviceMode && props.interactive && "focus:ring-2 focus:ring-offset-2",
+          props.class
+        )} 
+        tabIndex={props.interactive ? 0 : (props.medicalDeviceMode ? 0 : -1)}
+        role={props.interactive ? "button" : "progressbar"}
+        aria-valuemin={0}
+        aria-valuemax={max}
+        aria-valuenow={props.value}
+        aria-label={props.interactive ? 
+          `${props.label || 'Progress indicator'}: ${formatValue() || `${props.value} of ${max}`}, press Enter to view details` :
+          `${props.label || 'Progress indicator'}: ${formatValue() || `${props.value} of ${max}`}`
+        }
+        aria-describedby={props.medicalDeviceMode ? keyboardState.instructionsId : undefined}
+        onClick$={props.interactive ? handleActivate : undefined}
+        onKeyDown$={$((event: KeyboardEvent) => {
+          // Space or Enter to announce current progress (screen reader support)
+          if (event.key === ' ' || event.key === 'Enter') {
+            event.preventDefault();
+            
+            if (props.interactive) {
+              handleActivate();
+            } else {
+              // Create accessible announcement
+              const announcement = `${props.label || 'Progress'}: ${formatValue() || `${props.value} of ${max}`}`;
+              
+              // For healthcare contexts, add critical information
+              if (props.healthcareContext?.critical && percentage < 30) {
+                const criticalAnnouncement = `${announcement}. Critical level - immediate attention required.`;
+                // Announce to screen readers
+                const announcer = document.createElement('div');
+                announcer.setAttribute('aria-live', 'assertive');
+                announcer.setAttribute('aria-atomic', 'true');
+                announcer.setAttribute('class', 'sr-only');
+                announcer.textContent = criticalAnnouncement;
+                document.body.appendChild(announcer);
+                setTimeout(() => document.body.removeChild(announcer), 1000);
+              }
+            }
+          }
+          
+          // Escape to remove focus
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            (event.target as HTMLElement).blur();
+          }
+          
+          // Medical device workflow shortcuts
+          if (props.medicalDeviceMode && props.enableWorkflowShortcuts) {
+            if (props.progressContext === 'vital-monitoring') {
+              if (event.key === 'h') {
+                event.preventDefault();
+                // View historical data
+                console.log('View vital signs history');
+              } else if (event.key === 'a') {
+                event.preventDefault();
+                // Set alerts for thresholds
+                console.log('Set vital signs alerts');
+              } else if (event.key === 't') {
+                event.preventDefault();
+                // View target values
+                console.log('View target vital signs');
+              }
+            } else if (props.progressContext === 'treatment-progress') {
+              if (event.key === 'p') {
+                event.preventDefault();
+                // View treatment plan
+                console.log('View treatment plan');
+              } else if (event.key === 'n') {
+                event.preventDefault();
+                // Navigate to next milestone
+                console.log('Navigate to next treatment milestone');
+              } else if (event.key === 'r') {
+                event.preventDefault();
+                // View recovery metrics
+                console.log('View recovery metrics');
+              }
+            } else if (props.progressContext === 'medication-schedule') {
+              if (event.key === 'm') {
+                event.preventDefault();
+                // View medication details
+                console.log('View medication details');
+              } else if (event.key === 's') {
+                event.preventDefault();
+                // View full schedule
+                console.log('View medication schedule');
+              } else if (event.key === 'd') {
+                event.preventDefault();
+                // View dosage information
+                console.log('View dosage information');
+              }
+            } else if (props.progressContext === 'file-transfer') {
+              if (event.key === 'c') {
+                event.preventDefault();
+                // Cancel transfer (if applicable)
+                console.log('Cancel file transfer');
+              } else if (event.key === 'r') {
+                event.preventDefault();
+                // Resume transfer
+                console.log('Resume file transfer');
+              }
+            }
+          }
+        })}
+      >
       {/* Label and Status Row */}
       {(props.label || props.showPercentage || props.showValue || props.healthcareContext) && (
         <div class="flex items-center justify-between mb-2">
@@ -181,7 +314,7 @@ export const ProgressBar = component$<ProgressBarProps>((props) => {
           "progress-bar-track w-full rounded-full overflow-hidden",
           sizeClasses[props.size || 'md'],
           backgroundClasses[props.color || 'primary'],
-          props.variant === 'medical' ? "border border-neutral-200 shadow-inner" : ""
+          props.variant === 'medical' ? "border border-neutral-light shadow-inner" : ""
         )}
         role="progressbar"
         aria-valuenow={props.indeterminate ? undefined : props.value}
@@ -210,7 +343,7 @@ export const ProgressBar = component$<ProgressBarProps>((props) => {
 
       {/* Healthcare-specific alerts */}
       {props.healthcareContext?.critical && percentage < 30 && (
-        <div class="mt-2 p-2 bg-error-50 border border-red-200 rounded-md">
+        <div class="mt-2 p-2 bg-error-50 border border-error-light rounded-md">
           <div class="flex items-center gap-2">
             <Icon icon="alert-triangle" size={14} class="text-error-600" />
             <Text size="xs" class="text-error-700">
@@ -222,9 +355,9 @@ export const ProgressBar = component$<ProgressBarProps>((props) => {
 
       {/* Success message */}
       {percentage >= 100 && props.healthcareContext && (
-        <div class="mt-2 p-2 bg-success-50 border border-green-200 rounded-md">
+        <div class="mt-2 p-2 bg-success-50 border border-success-light rounded-md">
           <div class="flex items-center gap-2">
-            <Icon icon="check-circle" size={14} class="text-success-600" />
+            <Icon icon="check-circle" size={14} class="text-success-normal" />
             <Text size="xs" class="text-success-700">
               {props.healthcareContext.type === 'medication-compliance' ? 'Medication schedule completed' :
                props.healthcareContext.type === 'recovery-progress' ? 'Recovery milestone achieved' :
@@ -234,6 +367,23 @@ export const ProgressBar = component$<ProgressBarProps>((props) => {
           </div>
         </div>
       )}
+      
+      {/* Medical Device Keyboard Instructions */}
+      {props.medicalDeviceMode && (
+        <div 
+          id={keyboardState.instructionsId}
+          class="sr-only"
+        >
+          Progress indicator: {props.interactive ? 'Press Enter or Space to view details.' : 'Press Enter or Space to announce current progress.'}
+          {props.enableWorkflowShortcuts && props.progressContext === 'vital-monitoring' && ' Quick access: H for history, A for alerts, T for targets.'}
+          {props.enableWorkflowShortcuts && props.progressContext === 'treatment-progress' && ' Quick access: P for plan, N for next milestone, R for recovery metrics.'}
+          {props.enableWorkflowShortcuts && props.progressContext === 'medication-schedule' && ' Quick access: M for medication details, S for schedule, D for dosage.'}
+          {props.enableWorkflowShortcuts && props.progressContext === 'file-transfer' && ' Quick access: C to cancel, R to resume.'}
+          {props.enableWorkflowShortcuts && ' Healthcare shortcuts enabled.'}
+          Escape to exit focus.
+        </div>
+      )}
+    </div>
     </div>
   );
 });

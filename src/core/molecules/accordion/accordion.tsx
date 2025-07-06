@@ -88,9 +88,9 @@ export const Accordion = component$<AccordionProps>((props) => {
   });
 
   const variantClasses = {
-    default: "bg-white border border-neutral-200 rounded-lg shadow-sm",
-    flat: "bg-neutral-50",
-    bordered: "border border-neutral-300 rounded-lg",
+    default: "bg-white border border-neutral-light rounded-lg shadow-sm",
+    flat: "bg-neutral-lighter",
+    bordered: "border border-neutral-light rounded-lg",
     medical: "bg-primary-50 border border-primary-200 rounded-lg shadow-sm"
   };
 
@@ -101,16 +101,17 @@ export const Accordion = component$<AccordionProps>((props) => {
   };
 
   return (
-    <div
-      class={mergeClasses(
-        "accordion",
-        variantClasses[props.variant || 'default'],
-        sizeClasses[props.size || 'md'],
-        props.class
-      )}
-      data-healthcare-element="accordion"
-      data-healthcare-size={props.size || 'md'}
-    >
+    <div class="themed-content">
+      <div
+        class={mergeClasses(
+          "accordion",
+          variantClasses[props.variant || 'default'],
+          sizeClasses[props.size || 'md'],
+          props.class
+        )}
+        data-healthcare-element="accordion"
+        data-healthcare-size={props.size || 'md'}
+      >
       {props.items ? (
         <>
           {props.items.map((item, index) => {
@@ -125,7 +126,7 @@ export const Accordion = component$<AccordionProps>((props) => {
                   class={mergeClasses(
                     "accordion-header w-full text-left transition-all duration-200",
                     "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50",
-                    "hover:bg-neutral-50",
+                    "hover:bg-neutral-lighter",
                     props.variant === 'medical' ? "hover:bg-primary-100" : "",
                     item.disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
                     index === 0 ? "rounded-t-lg" : "",
@@ -194,7 +195,7 @@ export const Accordion = component$<AccordionProps>((props) => {
                 
                 {/* Divider */}
                 {props.showDividers && !isLast && (
-                  <div class="border-b border-neutral-200" />
+                  <div class="border-b border-neutral-light" />
                 )}
               </div>
             );
@@ -203,6 +204,7 @@ export const Accordion = component$<AccordionProps>((props) => {
       ) : (
         <Slot />
       )}
+      </div>
     </div>
   );
 });
@@ -236,13 +238,14 @@ export const AccordionItem = component$<AccordionItemComponentProps>((props) => 
   });
 
   return (
-    <div class={mergeClasses("accordion-item", props.class)}>
+    <div class="themed-content">
+      <div class={mergeClasses("accordion-item", props.class)}>
       <button
         type="button"
         class={mergeClasses(
           "accordion-header w-full text-left p-4 transition-all duration-200",
           "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50",
-          "hover:bg-neutral-50",
+          "hover:bg-neutral-lighter",
           props.disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
         )}
         onClick$={toggle}
@@ -282,6 +285,7 @@ export const AccordionItem = component$<AccordionItemComponentProps>((props) => 
         <div class="p-4 pt-0">
           <Slot />
         </div>
+      </div>
       </div>
     </div>
   );

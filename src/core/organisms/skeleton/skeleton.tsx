@@ -9,10 +9,10 @@ export interface SkeletonProps extends BaseComponentProps<HTMLDivElement> {
 }
 
 const skeletonVariants = {
-  text: "h-4 w-full bg-neutral-200 rounded animate-pulse",
-  rectangular: "w-full h-32 bg-neutral-200 rounded animate-pulse",
-  circular: "rounded-full w-12 h-12 bg-neutral-200 animate-pulse",
-  card: "w-full h-48 bg-neutral-200 rounded animate-pulse"
+  text: "h-4 w-full bg-neutral-light rounded animate-pulse",
+  rectangular: "w-full h-32 bg-neutral-light rounded animate-pulse",
+  circular: "rounded-full w-12 h-12 bg-neutral-light animate-pulse",
+  card: "w-full h-48 bg-neutral-light rounded animate-pulse"
 };
 
 export const Skeleton = component$<SkeletonProps>((props) => {
@@ -46,19 +46,21 @@ export const Skeleton = component$<SkeletonProps>((props) => {
   const finalStyle = mergeStyles(dimensionStyle, style);
 
   return (
-    <div 
-      class={skeletonClasses}
+    <div class="themed-content">
+      <div 
+        class={skeletonClasses}
       style={finalStyle}
       aria-label="Loading..."
       role="status"
       {...rest}
     />
+    </div>
   );
 });
 
 // Healthcare-specific skeleton components
 export const DoctorCardSkeleton = component$(() => (
-  <div class="bg-white rounded-lg border border-neutral-200 p-4 space-y-4">
+  <div class="bg-white rounded-lg border border-neutral-light p-4 space-y-4">
     <div class="flex items-start space-x-4">
       <Skeleton variant="circular" width={64} height={64} />
       <div class="flex-1 space-y-2">
@@ -75,7 +77,7 @@ export const DoctorCardSkeleton = component$(() => (
 ));
 
 export const HealthMetricSkeleton = component$(() => (
-  <div class="bg-white rounded-lg border border-neutral-200 p-6 space-y-4">
+  <div class="bg-white rounded-lg border border-neutral-light p-6 space-y-4">
     <div class="flex items-center space-x-3">
       <Skeleton variant="circular" width={48} height={48} />
       <div class="flex-1 space-y-2">

@@ -223,7 +223,8 @@ export const VitalSignsChart = component$<VitalSignsChartProps>((props) => {
   }, {} as Record<VitalSignType, VitalSignReading[]>);
 
   return (
-    <div
+    <div class="themed-content">
+      <div
       class={mergeClasses(
         "vital-signs-chart",
         props.compact ? "space-y-3" : "space-y-4",
@@ -246,7 +247,7 @@ export const VitalSignsChart = component$<VitalSignsChartProps>((props) => {
         <Row gap="2" alignItems="center">
           {/* Time Range Selector */}
           <select
-            class="px-3 py-1 border border-neutral-300 rounded text-sm bg-white"
+            class="px-3 py-1 border border-neutral-light rounded text-sm bg-white"
             value={selectedTimeRange.value}
             onChange$={(e) => {
               const target = e.target as HTMLSelectElement;
@@ -273,7 +274,7 @@ export const VitalSignsChart = component$<VitalSignsChartProps>((props) => {
                   "px-2 py-1 text-xs border rounded transition-colors",
                   chartMode.value === mode
                     ? "bg-primary-100 border-primary-300 text-primary-700"
-                    : "bg-white border-neutral-300 text-neutral-600 hover:bg-neutral-50"
+                    : "bg-white border-neutral-light text-neutral-normal hover:bg-neutral-lighter"
                 )}
                 onClick$={() => {
                   chartMode.value = mode;
@@ -291,7 +292,7 @@ export const VitalSignsChart = component$<VitalSignsChartProps>((props) => {
       {props.showAlerts && (
         <>
           {filteredVitals.value.filter(v => v.status === 'critical').length > 0 && (
-            <div class="p-3 bg-error-50 border border-red-200 rounded-lg">
+            <div class="p-3 bg-error-50 border border-error-light rounded-lg">
               <Row gap="2" alignItems="start">
                 <Icon icon="alert-triangle" size={20} class="text-error-600 mt-0.5" />
                 <Stack gap="1">
@@ -313,9 +314,9 @@ export const VitalSignsChart = component$<VitalSignsChartProps>((props) => {
         /* Table View */
         <div class="space-y-4">
           {Object.entries(groupedVitals).map(([type, readings]) => (
-            <div key={type} class="border border-neutral-200 rounded-lg overflow-hidden">
+            <div key={type} class="border border-neutral-light rounded-lg overflow-hidden">
               {/* Vital Type Header */}
-              <div class="bg-neutral-50 px-4 py-3 border-b border-neutral-200">
+              <div class="bg-neutral-lighter px-4 py-3 border-b border-neutral-light">
                 <Row gap="3" alignItems="center" justifyContent="between">
                   <Row gap="2" alignItems="center">
                     <Icon icon={getVitalIcon(type as VitalSignType)} size={20} />
@@ -332,14 +333,14 @@ export const VitalSignsChart = component$<VitalSignsChartProps>((props) => {
               {/* Readings Table */}
               <div class="overflow-x-auto">
                 <table class="w-full">
-                  <thead class="bg-neutral-25">
+                  <thead class="bg-neutral-lighter">
                     <tr class="text-left">
-                      <th class="px-4 py-2 text-xs font-medium text-neutral-600">Value</th>
-                      <th class="px-4 py-2 text-xs font-medium text-neutral-600">Status</th>
-                      <th class="px-4 py-2 text-xs font-medium text-neutral-600">Time</th>
-                      <th class="px-4 py-2 text-xs font-medium text-neutral-600">Taken By</th>
+                      <th class="px-4 py-2 text-xs font-medium text-neutral-normal">Value</th>
+                      <th class="px-4 py-2 text-xs font-medium text-neutral-normal">Status</th>
+                      <th class="px-4 py-2 text-xs font-medium text-neutral-normal">Time</th>
+                      <th class="px-4 py-2 text-xs font-medium text-neutral-normal">Taken By</th>
                       {!props.compact && (
-                        <th class="px-4 py-2 text-xs font-medium text-neutral-600">Notes</th>
+                        <th class="px-4 py-2 text-xs font-medium text-neutral-normal">Notes</th>
                       )}
                     </tr>
                   </thead>
@@ -347,7 +348,7 @@ export const VitalSignsChart = component$<VitalSignsChartProps>((props) => {
                     {readings.slice(0, 10).map((reading) => (
                       <tr
                         key={reading.id}
-                        class="border-t border-neutral-100 hover:bg-neutral-25 cursor-pointer"
+                        class="border-t border-neutral-lighter hover:bg-neutral-lighter cursor-pointer"
                         onClick$={() => {
                           selectedReading.value = reading;
                           logVitalAccess('reading-select', reading.id);
@@ -403,7 +404,7 @@ export const VitalSignsChart = component$<VitalSignsChartProps>((props) => {
         /* Chart/Visual View */
         <div class="space-y-4">
           {Object.entries(groupedVitals).map(([type, readings]) => (
-            <div key={type} class="border border-neutral-200 rounded-lg p-4">
+            <div key={type} class="border border-neutral-light rounded-lg p-4">
               <Row gap="3" alignItems="center" justifyContent="between" class="mb-4">
                 <Row gap="2" alignItems="center">
                   <Icon icon={getVitalIcon(type as VitalSignType)} size={20} />
@@ -426,11 +427,11 @@ export const VitalSignsChart = component$<VitalSignsChartProps>((props) => {
                     key={reading.id}
                     class={mergeClasses(
                       "p-2 rounded text-center cursor-pointer transition-colors",
-                      reading.status === 'normal' ? 'bg-success-50 border border-green-200' :
-                      reading.status === 'elevated' ? 'bg-warning-50 border border-yellow-200' :
-                      reading.status === 'high' ? 'bg-error-50 border border-red-200' :
-                      reading.status === 'low' ? 'bg-orange-50 border border-orange-200' :
-                      'bg-error-100 border border-red-300'
+                      reading.status === 'normal' ? 'bg-success-50 border border-success-light' :
+                      reading.status === 'elevated' ? 'bg-warning-50 border border-warning-light' :
+                      reading.status === 'high' ? 'bg-error-50 border border-error-light' :
+                      reading.status === 'low' ? 'bg-warning-lighter border border-warning-light' :
+                      'bg-error-100 border border-error-light'
                     )}
                     onClick$={() => {
                       selectedReading.value = reading;
@@ -457,13 +458,14 @@ export const VitalSignsChart = component$<VitalSignsChartProps>((props) => {
       {/* Empty State */}
       {filteredVitals.value.length === 0 && (
         <div class="text-center py-8">
-          <Icon icon="activity" size={48} class="text-neutral-400 mb-4" />
+          <Icon icon="activity" size={48} class="text-neutral-light mb-4" />
           <Text color="secondary">No vital signs found</Text>
           <Text size="sm" color="secondary">
             Vital signs will appear here when recorded
           </Text>
         </div>
       )}
+    </div>
     </div>
   );
 });

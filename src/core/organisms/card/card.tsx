@@ -1,4 +1,4 @@
-import { component$, Slot, type JSXNode } from "@builder.io/qwik";
+import { component$, Slot, useSignal, $, type JSXNode } from "@builder.io/qwik";
 import type { BaseComponentProps } from "../../../design-system/props";
 import { mergeClasses, mergeStyles } from "../../../design-system/props";
 import type { Variant, Color, Spacing } from "../../../design-system/types";
@@ -21,22 +21,22 @@ export interface CardProps extends BaseComponentProps<HTMLDivElement> {
 // Base card classes
 const cardBase = [
   "bg-white rounded-lg transition-all duration-200",
-  "border border-neutral-200"
+  "border border-neutral-light"
 ].join(" ");
 
 // Variant styling classes with enhanced hover states
 const variantClasses: Record<Variant, string> = {
   elevated: "shadow-sm hover:shadow-lg hover:shadow-neutral-200/50 hover:-translate-y-1",
-  flat: "shadow-none hover:shadow-sm hover:bg-neutral-50",
-  outlined: "border-2 border-neutral-300 hover:border-neutral-400 hover:bg-neutral-25",
-  text: "border-transparent bg-transparent hover:bg-neutral-50"
+  flat: "shadow-none hover:shadow-sm hover:bg-neutral-lighter",
+  outlined: "border-2 border-neutral-light hover:border-neutral-normal hover:bg-neutral-lighter",
+  text: "border-transparent bg-transparent hover:bg-neutral-lighter"
 };
 
 // Color styling classes with enhanced visual hierarchy
 const colorClasses: Record<Color | "default", string> = {
-  default: "border-neutral-200 bg-white shadow-xs",
+  default: "border-neutral-light bg-white shadow-xs",
   primary: "border-primary-200 bg-primary-25 shadow-sm shadow-primary-100/50",
-  secondary: "border-neutral-200 bg-neutral-25 shadow-sm shadow-neutral-100/50", 
+  secondary: "border-neutral-light bg-neutral-lighter shadow-sm shadow-neutral-100/50", 
   success: "border-success-200 bg-success-25 shadow-sm shadow-success-100/50",
   warning: "border-warning-200 bg-warning-25 shadow-sm shadow-warning-100/50",
   error: "border-error-200 bg-error-25 shadow-sm shadow-error-100/50",
@@ -84,6 +84,24 @@ const CardBase = component$<CardProps>((props) => {
     ...rest
   } = props;
 
+  // Enhanced keyboard event handler for interactive cards
+  const handleKeyDown$ = $((event: KeyboardEvent) => {
+    if (!interactive) return;
+    
+    // Enter/Space to activate card (medical workflow navigation)
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      // Trigger click event for interactive cards
+      (event.target as HTMLElement).click();
+    }
+    
+    // Escape key to blur focus for quick navigation
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      (event.target as HTMLElement).blur();
+    }
+  });
+
   // Build component classes with proper precedence
   const cardClasses = mergeClasses(
     // Base component classes
@@ -100,7 +118,10 @@ const CardBase = component$<CardProps>((props) => {
     
     // State classes with enhanced interactivity
     hoverable && "hover:scale-[1.01] hover:-translate-y-1 hover:shadow-lg",
-    interactive && "cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 hover:ring-1 hover:ring-primary-200 active:scale-[0.99]",
+    interactive && "cursor-pointer focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-500/70 focus-visible:ring-offset-2 hover:ring-1 hover:ring-primary-200 active:scale-[0.99]",
+    
+    // Enhanced focus indicators for clinical environments
+    interactive && "focus:ring-4 focus:ring-primary-500/70 focus:ring-offset-2 focus:shadow-lg",
     
     // Custom classes (highest priority)
     qwikClass,
@@ -117,6 +138,8 @@ const CardBase = component$<CardProps>((props) => {
         style={cardStyle}
         role={interactive ? "button" : undefined}
         tabIndex={interactive ? 0 : undefined}
+        aria-label={interactive ? "Interactive card" : undefined}
+        onKeyDown$={interactive ? handleKeyDown$ : undefined}
         {...rest}
       >
         <Slot />
@@ -137,7 +160,7 @@ export const CardHeader = component$<BaseComponentProps<HTMLDivElement>>((props)
   } = props;
 
   const headerClasses = mergeClasses(
-    "border-b border-neutral-200",
+    "border-b border-neutral-light",
     qwikClass,
     className
   );
@@ -195,7 +218,7 @@ export const CardFooter = component$<BaseComponentProps<HTMLDivElement>>((props)
   } = props;
 
   const footerClasses = mergeClasses(
-    "border-t border-neutral-200 bg-neutral-50",
+    "border-t border-neutral-light bg-neutral-lighter",
     qwikClass,
     className
   );

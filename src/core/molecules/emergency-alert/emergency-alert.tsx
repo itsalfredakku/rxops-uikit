@@ -268,8 +268,9 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
   };
 
   return (
-    <div
-      class={mergeClasses(
+    <div class="themed-content">
+      <div
+        class={mergeClasses(
         "emergency-alert border-l-8 bg-white shadow-xl rounded-lg overflow-hidden",
         // Motion-aware emergency animations with healthcare timing
         getEmergencyAnimationClasses(props.alert.severity).responsive,
@@ -329,7 +330,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                   props.alert.severity === 'life-threatening' ? "text-2xl text-error-800" :
                   props.alert.severity === 'critical' ? "text-xl text-error-700" :
                   props.alert.severity === 'high' ? "text-lg text-warning-800" :
-                  "text-lg text-neutral-800"
+                  "text-lg text-neutral-darker"
                 )}
               >
                 {props.alert.title}
@@ -365,7 +366,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
               "leading-relaxed",
               props.alert.severity === 'life-threatening' ? "text-lg text-error-800 font-medium" :
               props.alert.severity === 'critical' ? "text-base text-error-700 font-medium" :
-              "text-base text-neutral-700"
+              "text-base text-neutral-dark"
             )}>
               {props.alert.message}
             </Text>
@@ -374,7 +375,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
             <Row gap="6" wrap class={mergeClasses(
               "text-sm font-medium",
               props.alert.severity === 'life-threatening' || props.alert.severity === 'critical' 
-                ? "text-neutral-800" : "text-neutral-600"
+                ? "text-neutral-darker" : "text-neutral-normal"
             )}>
               {props.alert.location && (
                 <Row gap="2" alignItems="center" class="bg-white/50 px-3 py-1 rounded-full shadow-sm">
@@ -390,7 +391,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
               )}
               
               <Row gap="2" alignItems="center" class="bg-white/50 px-3 py-1 rounded-full shadow-sm">
-                <Icon icon="clock" size={16} class="text-neutral-600" />
+                <Icon icon="clock" size={16} class="text-neutral-normal" />
                 <Text size="sm" weight="medium">
                   {formatDuration(props.alert.timestamp)}
                 </Text>
@@ -417,9 +418,9 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                 `transition-all ${HEALTHCARE_TIMING.short.duration}`,
                 props.alert.severity === 'life-threatening' || props.alert.severity === 'critical'
                   ? "bg-white border-error-200 shadow-error-100" 
-                  : "bg-white border-neutral-200"
+                  : "bg-white border-neutral-light"
               )}>
-                <Text size="md" weight="bold" class="text-neutral-800 mb-2">
+                <Text size="md" weight="bold" class="text-neutral-darker mb-2">
                   Patient: {props.alert.patient.name}
                 </Text>
                 {props.alert.patient.allergies?.length && (
@@ -477,7 +478,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
           )}
 
           {/* Enhanced Reporter info */}
-          <Text size="sm" weight="medium" class="text-neutral-600 text-right bg-white/50 px-2 py-1 rounded">
+          <Text size="sm" weight="medium" class="text-neutral-normal text-right bg-white/50 px-2 py-1 rounded">
             Reported by: {props.alert.reporter.name}
           </Text>
         </Stack>
@@ -485,7 +486,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
 
       {/* Expanded Details */}
       {showDetails.value && (
-        <div class="mt-4 pt-4 border-t border-neutral-200">
+        <div class="mt-4 pt-4 border-t border-neutral-light">
           <Stack gap="3">
             {/* Required Actions */}
             {props.showActions && props.alert.requiredActions.length > 0 && (
@@ -579,6 +580,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
           </Stack>
         </div>
       )}
+    </div>
     </div>
   );
 });

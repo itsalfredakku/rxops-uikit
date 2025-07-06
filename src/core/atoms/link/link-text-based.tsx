@@ -110,8 +110,8 @@ const decorationClasses: Record<TextDecoration, string> = {
 // Color classes (semantic intent-based colors)
 const colorClasses: Record<Color, string> = {
   primary: "text-primary-600",
-  secondary: "text-neutral-600",
-  success: "text-success-600",
+  secondary: "text-neutral-normal",
+  success: "text-success-normal",
   warning: "text-warning-600",
   error: "text-error-600",
   info: "text-info-600"
@@ -218,7 +218,7 @@ export const LinkNew = component$<LinkProps>((props) => {
       typeof color === 'string' && color in colorClasses 
         ? colorClasses[color as Color]
         : (color.startsWith('text-') ? color : `text-[${color}]`)
-    ) : "text-neutral-900",
+    ) : "text-neutral-darker",
     
     // Italic
     italic && "italic",

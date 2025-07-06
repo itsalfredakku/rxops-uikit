@@ -54,7 +54,8 @@ export const Pagination = component$<PaginationProps>(({
   const visiblePages = getVisiblePages();
 
   return (
-    <Stack class={paginationClasses} style={style} alignItems="center" gap="4" {...props}>
+    <div class="themed-content">
+      <Stack class={paginationClasses} style={style} alignItems="center" gap="4" {...props}>
       <Row alignItems="center" gap="2" class="pagination-controls">
         {/* Previous Page */}
         {currentPage > 1 && (
@@ -103,6 +104,7 @@ export const Pagination = component$<PaginationProps>(({
           Page {currentPage} of {totalPages}
         </div>
       )}
-    </Stack>
+      </Stack>
+    </div>
   );
 });

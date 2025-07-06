@@ -224,15 +224,15 @@ export const Popover = component$<PopoverProps>((props) => {
 
   // Theme configurations
   const variantClasses = {
-    default: 'bg-white border border-neutral-200 shadow-lg',
-    flat: 'bg-neutral-50 border border-neutral-200',
-    outlined: 'bg-white border-2 border-neutral-300'
+    default: 'bg-white border border-neutral-light shadow-lg',
+    flat: 'bg-neutral-lighter border border-neutral-light',
+    outlined: 'bg-white border-2 border-neutral-light'
   };
 
   const colorClasses = {
     default: '',
     primary: 'border-primary-200 bg-primary-50',
-    secondary: 'border-neutral-200 bg-neutral-50',
+    secondary: 'border-neutral-light bg-neutral-lighter',
     success: 'border-success-200 bg-success-50',
     warning: 'border-warning-200 bg-warning-50',
     error: 'border-error-200 bg-error-50',
@@ -241,20 +241,21 @@ export const Popover = component$<PopoverProps>((props) => {
 
   // Medical type specific styling
   const medicalTypeClasses = {
-    medication: 'border-purple-200 bg-purple-50',
-    labResult: 'border-blue-200 bg-blue-50',
-    vital: 'border-green-200 bg-green-50',
-    allergy: 'border-red-200 bg-red-50',
-    diagnosis: 'border-orange-200 bg-orange-50',
-    procedure: 'border-indigo-200 bg-indigo-50',
-    insurance: 'border-teal-200 bg-teal-50',
-    emergency: 'border-red-300 bg-red-100',
-    patient: 'border-blue-200 bg-blue-50',
-    provider: 'border-green-200 bg-green-50'
+    medication: 'border-primary-light bg-primary-lighter',
+    labResult: 'border-info-light bg-info-lighter',
+    vital: 'border-success-light bg-success-lighter',
+    allergy: 'border-error-light bg-error-lighter',
+    diagnosis: 'border-warning-light bg-warning-lighter',
+    procedure: 'border-primary-light bg-primary-lighter',
+    insurance: 'border-info-light bg-info-lighter',
+    emergency: 'border-error-light bg-error-lighter',
+    patient: 'border-info-light bg-info-lighter',
+    provider: 'border-success-light bg-success-lighter'
   };
 
   return (
-    <div class="relative inline-block">
+    <div class="themed-content">
+      <div class="relative inline-block">
       {/* Trigger Element */}
       <div
         ref={triggerRef}
@@ -307,7 +308,7 @@ export const Popover = component$<PopoverProps>((props) => {
             {showArrow && (
               <div class={mergeClasses(
                 'absolute w-3 h-3 transform rotate-45',
-                variantClasses[variant].includes('bg-white') ? 'bg-white' : 'bg-neutral-50',
+                variantClasses[variant].includes('bg-white') ? 'bg-white' : 'bg-neutral-lighter',
                 position.startsWith('top') ? 'top-full -mt-1.5' : 
                 position.startsWith('bottom') ? 'bottom-full -mb-1.5' : 
                 position.startsWith('left') ? 'left-full -ml-1.5 top-1/2 -translate-y-1/2' :
@@ -330,7 +331,7 @@ export const Popover = component$<PopoverProps>((props) => {
 
             {/* Content */}
             {content && (
-              <div class="text-sm text-neutral-700">
+              <div class="text-sm text-neutral-dark">
                 {content}
               </div>
             )}
@@ -349,6 +350,7 @@ export const Popover = component$<PopoverProps>((props) => {
           style={{ pointerEvents: closeOnOutsideClick ? 'auto' : 'none' }}
         />
       )}
+    </div>
     </div>
   );
 });
@@ -412,8 +414,8 @@ export const MedicalPopover = component$<MedicalPopoverProps>((props) => {
         {/* Header */}
         <div class="flex items-start justify-between">
           <div class="flex items-center gap-2">
-            <Icon icon={getTypeIcon(medicalType)} size={16} class="text-neutral-600" />
-            <Text size="sm" weight="semibold" class="text-neutral-900">
+            <Icon icon={getTypeIcon(medicalType)} size={16} class="text-neutral-normal" />
+            <Text size="sm" weight="semibold" class="text-neutral-darker">
               {data.title}
             </Text>
           </div>
@@ -427,11 +429,11 @@ export const MedicalPopover = component$<MedicalPopoverProps>((props) => {
         {/* Value and Unit */}
         {data.value && (
           <div class="flex items-baseline gap-2">
-            <Text size="lg" weight="bold" class="text-neutral-900">
+            <Text size="lg" weight="bold" class="text-neutral-darker">
               {data.value}
             </Text>
             {data.unit && (
-              <Text size="sm" class="text-neutral-600">
+              <Text size="sm" class="text-neutral-normal">
                 {data.unit}
               </Text>
             )}
@@ -441,10 +443,10 @@ export const MedicalPopover = component$<MedicalPopoverProps>((props) => {
         {/* Reference Range */}
         {data.reference && (
           <div>
-            <Text size="xs" class="text-neutral-500 uppercase tracking-wide">
+            <Text size="xs" class="text-neutral-normal uppercase tracking-wide">
               Reference Range
             </Text>
-            <Text size="sm" class="text-neutral-700">
+            <Text size="sm" class="text-neutral-dark">
               {data.reference}
             </Text>
           </div>
@@ -452,7 +454,7 @@ export const MedicalPopover = component$<MedicalPopoverProps>((props) => {
 
         {/* Provider and Date */}
         {(data.provider || data.date) && (
-          <div class="flex justify-between text-xs text-neutral-500">
+          <div class="flex justify-between text-xs text-neutral-normal">
             {data.provider && (
               <span>Provider: {data.provider}</span>
             )}
@@ -464,11 +466,11 @@ export const MedicalPopover = component$<MedicalPopoverProps>((props) => {
 
         {/* Notes */}
         {data.notes && (
-          <div class="pt-2 border-t border-neutral-200">
-            <Text size="xs" class="text-neutral-500 uppercase tracking-wide mb-1">
+          <div class="pt-2 border-t border-neutral-light">
+            <Text size="xs" class="text-neutral-normal uppercase tracking-wide mb-1">
               Notes
             </Text>
-            <Text size="sm" class="text-neutral-700">
+            <Text size="sm" class="text-neutral-dark">
               {data.notes}
             </Text>
           </div>
@@ -476,7 +478,7 @@ export const MedicalPopover = component$<MedicalPopoverProps>((props) => {
 
         {/* Actions */}
         {data.actions && data.actions.length > 0 && (
-          <div class="pt-2 border-t border-neutral-200 flex gap-2">
+          <div class="pt-2 border-t border-neutral-light flex gap-2">
             {data.actions.map((action, index) => (
               <Button
                 key={index}

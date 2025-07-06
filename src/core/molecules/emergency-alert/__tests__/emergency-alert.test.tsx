@@ -133,7 +133,7 @@ describe('EmergencyAlert', () => {
     );
 
     expect(screen.innerHTML).toContain('data-severity="critical"');
-    expect(screen.innerHTML).toContain('border-red-400');
+    expect(screen.innerHTML).toContain('border-error-normal');
   });
 
   it('shows life-threatening alerts with pulse animation', async () => {
@@ -152,7 +152,7 @@ describe('EmergencyAlert', () => {
     );
 
     expect(screen.innerHTML).toContain('animate-pulse');
-    expect(screen.innerHTML).toContain('border-red-500');
+    expect(screen.innerHTML).toContain('border-error-normal');
   });
 
   it('displays status badges correctly', async () => {
@@ -304,15 +304,15 @@ describe('EmergencyAlert', () => {
       expect(screen.innerHTML).toContain(`data-severity="${severity}"`);
       
       if (severity === 'life-threatening') {
-        expect(screen.innerHTML).toContain('border-red-500');
+        expect(screen.innerHTML).toContain('border-error-normal');
       } else if (severity === 'critical') {
-        expect(screen.innerHTML).toContain('border-red-400');
+        expect(screen.innerHTML).toContain('border-error-normal');
       } else if (severity === 'high') {
-        expect(screen.innerHTML).toContain('border-orange-400');
+        expect(screen.innerHTML).toContain('border-warning-normal');
       } else if (severity === 'medium') {
-        expect(screen.innerHTML).toContain('border-yellow-400');
+        expect(screen.innerHTML).toContain('border-warning-normal');
       } else {
-        expect(screen.innerHTML).toContain('border-blue-400');
+        expect(screen.innerHTML).toContain('border-primary-normal');
       }
     }
   });

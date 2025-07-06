@@ -225,23 +225,24 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
   );
 
   return (
-    <div 
-      class={containerClasses}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={containerClasses}
+        style={style}
+        {...rest}
+      >
       {/* Header with metadata and controls */}
-      <Row alignItems="center" justifyContent="between" class="p-3 bg-neutral-900 border-b border-neutral-700">
+      <Row alignItems="center" justifyContent="between" class="p-3 bg-neutral-darker border-b border-neutral-darker">
         <Row alignItems="center" gap="4">
           <Row alignItems="center" gap="2">
-            <span class="text-sm bg-neutral-700 px-2 py-1 rounded font-mono">
+            <span class="text-sm bg-neutral-darker px-2 py-1 rounded font-mono">
               {modalityLabels[metadata.modality]}
             </span>
             <div>
               <div class="font-semibold text-sm">
                 {metadata.patientName} • {metadata.modality}
               </div>
-              <div class="text-xs text-neutral-400">
+              <div class="text-xs text-neutral-light">
                 {metadata.studyDescription} • {metadata.studyDate}
               </div>
             </div>
@@ -257,7 +258,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
             'text-xs px-2 py-1 rounded font-medium',
             metadata.urgency === 'STAT' ? 'bg-error-600 text-white' :
             metadata.urgency === 'URGENT' ? 'bg-warning-600 text-white' :
-            'bg-neutral-600 text-neutral-200'
+            'bg-neutral-dark text-neutral-light'
           ]}>
             {metadata.urgency}
           </div>
@@ -266,7 +267,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
             'text-xs px-2 py-1 rounded',
             metadata.reportStatus === 'FINAL' ? 'bg-success-600 text-white' :
             metadata.reportStatus === 'PRELIMINARY' ? 'bg-primary-600 text-white' :
-            'bg-neutral-600 text-neutral-200'
+            'bg-neutral-dark text-neutral-light'
           ]}>
             {metadata.reportStatus}
           </div>
@@ -278,7 +279,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
             variant="flat"
             color="secondary" 
             size="xs"
-            class="bg-neutral-700 transition-colors duration-200 hover:bg-neutral-600 text-white"
+            class="bg-neutral-darker transition-colors duration-200 hover:bg-neutral-dark text-white"
           >
             Info
           </Button>
@@ -287,7 +288,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
             variant="flat"
             color="secondary"
             size="xs" 
-            class="bg-neutral-700 transition-colors duration-200 hover:bg-neutral-600 text-white"
+            class="bg-neutral-darker transition-colors duration-200 hover:bg-neutral-dark text-white"
           >
             {isFullscreen.value ? 'Exit' : 'Full'}
           </Button>
@@ -297,7 +298,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
       <Row class="h-full">
         {/* Tools sidebar */}
         {props.showControls !== false && (
-          <Column class="w-16 bg-neutral-800 alignItems-center py-4" gap="2">
+          <Column class="w-16 bg-neutral-darker alignItems-center py-4" gap="2">
             {([
               { tool: 'SELECT' as const, icon: 'SEL', label: 'Select' },
               { tool: 'ZOOM' as const, icon: <Icon icon="zoom-in" class="w-4 h-4" />, label: 'Zoom' },
@@ -312,7 +313,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
                     'w-10 h-10 flex items-center justify-center rounded text-lg transition-colors',
                     selectedTool.value === item.tool 
                       ? 'bg-primary-600 text-white' 
-                      : 'bg-neutral-700 hover:bg-neutral-600 text-neutral-300'
+                      : 'bg-neutral-darker hover:bg-neutral-dark text-neutral-light'
                   ]}
                 >
                   {item.icon}
@@ -325,7 +326,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
             <Tooltip content="Reset View">
               <button
                 onClick$={resetView}
-                class="w-10 h-10 flex items-center justify-center rounded bg-neutral-700 transition-colors duration-200 hover:bg-neutral-600 text-neutral-300 transition-colors"
+                class="w-10 h-10 flex items-center justify-center rounded bg-neutral-darker transition-colors duration-200 hover:bg-neutral-dark text-neutral-light transition-colors"
               >
                 <Icon icon="rotate-cw" class="w-4 h-4" />
               </button>
@@ -333,7 +334,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
             <Tooltip content="Rotate 90°">
               <button
                 onClick$={() => rotateImage(90)}
-                class="w-10 h-10 flex items-center justify-center rounded bg-neutral-700 transition-colors duration-200 hover:bg-neutral-600 text-neutral-300 transition-colors"
+                class="w-10 h-10 flex items-center justify-center rounded bg-neutral-darker transition-colors duration-200 hover:bg-neutral-dark text-neutral-light transition-colors"
               >
                 ↻
               </button>
@@ -405,7 +406,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
 
         {/* Window/Level controls */}
         {windowLevels.length > 0 && (
-          <div class="w-48 bg-neutral-800 p-4">
+          <div class="w-48 bg-neutral-darker p-4">
             <Text as="h3" weight="semibold" size="sm" color="gray-200" class="mb-3">Window/Level</Text>
             <div class="space-y-2">
               {windowLevels.map((wl) => (
@@ -416,7 +417,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
                     'w-full text-left px-3 py-2 rounded text-sm transition-colors',
                     currentWindowLevel.value === wl.name
                       ? 'bg-primary-600 text-white'
-                      : 'bg-neutral-700 hover:bg-neutral-600 text-neutral-300'
+                      : 'bg-neutral-darker hover:bg-neutral-dark text-neutral-light'
                   ]}
                 >
                   <div class="font-medium">{wl.name}</div>
@@ -432,28 +433,28 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
 
       {/* Metadata panel */}
       {showMetadata.value && (
-        <div class="absolute inset-x-0 bottom-0 bg-neutral-900/95 backdrop-blur-sm p-4 border-t border-neutral-700">
+        <div class="absolute inset-x-0 bottom-0 bg-neutral-darker/95 backdrop-blur-sm p-4 border-t border-neutral-darker">
           <Row gap="4" class="text-sm">
             <Column size={{ sm: 2, md: 4 }}>
-              <div class="text-neutral-400 text-xs uppercase tracking-wide">Patient</div>
+              <div class="text-neutral-light text-xs uppercase tracking-wide">Patient</div>
               <div class="font-medium">{metadata.patientName}</div>
-              <div class="text-neutral-400">ID: {metadata.patientId}</div>
+              <div class="text-neutral-light">ID: {metadata.patientId}</div>
             </Column>
             <Column size={{ sm: 2, md: 4 }}>
-              <div class="text-neutral-400 text-xs uppercase tracking-wide">Study</div>
+              <div class="text-neutral-light text-xs uppercase tracking-wide">Study</div>
               <div class="font-medium">{metadata.modality}</div>
-              <div class="text-neutral-400">{metadata.bodyPart}</div>
+              <div class="text-neutral-light">{metadata.bodyPart}</div>
             </Column>
             <Column size={{ sm: 2, md: 4 }}>
-              <div class="text-neutral-400 text-xs uppercase tracking-wide">Acquisition</div>
+              <div class="text-neutral-light text-xs uppercase tracking-wide">Acquisition</div>
               <div class="font-medium">{metadata.studyDate}</div>
-              <div class="text-neutral-400">Series: {metadata.seriesNumber}</div>
+              <div class="text-neutral-light">Series: {metadata.seriesNumber}</div>
             </Column>
             <Column size={{ sm: 2, md: 4 }}>
-              <div class="text-neutral-400 text-xs uppercase tracking-wide">Institution</div>
+              <div class="text-neutral-light text-xs uppercase tracking-wide">Institution</div>
               <div class="font-medium">{metadata.institution}</div>
               {metadata.technician && (
-                <div class="text-neutral-400">Tech: {metadata.technician}</div>
+                <div class="text-neutral-light">Tech: {metadata.technician}</div>
               )}
             </Column>
           </Row>
@@ -500,6 +501,7 @@ export const ImagingViewer = component$<ImagingViewerProps>((props) => {
           </Button>
         </Row>
       )}
+    </div>
     </div>
   );
 });

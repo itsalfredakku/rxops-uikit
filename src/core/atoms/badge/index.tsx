@@ -1,4 +1,4 @@
-import { component$, Slot } from "@builder.io/qwik";
+import { component$, Slot, $ } from "@builder.io/qwik";
 import type { Variant, Color, BadgeSize, Shade } from "../../../design-system/types";
 import { BaseComponentProps, mergeClasses, mergeStyles } from "../../../design-system/props";
 
@@ -34,11 +34,11 @@ export const Badge = component$<BadgeProps>((props) => {
         "darker": { bg: "bg-primary-700", text: "text-white", border: "border-primary-700" }
       },
       secondary: {
-        "lighter": { bg: "bg-neutral-50", text: "text-neutral-600", border: "border-neutral-100" },
-        "light": { bg: "bg-neutral-100", text: "text-neutral-700", border: "border-neutral-200" },
-        "normal": { bg: "bg-neutral-500", text: "text-white", border: "border-neutral-500" },
-        "dark": { bg: "bg-neutral-600", text: "text-white", border: "border-neutral-600" },
-        "darker": { bg: "bg-neutral-700", text: "text-white", border: "border-neutral-700" }
+        "lighter": { bg: "bg-neutral-lighter", text: "text-neutral-normal", border: "border-neutral-lighter" },
+        "light": { bg: "bg-neutral-lighter", text: "text-neutral-dark", border: "border-neutral-light" },
+        "normal": { bg: "bg-neutral-normal", text: "text-white", border: "border-neutral-normal" },
+        "dark": { bg: "bg-neutral-dark", text: "text-white", border: "border-neutral-dark" },
+        "darker": { bg: "bg-neutral-darker", text: "text-white", border: "border-neutral-darker" }
       },
       success: {
         "lighter": { bg: "bg-success-lighter", text: "text-success-dark", border: "border-success-lighter" },
@@ -125,6 +125,29 @@ export const Badge = component$<BadgeProps>((props) => {
     }
   };
 
+  // Enhanced keyboard event handler for interactive badges
+  const handleKeyDown$ = $((event: KeyboardEvent) => {
+    const isInteractive = !!rest.onClick$ || !!rest.onMouseEnter$ || !!rest.onMouseLeave$;
+    if (!isInteractive) return;
+    
+    // Enter/Space to activate interactive badges
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      if (rest.onClick$) {
+        (event.target as HTMLElement).click();
+      }
+    }
+    
+    // Escape key to blur focus for quick navigation
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      (event.target as HTMLElement).blur();
+    }
+  });
+
+  // Determine if badge is interactive
+  const isInteractive = !!rest.onClick$ || !!rest.onMouseEnter$ || !!rest.onMouseLeave$;
+
   // Use Tailwind classes for border radius
   const radiusClass = pill ? "rounded-full" : "rounded-md";
   const baseClasses = "inline-flex items-center font-medium select-none";
@@ -138,6 +161,8 @@ export const Badge = component$<BadgeProps>((props) => {
     variantClasses,
     hoverClasses,
     radiusClass,
+    // Enhanced focus indicators for clinical environments
+    isInteractive && "focus:outline-none focus:ring-4 focus:ring-primary-500/70 focus:ring-offset-2 focus:shadow-lg",
     qwikClass,
     className
   );
@@ -147,7 +172,15 @@ export const Badge = component$<BadgeProps>((props) => {
 
   return (
     <div class="themed-content">
-      <span class={finalClass} style={finalStyle} {...rest}>
+      <span 
+        class={finalClass} 
+        style={finalStyle} 
+        tabIndex={isInteractive ? 0 : undefined}
+        role={isInteractive ? "button" : undefined}
+        aria-label={isInteractive ? "Interactive badge" : undefined}
+        onKeyDown$={isInteractive ? handleKeyDown$ : undefined}
+        {...rest}
+      >
         <Slot />
       </span>
     </div>

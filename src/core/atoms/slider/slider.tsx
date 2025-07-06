@@ -186,7 +186,7 @@ const colorClasses = {
   warning: 'bg-warning-500',
   error: 'bg-error-500',
   info: 'bg-info-500',
-  neutral: 'bg-neutral-500',
+  neutral: 'bg-neutral-normal',
 };
 
 const medicalScaleDefaults = {
@@ -421,7 +421,7 @@ export const Slider = component$<SliderProps>((props) => {
   const trackClasses = mergeClasses(
     'slider-track relative w-full rounded-full',
     sizeConfig.track,
-    highContrast ? 'bg-neutral-800' : 'bg-neutral-200',
+    highContrast ? 'bg-neutral-darker' : 'bg-neutral-light',
     'focus-within:ring-2 focus-within:ring-primary-500 focus-within:ring-offset-1'
   );
 
@@ -442,14 +442,15 @@ export const Slider = component$<SliderProps>((props) => {
   );
 
   return (
-    <div class={containerClasses} {...rest}>
+    <div class="themed-content">
+      <div class={containerClasses} {...rest}>
       {/* Labels */}
       {showLabels && (
         <div class="slider-labels flex justify-between mb-2">
-          <span class={mergeClasses(sizeConfig.label, 'text-neutral-600')}>
+          <span class={mergeClasses(sizeConfig.label, 'text-neutral-normal')}>
             {formatDisplayValue(finalMin)}
           </span>
-          <span class={mergeClasses(sizeConfig.label, 'text-neutral-600')}>
+          <span class={mergeClasses(sizeConfig.label, 'text-neutral-normal')}>
             {formatDisplayValue(finalMax)}
           </span>
         </div>
@@ -457,7 +458,7 @@ export const Slider = component$<SliderProps>((props) => {
 
       {/* Current Value Display */}
       <div class="slider-value-display flex justify-center mb-2">
-        <span class={mergeClasses(sizeConfig.label, 'font-medium text-neutral-800')}>
+        <span class={mergeClasses(sizeConfig.label, 'font-medium text-neutral-darker')}>
           {isRange
             ? `${formatDisplayValue((currentValue.value as [number, number])[0])} - ${formatDisplayValue((currentValue.value as [number, number])[1])}`
             : formatDisplayValue(currentValue.value as number)
@@ -525,7 +526,7 @@ export const Slider = component$<SliderProps>((props) => {
               .map((tick) => (
                 <div
                   key={tick}
-                  class="absolute top-0 w-px h-full bg-neutral-400"
+                  class="absolute top-0 w-px h-full bg-neutral-normal"
                   style={{
                     left: `${((tick - finalMin) / (finalMax - finalMin)) * 100}%`,
                   }}
@@ -582,10 +583,11 @@ export const Slider = component$<SliderProps>((props) => {
 
       {/* Help Text */}
       {helpText && (
-        <div class={mergeClasses('mt-2', sizeConfig.label, 'text-neutral-600')}>
+        <div class={mergeClasses('mt-2', sizeConfig.label, 'text-neutral-normal')}>
           {helpText}
         </div>
       )}
+    </div>
     </div>
   );
 });

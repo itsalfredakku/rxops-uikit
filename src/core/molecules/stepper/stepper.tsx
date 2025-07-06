@@ -141,13 +141,13 @@ const getStepIndicatorClasses = (
   };
   
   const statusClasses = {
-    pending: 'bg-neutral-100 border-neutral-300 text-neutral-600',
+    pending: 'bg-neutral-lighter border-neutral-light text-neutral-normal',
     active: healthcare 
       ? 'bg-primary-100 border-primary-500 text-primary-700 ring-4 ring-primary-100'
       : 'bg-primary-100 border-primary-500 text-primary-700',
     completed: 'bg-success-500 border-success-500 text-white',
     error: 'bg-error-500 border-error-500 text-white',
-    disabled: 'bg-neutral-50 border-neutral-200 text-neutral-400',
+    disabled: 'bg-neutral-lighter border-neutral-light text-neutral-light',
   };
   
   return mergeClasses(
@@ -170,11 +170,11 @@ const getStepConnectorClasses = (
   };
   
   const statusClasses = {
-    pending: 'bg-neutral-200',
-    active: 'bg-neutral-200',
+    pending: 'bg-neutral-light',
+    active: 'bg-neutral-light',
     completed: healthcare ? 'bg-primary-400' : 'bg-success-400',
     error: 'bg-error-400',
-    disabled: 'bg-neutral-100',
+    disabled: 'bg-neutral-lighter',
   };
   
   return mergeClasses(
@@ -282,16 +282,18 @@ export const Stepper = component$<StepperProps>((props) => {
   } = props;
 
   return (
-    <div
-      class={mergeClasses(getStepperClasses(orientation, variant, healthcare), className)}
-      role="tablist"
-      aria-label={ariaLabel || 'Step navigation'}
-      aria-orientation={orientation}
-      data-healthcare={healthcare}
-      data-active-step={activeStep}
-      {...rest}
-    >
-      <Slot />
+    <div class="themed-content">
+      <div
+        class={mergeClasses(getStepperClasses(orientation, variant, healthcare), className)}
+        role="tablist"
+        aria-label={ariaLabel || 'Step navigation'}
+        aria-orientation={orientation}
+        data-healthcare={healthcare}
+        data-active-step={activeStep}
+        {...rest}
+      >
+        <Slot />
+      </div>
     </div>
   );
 });
@@ -335,9 +337,10 @@ export const Step = component$<StepProps>((props) => {
   };
 
   return (
-    <>
-      <div
-        class={mergeClasses(getStepClasses(status, isClickable, healthcare, orientation), className)}
+    <div class="themed-content">
+      <>
+        <div
+          class={mergeClasses(getStepClasses(status, isClickable, healthcare, orientation), className)}
         role="tab"
         aria-selected={status === 'active'}
         aria-disabled={status === 'disabled'}
@@ -357,22 +360,22 @@ export const Step = component$<StepProps>((props) => {
             {label && (
               <div class={mergeClasses(
                 'step-label font-medium',
-                status === 'active' ? 'text-primary-700' : 'text-neutral-900',
-                status === 'disabled' ? 'text-neutral-400' : '',
+                status === 'active' ? 'text-primary-700' : 'text-neutral-darker',
+                status === 'disabled' ? 'text-neutral-light' : '',
                 'text-base' // Simplified - use consistent sizing
               )}>
                 {label}
                 {optional && (
-                  <span class="text-neutral-500 text-sm ml-1">(Optional)</span>
+                  <span class="text-neutral-normal text-sm ml-1">(Optional)</span>
                 )}
               </div>
             )}
             
             {description && (
               <div class={mergeClasses(
-                'step-description text-neutral-600 mt-1',
+                'step-description text-neutral-normal mt-1',
                 'text-sm', // Simplified - use consistent sizing
-                status === 'disabled' ? 'text-neutral-400' : ''
+                status === 'disabled' ? 'text-neutral-light' : ''
               )}>
                 {description}
               </div>
@@ -390,7 +393,8 @@ export const Step = component$<StepProps>((props) => {
       {showConnector && (
         <div class={getStepConnectorClasses(status, orientation, healthcare)} />
       )}
-    </>
+      </>
+    </div>
   );
 });
 
@@ -413,25 +417,27 @@ export const TreatmentStepper = component$<{
   const { currentPhase, phases, class: className } = props;
   
   return (
-    <Stepper
-      activeStep={currentPhase}
-      orientation="horizontal"
-      healthcare={true}
-      nonLinear={true}
-      class={mergeClasses('treatment-stepper', className)}
-      aria-label="Treatment plan progress"
-    >
-      {phases.map((phase, index) => (
-        <Step
-          key={index}
-          index={index}
-          status={phase.status || (index < currentPhase ? 'completed' : index === currentPhase ? 'active' : 'pending')}
-          label={phase.name}
-          description={phase.description || phase.duration}
-          showConnector={index < phases.length - 1}
-        />
-      ))}
-    </Stepper>
+    <div class="themed-content">
+      <Stepper
+        activeStep={currentPhase}
+        orientation="horizontal"
+        healthcare={true}
+        nonLinear={true}
+        class={mergeClasses('treatment-stepper', className)}
+        aria-label="Treatment plan progress"
+      >
+        {phases.map((phase, index) => (
+          <Step
+            key={index}
+            index={index}
+            status={phase.status || (index < currentPhase ? 'completed' : index === currentPhase ? 'active' : 'pending')}
+            label={phase.name}
+            description={phase.description || phase.duration}
+            showConnector={index < phases.length - 1}
+          />
+        ))}
+      </Stepper>
+    </div>
   );
 });
 
@@ -452,33 +458,35 @@ export const PatientOnboardingStepper = component$<{
   const { currentStep, steps, class: className } = props;
   
   return (
-    <Stepper
-      activeStep={currentStep}
-      orientation="vertical"
-      variant="detailed"
-      healthcare={true}
-      size="lg"
-      class={mergeClasses('patient-onboarding-stepper', className)}
-      aria-label="Patient onboarding steps"
-    >
-      {steps.map((step, index) => (
-        <Step
-          key={index}
-          index={index}
-          status={
-            step.completed 
-              ? 'completed' 
-              : index === currentStep 
-                ? 'active' 
-                : 'pending'
-          }
-          label={step.title}
-          description={step.description}
-          optional={!step.required}
-          showConnector={index < steps.length - 1}
-        />
-      ))}
-    </Stepper>
+    <div class="themed-content">
+      <Stepper
+        activeStep={currentStep}
+        orientation="vertical"
+        variant="detailed"
+        healthcare={true}
+        size="lg"
+        class={mergeClasses('patient-onboarding-stepper', className)}
+        aria-label="Patient onboarding steps"
+      >
+        {steps.map((step, index) => (
+          <Step
+            key={index}
+            index={index}
+            status={
+              step.completed 
+                ? 'completed' 
+                : index === currentStep 
+                  ? 'active' 
+                  : 'pending'
+            }
+            label={step.title}
+            description={step.description}
+            optional={!step.required}
+            showConnector={index < steps.length - 1}
+          />
+        ))}
+      </Stepper>
+    </div>
   );
 });
 

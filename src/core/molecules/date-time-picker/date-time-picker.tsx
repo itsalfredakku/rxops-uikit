@@ -25,25 +25,25 @@ const datePickerVariants = {
     "w-full border font-normal bg-white relative",
     "transition-all duration-200 ease-in-out",
     "focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-0",
-    "disabled:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-60"
+    "disabled:bg-neutral-lighter disabled:cursor-not-allowed disabled:opacity-60"
   ].join(" "),
   
   variants: {
     default: [
-      "border-neutral-300 text-neutral-900 rounded-lg",
-      "hover:border-neutral-400",
+      "border-neutral-light text-neutral-darker rounded-lg",
+      "hover:border-neutral-normal",
       "focus-within:border-primary-500 focus-within:ring-primary-100"
     ].join(" "),
     
     filled: [
-      "border-transparent bg-neutral-100 rounded-lg",
-      "hover:bg-neutral-200",
+      "border-transparent bg-neutral-lighter rounded-lg",
+      "hover:bg-neutral-light",
       "focus-within:bg-white focus-within:border-primary-500 focus-within:ring-primary-100"
     ].join(" "),
     
     outlined: [
-      "border-2 border-neutral-300 rounded-lg",
-      "hover:border-neutral-400",
+      "border-2 border-neutral-light rounded-lg",
+      "hover:border-neutral-normal",
       "focus-within:border-primary-500 focus-within:ring-primary-100"
     ].join(" ")
   },
@@ -175,13 +175,14 @@ export const DateTimePicker = component$<DateTimePickerProps>(({
   ];
 
   return (
-    <div 
-      class={mergeClasses("relative", qwikClass, className)}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={mergeClasses("relative", qwikClass, className)}
+        style={style}
+        {...rest}
+      >
       {label && (
-        <label class="block text-sm font-medium text-neutral-700 mb-2">
+        <label class="block text-sm font-medium text-neutral-dark mb-2">
           {label}
           {required && <span class="text-error-500 ml-1">*</span>}
         </label>
@@ -205,12 +206,12 @@ export const DateTimePicker = component$<DateTimePickerProps>(({
         />
         
         <div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-          <i class="fas fa-calendar-alt text-neutral-400"></i>
+          <i class="fas fa-calendar-alt text-neutral-light"></i>
         </div>
       </div>
 
       {isOpen.value && (
-        <div class="absolute z-50 mt-2 bg-white border border-neutral-200 rounded-lg shadow-lg p-4 min-w-80">
+        <div class="absolute z-50 mt-2 bg-white border border-neutral-light rounded-lg shadow-lg p-4 min-w-80">
           {/* Calendar Header */}
           <div class="flex items-center justify-between mb-4">
             <button
@@ -220,13 +221,13 @@ export const DateTimePicker = component$<DateTimePickerProps>(({
                 newMonth.setMonth(newMonth.getMonth() - 1);
                 currentMonth.value = newMonth;
               }}
-              class="p-2 transition-colors duration-200 hover:bg-neutral-100 rounded-lg"
+              class="p-2 transition-colors duration-200 hover:bg-neutral-lighter rounded-lg"
               aria-label="Previous month"
             >
-              <i class="fas fa-chevron-left text-neutral-600"></i>
+              <i class="fas fa-chevron-left text-neutral-normal"></i>
             </button>
             
-            <h3 class="text-lg font-semibold text-neutral-900">
+            <h3 class="text-lg font-semibold text-neutral-darker">
               {monthNames[currentMonth.value.getMonth()]} {currentMonth.value.getFullYear()}
             </h3>
             
@@ -237,17 +238,17 @@ export const DateTimePicker = component$<DateTimePickerProps>(({
                 newMonth.setMonth(newMonth.getMonth() + 1);
                 currentMonth.value = newMonth;
               }}
-              class="p-2 transition-colors duration-200 hover:bg-neutral-100 rounded-lg"
+              class="p-2 transition-colors duration-200 hover:bg-neutral-lighter rounded-lg"
               aria-label="Next month"
             >
-              <i class="fas fa-chevron-right text-neutral-600"></i>
+              <i class="fas fa-chevron-right text-neutral-normal"></i>
             </button>
           </div>
 
           {/* Calendar Grid */}
           <Row gap="1" class="mb-4">
             {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map(day => (
-              <div key={day} class="p-2 text-center text-sm font-medium text-neutral-500">
+              <div key={day} class="p-2 text-center text-sm font-medium text-neutral-normal">
                 {day}
               </div>
             ))}
@@ -257,7 +258,7 @@ export const DateTimePicker = component$<DateTimePickerProps>(({
               const isDisabled = isDateDisabled(date);
               const todayClass = isToday(date) ? "bg-primary-100 border-primary-300" : "";
               const selectedClass = isSelected(date) ? "bg-primary-500 text-white" : "";
-              const currentMonthClass = isCurrentMonth ? "text-neutral-900" : "text-neutral-400";
+              const currentMonthClass = isCurrentMonth ? "text-neutral-darker" : "text-neutral-light";
               
               return (
                 <button
@@ -266,7 +267,7 @@ export const DateTimePicker = component$<DateTimePickerProps>(({
                   disabled={isDisabled}
                   onClick$={() => !isDisabled && handleDateSelect(date.toISOString().split('T')[0])}
                   class={[
-                    "p-2 text-sm border border-transparent rounded-lg hover:bg-neutral-100 transition-colors",
+                    "p-2 text-sm border border-transparent rounded-lg hover:bg-neutral-lighter transition-colors",
                     "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent",
                     selectedClass || todayClass,
                     selectedClass ? "" : currentMonthClass
@@ -283,12 +284,12 @@ export const DateTimePicker = component$<DateTimePickerProps>(({
           {showTime && (
             <div class="border-t pt-4">
               <div class="flex items-center space-x-3">
-                <i class="fas fa-clock text-neutral-500"></i>
+                <i class="fas fa-clock text-neutral-normal"></i>
                 <input
                   type="time"
                   value={selectedTime.value}
                   onChange$={(e) => handleTimeChange((e.target as HTMLInputElement).value)}
-                  class="px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-primary-500"
+                  class="px-3 py-2 border border-neutral-light rounded-lg focus:ring-2 focus:ring-primary-normal focus:border-primary-500"
                 />
               </div>
             </div>
@@ -299,7 +300,7 @@ export const DateTimePicker = component$<DateTimePickerProps>(({
             <button
               type="button"
               onClick$={() => isOpen.value = false}
-              class="px-4 py-2 text-neutral-600 hover:text-neutral-800 font-medium"
+              class="px-4 py-2 text-neutral-normal hover:text-neutral-darker font-medium"
             >
               Cancel
             </button>
@@ -327,10 +328,11 @@ export const DateTimePicker = component$<DateTimePickerProps>(({
             </div>
           )}
           {helperText && !error && (
-            <div class="text-sm text-neutral-500">{helperText}</div>
+            <div class="text-sm text-neutral-normal">{helperText}</div>
           )}
         </div>
       )}
+      </div>
     </div>
   );
 });
@@ -349,13 +351,14 @@ export const AppointmentDatePicker = component$<Omit<DateTimePickerProps, 'minDa
   nextMonth.setMonth(nextMonth.getMonth() + 1);
 
   return (
-    <div>
-      <DateTimePicker
-        {...props}
-        minDate={tomorrow.toISOString().split('T')[0]}
-        showTime={true}
-        timeFormat="12h"
-      />
+    <div class="themed-content">
+      <div>
+        <DateTimePicker
+          {...props}
+          minDate={tomorrow.toISOString().split('T')[0]}
+          showTime={true}
+          timeFormat="12h"
+        />
       
       {showQuickOptions && (
         <div class="flex flex-wrap gap-2 mt-3">
@@ -382,6 +385,7 @@ export const AppointmentDatePicker = component$<Omit<DateTimePickerProps, 'minDa
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 });

@@ -208,7 +208,8 @@ export const MedicationManagement = component$<MedicationManagementProps>((props
   };
 
   return (
-    <div
+    <div class="themed-content">
+      <div
       class={mergeClasses(
         "medication-management",
         props.compact ? "space-y-2" : "space-y-4",
@@ -244,7 +245,7 @@ export const MedicationManagement = component$<MedicationManagementProps>((props
 
       {/* Interaction Warnings */}
       {interactionWarnings.value.length > 0 && (
-        <div class="p-4 bg-error-50 border border-red-200 rounded-lg">
+        <div class="p-4 bg-error-50 border border-error-light rounded-lg">
           <Row gap="2" alignItems="start">
             <Icon icon="alert-triangle" size={20} class="text-error-600 mt-0.5" />
             <Stack gap="1">
@@ -270,9 +271,9 @@ export const MedicationManagement = component$<MedicationManagementProps>((props
               "medication-card p-4 border rounded-lg transition-all",
               selectedMedication.value?.id === medication.id
                 ? "border-primary-300 bg-primary-50"
-                : "border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50",
+                : "border-neutral-light hover:border-neutral-light hover:bg-neutral-lighter",
               medication.status === 'discontinued' ? "opacity-60" : "",
-              medication.criticalWarnings?.length ? "border-red-300 bg-error-50" : ""
+              medication.criticalWarnings?.length ? "border-error-light bg-error-50" : ""
             )}
             onClick$={() => {
               selectedMedication.value = medication;
@@ -281,7 +282,7 @@ export const MedicationManagement = component$<MedicationManagementProps>((props
           >
             {/* Critical Warnings */}
             {medication.criticalWarnings?.length && (
-              <div class="mb-3 p-2 bg-error-100 border border-red-300 rounded">
+              <div class="mb-3 p-2 bg-error-100 border border-error-light rounded">
                 <Row gap="2" alignItems="start">
                   <Icon icon="alert-triangle" size={16} class="text-error-600" />
                   <Stack gap="1">
@@ -297,7 +298,7 @@ export const MedicationManagement = component$<MedicationManagementProps>((props
 
             <Row gap="3" alignItems="start">
               {/* Medication Icon */}
-              <div class="flex-shrink-0 p-2 bg-neutral-100 rounded-lg">
+              <div class="flex-shrink-0 p-2 bg-neutral-lighter rounded-lg">
                 <Icon icon={getFormIcon(medication.form)} size={24} />
               </div>
 
@@ -454,7 +455,7 @@ export const MedicationManagement = component$<MedicationManagementProps>((props
 
             {/* Prescription Details */}
             {!props.compact && (
-              <Row gap="4" class="mt-3 pt-3 border-t border-neutral-200" wrap>
+              <Row gap="4" class="mt-3 pt-3 border-t border-neutral-light" wrap>
                 <div>
                   <Text size="xs" color="secondary">Prescribed by</Text>
                   <Text size="xs">{medication.prescribedBy.name}</Text>
@@ -486,13 +487,14 @@ export const MedicationManagement = component$<MedicationManagementProps>((props
       {/* Empty State */}
       {props.medications.length === 0 && (
         <div class="text-center py-8">
-          <Icon icon="pill" size={48} class="text-neutral-400 mb-4" />
+          <Icon icon="pill" size={48} class="text-neutral-light mb-4" />
           <Text color="secondary">No medications found</Text>
           <Text size="sm" color="secondary">
             Medications will appear here when prescribed
           </Text>
         </div>
       )}
+    </div>
     </div>
   );
 });

@@ -140,6 +140,21 @@ export interface CalendarProps extends Omit<BaseComponentProps<HTMLDivElement>, 
   highContrast?: boolean;
   
   /**
+   * Medical device keyboard support with enhanced focus indicators
+   */
+  medicalDeviceMode?: boolean;
+  
+  /**
+   * Emergency mode for critical medical scheduling
+   */
+  emergencyMode?: boolean;
+  
+  /**
+   * Enable healthcare workflow shortcuts
+   */
+  enableWorkflowShortcuts?: boolean;
+  
+  /**
    * Show provider avatars in events
    */
   showProviderAvatars?: boolean;
@@ -224,13 +239,13 @@ const touchFriendlySizes = {
 };
 
 const eventTypeColors = {
-  appointment: 'bg-blue-500 text-white',
-  procedure: 'bg-purple-500 text-white',
-  emergency: 'bg-red-500 text-white animate-pulse',
-  'follow-up': 'bg-green-500 text-white',
-  consultation: 'bg-cyan-500 text-white',
-  break: 'bg-gray-400 text-white',
-  blocked: 'bg-gray-600 text-white',
+  appointment: 'bg-primary-normal text-white',
+  procedure: 'bg-primary-normal text-white',
+  emergency: 'bg-error-normal text-white animate-pulse',
+  'follow-up': 'bg-success-normal text-white',
+  consultation: 'bg-info-normal text-white',
+  break: 'bg-neutral-normal text-white',
+  blocked: 'bg-neutral-dark text-white',
 };
 
 const priorityColors = {
@@ -330,6 +345,9 @@ export const Calendar = component$<CalendarProps>((props) => {
     showWeekends = true,
     touchFriendly = false,
     highContrast = false,
+    medicalDeviceMode = false,
+    emergencyMode = false,
+    enableWorkflowShortcuts = false,
     showProviderAvatars = true,
     showEventTimes = true,
     onDateSelect$,
@@ -348,6 +366,161 @@ export const Calendar = component$<CalendarProps>((props) => {
     hoveredDate: null as Date | null,
     selectedEvent: null as CalendarEvent | null,
     draggedEvent: null as CalendarEvent | null,
+  });
+
+  // Enhanced keyboard state for medical devices
+  const keyboardState = useStore({
+    focusedDate: new Date(selectedDate),
+    focusedEventIndex: -1,
+    emergencyHighlight: false,
+    shortcutPressed: false,
+    quickSearchQuery: '',
+    searchTimeout: null as any
+  });
+
+  // Enhanced keyboard support for medical devices
+  const handleKeyDown = $((event: KeyboardEvent) => {
+    if (event.defaultPrevented) return;
+
+    // Healthcare workflow shortcuts
+    if (enableWorkflowShortcuts) {
+      const isCtrlOrCmd = event.ctrlKey || event.metaKey;
+      
+      if (isCtrlOrCmd) {
+        switch (event.key.toLowerCase()) {
+          case 't':
+            // Go to today
+            event.preventDefault();
+            currentDate.value = new Date();
+            keyboardState.focusedDate = new Date();
+            keyboardState.shortcutPressed = true;
+            setTimeout(() => keyboardState.shortcutPressed = false, 200);
+            break;
+          case 'e':
+            // Emergency view
+            if (emergencyMode) {
+              event.preventDefault();
+              keyboardState.emergencyHighlight = true;
+              setTimeout(() => keyboardState.emergencyHighlight = false, 1000);
+            }
+            break;
+          case 'm':
+            // Switch to month view
+            event.preventDefault();
+            currentView.value = 'month';
+            onViewChange$?.(currentView.value);
+            break;
+          case 'w':
+            // Switch to week view
+            event.preventDefault();
+            currentView.value = 'week';
+            onViewChange$?.(currentView.value);
+            break;
+          case 'd':
+            // Switch to day view
+            event.preventDefault();
+            currentView.value = 'day';
+            onViewChange$?.(currentView.value);
+            break;
+        }
+      }
+    }
+
+    // Medical device navigation shortcuts
+    if (medicalDeviceMode) {
+      switch (event.key) {
+        case 'ArrowLeft':
+          event.preventDefault();
+          if (currentView.value === 'month') {
+            const newDate = new Date(keyboardState.focusedDate);
+            newDate.setDate(newDate.getDate() - 1);
+            keyboardState.focusedDate = newDate;
+          } else if (currentView.value === 'week') {
+            const newDate = new Date(keyboardState.focusedDate);
+            newDate.setDate(newDate.getDate() - 1);
+            keyboardState.focusedDate = newDate;
+          }
+          break;
+        case 'ArrowRight':
+          event.preventDefault();
+          if (currentView.value === 'month') {
+            const newDate = new Date(keyboardState.focusedDate);
+            newDate.setDate(newDate.getDate() + 1);
+            keyboardState.focusedDate = newDate;
+          } else if (currentView.value === 'week') {
+            const newDate = new Date(keyboardState.focusedDate);
+            newDate.setDate(newDate.getDate() + 1);
+            keyboardState.focusedDate = newDate;
+          }
+          break;
+        case 'ArrowUp':
+          event.preventDefault();
+          if (currentView.value === 'month') {
+            const newDate = new Date(keyboardState.focusedDate);
+            newDate.setDate(newDate.getDate() - 7);
+            keyboardState.focusedDate = newDate;
+          }
+          break;
+        case 'ArrowDown':
+          event.preventDefault();
+          if (currentView.value === 'month') {
+            const newDate = new Date(keyboardState.focusedDate);
+            newDate.setDate(newDate.getDate() + 7);
+            keyboardState.focusedDate = newDate;
+          }
+          break;
+        case 'Enter':
+        case ' ':
+          // Select date
+          event.preventDefault();
+          currentDate.value = new Date(keyboardState.focusedDate);
+          onDateSelect$?.(keyboardState.focusedDate);
+          break;
+        case 'Home':
+          // Go to first day of month
+          event.preventDefault();
+          const firstDay = new Date(keyboardState.focusedDate);
+          firstDay.setDate(1);
+          keyboardState.focusedDate = firstDay;
+          break;
+        case 'End':
+          // Go to last day of month
+          event.preventDefault();
+          const lastDay = new Date(keyboardState.focusedDate);
+          lastDay.setMonth(lastDay.getMonth() + 1, 0);
+          keyboardState.focusedDate = lastDay;
+          break;
+        case 'PageUp':
+          // Previous month
+          event.preventDefault();
+          const prevMonth = new Date(currentDate.value);
+          prevMonth.setMonth(prevMonth.getMonth() - 1);
+          currentDate.value = prevMonth;
+          keyboardState.focusedDate = new Date(prevMonth);
+          break;
+        case 'PageDown':
+          // Next month
+          event.preventDefault();
+          const nextMonth = new Date(currentDate.value);
+          nextMonth.setMonth(nextMonth.getMonth() + 1);
+          currentDate.value = nextMonth;
+          keyboardState.focusedDate = new Date(nextMonth);
+          break;
+        case 'Escape':
+          // Clear highlights and reset focus
+          keyboardState.emergencyHighlight = false;
+          keyboardState.focusedEventIndex = -1;
+          keyboardState.quickSearchQuery = '';
+          break;
+        case 'F1':
+          // Emergency appointments
+          if (emergencySlots.enabled) {
+            event.preventDefault();
+            keyboardState.emergencyHighlight = true;
+          }
+          break;
+      }
+    }
   });
 
   const sizeConfig = touchFriendly ? touchFriendlySizes[size] : calendarSizes[size];
@@ -514,21 +687,21 @@ export const Calendar = component$<CalendarProps>((props) => {
   };
 
   const containerClasses = mergeClasses(
-    'calendar-container bg-white border border-neutral-200 rounded-lg shadow-sm',
-    highContrast && 'border-2 border-neutral-800',
+    'calendar-container bg-white border border-neutral-light rounded-lg shadow-sm',
+    highContrast && 'border-2 border-neutral-darker',
     touchFriendly && 'touch-manipulation',
     className
   );
 
   const headerClasses = mergeClasses(
-    'calendar-header flex items-center justify-between p-4 border-b border-neutral-200',
+    'calendar-header flex items-center justify-between p-4 border-b border-neutral-light',
     sizeConfig.headerHeight,
-    highContrast && 'border-neutral-800'
+    highContrast && 'border-neutral-darker'
   );
 
   const dayHeaderClasses = mergeClasses(
-    'calendar-day-header grid grid-cols-7 border-b border-neutral-200',
-    highContrast && 'border-neutral-800'
+    'calendar-day-header grid grid-cols-7 border-b border-neutral-light',
+    highContrast && 'border-neutral-darker'
   );
 
   const calendarGridClasses = mergeClasses(
@@ -539,7 +712,25 @@ export const Calendar = component$<CalendarProps>((props) => {
   );
 
   return (
-    <div class={containerClasses} {...rest}>
+    <div class="themed-content">
+      <div 
+        class={mergeClasses(
+          containerClasses,
+          medicalDeviceMode && "medical-device-mode",
+          emergencyMode && "emergency-mode",
+          enableWorkflowShortcuts && "workflow-shortcuts-enabled",
+          keyboardState.emergencyHighlight && "emergency-highlight",
+          keyboardState.shortcutPressed && "shortcut-pressed"
+        )}
+        onKeyDown$={handleKeyDown}
+        tabIndex={medicalDeviceMode ? 0 : undefined}
+        role={medicalDeviceMode ? 'application' : undefined}
+        aria-label={medicalDeviceMode 
+          ? `Medical calendar - ${currentView.value} view - Medical device mode enabled`
+          : undefined}
+        aria-describedby={medicalDeviceMode ? 'calendar-description' : undefined}
+        {...rest}
+      >
       {/* Calendar Header */}
       <div class={headerClasses}>
         <div class="flex items-center space-x-4">
@@ -615,9 +806,9 @@ export const Calendar = component$<CalendarProps>((props) => {
                 'calendar-day-name flex items-center justify-center py-2 px-3',
                 sizeConfig.headerHeight,
                 sizeConfig.fontSize,
-                'font-medium text-neutral-600 bg-neutral-50',
+                'font-medium text-neutral-normal bg-neutral-lighter',
                 !showWeekends && (index === 0 || index === 6) && 'hidden',
-                highContrast && 'bg-neutral-100 text-neutral-900'
+                highContrast && 'bg-neutral-lighter text-neutral-darker'
               )}
             >
               {day}
@@ -640,17 +831,17 @@ export const Calendar = component$<CalendarProps>((props) => {
             <div
               key={`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`}
               class={mergeClasses(
-                'calendar-cell border-b border-r border-neutral-200 relative cursor-pointer transition-colors',
+                'calendar-cell border-b border-r border-neutral-light relative cursor-pointer transition-colors',
                 sizeConfig.cellHeight,
                 sizeConfig.cellPadding,
-                !isCurrentMonth && 'text-neutral-400 bg-neutral-50',
+                !isCurrentMonth && 'text-neutral-light bg-neutral-lighter',
                 isDisabled && 'cursor-not-allowed opacity-50',
                 isSelected && 'bg-primary-50 border-primary-200',
-                todayDate && 'bg-blue-50 font-semibold',
-                !isWorkDay && 'bg-neutral-25',
+                todayDate && 'bg-info-lighter font-semibold',
+                !isWorkDay && 'bg-neutral-lighter',
                 state.hoveredDate === date && 'bg-primary-25',
                 'hover:bg-primary-25',
-                highContrast && 'border-neutral-800'
+                highContrast && 'border-neutral-darker'
               )}
               onClick$={() => !isDisabled && handleDateClick(date)}
               onMouseEnter$={() => state.hoveredDate = date}
@@ -664,9 +855,9 @@ export const Calendar = component$<CalendarProps>((props) => {
               <div class={mergeClasses(
                 'calendar-date-number',
                 sizeConfig.fontSize,
-                todayDate && 'text-blue-600',
+                todayDate && 'text-primary-normal',
                 isSelected && 'text-primary-600',
-                !isCurrentMonth && 'text-neutral-400'
+                !isCurrentMonth && 'text-neutral-light'
               )}>
                 {date.getDate()}
               </div>
@@ -699,7 +890,7 @@ export const Calendar = component$<CalendarProps>((props) => {
                 ))}
                 
                 {dateEvents.length > (currentView.value === 'month' ? 2 : 4) && (
-                  <div class="text-xs text-neutral-500 px-1">
+                  <div class="text-xs text-neutral-normal px-1">
                     +{dateEvents.length - (currentView.value === 'month' ? 2 : 4)} more
                   </div>
                 )}
@@ -707,7 +898,7 @@ export const Calendar = component$<CalendarProps>((props) => {
               
               {/* Emergency slot indicator */}
               {emergencySlots.enabled && isWorkDay && (
-                <div class="absolute top-1 right-1 w-2 h-2 bg-red-400 rounded-full opacity-60" 
+                <div class="absolute top-1 right-1 w-2 h-2 bg-error-normal rounded-full opacity-60" 
                      title="Emergency slots available" />
               )}
             </div>
@@ -717,7 +908,7 @@ export const Calendar = component$<CalendarProps>((props) => {
       
       {/* Legend */}
       {providers.length > 0 && (
-        <div class="calendar-legend p-4 border-t border-neutral-200 bg-neutral-50">
+        <div class="calendar-legend p-4 border-t border-neutral-light bg-neutral-lighter">
           <Text as="h4" weight="medium" size="sm" color="gray-700" class="mb-2">
             Providers
           </Text>
@@ -731,6 +922,26 @@ export const Calendar = component$<CalendarProps>((props) => {
           </div>
         </div>
       )}
+
+      {/* Medical device keyboard shortcuts help */}
+      {medicalDeviceMode && enableWorkflowShortcuts && (
+        <div 
+          id="calendar-description"
+          class="medical-shortcuts-help p-2 border-t border-neutral-light bg-neutral-lighter text-xs"
+        >
+          <div class="flex flex-wrap gap-4 text-neutral-normal">
+            <span><kbd>Ctrl+T</kbd> Today</span>
+            <span><kbd>Ctrl+M</kbd> Month</span>
+            <span><kbd>Ctrl+W</kbd> Week</span>
+            <span><kbd>Ctrl+D</kbd> Day</span>
+            <span><kbd>F1</kbd> Emergency</span>
+            <span><kbd>←→↑↓</kbd> Navigate</span>
+            <span><kbd>Enter</kbd> Select</span>
+            <span><kbd>PgUp/PgDn</kbd> Month</span>
+          </div>
+        </div>
+      )}
+      </div>
     </div>
   );
 });

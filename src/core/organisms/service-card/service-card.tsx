@@ -30,15 +30,16 @@ export const ServiceCard = component$<ServiceCardProps>((props) => {
   } = props;
 
   const cardClasses = mergeClasses(
-    "ui-service-card bg-white rounded-lg border border-neutral-200 p-6 hover:shadow-lg transition-all hover:border-primary-300 relative",
-    service.isPopular && "ring-2 ring-blue-500",
+    "ui-service-card bg-white rounded-lg border border-neutral-light p-6 hover:shadow-lg transition-all hover:border-primary-300 relative",
+    service.isPopular && "ring-2 ring-primary-normal",
     qwikClass,
     className
   );
 
   return (
-    <div 
-      class={cardClasses}
+    <div class="themed-content">
+      <div 
+        class={cardClasses}
       style={style}
       {...rest}
     >
@@ -56,24 +57,24 @@ export const ServiceCard = component$<ServiceCardProps>((props) => {
         )}
         
         <Stack alignItems="center" gap="2">
-          <Text as="h3" weight="semibold" size="xl" class="text-neutral-900">
+          <Text as="h3" weight="semibold" size="xl" class="text-neutral-darker">
             {service.title}
           </Text>
           
-          <Text as="p" size="sm" class="text-neutral-600 leading-relaxed">
+          <Text as="p" size="sm" class="text-neutral-normal leading-relaxed">
             {service.description}
           </Text>
         </Stack>
         
         <Stack alignItems="center" gap="1">
           {service.price && (
-            <Text size="xl" weight="bold" class="text-success-600">
+            <Text size="xl" weight="bold" class="text-success-normal">
               ₹{service.price}
             </Text>
           )}
           
           {service.duration && (
-            <Text size="sm" class="text-neutral-500">
+            <Text size="sm" class="text-neutral-normal">
               {service.duration}
             </Text>
           )}
@@ -89,6 +90,7 @@ export const ServiceCard = component$<ServiceCardProps>((props) => {
           Book Now
         </Button>
       </Stack>
+    </div>
     </div>
   );
 });

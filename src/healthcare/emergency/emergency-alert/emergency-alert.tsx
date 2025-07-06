@@ -39,7 +39,7 @@ const emergencyAlertStyles = {
   ].join(" "),
   
   low: [
-    "border border-neutral-300 bg-neutral-50",
+    "border border-neutral-light bg-neutral-lighter",
     "shadow-sm",
   ].join(" "),
 };
@@ -61,7 +61,7 @@ const severityIcons = {
     </svg>
   ),
   low: (
-    <svg class="h-5 w-5 text-neutral-500" fill="currentColor" viewBox="0 0 24 24">
+    <svg class="h-5 w-5 text-neutral-normal" fill="currentColor" viewBox="0 0 24 24">
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-2h2v2h-2zm0-4V7h2v6h-2z"/>
     </svg>
   ),
@@ -139,10 +139,11 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
   const finalStyle = mergeStyles(undefined, style);
 
   return (
-    <div
-      class={finalClass}
-      style={finalStyle}
-      role="alert"
+    <div class="themed-content">
+      <div
+        class={finalClass}
+        style={finalStyle}
+        role="alert"
       aria-live={severity === "critical" ? "assertive" : "polite"}
       aria-atomic="true"
       data-testid={testId || dataTestId || `emergency-alert-${severity}`}
@@ -165,11 +166,11 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
               "text-xs font-bold uppercase tracking-wider",
               severity === "critical" ? "text-error-700" : 
               severity === "high" ? "text-warning-700" :
-              severity === "medium" ? "text-warning-600" : "text-neutral-600"
+              severity === "medium" ? "text-warning-600" : "text-neutral-normal"
             ].join(" ")}>
               {typeLabels[type]}
             </span>
-            <span class="text-xs text-neutral-500 mt-1">
+            <span class="text-xs text-neutral-normal mt-1">
               {timestamp.toLocaleTimeString()}
               {patientId && ` • Patient: ${patientId}`}
             </span>
@@ -178,7 +179,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
 
         {/* Auto-expire countdown */}
         {autoExpire && timeRemaining.value > 0 && (
-          <div class="text-xs text-neutral-500 min-w-[60px] text-right">
+          <div class="text-xs text-neutral-normal min-w-[60px] text-right">
             {timeRemaining.value}s
           </div>
         )}
@@ -189,7 +190,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
         "font-semibold mb-2 leading-tight",
         severity === "critical" ? "text-lg text-error-800" :
         severity === "high" ? "text-base text-warning-800" :
-        "text-sm text-neutral-800"
+        "text-sm text-neutral-darker"
       ].join(" ")}>
         {title}
       </h3>
@@ -199,7 +200,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
         "text-sm leading-relaxed mb-4",
         severity === "critical" ? "text-error-700" :
         severity === "high" ? "text-warning-700" :
-        "text-neutral-700"
+        "text-neutral-dark"
       ].join(" ")}>
         <Slot />
       </div>
@@ -239,8 +240,8 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
             class={[
               "min-h-[44px] min-w-[44px] p-2 rounded-md",
               "transition-colors duration-200 focus:outline-none focus:ring-2",
-              "text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100",
-              "focus:ring-neutral-500"
+              "text-neutral-normal hover:text-neutral-dark hover:bg-neutral-lighter",
+              "focus:ring-neutral-normal"
             ].join(" ")}
             aria-label={`Dismiss ${typeLabels[type].toLowerCase()}`}
           >
@@ -255,6 +256,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
       {severity === "critical" && urgent && (
         <div class="absolute inset-0 rounded-lg border-2 border-error-500 animate-ping pointer-events-none" />
       )}
+    </div>
     </div>
   );
 });

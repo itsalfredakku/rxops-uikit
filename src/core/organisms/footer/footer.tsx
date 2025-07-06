@@ -38,7 +38,7 @@ export default component$(() => {
               <div slot="content">
                 <div>
                   <Text as="h4" weight="semibold" class="mb-3">For Patients</Text>
-                  <List variant="none" size="sm" class="text-neutral-400">
+                  <List variant="none" size="sm" class="text-neutral-light">
                     <ListItem><a href="#" class="hover:text-white transition-colors">Find Doctors</a></ListItem>
                     <ListItem><a href="#" class="hover:text-white transition-colors">Book Appointments</a></ListItem>
                     <ListItem><a href="#" class="hover:text-white transition-colors">Health Records</a></ListItem>
@@ -48,7 +48,7 @@ export default component$(() => {
                 
                 <div>
                   <Text as="h4" weight="semibold" class="mb-3">For Providers</Text>
-                  <List variant="none" size="sm" class="text-neutral-400">
+                  <List variant="none" size="sm" class="text-neutral-light">
                     <ListItem><a href="#" class="hover:text-white transition-colors">Practice Management</a></ListItem>
                     <ListItem><a href="#" class="hover:text-white transition-colors">Patient Portal</a></ListItem>
                     <ListItem><a href="#" class="hover:text-white transition-colors">Analytics</a></ListItem>
@@ -58,7 +58,7 @@ export default component$(() => {
                 
                 <div>
                   <Text as="h4" weight="semibold" class="mb-3">Company</Text>
-                  <List variant="none" size="sm" class="text-neutral-400">
+                  <List variant="none" size="sm" class="text-neutral-light">
                     <ListItem><a href="#" class="hover:text-white transition-colors">About Us</a></ListItem>
                     <ListItem><a href="#" class="hover:text-white transition-colors">Careers</a></ListItem>
                     <ListItem><a href="#" class="hover:text-white transition-colors">Press</a></ListItem>
@@ -68,7 +68,7 @@ export default component$(() => {
                 
                 <div>
                   <Text as="h4" weight="semibold" class="mb-3">Support</Text>
-                  <List variant="none" size="sm" class="text-neutral-400">
+                  <List variant="none" size="sm" class="text-neutral-light">
                     <ListItem><a href="#" class="hover:text-white transition-colors">Help Center</a></ListItem>
                     <ListItem><a href="#" class="hover:text-white transition-colors">Privacy</a></ListItem>
                     <ListItem><a href="#" class="hover:text-white transition-colors">Terms</a></ListItem>
@@ -80,11 +80,11 @@ export default component$(() => {
               <div slot="apps">
                 <Text as="h4" weight="semibold" class="mb-3">Download Our Apps</Text>
                 <div class="flex space-x-3">
-                  <button class="px-4 py-2 bg-neutral-800 rounded text-sm transition-colors duration-200 hover:bg-neutral-700 transition-colors flex items-center space-x-2">
+                  <button class="px-4 py-2 bg-neutral-darker rounded text-sm transition-colors duration-200 hover:bg-neutral-darker transition-colors flex items-center space-x-2">
                     <Icon icon="smartphone" class="w-4 h-4" />
                     <span>iOS App</span>
                   </button>
-                  <button class="px-4 py-2 bg-neutral-800 rounded text-sm transition-colors duration-200 hover:bg-neutral-700 transition-colors flex items-center space-x-2">
+                  <button class="px-4 py-2 bg-neutral-darker rounded text-sm transition-colors duration-200 hover:bg-neutral-darker transition-colors flex items-center space-x-2">
                     <Icon icon="monitor" class="w-4 h-4" />
                     <span>Android App</span>
                   </button>
@@ -100,7 +100,7 @@ export default component$(() => {
                   <input 
                     type="email" 
                     placeholder="Enter your email" 
-                    class="flex-1 px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-l text-sm"
+                    class="flex-1 px-3 py-2 bg-neutral-darker border border-neutral-darker rounded-l text-sm"
                   />
                   <button class="px-4 py-2 bg-primary-600 transition-colors duration-200 hover:bg-primary-700 rounded-r text-sm transition-colors">
                     Subscribe
@@ -109,7 +109,7 @@ export default component$(() => {
               </div>
               
               <div slot="bottom">
-                <div class="flex flex-col md:flex-row justify-between items-center text-sm text-neutral-400">
+                <div class="flex flex-col md:flex-row justify-between items-center text-sm text-neutral-light">
                   <Text as="p">© 2024 RxOps. All rights reserved.</Text>
                   <div class="flex space-x-6 mt-4 md:mt-0">
                     <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
@@ -131,17 +131,17 @@ export default component$(() => {
                 <div class="flex items-center space-x-8 mb-4 md:mb-0">
                   <Text as="h3" weight="bold" size="md">RxOps</Text>
                   <nav class="flex space-x-6 text-sm">
-                    <a href="#" class="text-neutral-400 hover:text-white transition-colors">About</a>
-                    <a href="#" class="text-neutral-400 hover:text-white transition-colors">Contact</a>
-                    <a href="#" class="text-neutral-400 hover:text-white transition-colors">Privacy</a>
-                    <a href="#" class="text-neutral-400 hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="text-neutral-light hover:text-white transition-colors">About</a>
+                    <a href="#" class="text-neutral-light hover:text-white transition-colors">Contact</a>
+                    <a href="#" class="text-neutral-light hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="text-neutral-light hover:text-white transition-colors">Terms</a>
                   </nav>
                 </div>
                 <Text as="p" size="sm" color="gray-400">© 2024 RxOps. All rights reserved.</Text>
               </div>
               
               <div slot="bottom">
-                <div class="text-center pt-4 border-t border-neutral-800">
+                <div class="text-center pt-4 border-t border-neutral-darker">
                   <Text as="p" size="xs" color="gray-500">
                     Designed for healthcare professionals and patients worldwide
                   </Text>
@@ -168,7 +168,7 @@ export default component$(() => {
         {/* Code Example */}
         <section>
           <Text as="h2" weight="semibold" size="lg" class="mb-4">Code Example</Text>
-          <div class="p-6 border rounded-lg bg-neutral-50">
+          <div class="p-6 border rounded-lg bg-neutral-lighter">
             <pre class="text-sm overflow-x-auto">
               <code>{`import { Footer } from '@rxops/uikit';
 

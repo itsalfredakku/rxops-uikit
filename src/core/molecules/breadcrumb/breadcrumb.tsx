@@ -124,13 +124,14 @@ export const Breadcrumb = component$<BreadcrumbProps>(({
   };
 
   return (
-    <nav 
-      class={breadcrumbClass} 
-      style={style}
-      aria-label="Breadcrumb"
-      data-testid={testId}
-      {...rest}
-    >
+    <div class="themed-content">
+      <nav 
+        class={breadcrumbClass} 
+        style={style}
+        aria-label="Breadcrumb"
+        data-testid={testId}
+        {...rest}
+      >
       <ol class={listClass}>
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
@@ -181,6 +182,7 @@ export const Breadcrumb = component$<BreadcrumbProps>(({
           );
         })}
       </ol>
-    </nav>
+      </nav>
+    </div>
   );
 });

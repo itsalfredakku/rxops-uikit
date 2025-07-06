@@ -41,7 +41,7 @@ const statusConfig = {
   completed: { 
     variant: "success" as const, 
     label: "Completed",
-    color: "text-success-600"
+    color: "text-success-normal"
   },
   cancelled: { 
     variant: "error" as const, 
@@ -51,7 +51,7 @@ const statusConfig = {
   "in-progress": { 
     variant: "warning" as const, 
     label: "In Progress",
-    color: "text-orange-600"
+    color: "text-warning-normal"
   },
 };
 
@@ -70,17 +70,18 @@ export const AppointmentCard = component$<AppointmentCardProps>((props) => {
   const status = statusConfig[appointment.status];
   
   const rootClasses = mergeClasses(
-    "ui-appointment-card bg-white rounded-lg border border-neutral-200 p-4 hover:shadow-md transition-shadow",
+    "ui-appointment-card bg-white rounded-lg border border-neutral-light p-4 hover:shadow-md transition-shadow",
     qwikClass,
     className
   );
   
   return (
-    <div 
-      class={rootClasses}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <div 
+        class={rootClasses}
+        style={style}
+        {...rest}
+      >
       <Row alignItems="start" justifyContent="between" class="mb-4">
         <Row alignItems="center" gap="3">
           <Avatar
@@ -106,18 +107,18 @@ export const AppointmentCard = component$<AppointmentCardProps>((props) => {
       
       <Row gap="4" class="mb-4">
         <Column size={{ sm: 12, md: 6 }}>
-          <span class="text-sm text-neutral-500">Date</span>
+          <span class="text-sm text-neutral-normal">Date</span>
           <Text as="p" weight="medium">{appointment.date}</Text>
         </Column>
         <Column size={{ sm: 12, md: 6 }}>
-          <span class="text-sm text-neutral-500">Time</span>
+          <span class="text-sm text-neutral-normal">Time</span>
           <Text as="p" weight="medium">{appointment.time}</Text>
         </Column>
       </Row>
       
       <Row alignItems="center" justifyContent="between" class="mb-4">
         <Row alignItems="center" gap="2">
-          <span class="text-sm text-neutral-500">Type:</span>
+          <span class="text-sm text-neutral-normal">Type:</span>
           <Badge style="secondary" size="sm">
             {appointment.type}
           </Badge>
@@ -126,7 +127,7 @@ export const AppointmentCard = component$<AppointmentCardProps>((props) => {
       
       {appointment.notes && (
         <div class="mb-4">
-          <span class="text-sm text-neutral-500">Notes:</span>
+          <span class="text-sm text-neutral-normal">Notes:</span>
           <Text as="p" size="sm" color="gray-700" class="mt-1">{appointment.notes}</Text>
         </div>
       )}
@@ -170,6 +171,7 @@ export const AppointmentCard = component$<AppointmentCardProps>((props) => {
           </Button>
         )}
       </Row>
+    </div>
     </div>
   );
 });

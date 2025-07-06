@@ -335,12 +335,13 @@ export const FileUpload = component$<FileUploadProps>(({
 
   // Button variant (simplified for brevity)
   return (
-    <Stack 
-      class={mergeClasses("space-y-4", qwikClass, className)}
-      style={style}
-      gap="4"
-      {...rest}
-    >
+    <div class="themed-content">
+      <Stack 
+        class={mergeClasses("space-y-4", qwikClass, className)}
+        style={style}
+        gap="4"
+        {...rest}
+      >
       {label && (
         <Column>
           <label class="block text-sm font-medium text-neutral-darker">
@@ -372,7 +373,8 @@ export const FileUpload = component$<FileUploadProps>(({
           </Row>
         </Button>
       </Column>
-    </Stack>
+      </Stack>
+    </div>
   );
 });
 
@@ -397,12 +399,14 @@ export const MedicalDocumentUpload = component$<Omit<FileUploadProps, 'accept' |
   };
 
   return (
-    <FileUpload
-      {...props}
-      accept={acceptTypes[documentType]}
-      label={props.label || documentLabels[documentType]}
-      variant="dropzone"
-      helperText={props.helperText || `Upload ${documentType.replace('-', ' ')} files (PDF, Images)`}
-    />
+    <div class="themed-content">
+      <FileUpload
+        {...props}
+        accept={acceptTypes[documentType]}
+        label={props.label || documentLabels[documentType]}
+        variant="dropzone"
+        helperText={props.helperText || `Upload ${documentType.replace('-', ' ')} files (PDF, Images)`}
+      />
+    </div>
   );
 });

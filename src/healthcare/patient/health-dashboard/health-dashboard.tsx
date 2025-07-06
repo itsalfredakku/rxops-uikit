@@ -107,7 +107,7 @@ const getTrendColor = (trend: string, status: string) => {
   switch (trend) {
     case 'up': return 'text-success-500';
     case 'down': return 'text-error-500';
-    default: return 'text-neutral-500';
+    default: return 'text-neutral-normal';
   }
 };
 
@@ -245,11 +245,11 @@ export const HealthDashboard = component$<HealthDashboardProps>((props) => {
         
         <Stack direction="row" alignItems="center" justifyContent="between" wrap="wrap" class="text-sm">
           <Stack direction="row" alignItems="center" gap="4" wrap="wrap">
-            <Stack direction="row" alignItems="center" class="text-neutral-600">
+            <Stack direction="row" alignItems="center" class="text-neutral-normal">
               <Icon icon="calendar" class="w-4 h-4 mr-1" />
               <Text size="sm" color="gray-600">{formatDate(appointment.date)}</Text>
             </Stack>
-            <Stack direction="row" alignItems="center" class="text-neutral-600">
+            <Stack direction="row" alignItems="center" class="text-neutral-normal">
               <Icon icon="clock" class="w-4 h-4 mr-1" />
               <Text size="sm" color="gray-600">{appointment.time}</Text>
             </Stack>
@@ -359,209 +359,211 @@ export const HealthDashboard = component$<HealthDashboardProps>((props) => {
   );
 
   return (
-    <div 
-      class={rootClasses}
-      style={style}
-      {...rest}
-    >
-      {/* Header */}
-      <Card variant="elevated" padding="6">
-        <Stack direction="row" alignItems="center" justifyContent="between" wrap="wrap" class="mb-4">
-          <Column>
-            <Text as="h1" weight="bold" size="xl">Health Dashboard</Text>
-            <Text as="p" color="gray-600">Welcome back, {patientName}</Text>
-          </Column>
-          {showQuickActions && (
-            <Stack direction="row" alignItems="center" gap="3" wrap="wrap">
-              <Button
-                onClick$={onAddMetric}
-                variant="flat"
-                size="sm"
-                color="primary"
-              >
-                <Icon icon="plus" class="w-4 h-4 mr-1" />
-                Add Metric
-              </Button>
-              <Button
-                onClick$={onScheduleAppointment}
-                variant="elevated"
-                size="sm"
-                color="primary"
-              >
-                <Icon icon="calendar" class="w-4 h-4 mr-1" />
-                Schedule
-              </Button>
-              <Button variant="text" size="sm" color="secondary">
-                <Icon icon="settings" class="w-5 h-5" />
-              </Button>
-            </Stack>
-          )}
-        </Stack>
-
-        {/* Summary Stats */}
-        <Stack direction="row" gap="4" wrap="wrap">
-          <Column alignItems="center">
-            <Text size="xl" weight="bold" color="primary">{metrics.length}</Text>
-            <Text size="sm" color="gray-600">Health Metrics</Text>
-          </Column>
-          <Column alignItems="center">
-            <Text size="xl" weight="bold" color="success">{upcomingAppointments.length}</Text>
-            <Text size="sm" color="gray-600">Appointments</Text>
-          </Column>
-          <Column alignItems="center">
-            <Text size="xl" weight="bold" color="warning">{unreadAlerts.length}</Text>
-            <Text size="sm" color="gray-600">New Alerts</Text>
-          </Column>
-          <Column alignItems="center">
-            <Text size="xl" weight="bold" color="info">{todayReminders.length}</Text>
-            <Text size="sm" color="gray-600">Medications Due</Text>
-          </Column>
-        </Stack>
-      </Card>
-
-      {/* Priority Alerts */}
-      {priorityAlerts.length > 0 && (
+    <div class="themed-content">
+      <div 
+        class={rootClasses}
+        style={style}
+        {...rest}
+      >
+        {/* Header */}
         <Card variant="elevated" padding="6">
           <Stack direction="row" alignItems="center" justifyContent="between" wrap="wrap" class="mb-4">
-            <Stack direction="row" alignItems="center" gap="2">
-              <Icon icon="bell" class="w-5 h-5 text-error-500" />
-              <Text as="h2" weight="semibold" size="lg">Priority Alerts</Text>
-            </Stack>
-            <Text size="sm" color="gray-500">({priorityAlerts.length})</Text>
-          </Stack>
-          <List variant="none" size="sm" class="space-y-3">
-            {priorityAlerts.slice(0, 3).map((alert) => (
-              <ListItem key={alert.id}>
-                <AlertCard alert={alert} />
-              </ListItem>
-            ))}
-          </List>
-        </Card>
-      )}
-
-      {/* Main Content Grid */}
-      <Stack direction="row" gap="6" wrap="wrap">
-        {/* Health Metrics */}
-        <div class="lg:col-span-2">
-          <Card variant="elevated" padding="6">
-            <Stack direction="row" alignItems="center" justifyContent="between" wrap="wrap" class="mb-4">
-              <Text as="h2" weight="semibold" size="lg">Health Metrics</Text>
-              <Stack direction="row" alignItems="center" gap="2" wrap="wrap">
-                <select
-                  value={selectedTimeRange.value}
-                  onChange$={(e) => selectedTimeRange.value = (e.target as HTMLSelectElement).value as '24h' | '7d' | '30d' | '90d'}
-                  class="text-sm border border-neutral-light rounded-md px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-normal focus-visible:ring-offset-2 focus:ring-2 focus:ring-primary-normal"
-                >
-                  <option value="24h">24 Hours</option>
-                  <option value="7d">7 Days</option>
-                  <option value="30d">30 Days</option>
-                  <option value="90d">90 Days</option>
-                </select>
-              </Stack>
-            </Stack>
-            
-            {metrics.length === 0 ? (
-              <Column alignItems="center" class="py-8">
-                <Icon icon="activity" class="w-12 h-12 text-neutral-400 mb-4" />
-                <Text as="p" color="gray-500">No health metrics recorded</Text>
-                {onAddMetric && (
-                  <Button
-                    onClick$={onAddMetric}
-                    variant="text"
-                    size="sm"
-                    color="primary"
-                    class="mt-4"
-                  >
-                    Add your first metric
-                  </Button>
-                )}
-              </Column>
-            ) : (
-              <Stack direction="row" gap="4" wrap="wrap">
-                {metrics.map((metric) => (
-                  <MetricCard key={metric.id} metric={metric} />
-                ))}
-              </Stack>
-            )}
-          </Card>
-        </div>
-
-        {/* Sidebar */}
-        <div class="space-y-6">
-          {/* Upcoming Appointments */}
-          <Card variant="elevated" padding="6">
-            <Stack direction="row" alignItems="center" justifyContent="between" wrap="wrap" class="mb-4">
-              <Text as="h3" weight="semibold" size="md">Upcoming Appointments</Text>
-              <Text size="sm" color="gray-500">({upcomingAppointments.length})</Text>
-            </Stack>
-            
-            {upcomingAppointments.length === 0 ? (
-              <Column alignItems="center" class="py-4">
-                <Icon icon="calendar" class="w-8 h-8 text-neutral-400 mb-2" />
-                <Text as="p" size="sm" color="gray-500">No upcoming appointments</Text>
-              </Column>
-            ) : (
-              <List variant="none" size="sm" class="space-y-3">
-                {upcomingAppointments.slice(0, 3).map((appointment) => (
-                  <ListItem key={appointment.id}>
-                    <AppointmentCard appointment={appointment} />
-                  </ListItem>
-                ))}
-                {upcomingAppointments.length > 3 && (
-                  <ListItem>
-                    <Button variant="text" size="sm" color="primary" class="w-full py-2">
-                      View all appointments
-                    </Button>
-                  </ListItem>
-                )}
-              </List>
-            )}
-          </Card>
-
-          {/* Medication Reminders */}
-          {todayReminders.length > 0 && (
-            <Card variant="elevated" padding="6">
-              <Stack direction="row" alignItems="center" justifyContent="between" class="mb-4">
-                <Text as="h3" weight="semibold" size="md">Medications Due</Text>
-                <Text size="sm" color="gray-500">({todayReminders.length})</Text>
-              </Stack>
-              
-              <List variant="none" size="sm" class="space-y-3">
-                {todayReminders.map((reminder) => (
-                  <ListItem key={reminder.id}>
-                    <MedicationCard reminder={reminder} />
-                  </ListItem>
-                ))}
-              </List>
-            </Card>
-          )}
-
-          {/* Recent Alerts */}
-          {alerts.length > 0 && (
-            <Card variant="elevated" padding="6">
-              <Stack direction="row" alignItems="center" justifyContent="between" wrap="wrap" class="mb-4">
-                <Text as="h3" weight="semibold" size="md">Recent Alerts</Text>
+            <Column>
+              <Text as="h1" weight="bold" size="xl">Health Dashboard</Text>
+              <Text as="p" color="gray-600">Welcome back, {patientName}</Text>
+            </Column>
+            {showQuickActions && (
+              <Stack direction="row" alignItems="center" gap="3" wrap="wrap">
                 <Button
-                  onClick$={() => showAllAlerts.value = !showAllAlerts.value}
-                  variant="text"
+                  onClick$={onAddMetric}
+                  variant="flat"
                   size="sm"
                   color="primary"
                 >
-                  {showAllAlerts.value ? 'Show Less' : 'View All'}
+                  <Icon icon="plus" class="w-4 h-4 mr-1" />
+                  Add Metric
+                </Button>
+                <Button
+                  onClick$={onScheduleAppointment}
+                  variant="elevated"
+                  size="sm"
+                  color="primary"
+                >
+                  <Icon icon="calendar" class="w-4 h-4 mr-1" />
+                  Schedule
+                </Button>
+                <Button variant="text" size="sm" color="secondary">
+                  <Icon icon="settings" class="w-5 h-5" />
                 </Button>
               </Stack>
+            )}
+          </Stack>
+
+          {/* Summary Stats */}
+          <Stack direction="row" gap="4" wrap="wrap">
+            <Column alignItems="center">
+              <Text size="xl" weight="bold" color="primary">{metrics.length}</Text>
+              <Text size="sm" color="gray-600">Health Metrics</Text>
+            </Column>
+            <Column alignItems="center">
+              <Text size="xl" weight="bold" color="success">{upcomingAppointments.length}</Text>
+              <Text size="sm" color="gray-600">Appointments</Text>
+            </Column>
+            <Column alignItems="center">
+              <Text size="xl" weight="bold" color="warning">{unreadAlerts.length}</Text>
+              <Text size="sm" color="gray-600">New Alerts</Text>
+            </Column>
+            <Column alignItems="center">
+              <Text size="xl" weight="bold" color="info">{todayReminders.length}</Text>
+              <Text size="sm" color="gray-600">Medications Due</Text>
+            </Column>
+          </Stack>
+        </Card>
+
+        {/* Priority Alerts */}
+        {priorityAlerts.length > 0 && (
+          <Card variant="elevated" padding="6">
+            <Stack direction="row" alignItems="center" justifyContent="between" wrap="wrap" class="mb-4">
+              <Stack direction="row" alignItems="center" gap="2">
+                <Icon icon="bell" class="w-5 h-5 text-error-500" />
+                <Text as="h2" weight="semibold" size="lg">Priority Alerts</Text>
+              </Stack>
+              <Text size="sm" color="gray-500">({priorityAlerts.length})</Text>
+            </Stack>
+            <List variant="none" size="sm" class="space-y-3">
+              {priorityAlerts.slice(0, 3).map((alert) => (
+                <ListItem key={alert.id}>
+                  <AlertCard alert={alert} />
+                </ListItem>
+              ))}
+            </List>
+          </Card>
+        )}
+
+        {/* Main Content Grid */}
+        <Stack direction="row" gap="6" wrap="wrap">
+          {/* Health Metrics */}
+          <div class="lg:col-span-2">
+            <Card variant="elevated" padding="6">
+              <Stack direction="row" alignItems="center" justifyContent="between" wrap="wrap" class="mb-4">
+                <Text as="h2" weight="semibold" size="lg">Health Metrics</Text>
+                <Stack direction="row" alignItems="center" gap="2" wrap="wrap">
+                  <select
+                    value={selectedTimeRange.value}
+                    onChange$={(e) => selectedTimeRange.value = (e.target as HTMLSelectElement).value as '24h' | '7d' | '30d' | '90d'}
+                    class="text-sm border border-neutral-light rounded-md px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-normal focus-visible:ring-offset-2 focus:ring-2 focus:ring-primary-normal"
+                  >
+                    <option value="24h">24 Hours</option>
+                    <option value="7d">7 Days</option>
+                    <option value="30d">30 Days</option>
+                    <option value="90d">90 Days</option>
+                  </select>
+                </Stack>
+              </Stack>
               
-              <List variant="none" size="sm" class="space-y-3">
-                {(showAllAlerts.value ? alerts : alerts.slice(0, 3)).map((alert) => (
-                  <ListItem key={alert.id}>
-                    <AlertCard alert={alert} />
-                  </ListItem>
-                ))}
-              </List>
+              {metrics.length === 0 ? (
+                <Column alignItems="center" class="py-8">
+                  <Icon icon="activity" class="w-12 h-12 text-neutral-light mb-4" />
+                  <Text as="p" color="gray-500">No health metrics recorded</Text>
+                  {onAddMetric && (
+                    <Button
+                      onClick$={onAddMetric}
+                      variant="text"
+                      size="sm"
+                      color="primary"
+                      class="mt-4"
+                    >
+                      Add your first metric
+                    </Button>
+                  )}
+                </Column>
+              ) : (
+                <Stack direction="row" gap="4" wrap="wrap">
+                  {metrics.map((metric) => (
+                    <MetricCard key={metric.id} metric={metric} />
+                  ))}
+                </Stack>
+              )}
             </Card>
-          )}
-        </div>
-      </Stack>
+          </div>
+
+          {/* Sidebar */}
+          <div class="space-y-6">
+            {/* Upcoming Appointments */}
+            <Card variant="elevated" padding="6">
+              <Stack direction="row" alignItems="center" justifyContent="between" wrap="wrap" class="mb-4">
+                <Text as="h3" weight="semibold" size="md">Upcoming Appointments</Text>
+                <Text size="sm" color="gray-500">({upcomingAppointments.length})</Text>
+              </Stack>
+              
+              {upcomingAppointments.length === 0 ? (
+                <Column alignItems="center" class="py-4">
+                  <Icon icon="calendar" class="w-8 h-8 text-neutral-light mb-2" />
+                  <Text as="p" size="sm" color="gray-500">No upcoming appointments</Text>
+                </Column>
+              ) : (
+                <List variant="none" size="sm" class="space-y-3">
+                  {upcomingAppointments.slice(0, 3).map((appointment) => (
+                    <ListItem key={appointment.id}>
+                      <AppointmentCard appointment={appointment} />
+                    </ListItem>
+                  ))}
+                  {upcomingAppointments.length > 3 && (
+                    <ListItem>
+                      <Button variant="text" size="sm" color="primary" class="w-full py-2">
+                        View all appointments
+                      </Button>
+                    </ListItem>
+                  )}
+                </List>
+              )}
+            </Card>
+
+            {/* Medication Reminders */}
+            {todayReminders.length > 0 && (
+              <Card variant="elevated" padding="6">
+                <Stack direction="row" alignItems="center" justifyContent="between" class="mb-4">
+                  <Text as="h3" weight="semibold" size="md">Medications Due</Text>
+                  <Text size="sm" color="gray-500">({todayReminders.length})</Text>
+                </Stack>
+                
+                <List variant="none" size="sm" class="space-y-3">
+                  {todayReminders.map((reminder) => (
+                    <ListItem key={reminder.id}>
+                      <MedicationCard reminder={reminder} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Card>
+            )}
+
+            {/* Recent Alerts */}
+            {alerts.length > 0 && (
+              <Card variant="elevated" padding="6">
+                <Stack direction="row" alignItems="center" justifyContent="between" wrap="wrap" class="mb-4">
+                  <Text as="h3" weight="semibold" size="md">Recent Alerts</Text>
+                  <Button
+                    onClick$={() => showAllAlerts.value = !showAllAlerts.value}
+                    variant="text"
+                    size="sm"
+                    color="primary"
+                  >
+                    {showAllAlerts.value ? 'Show Less' : 'View All'}
+                  </Button>
+                </Stack>
+                
+                <List variant="none" size="sm" class="space-y-3">
+                  {(showAllAlerts.value ? alerts : alerts.slice(0, 3)).map((alert) => (
+                    <ListItem key={alert.id}>
+                      <AlertCard alert={alert} />
+                    </ListItem>
+                  ))}
+                </List>
+              </Card>
+            )}
+          </div>
+        </Stack>
+      </div>
     </div>
   );
 });

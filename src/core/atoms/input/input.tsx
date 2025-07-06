@@ -1,4 +1,4 @@
-import { component$, useSignal, $ } from "@builder.io/qwik";
+import { component$, useSignal, useStore, $ } from "@builder.io/qwik";
 import type { BaseComponentProps } from "../../../design-system/props";
 import { mergeClasses, mergeStyles } from "../../../design-system/props";
 import type { ComponentSize, FormVariant } from "../../../design-system/types";
@@ -49,36 +49,48 @@ export interface InputProps extends Omit<BaseComponentProps<HTMLInputElement>, '
   autoComplete?: string;
   /** Input mode for virtual keyboards */
   inputMode?: "none" | "text" | "decimal" | "numeric" | "tel" | "search" | "email" | "url";
+  /** Medical device keyboard support with enhanced focus indicators */
+  medicalDeviceMode?: boolean;
+  /** Enable healthcare workflow shortcuts */
+  enableWorkflowShortcuts?: boolean;
+  /** Input context for healthcare applications */
+  inputContext?: 'patient-data' | 'medication-dosage' | 'vital-signs' | 'lab-values' | 'notes' | 'default';
+  /** Medical data validation rules */
+  medicalValidation?: {
+    type?: 'patient-id' | 'medication-code' | 'dosage' | 'vital-reading' | 'lab-value';
+    range?: { min: number; max: number };
+    required?: boolean;
+  };
 }
 
 // Base input classes with enhanced medical device accessibility
 const inputBase = [
   "w-full border font-normal bg-white",
   "transition-all duration-200 ease-in-out",
-  "placeholder:text-neutral-400",
+  "placeholder:text-neutral-light",
   // Enhanced focus for medical devices with high contrast
   "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2",
   "focus:shadow-xl focus:z-10",
   // Medical device keyboard accessibility
   "focus-visible:ring-primary-500/70 focus-visible:outline-2 focus-visible:outline-primary-600",
-  "disabled:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-60"
+  "disabled:bg-neutral-lighter disabled:cursor-not-allowed disabled:opacity-60"
 ].join(" ");
 
 // Variant styling classes
 const variantClasses: Record<FormVariant, string> = {
   default: [
-    "border-neutral-300 text-neutral-900",
-    "hover:border-neutral-400",
+    "border-neutral-light text-neutral-darker",
+    "hover:border-neutral-normal",
     "focus:border-primary-500 focus-visible:ring-primary-100"
   ].join(" "),
   filled: [
-    "border-transparent bg-neutral-100 text-neutral-900",
-    "hover:bg-neutral-200",
+    "border-transparent bg-neutral-lighter text-neutral-darker",
+    "hover:bg-neutral-light",
     "focus:bg-white focus:border-primary-500 focus-visible:ring-primary-100"
   ].join(" "),
   outline: [
-    "border-2 border-neutral-300 text-neutral-900",
-    "hover:border-neutral-400",
+    "border-2 border-neutral-light text-neutral-darker",
+    "hover:border-neutral-normal",
     "focus:border-primary-500 focus-visible:ring-primary-100"
   ].join(" ")
 };
@@ -94,7 +106,7 @@ const sizeClasses: Record<ComponentSize, string> = {
 
 // Error state classes
 const errorClasses = [
-  "border-error-300 text-neutral-900",
+  "border-error-300 text-neutral-darker",
   "hover:border-error-400",
   "focus:border-error-500 focus-visible:ring-error-100"
 ].join(" ");
@@ -125,6 +137,10 @@ export const Input = component$<InputProps>((props) => {
     medical = false,
     autoComplete,
     inputMode,
+    medicalDeviceMode = false,
+    enableWorkflowShortcuts = false,
+    inputContext = 'default',
+    medicalValidation,
     
     // Event handlers
     onInput$,
@@ -147,10 +163,51 @@ export const Input = component$<InputProps>((props) => {
   // Focus state for enhanced medical device accessibility
   const isFocused = useSignal(false);
 
+  // Medical device keyboard state
+  const keyboardState = useStore({
+    validationErrors: [] as string[],
+    instructionsId: `input-instructions-${Math.random().toString(36).substr(2, 9)}`,
+  });
+
+  // Medical validation function
+  const validateMedicalInput = $((value: string) => {
+    if (!medicalValidation) return [];
+    
+    const errors: string[] = [];
+    
+    if (medicalValidation.required && !value) {
+      errors.push('This medical field is required');
+    }
+    
+    if (medicalValidation.type === 'vital-reading' && value) {
+      const numValue = parseFloat(value);
+      if (isNaN(numValue)) {
+        errors.push('Must be a valid numeric vital sign reading');
+      } else if (medicalValidation.range) {
+        if (numValue < medicalValidation.range.min || numValue > medicalValidation.range.max) {
+          errors.push(`Value must be between ${medicalValidation.range.min} and ${medicalValidation.range.max}`);
+        }
+      }
+    } else if (medicalValidation.type === 'dosage' && value) {
+      const dosagePattern = /^\d+(\.\d{1,2})?\s*(mg|ml|units?)$/i;
+      if (!dosagePattern.test(value)) {
+        errors.push('Enter dosage in format: number mg/ml/units (e.g., 10 mg)');
+      }
+    } else if (medicalValidation.type === 'patient-id' && value) {
+      const patientIdPattern = /^[A-Z]{2}\d{6,8}$/;
+      if (!patientIdPattern.test(value)) {
+        errors.push('Patient ID format: 2 letters followed by 6-8 digits (e.g., AB123456)');
+      }
+    }
+    
+    keyboardState.validationErrors = errors;
+    return errors;
+  });
+
   // Enhanced keyboard event handler for medical devices
   const handleKeyDown$ = $((event: KeyboardEvent) => {
     // Medical device specific keyboard support
-    if (medical) {
+    if (medical || medicalDeviceMode) {
       // Escape key clears input for quick data re-entry
       if (event.key === 'Escape') {
         event.preventDefault();
@@ -165,11 +222,69 @@ export const Input = component$<InputProps>((props) => {
         (event.target as HTMLInputElement).focus();
         (event.target as HTMLInputElement).select();
       }
+      
+      // Healthcare workflow shortcuts
+      if (enableWorkflowShortcuts) {
+        if (inputContext === 'vital-signs') {
+          if (event.ctrlKey && event.key === 'r') {
+            event.preventDefault();
+            // Quick vital sign ranges
+            console.log('Show vital sign ranges');
+          } else if (event.ctrlKey && event.key === 'h') {
+            event.preventDefault();
+            // Show history
+            console.log('Show vital sign history');
+          }
+        } else if (inputContext === 'medication-dosage') {
+          if (event.ctrlKey && event.key === 'd') {
+            event.preventDefault();
+            // Show dosage calculator
+            console.log('Open dosage calculator');
+          } else if (event.ctrlKey && event.key === 'i') {
+            event.preventDefault();
+            // Show drug interactions
+            console.log('Check drug interactions');
+          }
+        } else if (inputContext === 'patient-data') {
+          if (event.ctrlKey && event.key === 'p') {
+            event.preventDefault();
+            // Quick patient lookup
+            console.log('Quick patient lookup');
+          } else if (event.ctrlKey && event.key === 'v') {
+            event.preventDefault();
+            // Verify patient data
+            console.log('Verify patient data');
+          }
+        } else if (inputContext === 'lab-values') {
+          if (event.ctrlKey && event.key === 'n') {
+            event.preventDefault();
+            // Show normal ranges
+            console.log('Show normal lab ranges');
+          } else if (event.ctrlKey && event.key === 'c') {
+            event.preventDefault();
+            // Compare with previous values
+            console.log('Compare lab values');
+          }
+        }
+      }
+      
+      // Real-time validation for medical inputs
+      if (event.key === 'Enter' && medicalValidation) {
+        const currentValue = (event.target as HTMLInputElement).value;
+        validateMedicalInput(currentValue);
+      }
     }
     
     // Tab navigation enhancement for medical forms
     if (event.key === 'Tab' && !event.shiftKey) {
       // Allow default tab behavior but ensure proper focus management
+    }
+    
+    // Call original onKeyDown$ if provided
+    if (onKeyDown$) {
+      if (typeof onKeyDown$ === 'function') {
+        onKeyDown$(event, event.target as HTMLInputElement);
+      }
     }
   });
 
@@ -197,8 +312,13 @@ export const Input = component$<InputProps>((props) => {
     hasError ? errorClasses : variantClasses[variant],
     
     // Medical input styling for clinical environments
-    medical && "ring-2 ring-blue-200 border-blue-300",
-    medical && isFocused.value && "ring-blue-500 border-blue-500",
+    medical && "ring-2 ring-blue-200 border-info-light",
+    medical && isFocused.value && "ring-primary-normal border-primary-normal",
+    
+    // Medical device enhancements
+    medicalDeviceMode && "focus:ring-4 focus:ring-offset-2",
+    medicalDeviceMode && hasError && "focus:ring-error-500",
+    medicalValidation && keyboardState.validationErrors.length > 0 && "border-warning-500 ring-2 ring-warning-200",
     
     // Size classes
     sizeClasses[size],
@@ -219,18 +339,18 @@ export const Input = component$<InputProps>((props) => {
 
   // Label classes with medical styling
   const labelClasses = mergeClasses(
-    "block font-medium text-neutral-700 mb-1",
+    "block font-medium text-neutral-dark mb-1",
     size === "sm" ? "text-sm" : "text-base",
     required && "after:content-['*'] after:ml-0.5 after:text-error-500",
-    medical && "text-blue-800 font-semibold"
+    medical && "text-primary-darker font-semibold"
   );
 
   // Helper text classes
   const helperClasses = mergeClasses(
     "mt-1 block",
     size === "sm" ? "text-xs" : "text-sm",
-    hasError ? "text-error-600" : "text-neutral-500",
-    medical && !hasError && "text-blue-600"
+    hasError ? "text-error-600" : "text-neutral-normal",
+    medical && !hasError && "text-primary-normal"
   );
 
   // Generate accessible label
@@ -244,7 +364,7 @@ export const Input = component$<InputProps>((props) => {
           <label for={inputId} class={labelClasses}>
             {label}
             {medical && (
-              <span class="ml-2 text-xs text-blue-600 font-normal">
+              <span class="ml-2 text-xs text-primary-normal font-normal">
                 (Medical Data)
               </span>
             )}
@@ -253,7 +373,7 @@ export const Input = component$<InputProps>((props) => {
         
         {/* Medical input instructions */}
         {medical && (
-          <div class="mb-2 text-xs text-blue-600">
+          <div class="mb-2 text-xs text-primary-normal">
             Press Escape to clear, F5 to refresh and select all
           </div>
         )}
@@ -278,16 +398,27 @@ export const Input = component$<InputProps>((props) => {
           inputMode={inputMode}
           tabIndex={disabled ? -1 : 0}
           aria-label={accessibleLabel}
+          aria-describedby={`${inputId}-helper${medicalDeviceMode ? ` ${keyboardState.instructionsId}` : ''}${hasError ? ` ${inputId}-error` : ''}`}
           aria-invalid={hasError}
           aria-required={required}
-          aria-describedby={
-            (error || helperText) ? `${inputId}-helper` : undefined
-          }
-          role={medical ? "textbox" : undefined}
-          onInput$={onInput$}
+          data-medical={medical}
+          data-context={inputContext}
+          data-validation-type={medicalValidation?.type}
+          onInput$={$((event) => {
+            if (medicalValidation) {
+              validateMedicalInput((event.target as HTMLInputElement).value);
+            }
+            if (onInput$ && typeof onInput$ === 'function') {
+              onInput$(event, event.target as HTMLInputElement);
+            }
+          })}
+          onFocus$={$((event) => {
+            handleFocus$(event);
+            if (onFocus$ && typeof onFocus$ === 'function') {
+              onFocus$(event, event.target as HTMLInputElement);
+            }
+          })}
           onKeyDown$={handleKeyDown$}
-          onFocus$={handleFocus$}
-          onBlur$={handleBlur$}
           {...rest}
         />
         
@@ -304,9 +435,35 @@ export const Input = component$<InputProps>((props) => {
         )}
         
         {/* Medical validation feedback */}
+        {medicalValidation && keyboardState.validationErrors.length > 0 && (
+          <div class="mt-1 text-xs text-warning-600" role="alert" aria-live="assertive">
+            {keyboardState.validationErrors.map((error, index) => (
+              <div key={index}>⚠ {error}</div>
+            ))}
+          </div>
+        )}
+        
+        {/* Medical validation feedback */}
         {medical && !hasError && value && (
-          <div class="mt-1 text-xs text-green-600" aria-live="polite">
+          <div class="mt-1 text-xs text-success-normal" aria-live="polite">
             ✓ Medical data format validated
+          </div>
+        )}
+        
+        {/* Medical Device Keyboard Instructions */}
+        {medicalDeviceMode && (
+          <div 
+            id={keyboardState.instructionsId}
+            class="sr-only"
+          >
+            Medical input field: Enter data and press Tab to continue.
+            {medical && ' Escape to clear field, F5 to refresh and select all.'}
+            {enableWorkflowShortcuts && inputContext === 'vital-signs' && ' Quick access: Ctrl+R for ranges, Ctrl+H for history.'}
+            {enableWorkflowShortcuts && inputContext === 'medication-dosage' && ' Quick access: Ctrl+D for calculator, Ctrl+I for interactions.'}
+            {enableWorkflowShortcuts && inputContext === 'patient-data' && ' Quick access: Ctrl+P for lookup, Ctrl+V to verify.'}
+            {enableWorkflowShortcuts && inputContext === 'lab-values' && ' Quick access: Ctrl+N for normal ranges, Ctrl+C to compare.'}
+            {enableWorkflowShortcuts && ' Healthcare shortcuts enabled.'}
+            {medicalValidation && ' Real-time validation active.'}
           </div>
         )}
       </div>

@@ -10,7 +10,7 @@
  * - HIPAA compliant image handling and audit trails
  */
 
-import { component$, useSignal, useTask$, $, Slot, type QRL } from "@builder.io/qwik";
+import { component$, useSignal, useTask$, $, Slot, type QRL, useStore } from "@builder.io/qwik";
 import { BaseComponentProps, mergeClasses } from "../../../design-system/props";
 import { Icon, type IconName } from "../../atoms/icon";
 import { Text } from "../../atoms/text/text";
@@ -72,13 +72,153 @@ export interface ImageProps extends BaseComponentProps<HTMLDivElement> {
   onError$?: QRL<() => void>;
   /** Callback when image loads successfully */
   onLoad$?: QRL<() => void>;
+  /** Medical device keyboard support with enhanced focus indicators */
+  medicalDeviceMode?: boolean;
+  /** Enable healthcare workflow shortcuts */
+  enableWorkflowShortcuts?: boolean;
+  /** Image context for healthcare applications */
+  imageContext?: 'diagnostic' | 'reference' | 'profile' | 'document' | 'scan' | 'annotation' | 'default';
+  /** Whether the image is interactive */
+  interactive?: boolean;
 }
 
 export const Image = component$<ImageProps>((props) => {
+  const {
+    medicalDeviceMode = false,
+    enableWorkflowShortcuts = false,
+    imageContext = 'default',
+    interactive = false,
+    ...rest
+  } = props;
+
   const imageRef = useSignal<HTMLImageElement>();
   const isLoading = useSignal(true);
   const hasError = useSignal(false);
   const isZoomed = useSignal(false);
+
+  // Enhanced keyboard state for medical devices
+  const keyboardState = useStore({
+    hasFocus: false,
+    shortcutPressed: false,
+    isAnnotating: false,
+    zoomLevel: 1
+  });
+
+  // Enhanced keyboard support for medical devices
+  const handleKeyDown = $((event: KeyboardEvent) => {
+    if (!medicalDeviceMode && !interactive) return;
+
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+        // Activate image or zoom
+        if (props.zoomable || props.onClick$) {
+          event.preventDefault();
+          if (props.zoomable) {
+            isZoomed.value = !isZoomed.value;
+          }
+          if (props.onClick$) {
+            handleImageClick();
+          }
+        }
+        break;
+      
+      case 'Escape':
+        // Exit zoom or annotation mode
+        event.preventDefault();
+        if (isZoomed.value) {
+          isZoomed.value = false;
+        }
+        if (keyboardState.isAnnotating) {
+          keyboardState.isAnnotating = false;
+        }
+        (event.target as HTMLElement).blur();
+        break;
+
+      case 'z':
+      case 'Z':
+        // Toggle zoom
+        if (props.zoomable) {
+          event.preventDefault();
+          isZoomed.value = !isZoomed.value;
+          keyboardState.shortcutPressed = true;
+          setTimeout(() => keyboardState.shortcutPressed = false, 200);
+        }
+        break;
+
+      case '+':
+      case '=':
+        // Zoom in
+        if (props.zoomable && medicalDeviceMode) {
+          event.preventDefault();
+          keyboardState.zoomLevel = Math.min(5, keyboardState.zoomLevel + 0.5);
+          keyboardState.shortcutPressed = true;
+          setTimeout(() => keyboardState.shortcutPressed = false, 200);
+        }
+        break;
+
+      case '-':
+        // Zoom out
+        if (props.zoomable && medicalDeviceMode) {
+          event.preventDefault();
+          keyboardState.zoomLevel = Math.max(0.5, keyboardState.zoomLevel - 0.5);
+          keyboardState.shortcutPressed = true;
+          setTimeout(() => keyboardState.shortcutPressed = false, 200);
+        }
+        break;
+
+      case '0':
+        // Reset zoom
+        if (props.zoomable && medicalDeviceMode) {
+          event.preventDefault();
+          keyboardState.zoomLevel = 1;
+          isZoomed.value = false;
+          keyboardState.shortcutPressed = true;
+          setTimeout(() => keyboardState.shortcutPressed = false, 200);
+        }
+        break;
+    }
+
+    // Healthcare workflow shortcuts
+    if (enableWorkflowShortcuts && (event.ctrlKey || event.metaKey)) {
+      switch (event.key.toLowerCase()) {
+        case 'c':
+          // Copy image information
+          if (medicalDeviceMode && imageContext !== 'default') {
+            event.preventDefault();
+            keyboardState.shortcutPressed = true;
+            setTimeout(() => keyboardState.shortcutPressed = false, 200);
+          }
+          break;
+        case 'a':
+          // Toggle annotation mode
+          if (medicalDeviceMode && imageContext === 'diagnostic') {
+            event.preventDefault();
+            keyboardState.isAnnotating = !keyboardState.isAnnotating;
+            keyboardState.shortcutPressed = true;
+            setTimeout(() => keyboardState.shortcutPressed = false, 200);
+          }
+          break;
+        case 'i':
+          // Image information
+          if (medicalDeviceMode) {
+            event.preventDefault();
+            keyboardState.shortcutPressed = true;
+            setTimeout(() => keyboardState.shortcutPressed = false, 200);
+          }
+          break;
+      }
+    }
+  });
+
+  const handleFocus = $(() => {
+    keyboardState.hasFocus = true;
+  });
+
+  const handleBlur = $(() => {
+    keyboardState.hasFocus = false;
+    keyboardState.isAnnotating = false;
+  });
 
   // HIPAA audit logging for medical image access
   useTask$(({ track }) => {
@@ -152,11 +292,11 @@ export const Image = component$<ImageProps>((props) => {
     const variant = props.variant || 'default';
     
     const variantMap = {
-      default: 'bg-neutral-100 border border-neutral-200',
-      avatar: 'bg-neutral-100 border-2 border-white shadow-md',
-      thumbnail: 'bg-neutral-50 border border-neutral-150 hover:border-primary-300 transition-colors',
-      hero: 'bg-neutral-200 border-none shadow-lg',
-      medical: 'bg-black border border-neutral-700 shadow-lg hover:shadow-xl transition-shadow'
+      default: 'bg-neutral-lighter border border-neutral-light',
+      avatar: 'bg-neutral-lighter border-2 border-white shadow-md',
+      thumbnail: 'bg-neutral-lighter border border-neutral-lighter hover:border-primary-300 transition-colors',
+      hero: 'bg-neutral-light border-none shadow-lg',
+      medical: 'bg-black border border-neutral-darker shadow-lg hover:shadow-xl transition-shadow'
     };
 
     return variantMap[variant];
@@ -180,16 +320,16 @@ export const Image = component$<ImageProps>((props) => {
     };
 
     const typeColors = {
-      xray: 'text-blue-400',
-      mri: 'text-purple-400',
-      ct: 'text-green-400',
-      ultrasound: 'text-cyan-400',
-      endoscopy: 'text-orange-400',
-      dermatology: 'text-pink-400',
-      ophthalmology: 'text-indigo-400',
-      pathology: 'text-red-400',
-      profile: 'text-neutral-400',
-      document: 'text-yellow-400'
+      xray: 'text-info-normal',
+      mri: 'text-primary-normal',
+      ct: 'text-success-normal',
+      ultrasound: 'text-info-normal',
+      endoscopy: 'text-warning-normal',
+      dermatology: 'text-error-normal',
+      ophthalmology: 'text-primary-normal',
+      pathology: 'text-error-normal',
+      profile: 'text-neutral-light',
+      document: 'text-warning-normal'
     };
 
     return (
@@ -197,7 +337,7 @@ export const Image = component$<ImageProps>((props) => {
         <Icon 
           icon={typeIcons[props.healthcare.type] || 'image'} 
           size={16} 
-          class={typeColors[props.healthcare.type] || 'text-neutral-400'}
+          class={typeColors[props.healthcare.type] || 'text-neutral-light'}
         />
         <Text size="xs" class="text-white font-medium uppercase tracking-wide">
           {props.healthcare.type}
@@ -213,7 +353,7 @@ export const Image = component$<ImageProps>((props) => {
     return (
       <div class="absolute inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center rounded-inherit">
         <div class="bg-black/80 backdrop-blur-sm rounded-lg px-3 py-2 flex items-center gap-2">
-          <Icon icon="shield" size={16} class="text-yellow-400" />
+          <Icon icon="shield" size={16} class="text-warning-normal" />
           <Text size="xs" class="text-white font-medium">
             Protected PHI
           </Text>
@@ -232,6 +372,18 @@ export const Image = component$<ImageProps>((props) => {
     containerStyles.height = typeof props.height === 'number' ? `${props.height}px` : props.height;
   }
 
+  // Enhanced ARIA attributes for medical contexts
+  const ariaLabel = medicalDeviceMode 
+    ? `${imageContext} image${props.healthcare?.type ? ` - ${props.healthcare.type}` : ''}${props.zoomable ? ' - Press Enter or Z to zoom' : ''}`
+    : props.alt;
+
+  const ariaDescription = [
+    medicalDeviceMode && 'Medical device mode enabled',
+    enableWorkflowShortcuts && 'Z to zoom, +/- to adjust zoom, 0 to reset, Ctrl+A to annotate',
+    props.zoomable && 'Image can be zoomed with keyboard',
+    keyboardState.isAnnotating && 'Annotation mode active'
+  ].filter(Boolean).join('. ');
+
   const imageStyles: Record<string, string> = {
     objectFit: props.objectFit || 'cover'
   };
@@ -246,25 +398,49 @@ export const Image = component$<ImageProps>((props) => {
           getVariantClasses(),
           props.zoomable ? 'cursor-zoom-in group' : '',
           isZoomed.value ? 'fixed inset-4 z-50 cursor-zoom-out' : '',
+          // Medical device focus indicators
+          medicalDeviceMode && (interactive || props.zoomable || props.onClick$) && [
+            'focus:outline-none focus:ring-4 focus:ring-primary-500/50 focus:ring-offset-2',
+            'focus:shadow-lg focus:z-10'
+          ],
+          keyboardState.hasFocus && medicalDeviceMode && [
+            'ring-4 ring-primary-200 shadow-lg',
+            imageContext !== 'default' && 'ring-info-light'
+          ],
+          keyboardState.shortcutPressed && 'ring-success-light ring-4',
+          keyboardState.isAnnotating && 'ring-warning-light ring-4',
+          medicalDeviceMode && 'medical-device-image',
+          imageContext !== 'default' && `image-context-${imageContext}`,
           props.class
         )}
-        style={containerStyles}
+        style={{
+          ...containerStyles,
+          transform: medicalDeviceMode && keyboardState.zoomLevel !== 1 ? `scale(${keyboardState.zoomLevel})` : undefined
+        }}
         onClick$={props.zoomable || props.onClick$ ? handleImageClick : undefined}
+        onKeyDown$={medicalDeviceMode ? handleKeyDown : undefined}
+        onFocus$={medicalDeviceMode ? handleFocus : undefined}
+        onBlur$={medicalDeviceMode ? handleBlur : undefined}
+        tabIndex={medicalDeviceMode && (interactive || props.zoomable || props.onClick$) ? 0 : undefined}
+        role={medicalDeviceMode && (interactive || props.zoomable || props.onClick$) ? 'button' : 'img'}
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescription ? 'image-description' : undefined}
+        data-medical-device={medicalDeviceMode}
         data-healthcare-element="image"
         data-medical-type={props.healthcare?.type}
-        {...props}
+        {...rest}
       >
       {/* Loading Placeholder */}
       {isLoading.value && props.showLoader !== false && (
-        <div class="absolute inset-0 flex items-center justify-center bg-neutral-100 animate-pulse">
-          <Icon icon="camera" size={32} class="text-neutral-400" />
+        <div class="absolute inset-0 flex items-center justify-center bg-neutral-lighter animate-pulse">
+          <Icon icon="camera" size={32} class="text-neutral-light" />
         </div>
       )}
 
       {/* Error State */}
       {hasError.value && props.showError !== false && (
-        <div class="absolute inset-0 flex flex-col items-center justify-center bg-neutral-100 text-neutral-500">
-          <Icon icon="x-circle" size={32} class="text-neutral-400 mb-2" />
+        <div class="absolute inset-0 flex flex-col items-center justify-center bg-neutral-lighter text-neutral-normal">
+          <Icon icon="x-circle" size={32} class="text-neutral-light mb-2" />
           <Text size="sm" class="text-center px-4">
             Failed to load image
           </Text>
@@ -325,7 +501,7 @@ export const Image = component$<ImageProps>((props) => {
 
       {/* Medical Findings Overlay */}
       {props.healthcare?.findings && props.healthcare.findings.length > 0 && (
-        <div class="absolute bottom-2 left-2 bg-red-600/90 backdrop-blur-sm rounded-md px-2 py-1">
+        <div class="absolute bottom-2 left-2 bg-error-normal/90 backdrop-blur-sm rounded-md px-2 py-1">
           <div class="flex items-center gap-1">
             <Icon icon="alert-triangle" size={14} class="text-white" />
             <Text size="xs" class="text-white font-medium">
@@ -338,6 +514,50 @@ export const Image = component$<ImageProps>((props) => {
       {/* Zoom Overlay Background (when zoomed) */}
       {isZoomed.value && (
         <div class="fixed inset-0 bg-black/80 backdrop-blur-sm -z-10" />
+      )}
+
+      {/* Medical device keyboard shortcuts help */}
+      {medicalDeviceMode && enableWorkflowShortcuts && keyboardState.hasFocus && (
+        <div 
+          id="image-description" 
+          class="sr-only"
+          aria-live="polite"
+        >
+          {ariaDescription}
+        </div>
+      )}
+
+      {/* Zoom level indicator */}
+      {medicalDeviceMode && props.zoomable && keyboardState.zoomLevel !== 1 && (
+        <div 
+          class="absolute top-2 right-2 bg-primary-600/90 backdrop-blur-sm rounded px-2 py-1 text-white text-xs font-medium"
+          role="status"
+          aria-live="polite"
+        >
+          {(keyboardState.zoomLevel * 100).toFixed(0)}%
+        </div>
+      )}
+
+      {/* Annotation mode indicator */}
+      {medicalDeviceMode && keyboardState.isAnnotating && (
+        <div 
+          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-warning-normal/90 backdrop-blur-sm rounded px-3 py-2 text-white text-sm font-medium"
+          role="status"
+          aria-live="assertive"
+        >
+          Annotation Mode Active
+        </div>
+      )}
+
+      {/* Shortcut pressed indicator */}
+      {medicalDeviceMode && keyboardState.shortcutPressed && (
+        <div 
+          class="absolute bottom-2 right-2 bg-success-normal/90 backdrop-blur-sm rounded px-2 py-1 text-white text-xs font-medium animate-pulse"
+          role="status"
+          aria-live="polite"
+        >
+          Shortcut activated
+        </div>
       )}
     </div>
     </div>
@@ -405,7 +625,7 @@ export const ImageGallery = component$<ImageGalleryProps>((props) => {
             onClick$={props.onImageClick$ ? () => props.onImageClick$!(image.id) : undefined}
           />
           {image.caption && (
-            <Text size="sm" class="text-neutral-600 text-center">
+            <Text size="sm" class="text-neutral-normal text-center">
               {image.caption}
             </Text>
           )}
@@ -443,9 +663,9 @@ export const MedicalImageViewer = component$<MedicalImageViewerProps>((props) =>
     <div class="themed-content">
       <div class="medical-image-viewer flex flex-col bg-black rounded-lg overflow-hidden">
       {/* Header with controls */}
-      <div class="flex items-center justify-between bg-neutral-900 px-4 py-2">
+      <div class="flex items-center justify-between bg-neutral-darker px-4 py-2">
         <div class="flex items-center gap-2">
-          <Icon icon="activity" size={20} class="text-blue-400" />
+          <Icon icon="activity" size={20} class="text-info-normal" />
           <Text size="sm" class="text-white font-medium">
             Medical Image Viewer
           </Text>
@@ -456,14 +676,14 @@ export const MedicalImageViewer = component$<MedicalImageViewerProps>((props) =>
             <>
               <button
                 type="button"
-                class="p-2 text-neutral-400 hover:text-white transition-colors"
+                class="p-2 text-neutral-light hover:text-white transition-colors"
                 title="Measure"
               >
                 <Icon icon="ruler" size={16} />
               </button>
               <button
                 type="button"
-                class="p-2 text-neutral-400 hover:text-white transition-colors"
+                class="p-2 text-neutral-light hover:text-white transition-colors"
                 title="Annotate"
               >
                 <Icon icon="edit" size={16} />
@@ -473,7 +693,7 @@ export const MedicalImageViewer = component$<MedicalImageViewerProps>((props) =>
           
           <button
             type="button"
-            class="p-2 text-neutral-400 hover:text-white transition-colors"
+            class="p-2 text-neutral-light hover:text-white transition-colors"
             onClick$={() => showMetadataPanel.value = !showMetadataPanel.value}
             title="Toggle metadata"
           >
@@ -495,7 +715,7 @@ export const MedicalImageViewer = component$<MedicalImageViewerProps>((props) =>
 
         {/* Metadata panel */}
         {showMetadataPanel.value && props.metadata && (
-          <div class="w-80 bg-neutral-900 border-l border-neutral-700 p-4">
+          <div class="w-80 bg-neutral-darker border-l border-neutral-darker p-4">
             <Text size="sm" class="text-white font-medium mb-4">
               Study Information
             </Text>
@@ -503,38 +723,38 @@ export const MedicalImageViewer = component$<MedicalImageViewerProps>((props) =>
             <div class="space-y-3">
               {props.metadata.patientName && (
                 <div>
-                  <Text size="xs" class="text-neutral-400">Patient</Text>
+                  <Text size="xs" class="text-neutral-light">Patient</Text>
                   <Text size="sm" class="text-white">{props.metadata.patientName}</Text>
                 </div>
               )}
               
               {props.metadata.studyDate && (
                 <div>
-                  <Text size="xs" class="text-neutral-400">Study Date</Text>
+                  <Text size="xs" class="text-neutral-light">Study Date</Text>
                   <Text size="sm" class="text-white">{props.metadata.studyDate}</Text>
                 </div>
               )}
               
               {props.metadata.modality && (
                 <div>
-                  <Text size="xs" class="text-neutral-400">Modality</Text>
+                  <Text size="xs" class="text-neutral-light">Modality</Text>
                   <Text size="sm" class="text-white">{props.metadata.modality}</Text>
                 </div>
               )}
               
               {props.metadata.bodyPart && (
                 <div>
-                  <Text size="xs" class="text-neutral-400">Body Part</Text>
+                  <Text size="xs" class="text-neutral-light">Body Part</Text>
                   <Text size="sm" class="text-white">{props.metadata.bodyPart}</Text>
                 </div>
               )}
               
               {props.metadata.findings && props.metadata.findings.length > 0 && (
                 <div>
-                  <Text size="xs" class="text-neutral-400 mb-2">Findings</Text>
+                  <Text size="xs" class="text-neutral-light mb-2">Findings</Text>
                   <div class="space-y-1">
                     {props.metadata.findings.map((finding, index) => (
-                      <Text key={index} size="sm" class="text-orange-300">
+                      <Text key={index} size="sm" class="text-warning-light">
                         • {finding}
                       </Text>
                     ))}
@@ -544,7 +764,7 @@ export const MedicalImageViewer = component$<MedicalImageViewerProps>((props) =>
               
               {props.metadata.radiologist && (
                 <div>
-                  <Text size="xs" class="text-neutral-400">Radiologist</Text>
+                  <Text size="xs" class="text-neutral-light">Radiologist</Text>
                   <Text size="sm" class="text-white">{props.metadata.radiologist}</Text>
                 </div>
               )}

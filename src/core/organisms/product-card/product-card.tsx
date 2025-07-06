@@ -100,8 +100,9 @@ export const ProductCard = component$<ProductCardProps>(({
   };
 
   return (
-    <div 
-      class={cardClasses}
+    <div class="themed-content">
+      <div 
+        class={cardClasses}
       style={style}
       data-testid={testId}
       onClick$={() => onClick$?.(product.id)}
@@ -152,7 +153,7 @@ export const ProductCard = component$<ProductCardProps>(({
       <div class={[
         'product-image',
         variant === 'compact' ? 'w-20 h-20 flex-shrink-0' : 'w-full h-40 mb-3',
-        'bg-neutral-50 rounded-md overflow-hidden',
+        'bg-neutral-lighter rounded-md overflow-hidden',
         'flex items-center justify-center'
       ].join(' ')}>
         {product.image ? (
@@ -165,7 +166,7 @@ export const ProductCard = component$<ProductCardProps>(({
             height="200"
           />
         ) : (
-          <Icon icon="pill" class="w-8 h-8 text-neutral-400" />
+          <Icon icon="pill" class="w-8 h-8 text-neutral-light" />
         )}
       </div>
 
@@ -191,7 +192,7 @@ export const ProductCard = component$<ProductCardProps>(({
             </Text>
           )}
           
-          <div class="flex items-center gap-2 mt-1 text-xs text-neutral-500">
+          <div class="flex items-center gap-2 mt-1 text-xs text-neutral-normal">
             <span>{product.manufacturer}</span>
             {product.strength && <span>• {product.strength}</span>}
             {product.packSize && <span>• {product.packSize}</span>}
@@ -202,10 +203,10 @@ export const ProductCard = component$<ProductCardProps>(({
         {product.rating > 0 && (
           <div class="flex items-center gap-1 mb-2">
             <div class="flex items-center gap-1 px-2 py-1 bg-success-100 rounded text-xs">
-              <Icon icon="trending-up" class="w-3 h-3 text-success-600 fill-current" />
+              <Icon icon="trending-up" class="w-3 h-3 text-success-normal fill-current" />
               <span class="font-medium text-success-800">{formattedRating}</span>
             </div>
-            <span class="text-xs text-neutral-500">({product.reviewCount} reviews)</span>
+            <span class="text-xs text-neutral-normal">({product.reviewCount} reviews)</span>
           </div>
         )}
 
@@ -213,17 +214,17 @@ export const ProductCard = component$<ProductCardProps>(({
         <div class="mb-3">
           <div class="flex items-center gap-2">
             <span class={[
-              'font-semibold text-neutral-900',
+              'font-semibold text-neutral-darker',
               size === 'sm' ? 'text-sm' : 'text-lg'
             ].join(' ')}>
               ₹{product.discountedPrice.toLocaleString()}
             </span>
             {product.discountPercentage > 0 && (
               <>
-                <span class="text-sm text-neutral-500 line-through">
+                <span class="text-sm text-neutral-normal line-through">
                   ₹{product.mrp.toLocaleString()}
                 </span>
-                <span class="text-xs font-medium text-success-600">
+                <span class="text-xs font-medium text-success-normal">
                   {product.discountPercentage}% OFF
                 </span>
               </>
@@ -255,7 +256,7 @@ export const ProductCard = component$<ProductCardProps>(({
 
         {/* Prescription Required */}
         {product.prescriptionRequired && (
-          <div class="flex items-center gap-1 mb-3 text-xs text-orange-600">
+          <div class="flex items-center gap-1 mb-3 text-xs text-warning-normal">
             <Icon icon="file-text" class="w-3 h-3" />
             <span>Prescription Required</span>
           </div>
@@ -296,6 +297,7 @@ export const ProductCard = component$<ProductCardProps>(({
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 });

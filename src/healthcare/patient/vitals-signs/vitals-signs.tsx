@@ -204,41 +204,41 @@ export const VitalSignsSemantic = component$<VitalSignsProps>((props) => {
         return {
           cardPurpose: 'alert' as const,
           headerColor: 'error' as const,
-          borderStyle: 'border-2 border-red-500 shadow-red-500/20 bg-gradient-to-br from-red-50 to-red-100/50',
-          container: 'bg-gradient-to-br from-red-50 to-red-100/50 border-red-300 shadow-xl ring-2 ring-red-300/50',
-          header: 'bg-gradient-to-r from-red-600 to-red-700 text-white',
-          accent: 'text-red-700',
-          vitalsCard: 'bg-white/90 backdrop-blur-sm border-red-200 shadow-lg hover:shadow-xl transition-all duration-300'
+          borderStyle: 'border-2 border-error-normal shadow-error-normal/20 bg-gradient-to-br from-error-lighter to-error-lighter/50',
+          container: 'bg-gradient-to-br from-error-lighter to-error-lighter/50 border-error-light shadow-xl ring-2 ring-error-light/50',
+          header: 'bg-gradient-to-r from-error-dark to-error-dark text-white',
+          accent: 'text-error-dark',
+          vitalsCard: 'bg-white/90 backdrop-blur-sm border-error-light shadow-lg hover:shadow-xl transition-all duration-300'
         };
       case 'urgent':
         return {
           cardPurpose: 'alert' as const,
           headerColor: 'warning' as const,
-          borderStyle: 'border-2 border-orange-500 shadow-orange-500/20 bg-gradient-to-br from-orange-50 to-orange-100/50',
-          container: 'bg-gradient-to-br from-orange-50 to-orange-100/50 border-orange-300 shadow-lg ring-1 ring-orange-300/50',
-          header: 'bg-gradient-to-r from-orange-600 to-orange-700 text-white',
-          accent: 'text-orange-700',
-          vitalsCard: 'bg-white/90 backdrop-blur-sm border-orange-200 shadow-md hover:shadow-lg transition-all duration-300'
+          borderStyle: 'border-2 border-warning-normal shadow-warning-normal/20 bg-gradient-to-br from-warning-lighter to-warning-lighter/50',
+          container: 'bg-gradient-to-br from-warning-lighter to-warning-lighter/50 border-warning-light shadow-lg ring-1 ring-warning-light/50',
+          header: 'bg-gradient-to-r from-warning-dark to-warning-dark text-white',
+          accent: 'text-warning-dark',
+          vitalsCard: 'bg-white/90 backdrop-blur-sm border-warning-light shadow-md hover:shadow-lg transition-all duration-300'
         };
       case 'priority':
         return {
           cardPurpose: 'dashboard' as const,
           headerColor: 'info' as const,
-          borderStyle: 'border border-primary-300 bg-gradient-to-br from-blue-50 to-blue-100/50',
-          container: 'bg-gradient-to-br from-blue-50 to-blue-100/50 border-blue-300 shadow-md ring-1 ring-blue-300/30',
-          header: 'bg-gradient-to-r from-blue-600 to-blue-700 text-white',
-          accent: 'text-blue-700',
-          vitalsCard: 'bg-white/90 backdrop-blur-sm border-blue-200 shadow-sm hover:shadow-md transition-all duration-300'
+          borderStyle: 'border border-primary-300 bg-gradient-to-br from-info-lighter to-info-lighter/50',
+          container: 'bg-gradient-to-br from-info-lighter to-info-lighter/50 border-info-light shadow-md ring-1 ring-info-light/30',
+          header: 'bg-gradient-to-r from-info-dark to-primary-dark text-white',
+          accent: 'text-primary-dark',
+          vitalsCard: 'bg-white/90 backdrop-blur-sm border-info-light shadow-sm hover:shadow-md transition-all duration-300'
         };
       default:
         return {
           cardPurpose: 'dashboard' as const,
           headerColor: 'primary' as const,
-          borderStyle: 'border border-neutral-200 bg-gradient-to-br from-gray-50 to-gray-100/50',
-          container: 'bg-gradient-to-br from-gray-50 to-gray-100/50 border-gray-300 shadow-sm',
-          header: 'bg-gradient-to-r from-gray-600 to-gray-700 text-white',
-          accent: 'text-gray-700',
-          vitalsCard: 'bg-white/90 backdrop-blur-sm border-gray-200 shadow-sm hover:shadow-md transition-all duration-300'
+          borderStyle: 'border border-neutral-light bg-gradient-to-br from-neutral-lighter to-neutral-lighter/50',
+          container: 'bg-gradient-to-br from-neutral-lighter to-neutral-lighter/50 border-neutral-light shadow-sm',
+          header: 'bg-gradient-to-r from-neutral-dark to-neutral-darker text-white',
+          accent: 'text-neutral-dark',
+          vitalsCard: 'bg-white/90 backdrop-blur-sm border-neutral-light shadow-sm hover:shadow-md transition-all duration-300'
         };
     }
   };
@@ -532,487 +532,489 @@ export const VitalSignsSemantic = component$<VitalSignsProps>((props) => {
   );
 
   return (
-    <div 
-      class={rootClasses}
-      style={style}
-      id={props.id}
-      aria-label={props['aria-label']}
-    >
-      <Card>
-        {/* Semantic Header with Context Awareness */}
-        <Card.Header>
-          <div class="space-y-2">
-            <Row alignItems="center" justifyContent="between">
-              <Text as="h2" color={urgencyStyles.headerColor}>
-                Vital Signs {context !== 'outpatient' && `(${context.toUpperCase()})`}
-              </Text>
-              {urgency === 'critical' && (
-                <Badge color="error" class="animate-pulse">
-                  CRITICAL
-                </Badge>
+    <div class="themed-content">
+      <div 
+        class={rootClasses}
+        style={style}
+        id={props.id}
+        aria-label={props['aria-label']}
+      >
+        <Card>
+          {/* Semantic Header with Context Awareness */}
+          <Card.Header>
+            <div class="space-y-2">
+              <Row alignItems="center" justifyContent="between">
+                <Text as="h2" color={urgencyStyles.headerColor}>
+                  Vital Signs {context !== 'outpatient' && `(${context.toUpperCase()})`}
+                </Text>
+                {urgency === 'critical' && (
+                  <Badge color="error" class="animate-pulse">
+                    CRITICAL
+                  </Badge>
+                )}
+                {urgency === 'urgent' && (
+                  <Badge color="warning">
+                    URGENT
+                  </Badge>
+                )}
+              </Row>
+              
+              {editable && (
+                <Button
+                  intent={showInputForm.value ? "neutral" : "primary"}
+                  size="sm"
+                  onClick$={() => showInputForm.value = !showInputForm.value}
+                >
+                  {showInputForm.value ? 'Cancel Input' : 'Record Vitals'}
+                </Button>
               )}
-              {urgency === 'urgent' && (
-                <Badge color="warning">
-                  URGENT
-                </Badge>
-              )}
-            </Row>
-            
-            {editable && (
-              <Button
-                intent={showInputForm.value ? "neutral" : "primary"}
-                size="sm"
-                onClick$={() => showInputForm.value = !showInputForm.value}
-              >
-                {showInputForm.value ? 'Cancel Input' : 'Record Vitals'}
-              </Button>
-            )}
-          </div>
-        </Card.Header>
+            </div>
+          </Card.Header>
 
-        {/* Context-Aware Alerts */}
-        {currentVitals && showAlerts && (
-          (() => {
-            const alerts = isVitalNormal(currentVitals);
-            return alerts.length > 0 && (
-              <Alert color="error" class="mb-4">
-                <Row alignItems="center">
-                  <Icon icon="alert-triangle" class="w-5 h-5 text-error-500 mr-3" />
-                  <div>
-                    <Text as="h3" size="sm" weight="medium">
-                      Abnormal Vital Signs Detected
-                    </Text>
-                    <Text as="p" size="sm" class="mt-1">
-                      {context === 'emergency' ? 'IMMEDIATE ATTENTION REQUIRED: ' : ''}
-                      {alerts.join(', ')} outside normal ranges for {context} setting
-                    </Text>
-                  </div>
-                </Row>
-              </Alert>
-            );
-          })()
-        )}
-
-        {/* Input Form with Purpose-Driven Layout */}
-        {showInputForm.value && (
-          <Card.Body>
-            <Card>
-              <Card.Header>
-                <Text as="h3">Record New Vitals - {context.charAt(0).toUpperCase() + context.slice(1)} Setting</Text>
-              </Card.Header>
-              <Card.Body>
-                <Row gap="4">
-                  {/* Required fields based on context */}
-                  <Column size={{ sm: 1, md: 2, lg: 3 }} class="col-span-full">
-                    <Text as="label" size="sm" weight="medium">
-                      Measured By <Text as="span" color="error">*</Text>
-                    </Text>
-                    <Input
-                      type="text"
-                      value={newVital.measuredBy || ''}
-                      onInput$={(e) => newVital.measuredBy = (e.target as HTMLInputElement).value}
-                      placeholder="Enter your name"
-                      required
-                      class="mt-1"
-                    />
-                  </Column>
-
-                  {/* Blood Pressure - Always Critical */}
-                  <Column size={{ sm: 1, md: 2, lg: 3 }} class="col-span-full">
-                    <Text as="label" size="sm" weight="medium">
-                      Blood Pressure <Text as="span" color="error">*</Text>
-                    </Text>
-                    <Row gap="2" class="mt-1">
-                      <Input
-                        value={String(newVital.bloodPressure?.systolic || '')}
-                        onInput$={(e) => {
-                          if (newVital.bloodPressure) {
-                            newVital.bloodPressure.systolic = parseInt((e.target as HTMLInputElement).value) || 0;
-                          }
-                        }}
-                        placeholder="Systolic"
-                      />
-                      <Text as="span" class="self-center">/</Text>
-                      <Input
-                        value={String(newVital.bloodPressure?.diastolic || '')}
-                        onInput$={(e) => {
-                          if (newVital.bloodPressure) {
-                            newVital.bloodPressure.diastolic = parseInt((e.target as HTMLInputElement).value) || 0;
-                          }
-                        }}
-                        placeholder="Diastolic"
-                      />
-                    </Row>
-                    <Text as="span" size="xs" color="secondary">mmHg</Text>
-                  </Column>
-
-                  {/* Heart Rate */}
-                  <Column size={{ sm: 1, md: 2, lg: 3 }} class="col-span-full">
-                    <Text as="label" size="sm" weight="medium">Heart Rate</Text>
-                    <div class="space-y-2 mt-1">
-                      <Input
-                        value={String(newVital.heartRate?.value || '')}
-                        onInput$={(e) => {
-                          if (newVital.heartRate) {
-                            newVital.heartRate.value = parseInt((e.target as HTMLInputElement).value) || 0;
-                          }
-                        }}
-                        placeholder="Heart rate"
-                      />
-                      <select
-                        value={newVital.heartRate?.rhythm || 'regular'}
-                        onChange$={(e) => {
-                          if (newVital.heartRate) {
-                            newVital.heartRate.rhythm = (e.target as HTMLSelectElement).value as 'regular' | 'irregular' | 'unknown';
-                          }
-                        }}
-                        class="p-2 border border-neutral-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-primary-500 w-full"
-                      >
-                        <option value="regular">Regular</option>
-                        <option value="irregular">Irregular</option>
-                        <option value="unknown">Unknown</option>
-                      </select>
-                    </div>
-                    <Text as="span" size="xs" color="secondary">bpm</Text>
-                  </Column>
-
-                  {/* Pain Scale - Context Dependent */}
-                  {(context === 'emergency' || context === 'surgery') && (
+          {/* Context-Aware Alerts */}
+          {currentVitals && showAlerts && (
+            (() => {
+              const alerts = isVitalNormal(currentVitals);
+              return alerts.length > 0 && (
+                <Alert color="error" class="mb-4">
+                  <Row alignItems="center">
+                    <Icon icon="alert-triangle" class="w-5 h-5 text-error-500 mr-3" />
                     <div>
-                      <Text as="label" size="sm" weight="medium">Pain Scale (0-10)</Text>
+                      <Text as="h3" size="sm" weight="medium">
+                        Abnormal Vital Signs Detected
+                      </Text>
+                      <Text as="p" size="sm" class="mt-1">
+                        {context === 'emergency' ? 'IMMEDIATE ATTENTION REQUIRED: ' : ''}
+                        {alerts.join(', ')} outside normal ranges for {context} setting
+                      </Text>
+                    </div>
+                  </Row>
+                </Alert>
+              );
+            })()
+          )}
+
+          {/* Input Form with Purpose-Driven Layout */}
+          {showInputForm.value && (
+            <Card.Body>
+              <Card>
+                <Card.Header>
+                  <Text as="h3">Record New Vitals - {context.charAt(0).toUpperCase() + context.slice(1)} Setting</Text>
+                </Card.Header>
+                <Card.Body>
+                  <Row gap="4">
+                    {/* Required fields based on context */}
+                    <Column size={{ sm: 1, md: 2, lg: 3 }} class="col-span-full">
+                      <Text as="label" size="sm" weight="medium">
+                        Measured By <Text as="span" color="error">*</Text>
+                      </Text>
                       <Input
-                        value={String(newVital.painScale?.value || '')}
-                        onInput$={(e) => {
-                          const value = parseInt((e.target as HTMLInputElement).value);
-                          if (value >= 0 && value <= 10) {
-                            newVital.painScale = { value, description: newVital.painScale?.description };
-                          }
-                        }}
-                        placeholder="0-10"
+                        type="text"
+                        value={newVital.measuredBy || ''}
+                        onInput$={(e) => newVital.measuredBy = (e.target as HTMLInputElement).value}
+                        placeholder="Enter your name"
+                        required
                         class="mt-1"
                       />
-                    </div>
-                  )}
+                    </Column>
 
-                  {/* Notes */}
-                  <Column size={{ sm: 1, md: 2, lg: 3 }} class="col-span-full">
-                    <Textarea
-                      purpose="notes"
-                      label="Clinical Notes"
-                      value={newVital.notes || ''}
-                      onChange$={(value) => newVital.notes = value}
-                      placeholder={`Clinical observations for ${context} setting...`}
-                      rows={3}
-                      helperText={`Record clinical observations and findings for ${context} care`}
-                      fullWidth={true}
-                    />
-                  </Column>
-                </Row>
-              </Card.Body>
-              
-              <Card.Footer>
-                <div class="flex justify-end space-x-2">
-                  <Button
-                    intent="neutral"
-                    onClick$={() => showInputForm.value = false}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    intent="primary"
-                    onClick$={saveVital}
-                  >
-                    Save Vitals
-                  </Button>
-                </div>
-              </Card.Footer>
-            </Card>
-          </Card.Body>
-        )}
+                    {/* Blood Pressure - Always Critical */}
+                    <Column size={{ sm: 1, md: 2, lg: 3 }} class="col-span-full">
+                      <Text as="label" size="sm" weight="medium">
+                        Blood Pressure <Text as="span" color="error">*</Text>
+                      </Text>
+                      <Row gap="2" class="mt-1">
+                        <Input
+                          value={String(newVital.bloodPressure?.systolic || '')}
+                          onInput$={(e) => {
+                            if (newVital.bloodPressure) {
+                              newVital.bloodPressure.systolic = parseInt((e.target as HTMLInputElement).value) || 0;
+                            }
+                          }}
+                          placeholder="Systolic"
+                        />
+                        <Text as="span" class="self-center">/</Text>
+                        <Input
+                          value={String(newVital.bloodPressure?.diastolic || '')}
+                          onInput$={(e) => {
+                            if (newVital.bloodPressure) {
+                              newVital.bloodPressure.diastolic = parseInt((e.target as HTMLInputElement).value) || 0;
+                            }
+                          }}
+                          placeholder="Diastolic"
+                        />
+                      </Row>
+                      <Text as="span" size="xs" color="secondary">mmHg</Text>
+                    </Column>
 
-        {/* Current Vitals Display with Purpose-Driven Layout */}
-        {currentVitals && purpose !== 'input' && (
-          <Card.Body>
-            {/* Semantic Validation Alerts */}
-            {(() => {
-              const validations = getSemanticValidation(currentVitals, context);
-              return validations.length > 0 && (
-                <div class="mb-6 space-y-2">
-                  {validations.map((validation, index) => (
-                    <Alert
-                      key={index}
-                      color={validation.type === 'error' ? 'error' : validation.type === 'warning' ? 'warning' : 'info'}
-                      variant="soft"
-                      class="flex items-start space-x-2"
-                    >
-                      <Icon 
-                        icon={validation.type === 'error' ? 'alert-triangle' : validation.type === 'warning' ? 'alert-triangle' : 'bell'} 
-                        class="w-4 h-4 mt-0.5 flex-shrink-0" 
-                      />
-                      <div class="flex-1">
-                        <div class="font-medium">{validation.message}</div>
-                        {validation.recommendation && (
-                          <div class="text-sm mt-1 opacity-90">
-                            <Text weight="bold">Recommendation:</Text> {validation.recommendation}
-                          </div>
-                        )}
+                    {/* Heart Rate */}
+                    <Column size={{ sm: 1, md: 2, lg: 3 }} class="col-span-full">
+                      <Text as="label" size="sm" weight="medium">Heart Rate</Text>
+                      <div class="space-y-2 mt-1">
+                        <Input
+                          value={String(newVital.heartRate?.value || '')}
+                          onInput$={(e) => {
+                            if (newVital.heartRate) {
+                              newVital.heartRate.value = parseInt((e.target as HTMLInputElement).value) || 0;
+                            }
+                          }}
+                          placeholder="Heart rate"
+                        />
+                        <select
+                          value={newVital.heartRate?.rhythm || 'regular'}
+                          onChange$={(e) => {
+                            if (newVital.heartRate) {
+                              newVital.heartRate.rhythm = (e.target as HTMLSelectElement).value as 'regular' | 'irregular' | 'unknown';
+                            }
+                          }}
+                          class="p-2 border border-neutral-light rounded-md focus:ring-2 focus:ring-primary-normal focus:border-primary-500 w-full"
+                        >
+                          <option value="regular">Regular</option>
+                          <option value="irregular">Irregular</option>
+                          <option value="unknown">Unknown</option>
+                        </select>
                       </div>
-                    </Alert>
-                  ))}
-                </div>
-              );
-            })()}
+                      <Text as="span" size="xs" color="secondary">bpm</Text>
+                    </Column>
 
-            <Row gap="4">
-              {/* Blood Pressure with Semantic Tooltip */}
-              <Column size={purposeConfig.gridCols}>
-              <Tooltip content={getSemanticTooltip('bloodPressure', context)}>
-                <Card class={`relative group transition-all duration-300 hover:scale-105 ${urgencyStyles.vitalsCard}`}>
-                  <Card.Body class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                      <Text as="h4" weight="semibold" size="lg" class={urgencyStyles.accent}>Blood Pressure</Text>
-                      <div class="p-2 rounded-full bg-red-100">
-                        <Icon icon="heart" class="w-6 h-6 text-red-600" />
+                    {/* Pain Scale - Context Dependent */}
+                    {(context === 'emergency' || context === 'surgery') && (
+                      <div>
+                        <Text as="label" size="sm" weight="medium">Pain Scale (0-10)</Text>
+                        <Input
+                          value={String(newVital.painScale?.value || '')}
+                          onInput$={(e) => {
+                            const value = parseInt((e.target as HTMLInputElement).value);
+                            if (value >= 0 && value <= 10) {
+                              newVital.painScale = { value, description: newVital.painScale?.description };
+                            }
+                          }}
+                          placeholder="0-10"
+                          class="mt-1"
+                        />
+                      </div>
+                    )}
+
+                    {/* Notes */}
+                    <Column size={{ sm: 1, md: 2, lg: 3 }} class="col-span-full">
+                      <Textarea
+                        purpose="notes"
+                        label="Clinical Notes"
+                        value={newVital.notes || ''}
+                        onChange$={(value) => newVital.notes = value}
+                        placeholder={`Clinical observations for ${context} setting...`}
+                        rows={3}
+                        helperText={`Record clinical observations and findings for ${context} care`}
+                        fullWidth={true}
+                      />
+                    </Column>
+                  </Row>
+                </Card.Body>
+                
+                <Card.Footer>
+                  <div class="flex justify-end space-x-2">
+                    <Button
+                      intent="neutral"
+                      onClick$={() => showInputForm.value = false}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      intent="primary"
+                      onClick$={saveVital}
+                    >
+                      Save Vitals
+                    </Button>
+                  </div>
+                </Card.Footer>
+              </Card>
+            </Card.Body>
+          )}
+
+          {/* Current Vitals Display with Purpose-Driven Layout */}
+          {currentVitals && purpose !== 'input' && (
+            <Card.Body>
+              {/* Semantic Validation Alerts */}
+              {(() => {
+                const validations = getSemanticValidation(currentVitals, context);
+                return validations.length > 0 && (
+                  <div class="mb-6 space-y-2">
+                    {validations.map((validation, index) => (
+                      <Alert
+                        key={index}
+                        color={validation.type === 'error' ? 'error' : validation.type === 'warning' ? 'warning' : 'info'}
+                        variant="soft"
+                        class="flex items-start space-x-2"
+                      >
+                        <Icon 
+                          icon={validation.type === 'error' ? 'alert-triangle' : validation.type === 'warning' ? 'alert-triangle' : 'bell'} 
+                          class="w-4 h-4 mt-0.5 flex-shrink-0" 
+                        />
+                        <div class="flex-1">
+                          <div class="font-medium">{validation.message}</div>
+                          {validation.recommendation && (
+                            <div class="text-sm mt-1 opacity-90">
+                              <Text weight="bold">Recommendation:</Text> {validation.recommendation}
+                            </div>
+                          )}
+                        </div>
+                      </Alert>
+                    ))}
+                  </div>
+                );
+              })()}
+
+              <Row gap="4">
+                {/* Blood Pressure with Semantic Tooltip */}
+                <Column size={purposeConfig.gridCols}>
+                <Tooltip content={getSemanticTooltip('bloodPressure', context)}>
+                  <Card class={`relative group transition-all duration-300 hover:scale-105 ${urgencyStyles.vitalsCard}`}>
+                    <Card.Body class="p-6">
+                      <div class="flex items-center justify-between mb-4">
+                        <Text as="h4" weight="semibold" size="lg" class={urgencyStyles.accent}>Blood Pressure</Text>
+                        <div class="p-2 rounded-full bg-error-lighter">
+                          <Icon icon="heart" class="w-6 h-6 text-error-normal" />
+                        </div>
+                      </div>
+                      <div class="space-y-2">
+                        <Text as="div" size="xl" weight="bold" class="font-mono tracking-tight text-3xl">
+                          {currentVitals.bloodPressure.systolic}/{currentVitals.bloodPressure.diastolic}
+                        </Text>
+                        <div class="flex items-center gap-2">
+                          <Text as="div" size="sm" color="secondary" class="font-medium">mmHg</Text>
+                          {(() => {
+                            const { systolic, diastolic } = currentVitals.bloodPressure;
+                            const isHigh = systolic > ranges.bloodPressure.systolic[1] || diastolic > ranges.bloodPressure.diastolic[1];
+                            const isLow = systolic < ranges.bloodPressure.systolic[0] || diastolic < ranges.bloodPressure.diastolic[0];
+                            if (isHigh) return <Badge color="error" size="sm" class="animate-pulse">HIGH</Badge>;
+                            if (isLow) return <Badge color="warning" size="sm">LOW</Badge>;
+                            return <Badge color="success" size="sm">NORMAL</Badge>;
+                          })()}
+                        </div>
+                      </div>
+                    
+                    {/* Trending for comparison/monitoring */}
+                    {purposeConfig.showTrending && historicalVitals.length > 0 && (() => {
+                      const prevVital = historicalVitals[historicalVitals.length - 1];
+                      const trend = getTrend(currentVitals.bloodPressure.systolic, prevVital.bloodPressure.systolic);
+                      return trend && (
+                        <div class="flex items-center mt-3 p-2 bg-info-lighter rounded-lg">
+                          <Icon icon={trend.icon} class="w-4 h-4 mr-2 text-primary-normal" />
+                          <Text as="span" size="sm" color="blue-700" weight="medium">
+                            {trend.change} vs previous
+                          </Text>
+                        </div>
+                      );
+                    })()}
+                  </Card.Body>
+                </Card>
+                </Tooltip>
+                </Column>
+
+                {/* Heart Rate with Semantic Tooltip */}
+                <Column size={purposeConfig.gridCols}>
+                <Tooltip content={getSemanticTooltip('heartRate', context)}>
+                  <Card class={`relative group transition-all duration-300 hover:scale-105 ${urgencyStyles.vitalsCard}`}>
+                    <Card.Body class="p-6">
+                      <div class="flex items-center justify-between mb-4">
+                        <Text as="h4" weight="semibold" size="lg" class={urgencyStyles.accent}>Heart Rate</Text>
+                        <div class="p-2 rounded-full bg-info-lighter">
+                          <Icon icon="activity" class="w-6 h-6 text-primary-normal" />
+                        </div>
+                      </div>
+                      <div class="space-y-2">
+                        <Text as="div" size="xl" weight="bold" class="font-mono tracking-tight text-3xl">{currentVitals.heartRate.value}</Text>
+                        <div class="flex items-center gap-2">
+                          <Text as="div" size="sm" color="secondary" class="font-medium">
+                            bpm ({currentVitals.heartRate.rhythm})
+                          </Text>
+                          {(() => {
+                            const hr = currentVitals.heartRate.value;
+                            const isHigh = hr > ranges.heartRate[1];
+                            const isLow = hr < ranges.heartRate[0];
+                            if (isHigh) return <Badge color="error" size="sm" class="animate-pulse">HIGH</Badge>;
+                            if (isLow) return <Badge color="warning" size="sm">LOW</Badge>;
+                            return <Badge color="success" size="sm">NORMAL</Badge>;
+                          })()}
+                        </div>
+                      </div>
+                  </Card.Body>
+                </Card>
+                </Tooltip>
+                </Column>
+
+                {/* Temperature with Semantic Tooltip */}
+                <Column size={purposeConfig.gridCols}>
+                <Tooltip content={getSemanticTooltip('temperature', context)}>
+                  <Card class={`relative group transition-all duration-300 hover:scale-105 ${urgencyStyles.vitalsCard}`}>
+                    <Card.Body class="p-6">
+                      <div class="flex items-center justify-between mb-4">
+                      <Text as="h4" weight="semibold" size="lg" class={urgencyStyles.accent}>Temperature</Text>
+                      <div class="p-2 rounded-full bg-warning-lighter">
+                        <Icon icon="thermometer" class="w-6 h-6 text-warning-normal" />
                       </div>
                     </div>
                     <div class="space-y-2">
                       <Text as="div" size="xl" weight="bold" class="font-mono tracking-tight text-3xl">
-                        {currentVitals.bloodPressure.systolic}/{currentVitals.bloodPressure.diastolic}
+                        {currentVitals.temperature.value}°{currentVitals.temperature.unit}
                       </Text>
                       <div class="flex items-center gap-2">
-                        <Text as="div" size="sm" color="secondary" class="font-medium">mmHg</Text>
+                        <Text as="div" size="sm" color="secondary" transform="capitalize" class="font-medium">
+                          {currentVitals.temperature.site}
+                        </Text>
                         {(() => {
-                          const { systolic, diastolic } = currentVitals.bloodPressure;
-                          const isHigh = systolic > ranges.bloodPressure.systolic[1] || diastolic > ranges.bloodPressure.diastolic[1];
-                          const isLow = systolic < ranges.bloodPressure.systolic[0] || diastolic < ranges.bloodPressure.diastolic[0];
-                          if (isHigh) return <Badge color="error" size="sm" class="animate-pulse">HIGH</Badge>;
+                          const temp = currentVitals.temperature.value;
+                          const isHigh = temp > ranges.temperature[1];
+                          const isLow = temp < ranges.temperature[0];
+                          if (isHigh) return <Badge color="error" size="sm" class="animate-pulse">FEVER</Badge>;
                           if (isLow) return <Badge color="warning" size="sm">LOW</Badge>;
                           return <Badge color="success" size="sm">NORMAL</Badge>;
                         })()}
                       </div>
                     </div>
-                  
-                  {/* Trending for comparison/monitoring */}
-                  {purposeConfig.showTrending && historicalVitals.length > 0 && (() => {
-                    const prevVital = historicalVitals[historicalVitals.length - 1];
-                    const trend = getTrend(currentVitals.bloodPressure.systolic, prevVital.bloodPressure.systolic);
-                    return trend && (
-                      <div class="flex items-center mt-3 p-2 bg-blue-50 rounded-lg">
-                        <Icon icon={trend.icon} class="w-4 h-4 mr-2 text-blue-600" />
-                        <Text as="span" size="sm" color="blue-700" weight="medium">
-                          {trend.change} vs previous
-                        </Text>
-                      </div>
-                    );
-                  })()}
-                </Card.Body>
-              </Card>
-              </Tooltip>
-              </Column>
+                  </Card.Body>
+                </Card>
+                </Tooltip>
+                </Column>
 
-              {/* Heart Rate with Semantic Tooltip */}
-              <Column size={purposeConfig.gridCols}>
-              <Tooltip content={getSemanticTooltip('heartRate', context)}>
-                <Card class={`relative group transition-all duration-300 hover:scale-105 ${urgencyStyles.vitalsCard}`}>
-                  <Card.Body class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                      <Text as="h4" weight="semibold" size="lg" class={urgencyStyles.accent}>Heart Rate</Text>
-                      <div class="p-2 rounded-full bg-blue-100">
-                        <Icon icon="activity" class="w-6 h-6 text-blue-600" />
-                      </div>
-                    </div>
-                    <div class="space-y-2">
-                      <Text as="div" size="xl" weight="bold" class="font-mono tracking-tight text-3xl">{currentVitals.heartRate.value}</Text>
-                      <div class="flex items-center gap-2">
-                        <Text as="div" size="sm" color="secondary" class="font-medium">
-                          bpm ({currentVitals.heartRate.rhythm})
-                        </Text>
-                        {(() => {
-                          const hr = currentVitals.heartRate.value;
-                          const isHigh = hr > ranges.heartRate[1];
-                          const isLow = hr < ranges.heartRate[0];
-                          if (isHigh) return <Badge color="error" size="sm" class="animate-pulse">HIGH</Badge>;
-                          if (isLow) return <Badge color="warning" size="sm">LOW</Badge>;
-                          return <Badge color="success" size="sm">NORMAL</Badge>;
-                        })()}
-                      </div>
-                    </div>
-                </Card.Body>
-              </Card>
-              </Tooltip>
-              </Column>
+                {/* BMI - Show based on purpose */}
+                {purposeConfig.showBMI && (() => {
+                  const bmi = calculateBMI(
+                    currentVitals.weight.value,
+                    currentVitals.height.value,
+                    currentVitals.weight.unit,
+                    currentVitals.height.unit
+                  );
+                  return bmi && (
+                    <Column size={purposeConfig.gridCols}>
+                      <Card>
+                      <Card.Body>
+                        <div class="flex items-center justify-between mb-2">
+                          <Text as="h4" weight="medium">BMI</Text>
+                          <Icon icon="weight" class="w-5 h-5 text-info-normal" />
+                        </div>
+                        <Text as="div" size="xl" weight="bold">{bmi}</Text>
+                        <Badge color={getBMICategory(Number(bmi)).color} size="sm">
+                          {getBMICategory(Number(bmi)).text}
+                        </Badge>
+                      </Card.Body>
+                    </Card>
+                    </Column>
+                  );
+                })()}
 
-              {/* Temperature with Semantic Tooltip */}
-              <Column size={purposeConfig.gridCols}>
-              <Tooltip content={getSemanticTooltip('temperature', context)}>
-                <Card class={`relative group transition-all duration-300 hover:scale-105 ${urgencyStyles.vitalsCard}`}>
-                  <Card.Body class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                    <Text as="h4" weight="semibold" size="lg" class={urgencyStyles.accent}>Temperature</Text>
-                    <div class="p-2 rounded-full bg-orange-100">
-                      <Icon icon="thermometer" class="w-6 h-6 text-orange-600" />
-                    </div>
-                  </div>
-                  <div class="space-y-2">
-                    <Text as="div" size="xl" weight="bold" class="font-mono tracking-tight text-3xl">
-                      {currentVitals.temperature.value}°{currentVitals.temperature.unit}
-                    </Text>
-                    <div class="flex items-center gap-2">
-                      <Text as="div" size="sm" color="secondary" transform="capitalize" class="font-medium">
-                        {currentVitals.temperature.site}
-                      </Text>
-                      {(() => {
-                        const temp = currentVitals.temperature.value;
-                        const isHigh = temp > ranges.temperature[1];
-                        const isLow = temp < ranges.temperature[0];
-                        if (isHigh) return <Badge color="error" size="sm" class="animate-pulse">FEVER</Badge>;
-                        if (isLow) return <Badge color="warning" size="sm">LOW</Badge>;
-                        return <Badge color="success" size="sm">NORMAL</Badge>;
-                      })()}
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-              </Tooltip>
-              </Column>
-
-              {/* BMI - Show based on purpose */}
-              {purposeConfig.showBMI && (() => {
-                const bmi = calculateBMI(
-                  currentVitals.weight.value,
-                  currentVitals.height.value,
-                  currentVitals.weight.unit,
-                  currentVitals.height.unit
-                );
-                return bmi && (
+                {/* Pain Scale - Context Dependent */}
+                {currentVitals.painScale && (context === 'emergency' || context === 'surgery') && (
                   <Column size={purposeConfig.gridCols}>
                     <Card>
                     <Card.Body>
                       <div class="flex items-center justify-between mb-2">
-                        <Text as="h4" weight="medium">BMI</Text>
-                        <Icon icon="weight" class="w-5 h-5 text-teal-500" />
+                        <Text as="h4" weight="medium">Pain Scale</Text>
+                        <Icon icon="alert-triangle" class="w-5 h-5 text-error-500" />
                       </div>
-                      <Text as="div" size="xl" weight="bold">{bmi}</Text>
-                      <Badge color={getBMICategory(Number(bmi)).color} size="sm">
-                        {getBMICategory(Number(bmi)).text}
-                      </Badge>
+                      <Text as="div" size="xl" weight="bold">{currentVitals.painScale.value}/10</Text>
+                      {currentVitals.painScale.description && (
+                        <Text as="div" size="sm" color="secondary">{currentVitals.painScale.description}</Text>
+                      )}
                     </Card.Body>
                   </Card>
                   </Column>
-                );
-              })()}
+                )}
+              </Row>
 
-              {/* Pain Scale - Context Dependent */}
-              {currentVitals.painScale && (context === 'emergency' || context === 'surgery') && (
-                <Column size={purposeConfig.gridCols}>
-                  <Card>
-                  <Card.Body>
-                    <div class="flex items-center justify-between mb-2">
-                      <Text as="h4" weight="medium">Pain Scale</Text>
-                      <Icon icon="alert-triangle" class="w-5 h-5 text-error-500" />
-                    </div>
-                    <Text as="div" size="xl" weight="bold">{currentVitals.painScale.value}/10</Text>
-                    {currentVitals.painScale.description && (
-                      <Text as="div" size="sm" color="secondary">{currentVitals.painScale.description}</Text>
-                    )}
-                  </Card.Body>
-                </Card>
-                </Column>
-              )}
-            </Row>
-
-            {/* Measurement Info */}
-            <Column size={purposeConfig.gridCols} class="mt-6 pt-4 border-t border-neutral-200">
-              <div class="flex justify-between items-center">
-                <Text as="span" size="sm" color="secondary">
-                  Measured by: {currentVitals.measuredBy}
-                </Text>
-                <Text as="span" size="sm" color="secondary">
-                  {formatTimestamp(currentVitals.timestamp)}
-                </Text>
-              </div>
-              {currentVitals.notes && (
-                <div class="mt-2">
-                  <Text as="p" size="sm">
-                    <Text as="strong">Notes:</Text> {currentVitals.notes}
+              {/* Measurement Info */}
+              <Column size={purposeConfig.gridCols} class="mt-6 pt-4 border-t border-neutral-light">
+                <div class="flex justify-between items-center">
+                  <Text as="span" size="sm" color="secondary">
+                    Measured by: {currentVitals.measuredBy}
+                  </Text>
+                  <Text as="span" size="sm" color="secondary">
+                    {formatTimestamp(currentVitals.timestamp)}
                   </Text>
                 </div>
-              )}
-            </Column>
-          </Card.Body>
-        )}
+                {currentVitals.notes && (
+                  <div class="mt-2">
+                    <Text as="p" size="sm">
+                      <Text as="strong">Notes:</Text> {currentVitals.notes}
+                    </Text>
+                  </div>
+                )}
+              </Column>
+            </Card.Body>
+          )}
 
-        {/* Historical Trending - Purpose Dependent */}
-        {purposeConfig.showTrending && historicalVitals.length > 0 && (
-          <Card.Body class="border-t border-neutral-200">
-            <Text as="h3" class="mb-4">Vital Signs Trend</Text>
-            <div class="overflow-x-auto">
-              <Table variant="striped" size="sm" hoverable responsive>
-                <TableHeader>
-                  <TableRow>
-                    <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
-                      Date/Time
-                    </TableCell>
-                    <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
-                      Blood Pressure
-                    </TableCell>
-                    <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
-                      Heart Rate
-                    </TableCell>
-                    <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
-                      Temperature
-                    </TableCell>
-                    <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
-                      SpO2
-                    </TableCell>
-                    <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase tracking-wider">
-                      Measured By
-                    </TableCell>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {historicalVitals.slice(-5).reverse().map((vital) => (
-                    <TableRow key={vital.id}>
-                      <TableCell class="px-4 py-3 whitespace-nowrap">
-                        <div class="text-sm">
-                          <div class="font-medium text-neutral-900">
-                            {formatTimestamp(vital.timestamp)}
-                          </div>
-                        </div>
+          {/* Historical Trending - Purpose Dependent */}
+          {purposeConfig.showTrending && historicalVitals.length > 0 && (
+            <Card.Body class="border-t border-neutral-light">
+              <Text as="h3" class="mb-4">Vital Signs Trend</Text>
+              <div class="overflow-x-auto">
+                <Table variant="striped" size="sm" hoverable responsive>
+                  <TableHeader>
+                    <TableRow>
+                      <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-normal uppercase tracking-wider">
+                        Date/Time
                       </TableCell>
-                      <TableCell class="px-4 py-3 whitespace-nowrap text-sm text-neutral-900">
-                        <div class="font-medium">
-                          {vital.bloodPressure.systolic}/{vital.bloodPressure.diastolic}
-                        </div>
-                        <div class="text-xs text-neutral-500">{vital.bloodPressure.unit}</div>
+                      <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-normal uppercase tracking-wider">
+                        Blood Pressure
                       </TableCell>
-                      <TableCell class="px-4 py-3 whitespace-nowrap text-sm text-neutral-900">
-                        <div class="font-medium">{vital.heartRate.value}</div>
-                        <div class="text-xs text-neutral-500">{vital.heartRate.unit} • {vital.heartRate.rhythm}</div>
+                      <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-normal uppercase tracking-wider">
+                        Heart Rate
                       </TableCell>
-                      <TableCell class="px-4 py-3 whitespace-nowrap text-sm text-neutral-900">
-                        <div class="font-medium">
-                          {vital.temperature.value}°{vital.temperature.unit}
-                        </div>
-                        <div class="text-xs text-neutral-500">{vital.temperature.site}</div>
+                      <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-normal uppercase tracking-wider">
+                        Temperature
                       </TableCell>
-                      <TableCell class="px-4 py-3 whitespace-nowrap text-sm text-neutral-900">
-                        <div class="font-medium">{vital.oxygenSaturation.value}%</div>
-                        <div class="text-xs text-neutral-500">
-                          {vital.oxygenSaturation.onRoomAir ? 'Room Air' : 'Supplemental O2'}
-                        </div>
+                      <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-normal uppercase tracking-wider">
+                        SpO2
                       </TableCell>
-                      <TableCell class="px-4 py-3 whitespace-nowrap text-sm text-neutral-500">
-                        {vital.measuredBy}
+                      <TableCell header class="px-4 py-3 text-left text-xs font-medium text-neutral-normal uppercase tracking-wider">
+                        Measured By
                       </TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </Card.Body>
-        )}
-      </Card>
+                  </TableHeader>
+                  <TableBody>
+                    {historicalVitals.slice(-5).reverse().map((vital) => (
+                      <TableRow key={vital.id}>
+                        <TableCell class="px-4 py-3 whitespace-nowrap">
+                          <div class="text-sm">
+                            <div class="font-medium text-neutral-darker">
+                              {formatTimestamp(vital.timestamp)}
+                            </div>
+                          </div>
+                        </TableCell>
+                        <TableCell class="px-4 py-3 whitespace-nowrap text-sm text-neutral-darker">
+                          <div class="font-medium">
+                            {vital.bloodPressure.systolic}/{vital.bloodPressure.diastolic}
+                          </div>
+                          <div class="text-xs text-neutral-normal">{vital.bloodPressure.unit}</div>
+                        </TableCell>
+                        <TableCell class="px-4 py-3 whitespace-nowrap text-sm text-neutral-darker">
+                          <div class="font-medium">{vital.heartRate.value}</div>
+                          <div class="text-xs text-neutral-normal">{vital.heartRate.unit} • {vital.heartRate.rhythm}</div>
+                        </TableCell>
+                        <TableCell class="px-4 py-3 whitespace-nowrap text-sm text-neutral-darker">
+                          <div class="font-medium">
+                            {vital.temperature.value}°{vital.temperature.unit}
+                          </div>
+                          <div class="text-xs text-neutral-normal">{vital.temperature.site}</div>
+                        </TableCell>
+                        <TableCell class="px-4 py-3 whitespace-nowrap text-sm text-neutral-darker">
+                          <div class="font-medium">{vital.oxygenSaturation.value}%</div>
+                          <div class="text-xs text-neutral-normal">
+                            {vital.oxygenSaturation.onRoomAir ? 'Room Air' : 'Supplemental O2'}
+                          </div>
+                        </TableCell>
+                        <TableCell class="px-4 py-3 whitespace-nowrap text-sm text-neutral-normal">
+                          {vital.measuredBy}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </Card.Body>
+          )}
+        </Card>
+      </div>
     </div>
   );
 });

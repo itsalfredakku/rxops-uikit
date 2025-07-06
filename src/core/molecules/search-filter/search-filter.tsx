@@ -129,8 +129,9 @@ export const SearchAndFilter = component$<SearchAndFilterProps>((props) => {
   );
 
   return (
-    <Stack 
-      class={wrapperClass} 
+    <div class="themed-content">
+      <Stack 
+        class={wrapperClass} 
       style={style}
       data-testid={testId}
       gap="4"
@@ -344,6 +345,7 @@ export const SearchAndFilter = component$<SearchAndFilterProps>((props) => {
         </Card>
       )}
     </Stack>
+    </div>
   );
 });
 

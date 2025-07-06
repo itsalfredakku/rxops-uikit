@@ -1,4 +1,4 @@
-import { component$, useSignal, $ } from "@builder.io/qwik";
+import { component$, useSignal, useStore, $ } from "@builder.io/qwik";
 import { createVariantClass } from "../../../design-system/component-base";
 import type { ComponentSize } from "../../../design-system/types";
 import { cn } from "../../../design-system/utils";
@@ -23,6 +23,14 @@ interface CheckboxBaseProps {
   value?: string;
   id?: string;
   onChange$?: (event: Event) => void;
+  /** Medical device keyboard support with enhanced focus indicators */
+  medicalDeviceMode?: boolean;
+  /** Enable healthcare workflow shortcuts */
+  enableWorkflowShortcuts?: boolean;
+  /** Checkbox context for healthcare applications */
+  checkboxContext?: 'patient-consent' | 'medication-confirmation' | 'symptom-checklist' | 'procedure-checklist' | 'default';
+  /** Require confirmation for critical medical checkboxes */
+  requireConfirmation?: boolean;
 }
 
 export interface CheckboxProps extends CheckboxBaseProps, Omit<BaseComponentProps<HTMLDivElement>, keyof CheckboxBaseProps | `on${string}$`> {}
@@ -57,8 +65,8 @@ const checkboxInputVariants = createVariantClass({
   ].join(" "),
   variants: {
     default: [
-      "border-neutral-300 bg-white text-primary-600",
-      "hover:border-neutral-400 focus-visible:ring-primary-500",
+      "border-neutral-light bg-white text-primary-600",
+      "hover:border-neutral-normal focus-visible:ring-primary-500",
       "checked:bg-primary-600 checked:border-primary-600",
       "indeterminate:bg-primary-600 indeterminate:border-primary-600"
     ].join(" "),
@@ -86,8 +94,8 @@ const checkboxBoxVariants = createVariantClass({
 
 const checkboxLabelVariants = createVariantClass({
   base: [
-    "checkbox-label font-medium text-neutral-900 cursor-pointer",
-    "peer-disabled:cursor-not-allowed peer-disabled:text-neutral-500"
+    "checkbox-label font-medium text-neutral-darker cursor-pointer",
+    "peer-disabled:cursor-not-allowed peer-disabled:text-neutral-normal"
   ].join(" "),
   variants: {
     sm: "text-sm",
@@ -97,7 +105,7 @@ const checkboxLabelVariants = createVariantClass({
 });
 
 const checkboxDescriptionVariants = createVariantClass({
-  base: "checkbox-description text-neutral-600 mt-1",
+  base: "checkbox-description text-neutral-normal mt-1",
   variants: {
     sm: "text-xs",
     md: "text-sm", 
@@ -121,6 +129,10 @@ export const Checkbox = component$<CheckboxProps>((props) => {
     value,
     id,
     onChange$,
+    medicalDeviceMode = false,
+    enableWorkflowShortcuts = false,
+    checkboxContext = 'default',
+    requireConfirmation = false,
     class: qwikClass,
     className,
     style,
@@ -132,18 +144,114 @@ export const Checkbox = component$<CheckboxProps>((props) => {
   const isChecked = useSignal(checked);
   const hasError = !!error;
 
+  // Medical device keyboard state
+  const keyboardState = useStore({
+    confirmationPending: false,
+    instructionsId: `checkbox-instructions-${Math.random().toString(36).substr(2, 9)}`,
+  });
+
   const handleChange = $((event: Event) => {
     const target = event.target as HTMLInputElement;
     isChecked.value = target.checked;
+    
+    // Reset confirmation state
+    keyboardState.confirmationPending = false;
+    
     onChange$?.(event);
   });
 
-  const wrapperClass = mergeClasses(
-    checkboxVariants({
+  // Handle confirmation for critical medical checkboxes
+  const handleConfirmedToggle = $((inputElement: HTMLInputElement) => {
+    if (requireConfirmation && !keyboardState.confirmationPending) {
+      keyboardState.confirmationPending = true;
+      // Reset confirmation after 3 seconds
+      setTimeout(() => {
+        keyboardState.confirmationPending = false;
+      }, 3000);
+      return;
+    }
+    
+    // Toggle checkbox and reset confirmation
+    keyboardState.confirmationPending = false;
+    const newChecked = !isChecked.value;
+    isChecked.value = newChecked;
+    inputElement.checked = newChecked;
+    
+    // Trigger change event
+    const changeEvent = new Event('change', { bubbles: true });
+    inputElement.dispatchEvent(changeEvent);
+  });
+
+  // Enhanced keyboard event handler for medical devices (prepared for future implementation)
+  const _handleKeyDown$ = $((event: KeyboardEvent) => {
+    const target = event.target as HTMLInputElement;
+    
+    // Space key activation (standard for checkboxes)
+    if (event.key === ' ') {
+      event.preventDefault();
+      if (!disabled) {
+        if (requireConfirmation) {
+          handleConfirmedToggle(target);
+        } else {
+          // Standard toggle
+          const newChecked = !isChecked.value;
+          isChecked.value = newChecked;
+          target.checked = newChecked;
+          
+          // Create synthetic event for onChange handler
+          const changeEvent = new Event('change', { bubbles: true });
+          target.dispatchEvent(changeEvent);
+        }
+      }
+    }
+    
+    // Escape key cancels confirmation
+    if (event.key === 'Escape' && keyboardState.confirmationPending) {
+      event.preventDefault();
+      keyboardState.confirmationPending = false;
+    }
+    
+    // Medical device workflow shortcuts
+    if (medicalDeviceMode && enableWorkflowShortcuts && !disabled) {
+      if (checkboxContext === 'patient-consent') {
+        if (event.key === 'c' && event.ctrlKey) {
+          event.preventDefault();
+          // Quick consent confirmation
+          console.log('Quick consent confirmation');
+        }
+      } else if (checkboxContext === 'medication-confirmation') {
+        if (event.key === 'm' && event.ctrlKey) {
+          event.preventDefault();
+          // View medication details
+          console.log('View medication details');
+        } else if (event.key === 'd' && event.ctrlKey) {
+          event.preventDefault();
+          // Check drug interactions
+          console.log('Check drug interactions');
+        }
+      } else if (checkboxContext === 'symptom-checklist') {
+        if (event.key === 's' && event.ctrlKey) {
+          event.preventDefault();
+          // Show symptom details
+          console.log('Show symptom details');
+        }
+      } else if (checkboxContext === 'procedure-checklist') {
+        if (event.key === 'p' && event.ctrlKey) {
+          event.preventDefault();
+          // View procedure details
+          console.log('View procedure details');
+        }
+      }
+    }
+  });
+
+  const wrapperClass = mergeClasses(checkboxVariants({
       [variant]: true,
       [size]: true
     }),
     hasError && "text-error-600",
+    medicalDeviceMode && "focus-within:ring-2 focus-within:ring-offset-1 focus-within:ring-primary-500",
+    requireConfirmation && keyboardState.confirmationPending && "ring-2 ring-warning-500",
     qwikClass,
     className
   );
@@ -174,13 +282,18 @@ export const Checkbox = component$<CheckboxProps>((props) => {
           id={checkboxId}
           name={name}
           value={value}
-          class={inputClass}
+          class={cn(inputClass, 
+            // Enhanced focus indicators for clinical environments
+            "focus:ring-4 focus:ring-primary-500/70 focus:ring-offset-2",
+            "focus:shadow-lg focus:border-primary-600"
+          )}
           checked={isChecked.value}
           disabled={disabled}
           required={required}
           aria-invalid={hasError}
           aria-describedby={description || helperText || error ? `${checkboxId}-description` : undefined}
           onChange$={handleChange}
+          tabIndex={0}
         />
         <div class={boxClass}>
           {isChecked.value && !indeterminate && (

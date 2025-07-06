@@ -27,13 +27,15 @@ export const Form = component$<FormProps>((props) => {
   );
 
   return (
-    <form 
-      class={formClasses} 
+    <div class="themed-content">
+      <form 
+        class={formClasses} 
       style={style}
       {...rest}
     >
       <Slot />
     </form>
+    </div>
   );
 });
 
@@ -73,7 +75,7 @@ export const FormSection = component$<FormSectionProps>((props) => {
         <Stack gap="1" class="form-section-header">
           <Text as="h3" class="form-section-title">{title}</Text>
           {description && (
-            <Text size="sm" class="form-section-description text-neutral-600">{description}</Text>
+            <Text size="sm" class="form-section-description text-neutral-normal">{description}</Text>
           )}
         </Stack>
       )}

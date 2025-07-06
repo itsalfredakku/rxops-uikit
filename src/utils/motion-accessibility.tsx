@@ -148,9 +148,9 @@ export const MotionButton = component$<{
   );
   
   const variantClasses = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500',
-    secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus-visible:ring-gray-500',
-    emergency: 'bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500 animate-pulse motion-reduce:animate-pulse'
+    primary: 'bg-primary-normal text-white hover:bg-primary-dark focus-visible:ring-primary-normal',
+    secondary: 'bg-neutral-light text-neutral-darker hover:bg-neutral-light focus-visible:ring-neutral-normal',
+    emergency: 'bg-error-normal text-white hover:bg-error-dark focus-visible:ring-error-normal animate-pulse motion-reduce:animate-pulse'
   };
   
   return (
@@ -178,21 +178,21 @@ export const EmergencyMotionAlert = component$<{
 }>((props) => {
   const severityConfig = {
     warning: {
-      bgColor: 'bg-yellow-50 border-yellow-400',
-      textColor: 'text-yellow-800',
-      iconColor: 'text-yellow-400',
+      bgColor: 'bg-warning-lighter border-warning-normal',
+      textColor: 'text-warning-darker',
+      iconColor: 'text-warning-normal',
       animation: 'animate-pulse motion-reduce:animate-pulse' // Keep for safety
     },
     critical: {
-      bgColor: 'bg-red-50 border-red-500',
-      textColor: 'text-red-800',
-      iconColor: 'text-red-500',
+      bgColor: 'bg-error-lighter border-error-normal',
+      textColor: 'text-error-darker',
+      iconColor: 'text-error-normal',
       animation: 'animate-pulse motion-reduce:animate-pulse' // Keep for safety
     },
     'life-threatening': {
-      bgColor: 'bg-red-100 border-red-600',
-      textColor: 'text-red-900',
-      iconColor: 'text-red-600',
+      bgColor: 'bg-error-lighter border-error-normal',
+      textColor: 'text-error-darker',
+      iconColor: 'text-error-normal',
       animation: 'animate-pulse motion-reduce:animate-pulse' // Always animate for life-threatening
     }
   };
@@ -259,7 +259,7 @@ export const MotionSpinner = component$<{
   return (
     <div class={`
       ${sizeClasses[props.size || 'md']}
-      ${props.color || 'text-blue-600'}
+      ${props.color || 'text-primary-normal'}
       animate-spin motion-reduce:animate-pulse
     `}>
       <svg class="w-full h-full" fill="none" viewBox="0 0 24 24">

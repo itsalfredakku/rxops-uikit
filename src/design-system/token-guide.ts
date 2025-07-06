@@ -150,7 +150,7 @@ export function migrationHelper() {
 
 1. Replace legacy colors:
    ❌ bg-primary-500    ✅ bg-primary
-   ❌ bg-neutral-100    ✅ bg-neutral-light  
+   ❌ bg-neutral-lighter    ✅ bg-neutral-light  
    ❌ bg-success-500   ✅ bg-success
    ❌ bg-error-500     ✅ bg-error
    ❌ bg-warning-500  ✅ bg-warning
@@ -184,7 +184,7 @@ export const ExampleComponent = {
     getSpacingClass('gap', 3),
     
     // Visual design
-    'bg-neutral-0',
+    'bg-white',
     getRadiusClass('md'),
     getShadowClass('sm'),
     'border border-neutral-light',

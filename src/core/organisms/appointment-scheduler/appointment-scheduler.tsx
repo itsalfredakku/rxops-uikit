@@ -316,9 +316,10 @@ export const AppointmentScheduler = component$<AppointmentSchedulerProps>((props
   };
   
   return (
-    <div
+    <div class="themed-content">
+      <div
       class={mergeClasses(
-        "appointment-scheduler bg-neutral-0 rounded-lg border border-neutral-200 p-6",
+        "appointment-scheduler bg-white rounded-lg border border-neutral-light p-6",
         props.class
       )}
       {...props}
@@ -399,7 +400,7 @@ export const AppointmentScheduler = component$<AppointmentSchedulerProps>((props
                   "p-4 border rounded-lg cursor-pointer transition-all healthcare-touch",
                   selectedProvider.value?.id === provider.id
                     ? "border-primary-300 bg-primary-50"
-                    : "border-neutral-200 hover:border-neutral-300 hover:bg-neutral-50"
+                    : "border-neutral-light hover:border-neutral-light hover:bg-neutral-lighter"
                 )}
                 onClick$={() => selectProvider(provider)}
               >
@@ -477,7 +478,7 @@ export const AppointmentScheduler = component$<AppointmentSchedulerProps>((props
                 </Text>
                 
                 {availableSlots.value.length === 0 ? (
-                  <div class="p-4 text-center border border-neutral-200 rounded-lg">
+                  <div class="p-4 text-center border border-neutral-light rounded-lg">
                     <Icon icon="calendar" size={24} />
                     <Text color="secondary" style="body">
                       No available appointments for this date
@@ -534,7 +535,7 @@ export const AppointmentScheduler = component$<AppointmentSchedulerProps>((props
               onInput$={(_, element) => {
                 notes.value = element.value;
               }}
-              class="w-full p-3 border border-neutral-300 rounded-md resize-none healthcare-touch"
+              class="w-full p-3 border border-neutral-light rounded-md resize-none healthcare-touch"
               rows={3}
             />
             
@@ -616,6 +617,7 @@ export const AppointmentScheduler = component$<AppointmentSchedulerProps>((props
           </div>
         )}
       </Stack>
+    </div>
     </div>
   );
 });

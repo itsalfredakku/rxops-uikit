@@ -194,24 +194,25 @@ export const Drawer = component$<DrawerProps>((props) => {
   // Variant styles
   const variantClasses = {
     default: 'bg-white',
-    'patient-info': 'bg-gradient-to-b from-blue-50 to-white border-blue-200',
-    'medical-tools': 'bg-gradient-to-b from-green-50 to-white border-green-200',
-    emergency: 'bg-gradient-to-b from-red-50 to-white border-red-300 shadow-lg shadow-red-100',
-    navigation: 'bg-gray-50 border-gray-200',
-    'chart-notes': 'bg-gradient-to-b from-amber-50 to-white border-amber-200'
+    'patient-info': 'bg-gradient-to-b from-info-lighter to-white border-info-light',
+    'medical-tools': 'bg-gradient-to-b from-success-lighter to-white border-success-light',
+    emergency: 'bg-gradient-to-b from-error-lighter to-white border-error-light shadow-lg shadow-red-100',
+    navigation: 'bg-neutral-lighter border-neutral-light',
+    'chart-notes': 'bg-gradient-to-b from-warning-lighter to-white border-warning-light'
   };
 
   // Priority styles for emergency overrides
   const priorityClasses = {
     normal: '',
     high: 'ring-2 ring-amber-400',
-    critical: 'ring-2 ring-red-400 shadow-lg',
-    emergency: 'ring-4 ring-red-500 shadow-xl shadow-red-200 animate-pulse'
+    critical: 'ring-2 ring-error-normal shadow-lg',
+    emergency: 'ring-4 ring-error-normal shadow-xl shadow-red-200 animate-pulse'
   };
 
   return (
-    <>
-      {/* Backdrop */}
+    <div class="themed-content">
+      <>
+        {/* Backdrop */}
       {showBackdrop && isOpen && (
         <div
           ref={backdropRef}
@@ -260,7 +261,7 @@ export const Drawer = component$<DrawerProps>((props) => {
         {/* Header */}
         <div class={mergeClasses(
           'flex items-center justify-between p-4 border-b',
-          variant === 'emergency' ? 'border-red-200 bg-red-50' : 'border-gray-200',
+          variant === 'emergency' ? 'border-error-light bg-error-lighter' : 'border-neutral-light',
           priority === 'emergency' && 'animate-pulse'
         )}>
           <div class="flex items-center space-x-2">
@@ -268,33 +269,33 @@ export const Drawer = component$<DrawerProps>((props) => {
             {priority !== 'normal' && (
               <div class={mergeClasses(
                 'w-2 h-2 rounded-full',
-                priority === 'high' && 'bg-amber-500',
-                priority === 'critical' && 'bg-red-500',
-                priority === 'emergency' && 'bg-red-600 animate-ping'
+                priority === 'high' && 'bg-warning-normal',
+                priority === 'critical' && 'bg-error-normal',
+                priority === 'emergency' && 'bg-error-normal animate-ping'
               )} />
             )}
             
             {/* Variant icons */}
             {variant === 'patient-info' && (
-              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-primary-normal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             )}
             
             {variant === 'medical-tools' && (
-              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-success-normal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
               </svg>
             )}
             
             {variant === 'emergency' && (
-              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-error-normal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.865-.833-2.635 0L4.232 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             )}
             
             {variant === 'chart-notes' && (
-              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-warning-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             )}
@@ -307,9 +308,9 @@ export const Drawer = component$<DrawerProps>((props) => {
               onClick$={onClose}
               class={mergeClasses(
                 'p-2 rounded-lg transition-colors',
-                'hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500',
+                'hover:bg-neutral-lighter focus:outline-none focus:ring-2 focus:ring-primary-normal',
                 'min-w-[44px] min-h-[44px]', // Touch target size
-                variant === 'emergency' && 'hover:bg-red-100 focus:ring-red-500'
+                variant === 'emergency' && 'hover:bg-error-lighter focus:ring-error-normal'
               )}
               aria-label="Close drawer"
               data-testid={`${testId}-close`}
@@ -326,7 +327,8 @@ export const Drawer = component$<DrawerProps>((props) => {
           <Slot />
         </div>
       </div>
-    </>
+      </>
+    </div>
   );
 });
 
@@ -375,8 +377,8 @@ export const Sidebar = component$<SidebarProps>((props) => {
                 'flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors',
                 'min-h-[44px]', // Touch target
                 item.active
-                  ? 'bg-blue-100 text-blue-700 border-l-4 border-blue-500'
-                  : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-info-lighter text-primary-dark border-l-4 border-primary-normal'
+                  : 'text-neutral-dark hover:bg-neutral-lighter hover:text-neutral-darker'
               )}
             >
               {item.icon && (
@@ -388,7 +390,7 @@ export const Sidebar = component$<SidebarProps>((props) => {
               <span class="flex-1">{item.label}</span>
               
               {item.badge && (
-                <span class="ml-2 px-2 py-1 text-xs rounded-full bg-red-100 text-red-700">
+                <span class="ml-2 px-2 py-1 text-xs rounded-full bg-error-lighter text-error-dark">
                   {item.badge}
                 </span>
               )}

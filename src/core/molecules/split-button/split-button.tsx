@@ -42,11 +42,12 @@ export const SplitButton = component$<SplitButtonProps>(({
   ].filter(Boolean).join(" ");
 
   return (
-    <Row 
-      class={mergeClasses(qwikClass, className)}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <Row 
+        class={mergeClasses(qwikClass, className)}
+        style={style}
+        {...rest}
+      >
       {/* Main Button */}
       <Button
         variant={variant}
@@ -91,6 +92,7 @@ export const SplitButton = component$<SplitButtonProps>(({
           </svg>
         </Button>
       </Dropdown>
-    </Row>
+      </Row>
+    </div>
   );
 });

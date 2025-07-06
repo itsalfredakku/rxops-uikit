@@ -206,20 +206,20 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'prescription': return 'bg-primary-50 text-primary-700 border-primary-200';
-      case 'over-counter': return 'bg-success-50 text-success-700 border-green-200';
-      case 'supplement': return 'bg-purple-50 text-purple-700 border-purple-200';
-      case 'emergency': return 'bg-error-50 text-error-700 border-red-200';
-      default: return 'bg-neutral-50 text-neutral-700 border-neutral-200';
+      case 'over-counter': return 'bg-success-50 text-success-700 border-success-light';
+      case 'supplement': return 'bg-primary-lighter text-primary-dark border-primary-light';
+      case 'emergency': return 'bg-error-50 text-error-700 border-error-light';
+      default: return 'bg-neutral-lighter text-neutral-dark border-neutral-light';
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'taken': return 'text-success-600';
+      case 'taken': return 'text-success-normal';
       case 'missed': return 'text-error-600';
       case 'skipped': return 'text-warning-600';
-      case 'scheduled': return 'text-neutral-600';
-      default: return 'text-neutral-600';
+      case 'scheduled': return 'text-neutral-normal';
+      default: return 'text-neutral-normal';
     }
   };
 
@@ -234,19 +234,20 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
   };
 
   const trackerClasses = mergeClasses(
-    'medication-tracker bg-white rounded-lg shadow-sm border border-neutral-200',
+    'medication-tracker bg-white rounded-lg shadow-sm border border-neutral-light',
     qwikClass,
     className
   );
 
   return (
-    <Card 
-      class={trackerClasses}
-      style={style}
-      {...rest}
-    >
+    <div class="themed-content">
+      <Card 
+        class={trackerClasses}
+        style={style}
+        {...rest}
+      >
       {/* Header */}
-      <Card.Body class="border-b border-neutral-200">
+      <Card.Body class="border-b border-neutral-light">
         <Row alignItems="center" justifyContent="between">
           <Row alignItems="center" gap="3">
             <Row class="w-12 h-12 bg-primary-100 rounded-lg" alignItems="center" justifyContent="center">
@@ -277,13 +278,13 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
         {/* Key Metrics */}
         {showAdherence && (
           <Row  gap="4" class="mt-4">
-            <Column size={{ sm: 1, md: 2, lg: 4 }} class="bg-success-50 p-3 rounded-lg border border-green-200">
+            <Column size={{ sm: 1, md: 2, lg: 4 }} class="bg-success-50 p-3 rounded-lg border border-success-light">
               <Row alignItems="center" justifyContent="between">
                 <Column>
                   <Text as="p" size="sm" weight="medium" color="green-600">Adherence Rate</Text>
                   <Text as="p" size="xl" weight="bold" color="green-700">{adherenceRate()}%</Text>
                 </Column>
-                <Icon icon="trending-up" class="w-8 h-8 text-success-600" />
+                <Icon icon="trending-up" class="w-8 h-8 text-success-normal" />
               </Row>
             </Column>
 
@@ -297,7 +298,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
               </Row>
             </Column>
 
-            <Column size={{ sm: 1, md: 2, lg: 4 }} class="bg-warning-50 p-3 rounded-lg border border-yellow-200">
+            <Column size={{ sm: 1, md: 2, lg: 4 }} class="bg-warning-50 p-3 rounded-lg border border-warning-light">
               <Row alignItems="center" justifyContent="between">
                 <Column>
                   <Text as="p" size="sm" weight="medium" color="yellow-600">Refills Needed</Text>
@@ -307,7 +308,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
               </Row>
             </Column>
 
-            <Column size={{ sm: 1, md: 2, lg: 4 }} class="bg-error-50 p-3 rounded-lg border border-red-200">
+            <Column size={{ sm: 1, md: 2, lg: 4 }} class="bg-error-50 p-3 rounded-lg border border-error-light">
               <Row alignItems="center" justifyContent="between">
                 <Column>
                   <Text as="p" size="sm" weight="medium" color="red-600">Interactions</Text>
@@ -326,7 +327,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
           color="error" 
           variant="soft" 
           title="Drug Interaction Alert"
-          class="px-6 py-4 border-b border-red-200"
+          class="px-6 py-4 border-b border-error-light"
         >
           {severeInteractions().length} severe interactions detected. Please consult your healthcare provider.
           <Card class="mt-2 space-y-1">
@@ -340,7 +341,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
       )}
 
       {/* Tabs */}
-      <Card.Body class="border-b border-neutral-200">
+      <Card.Body class="border-b border-neutral-light">
         <nav>
           <Row gap="8">{[
             { id: 'current', label: 'Current Medications', count: medications.filter(m => m.isActive).length },
@@ -355,7 +356,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
               class={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                 activeTab.value === tab.id
                   ? 'border-primary-500 text-primary-600'
-                  : 'border-transparent text-neutral-500 hover:text-neutral-700 hover:border-neutral-300'
+                  : 'border-transparent text-neutral-normal hover:text-neutral-dark hover:border-neutral-light'
               }`}
             >
               {tab.label}
@@ -364,7 +365,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
                   class={`ml-2 ${
                     activeTab.value === tab.id
                       ? 'bg-primary-100 text-primary-600'
-                      : 'bg-neutral-100 text-neutral-600'
+                      : 'bg-neutral-lighter text-neutral-normal'
                   }`}
                 >
                   {tab.count}
@@ -382,7 +383,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
         {activeTab.value === 'current' && (
           <Stack gap="4">
             {medications.filter(med => med.isActive).map((medication) => (
-              <Card key={medication.id} variant="outlined" class="transition-colors duration-200 hover:bg-neutral-50 transition-colors">
+              <Card key={medication.id} variant="outlined" class="transition-colors duration-200 hover:bg-neutral-lighter transition-colors">
                 <Card.Body>
                   <Row alignItems="start" justifyContent="between">
                     <Column class="flex-1">
@@ -412,7 +413,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
                       </Column>
                       <Column size={{ sm: 1, md: 2, lg: 3 }}>
                         <Text as="p" color="muted">Refills Remaining:</Text>
-                        <Text as="p" weight="medium" class={medication.refillsRemaining <= 1 ? 'text-error-600' : 'text-neutral-900'}>
+                        <Text as="p" weight="medium" class={medication.refillsRemaining <= 1 ? 'text-error-600' : 'text-neutral-darker'}>
                           {medication.refillsRemaining} of {medication.totalRefills}
                         </Text>
                       </Column>
@@ -427,7 +428,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
 
                     {/* Side Effects & Interactions */}
                     {(medication.sideEffects?.length || medication.interactions?.length) && (
-                      <Card class="mt-3 pt-3 border-t border-neutral-200">
+                      <Card class="mt-3 pt-3 border-t border-neutral-light">
                         {medication.sideEffects?.length && (
                           <Column class="mb-2">
                             <Text as="p" size="xs" color="muted" class="mb-1">Common Side Effects:</Text>
@@ -476,7 +477,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
                           onClick$={() => selectedMedication.value = medication.id}
                           variant="text"
                           size="sm"
-                          class="p-2 text-neutral-600 hover:text-primary-600 transition-colors duration-200 hover:bg-primary-50 rounded transition-colors"
+                          class="p-2 text-neutral-normal hover:text-primary-600 transition-colors duration-200 hover:bg-primary-50 rounded transition-colors"
                         >
                           <Icon icon="edit" class="w-4 h-4" />
                         </Button>
@@ -484,7 +485,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
                           onClick$={() => onRemoveMedication?.(medication.id)}
                           variant="text"
                           size="sm"
-                          class="p-2 text-neutral-600 hover:text-error-600 transition-colors duration-200 hover:bg-error-50 rounded transition-colors"
+                          class="p-2 text-neutral-normal hover:text-error-600 transition-colors duration-200 hover:bg-error-50 rounded transition-colors"
                         >
                           <Icon icon="trash" class="w-4 h-4" />
                         </Button>
@@ -497,7 +498,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
 
             {medications.filter(med => med.isActive).length === 0 && (
               <div class="text-center py-8">
-                <Icon icon="pill" class="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+                <Icon icon="pill" class="w-12 h-12 text-neutral-light mx-auto mb-4" />
                 <Text as="p" color="muted">No active medications</Text>
                 {allowEdit && (
                   <Button
@@ -527,10 +528,10 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
                     const statusIconName = getStatusIcon(dose.status);
                     
                     return (
-                      <div key={dose.id} class="border border-neutral-200 rounded-lg p-4">
+                      <div key={dose.id} class="border border-neutral-light rounded-lg p-4">
                         <Row alignItems="center" justifyContent="between">
                           <Row alignItems="center" gap="4">
-                            <div class={`p-2 rounded-full ${dose.status === 'taken' ? 'bg-success-100' : 'bg-neutral-100'}`}>
+                            <div class={`p-2 rounded-full ${dose.status === 'taken' ? 'bg-success-100' : 'bg-neutral-lighter'}`}>
                               <Icon icon={statusIconName} class={`w-5 h-5 ${getStatusColor(dose.status)}`} />
                             </div>
                             <div>
@@ -579,13 +580,13 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
                     const statusIconName = getStatusIcon(dose.status);
                     
                     return (
-                      <div key={dose.id} class="p-3 border border-neutral-200 rounded">
+                      <div key={dose.id} class="p-3 border border-neutral-light rounded">
                         <Row alignItems="center" justifyContent="between">
                           <Row alignItems="center" gap="3">
                             <Icon icon={statusIconName} class={`w-4 h-4 ${getStatusColor(dose.status)}`} />
-                            <span class="font-medium text-neutral-900">{medication.name}</span>
-                            <span class="text-sm text-neutral-600">{medication.dosage}</span>
-                            <span class="text-xs text-neutral-500">
+                            <span class="font-medium text-neutral-darker">{medication.name}</span>
+                            <span class="text-sm text-neutral-normal">{medication.dosage}</span>
+                            <span class="text-xs text-neutral-normal">
                               {new Date(dose.scheduledTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </span>
                           </Row>
@@ -594,7 +595,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
                           dose.status === 'taken' ? 'bg-success-100 text-success-700' :
                           dose.status === 'missed' ? 'bg-error-100 text-error-700' :
                           dose.status === 'skipped' ? 'bg-warning-100 text-warning-700' :
-                          'bg-neutral-100 text-neutral-700'
+                          'bg-neutral-lighter text-neutral-dark'
                         }`}>
                           {dose.status}
                         </span>
@@ -608,7 +609,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
 
             {todaysDoses().length === 0 && (
               <div class="text-center py-8">
-                <Icon icon="calendar" class="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+                <Icon icon="calendar" class="w-12 h-12 text-neutral-light mx-auto mb-4" />
                 <Text as="p" color="muted">No doses scheduled for today</Text>
               </div>
             )}
@@ -619,17 +620,17 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
         {activeTab.value === 'history' && (
           <div class="space-y-4">
             {medications.filter(med => !med.isActive).map((medication) => (
-              <div key={medication.id} class="border border-neutral-200 rounded-lg p-4 bg-neutral-50">
+              <div key={medication.id} class="border border-neutral-light rounded-lg p-4 bg-neutral-lighter">
                 <Row alignItems="start" justifyContent="between">
                   <div>
-                    <Text as="h3" weight="medium" size="md" color="text-neutral-700">{medication.name}</Text>
+                    <Text as="h3" weight="medium" size="md" color="text-neutral-dark">{medication.name}</Text>
                     <Text as="p" size="sm" color="muted">{medication.dosage} - {medication.frequency}</Text>
                     <Text as="p" size="xs" color="gray-500" class="mt-1">
                       {new Date(medication.startDate).toLocaleDateString()} - 
                       {medication.endDate ? new Date(medication.endDate).toLocaleDateString() : 'Discontinued'}
                     </Text>
                   </div>
-                  <span class="px-2 py-1 text-xs font-medium rounded bg-neutral-200 text-neutral-700">
+                  <span class="px-2 py-1 text-xs font-medium rounded bg-neutral-light text-neutral-dark">
                     Inactive
                   </span>
                 </Row>
@@ -638,7 +639,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
 
             {medications.filter(med => !med.isActive).length === 0 && (
               <div class="text-center py-8">
-                <Icon icon="shield" class="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+                <Icon icon="shield" class="w-12 h-12 text-neutral-light mx-auto mb-4" />
                 <Text as="p" color="muted">No medication history</Text>
               </div>
             )}
@@ -649,7 +650,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
         {activeTab.value === 'refills' && (
           <div class="space-y-4">
             {medicationsNeedingRefill().map((medication) => (
-              <div key={medication.id} class="border border-yellow-200 rounded-lg p-4 bg-warning-50">
+              <div key={medication.id} class="border border-warning-light rounded-lg p-4 bg-warning-50">
                 <Row alignItems="start" justifyContent="between">
                   <div>
                     <Text as="h3" weight="medium" size="md">{medication.name}</Text>
@@ -674,7 +675,7 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
 
             {medicationsNeedingRefill().length === 0 && (
               <div class="text-center py-8">
-                <Icon icon="heart" class="w-12 h-12 text-neutral-400 mx-auto mb-4" />
+                <Icon icon="heart" class="w-12 h-12 text-neutral-light mx-auto mb-4" />
                 <Text as="p" color="muted">All medications have sufficient refills</Text>
               </div>
             )}
@@ -739,11 +740,11 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
           </div>
           
           <div>
-            <label class="block text-sm font-medium text-neutral-700 mb-1">Category</label>
+            <label class="block text-sm font-medium text-neutral-dark mb-1">Category</label>
             <select
               value={newMedication.category}
               onChange$={(e) => newMedication.category = (e.target as HTMLSelectElement).value as 'prescription' | 'over-counter' | 'supplement' | 'emergency'}
-              class="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-2 focus:ring-blue-500"
+              class="w-full px-3 py-2 border border-neutral-light rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus:ring-2 focus:ring-primary-normal"
             >
               <option value="prescription">Prescription</option>
               <option value="over-counter">Over-the-Counter</option>
@@ -794,5 +795,6 @@ export const MedicationTracker = component$<MedicationTrackerProps>((props) => {
         </Row>
       </Modal>
     </Card>
+    </div>
   );
 });

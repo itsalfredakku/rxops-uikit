@@ -5,7 +5,7 @@
  * with design system consistency and enhanced accessibility.
  */
 
-import { component$, Slot, $, type QRL } from '@builder.io/qwik';
+import { component$, Slot, $, type QRL, useStore } from '@builder.io/qwik';
 import type { BaseComponentProps } from '../../../design-system/props';
 import type { ComponentSize, Color } from '../../../design-system/types';
 import { createVariantClass } from '../../../design-system/component-base';
@@ -42,6 +42,16 @@ export interface LinkProps extends BaseComponentProps<HTMLAnchorElement> {
   endIcon?: string;
   /** Custom click handler */
   onClick$?: QRL<(event: MouseEvent, element: HTMLAnchorElement) => void>;
+  /** Medical device keyboard support with enhanced focus indicators */
+  medicalDeviceMode?: boolean;
+  /** Emergency mode for critical medical links */
+  emergencyMode?: boolean;
+  /** Confirmation required for medical safety (for critical actions) */
+  requireConfirmation?: boolean;
+  /** Healthcare workflow shortcuts */
+  enableWorkflowShortcuts?: boolean;
+  /** Link purpose for healthcare contexts */
+  purpose?: 'navigation' | 'action' | 'emergency' | 'external' | 'download' | 'general';
 }
 
 // Link variant configuration
@@ -84,13 +94,13 @@ const linkVariants = createVariantClass({
     ].join(' '),
     
     "color-secondary": [
-      'text-neutral-600',
-      'hover:text-neutral-700',
-      'focus:ring-neutral-500',
+      'text-neutral-normal',
+      'hover:text-neutral-dark',
+      'focus:ring-neutral-normal',
     ].join(' '),
     
     "color-success": [
-      'text-success-600',
+      'text-success-normal',
       'hover:text-success-700',
       'focus:ring-success-500',
     ].join(' '),
@@ -121,9 +131,9 @@ const linkVariants = createVariantClass({
     ].join(' '),
     
     "button-secondary": [
-      'bg-neutral-600 text-white',
-      'hover:bg-neutral-700',
-      'focus:ring-neutral-500',
+      'bg-neutral-dark text-white',
+      'hover:bg-neutral-darker',
+      'focus:ring-neutral-normal',
     ].join(' '),
     
     "button-success": [
@@ -179,29 +189,33 @@ const linkVariants = createVariantClass({
 });
 
 /**
- * Link Component
+ * Link Component with Medical Device Keyboard Accessibility
  * 
  * A flexible link component that supports various styles and behaviors
  * while maintaining semantic HTML anchor functionality.
+ * 
+ * Medical Device Keyboard Accessibility:
+ * - Enter: Activate link (primary activation)
+ * - Space: Activate link (alternative activation)
+ * - Escape: Cancel confirmation dialog (if requireConfirmation=true)
+ * - Enhanced focus indicators for clinical environments
+ * - Confirmation dialogs for critical medical actions
+ * - WCAG 2.1 AA+ compliance with Section 508 support
+ * - Screen reader optimization for medical workflows
  * 
  * @example
  * ```tsx
  * // Basic link
  * <Link href="/dashboard">Dashboard</Link>
  * 
- * // External link with icon
- * <Link href="https://example.com" external target="_blank">
- *   External Site
+ * // Medical device link with confirmation
+ * <Link href="/critical-action" medicalDeviceMode requireConfirmation purpose="action">
+ *   Critical Action
  * </Link>
  * 
- * // Button-style link
- * <Link href="/action" variant="button" color="primary">
- *   Take Action
- * </Link>
- * 
- * // Disabled link
- * <Link href="/disabled" disabled>
- *   Disabled Link
+ * // Emergency link
+ * <Link href="/emergency" emergencyMode purpose="emergency">
+ *   Emergency Protocol
  * </Link>
  * ```
  */
@@ -221,6 +235,11 @@ export const Link = component$<LinkProps>(({
   startIcon,
   endIcon,
   onClick$,
+  medicalDeviceMode = false,
+  emergencyMode = false,
+  requireConfirmation = false,
+  enableWorkflowShortcuts = true,
+  purpose = 'general',
   class: className,
   testId,
   children: _children,
@@ -232,6 +251,14 @@ export const Link = component$<LinkProps>(({
   // Set appropriate rel attribute for external links
   const finalRel = rel || (isExternal && target === '_blank' ? 'noopener noreferrer' : rel);
   
+  // Medical device keyboard accessibility state
+  const keyboardState = useStore({
+    hasFocus: false,
+    showConfirmation: false,
+    isEmergencyMode: emergencyMode,
+    shortcutPressed: false
+  });
+  
   // Determine the variant to use
   const variantKey = variant === 'button' ? `button-${color}` : (variant === 'default' ? `color-${color}` : variant);
   
@@ -242,14 +269,135 @@ export const Link = component$<LinkProps>(({
       disabled && 'pointer-events-none opacity-50',
       loading && 'pointer-events-none',
       bold && 'font-semibold',
+      // Medical device enhanced focus indicators
+      medicalDeviceMode && 'focus:ring-4 focus:ring-blue-200 focus:border-primary-normal',
+      keyboardState.isEmergencyMode && 'ring-2 ring-orange-400 bg-warning-lighter',
+      keyboardState.hasFocus && medicalDeviceMode && 'ring-4 ring-blue-200 shadow-lg',
       className,
     ].filter(Boolean).join(' ')
+  });
+
+  // Enhanced navigation with medical device confirmation
+  const performNavigation = $((event?: Event) => {
+    if (disabled || loading) return;
+    
+    // Medical device confirmation for critical actions
+    if (requireConfirmation && medicalDeviceMode && purpose === 'action') {
+      event?.preventDefault();
+      keyboardState.showConfirmation = true;
+      return;
+    }
+    
+    // Direct navigation for standard links
+    if (href && !event) {
+      window.location.href = href;
+    }
+  });
+  
+  // Confirmation handlers for medical safety
+  const confirmNavigation = $(() => {
+    keyboardState.showConfirmation = false;
+    if (href) {
+      if (target === '_blank') {
+        window.open(href, target, finalRel ? 'noopener,noreferrer' : '');
+      } else {
+        window.location.href = href;
+      }
+    }
+  });
+  
+  const cancelNavigation = $(() => {
+    keyboardState.showConfirmation = false;
+  });
+
+  // Enhanced keyboard navigation for medical devices
+  const handleKeyDown = $((event: KeyboardEvent) => {
+    if (!enableWorkflowShortcuts) return;
+    
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+        // Primary activation - Enter and Space both activate
+        event.preventDefault();
+        if (keyboardState.showConfirmation) {
+          // Confirm if in confirmation mode
+          confirmNavigation();
+        } else {
+          // Standard navigation
+          performNavigation();
+        }
+        break;
+        
+      case 'Escape':
+        // Cancel confirmation dialog
+        if (keyboardState.showConfirmation) {
+          event.preventDefault();
+          cancelNavigation();
+        }
+        break;
+        
+      case 'y':
+      case 'Y':
+        // Quick "Yes" confirmation in medical contexts
+        if (keyboardState.showConfirmation && medicalDeviceMode) {
+          event.preventDefault();
+          confirmNavigation();
+        }
+        break;
+        
+      case 'n':
+      case 'N':
+        // Quick "No" cancellation in medical contexts
+        if (keyboardState.showConfirmation && medicalDeviceMode) {
+          event.preventDefault();
+          cancelNavigation();
+        }
+        break;
+    }
+    
+    // Enhanced visual feedback for medical devices
+    if ((event.ctrlKey || event.metaKey) && medicalDeviceMode) {
+      keyboardState.shortcutPressed = true;
+      
+      switch (event.key.toLowerCase()) {
+        case 'e':
+          // Ctrl+E: Toggle emergency mode
+          event.preventDefault();
+          keyboardState.isEmergencyMode = !keyboardState.isEmergencyMode;
+          break;
+      }
+      
+      // Reset shortcut state
+      setTimeout(() => {
+        keyboardState.shortcutPressed = false;
+      }, 200);
+    }
+  });
+
+  // Enhanced focus handlers for medical device accessibility
+  const handleFocus = $(() => {
+    keyboardState.hasFocus = true;
+  });
+
+  const handleBlur = $(() => {
+    keyboardState.hasFocus = false;
+    // Cancel any pending confirmation on blur for safety
+    if (keyboardState.showConfirmation) {
+      cancelNavigation();
+    }
   });
 
   // Handle click events
   const handleClick = $((event: MouseEvent, element: HTMLAnchorElement) => {
     if (disabled || loading) {
       event.preventDefault();
+      return;
+    }
+    
+    // Medical device confirmation check
+    if (requireConfirmation && medicalDeviceMode && purpose === 'action') {
+      event.preventDefault();
+      keyboardState.showConfirmation = true;
       return;
     }
     
@@ -288,6 +436,13 @@ export const Link = component$<LinkProps>(({
 
       {/* Link text content */}
       {text || <Slot />}
+      
+      {/* Emergency mode indicator */}
+      {keyboardState.isEmergencyMode && (
+        <span class="inline-block ml-2 px-2 py-1 text-xs font-medium bg-warning-lighter text-warning-darker rounded">
+          EMERGENCY
+        </span>
+      )}
 
       {/* External link indicator */}
       {isExternal && !endIcon && (
@@ -306,6 +461,13 @@ export const Link = component$<LinkProps>(({
           {endIcon}
         </span>
       )}
+      
+      {/* Medical device keyboard shortcut indicator */}
+      {medicalDeviceMode && keyboardState.shortcutPressed && (
+        <span class="inline-block ml-2 px-2 py-1 text-xs font-medium bg-info-lighter text-primary-darker rounded">
+          Shortcut Active
+        </span>
+      )}
     </>
   );
 
@@ -318,12 +480,82 @@ export const Link = component$<LinkProps>(({
         download={download}
         class={finalClasses}
         data-testid={testId}
+        data-medical-device={medicalDeviceMode}
+        data-emergency-mode={keyboardState.isEmergencyMode}
+        data-purpose={purpose}
         onClick$={handleClick}
+        onKeyDown$={handleKeyDown}
+        onFocus$={handleFocus}
+        onBlur$={handleBlur}
         aria-disabled={disabled}
+        // Enhanced ARIA for medical device accessibility
+        aria-label={
+          medicalDeviceMode 
+            ? `${text || 'Medical link'} - Use Enter or Space to activate${requireConfirmation ? ', confirmation required' : ''}`
+            : undefined
+        }
+        role={variant === 'button' ? 'button' : 'link'}
         {...rest}
       >
         {content}
       </a>
+      
+      {/* Medical device keyboard shortcuts help */}
+      {medicalDeviceMode && enableWorkflowShortcuts && keyboardState.hasFocus && (
+        <div class="absolute -bottom-6 left-0 text-xs text-neutral-normal whitespace-nowrap bg-white px-2 py-1 rounded shadow-sm border">
+          Keys: Enter/Space (activate){requireConfirmation && ', Y/N (confirm)'}, Esc (cancel)
+        </div>
+      )}
+      
+      {/* Confirmation dialog for medical safety */}
+      {keyboardState.showConfirmation && (
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div class="bg-white p-6 rounded-lg shadow-xl max-w-md mx-4">
+            <h3 class="text-lg font-semibold text-neutral-darker mb-3">
+              Confirm Navigation
+            </h3>
+            <p class="text-neutral-dark mb-4">
+              Are you sure you want to navigate to this {purpose === 'action' ? 'action' : 'page'}?
+              {keyboardState.isEmergencyMode && (
+                <span class="block text-warning-normal font-medium mt-1">
+                  This is an emergency mode operation.
+                </span>
+              )}
+            </p>
+            <div class="text-sm text-neutral-normal mb-4">
+              Destination: <code class="bg-neutral-lighter px-2 py-1 rounded">{href}</code>
+            </div>
+            <div class="flex gap-3 justify-end">
+              <button 
+                type="button"
+                onClick$={cancelNavigation}
+                onKeyDown$={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    cancelNavigation();
+                  }
+                }}
+                class="px-4 py-2 border border-neutral-light rounded-md text-neutral-dark hover:bg-neutral-lighter focus:ring-2 focus:ring-neutral-200"
+              >
+                Cancel (N)
+              </button>
+              <button 
+                type="button"
+                onClick$={confirmNavigation}
+                onKeyDown$={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    confirmNavigation();
+                  }
+                }}
+                class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 focus:ring-2 focus:ring-primary-200"
+              >
+                Confirm (Y)
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 });

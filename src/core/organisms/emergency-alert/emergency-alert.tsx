@@ -213,11 +213,11 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
 
   const _getSeverityColor = (severity: string) => {
     switch (severity) {
-      case 'critical': return 'bg-error-100 text-error-900 border-red-300 shadow-lg shadow-error-200/50';
-      case 'high': return 'bg-orange-100 text-orange-900 border-orange-300 shadow-md shadow-orange-200/40';
-      case 'medium': return 'bg-warning-100 text-warning-900 border-yellow-300 shadow-sm shadow-warning-200/30';
+      case 'critical': return 'bg-error-100 text-error-900 border-error-light shadow-lg shadow-error-200/50';
+      case 'high': return 'bg-warning-lighter text-warning-darker border-warning-light shadow-md shadow-orange-200/40';
+      case 'medium': return 'bg-warning-100 text-warning-900 border-warning-light shadow-sm shadow-warning-200/30';
       case 'low': return 'bg-primary-100 text-primary-900 border-primary-300';
-      default: return 'bg-neutral-100 text-neutral-800 border-neutral-200';
+      default: return 'bg-neutral-lighter text-neutral-darker border-neutral-light';
     }
   };
 
@@ -257,8 +257,8 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
       case 'acknowledged': return 'bg-warning-500 text-white';
       case 'responding': return 'bg-primary-500 text-white';
       case 'resolved': return 'bg-success-500 text-white';
-      case 'cancelled': return 'bg-neutral-500 text-white';
-      default: return 'bg-neutral-500 text-white';
+      case 'cancelled': return 'bg-neutral-normal text-white';
+      default: return 'bg-neutral-normal text-white';
     }
   };
 
@@ -286,17 +286,30 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
 
   if (isMinimized) {
     return (
-      <div class="emergency-alert-minimized fixed bottom-4 right-4 z-50">
+      <div class="emergency-alert-minimized fixed bottom-4 right-4 z-50"
+      
+      tabIndex={0}
+      aria-label="Emergency medical alert"
+      aria-live="assertive"
+      aria-atomic="true"
+      role="alertdialog"
+      onKeyDown$={$((event: KeyboardEvent) => {
+        if (event.key === 'Enter' || event.key === ' ' || event.key === 'Escape') {
+          event.preventDefault();
+          // Immediate acknowledgment for emergency situations
+          onAcknowledge?.(alert.id);
+        }
+      })}>
         <div class={`p-4 rounded-lg shadow-2xl border-l-8 cursor-pointer transition-all duration-300 hover:scale-105 ${
-          alert.severity === 'critical' ? 'bg-gradient-to-r from-error-50 to-error-100 border-red-600 ring-4 ring-red-300/50 animate-pulse' :
-          alert.severity === 'high' ? 'bg-gradient-to-r from-orange-50 to-orange-100 border-orange-600 ring-2 ring-orange-300/40' :
-          alert.severity === 'medium' ? 'bg-gradient-to-r from-warning-50 to-warning-100 border-yellow-600 ring-1 ring-yellow-300/30' :
+          alert.severity === 'critical' ? 'bg-gradient-to-r from-error-50 to-error-100 border-error-normal ring-4 ring-error-light/50 animate-pulse' :
+          alert.severity === 'high' ? 'bg-gradient-to-r from-warning-lighter to-warning-lighter border-warning-normal ring-2 ring-warning-light/40' :
+          alert.severity === 'medium' ? 'bg-gradient-to-r from-warning-50 to-warning-100 border-warning-normal ring-1 ring-warning-light/30' :
           'bg-gradient-to-r from-primary-50 to-primary-100 border-primary-600'
         }`} onClick$={() => onMaximize?.(alert.id)}>
           <Row alignItems="center" gap="3">
             <div class={`p-1 rounded-full ${
               alert.severity === 'critical' ? 'bg-error-100 text-error-700' :
-              alert.severity === 'high' ? 'bg-orange-100 text-orange-700' :
+              alert.severity === 'high' ? 'bg-warning-lighter text-warning-dark' :
               alert.severity === 'medium' ? 'bg-warning-100 text-warning-700' :
               'bg-primary-100 text-primary-700'
             }`}>
@@ -305,10 +318,10 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
             <div class="flex-1">
               <div class={`font-bold text-sm ${
                 alert.severity === 'critical' ? 'text-error-900' :
-                alert.severity === 'high' ? 'text-orange-900' : 
+                alert.severity === 'high' ? 'text-warning-darker' : 
                 'text-warning-900'
               }`}>{alert.title}</div>
-              <div class="text-xs text-neutral-600 mt-1">
+              <div class="text-xs text-neutral-normal mt-1">
                 {alert.severity === 'critical' ? 'CRITICAL ALERT' : 
                  alert.severity === 'high' ? 'HIGH PRIORITY' : 
                  alert.severity.toUpperCase()}
@@ -330,20 +343,24 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
 
   // Compute severity classes for emergency alert
   const _severityClasses = {
-    critical: 'bg-error-600 border-red-500',
-    high: 'bg-orange-600 border-orange-500', 
-    medium: 'bg-warning-600 border-yellow-500',
+    critical: 'bg-error-600 border-error-normal',
+    high: 'bg-warning-normal border-warning-normal', 
+    medium: 'bg-warning-600 border-warning-normal',
     low: 'bg-primary-600 border-primary-500'
   };
 
-  const alertClasses = mergeClasses(
-    'emergency-alert fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4',
+  const alertClasses = mergeClasses('emergency-alert fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4',
+    
+    // Emergency alert focus for critical medical situations
+    "focus:outline-none focus:ring-4 focus:ring-error-normal/70 focus:ring-offset-2",
+    "focus:shadow-2xl focus:z-50 focus:border-error-normal",
     qwikClass,
     className
   );
 
   return (
-    <div 
+    <div class="themed-content">
+      <div 
       class={alertClasses}
       style={style}
       {...rest}
@@ -351,16 +368,16 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
       <div class="bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
         {/* Header */}
         <div class={`px-6 py-6 border-b-4 ${
-          alert.severity === 'critical' ? 'bg-gradient-to-r from-error-600 to-error-700 border-red-800' :
-          alert.severity === 'high' ? 'bg-gradient-to-r from-orange-600 to-orange-700 border-orange-800' :
-          alert.severity === 'medium' ? 'bg-gradient-to-r from-warning-600 to-warning-700 border-yellow-800' :
+          alert.severity === 'critical' ? 'bg-gradient-to-r from-error-600 to-error-700 border-error-darker' :
+          alert.severity === 'high' ? 'bg-gradient-to-r from-warning-dark to-warning-dark border-warning-darker' :
+          alert.severity === 'medium' ? 'bg-gradient-to-r from-warning-600 to-warning-700 border-warning-darker' :
           'bg-gradient-to-r from-primary-600 to-primary-700 border-primary-800'
         } text-white ${alert.severity === 'critical' ? 'animate-pulse' : ''}`}>
           <Row alignItems="center" justifyContent="between">
             <Row alignItems="center" gap="4">
               <div class={`p-3 rounded-full ${
                 alert.severity === 'critical' ? 'bg-error-500/30 ring-2 ring-white/50' :
-                alert.severity === 'high' ? 'bg-orange-500/30 ring-1 ring-white/30' :
+                alert.severity === 'high' ? 'bg-warning-normal/30 ring-1 ring-white/30' :
                 'bg-white/20'
               }`}>
                 <i class={`${getTypeIcon(alert.type)} ${
@@ -375,7 +392,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                   <span class="font-semibold">Alert #{alert.id.slice(-6).toUpperCase()}</span>
                   <span class={`px-2 py-1 rounded-full text-xs font-bold ${
                     alert.severity === 'critical' ? 'bg-error-500 text-white' :
-                    alert.severity === 'high' ? 'bg-orange-500 text-white' :
+                    alert.severity === 'high' ? 'bg-warning-normal text-white' :
                     'bg-white/20 text-white'
                   }`}>
                     Priority {alert.priority}
@@ -411,7 +428,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
         </div>
 
         {/* Action Bar */}
-        <div class="px-6 py-3 bg-neutral-50 border-b">
+        <div class="px-6 py-3 bg-neutral-lighter border-b">
           <Row alignItems="center" justifyContent="between">
             <Row alignItems="center" gap="3">
               {allowAcknowledge && !isAcknowledged && alert.status === 'active' && (
@@ -435,7 +452,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
               {allowEscalate && (
                 <button
                   onClick$={handleEscalate}
-                  class="px-4 py-2 bg-orange-600 text-white rounded-lg transition-colors duration-200 hover:bg-orange-700 transition-colors font-medium"
+                  class="px-4 py-2 bg-warning-normal text-white rounded-lg transition-colors duration-200 hover:bg-warning-dark transition-colors font-medium"
                 >
                   <Icon icon="trending-up" class="mr-2" />Escalate
                 </button>
@@ -451,7 +468,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
               )}
             </Row>
             
-            <Row alignItems="center" gap="4" class="text-sm text-neutral-600">
+            <Row alignItems="center" gap="4" class="text-sm text-neutral-normal">
               <span>Reported by: {alert.reportedBy.name}</span>
               <span>{new Date(alert.timestamp).toLocaleTimeString()}</span>
             </Row>
@@ -467,7 +484,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                 class={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
                   activeTab.value === 'overview'
                     ? 'border-primary-500 text-primary-600'
-                    : 'border-transparent text-neutral-500 hover:text-neutral-700'
+                    : 'border-transparent text-neutral-normal hover:text-neutral-dark'
                 }`}
               >
                 Overview
@@ -478,7 +495,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                   class={`px-4 py-3 text-sm font-medium border-b-2 transition-colors relative ${
                     activeTab.value === 'actions'
                       ? 'border-primary-500 text-primary-600'
-                      : 'border-transparent text-neutral-500 hover:text-neutral-700'
+                      : 'border-transparent text-neutral-normal hover:text-neutral-dark'
                   }`}
                 >
                   Actions
@@ -495,7 +512,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                   class={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
                     activeTab.value === 'responders'
                       ? 'border-primary-500 text-primary-600'
-                      : 'border-transparent text-neutral-500 hover:text-neutral-700'
+                      : 'border-transparent text-neutral-normal hover:text-neutral-dark'
                   }`}
                 >
                   Responders
@@ -507,7 +524,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                   class={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
                     activeTab.value === 'communications'
                       ? 'border-primary-500 text-primary-600'
-                      : 'border-transparent text-neutral-500 hover:text-neutral-700'
+                      : 'border-transparent text-neutral-normal hover:text-neutral-dark'
                   }`}
                 >
                   Communications
@@ -522,21 +539,21 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
           {activeTab.value === 'overview' && (
             <div class="p-6 space-y-6">
               {/* Alert Details */}
-              <div class="bg-neutral-50 rounded-lg p-4">
+              <div class="bg-neutral-lighter rounded-lg p-4">
                 <Text as="h3" weight="semibold" size="lg" color="red-900" class="mb-3">Emergency Details</Text>
                 <Text as="p" color="gray-700" class="mb-4">{alert.message}</Text>
                 
                 <Row gap="4">
                   {alert.patientId && (
                     <div>
-                      <span class="text-sm font-medium text-neutral-600">Patient:</span>
+                      <span class="text-sm font-medium text-neutral-normal">Patient:</span>
                       <Text as="p" color="gray-900">{alert.patientName}</Text>
                     </div>
                   )}
                   
                   {showLocation && alert.location && (
                     <div>
-                      <span class="text-sm font-medium text-neutral-600">Location:</span>
+                      <span class="text-sm font-medium text-neutral-normal">Location:</span>
                       <Text as="p" color="gray-900">
                         {alert.location.building && `${alert.location.building}, `}
                         {alert.location.floor && `Floor ${alert.location.floor}, `}
@@ -547,13 +564,13 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                   
                   {alert.estimatedResponseTime && (
                     <div>
-                      <span class="text-sm font-medium text-neutral-600">Est. Response Time:</span>
+                      <span class="text-sm font-medium text-neutral-normal">Est. Response Time:</span>
                       <Text as="p" color="gray-900">{alert.estimatedResponseTime} minutes</Text>
                     </div>
                   )}
                   
                   <div>
-                    <span class="text-sm font-medium text-neutral-600">Reported By:</span>
+                    <span class="text-sm font-medium text-neutral-normal">Reported By:</span>
                     <Text as="p" color="gray-900">{alert.reportedBy.name} ({alert.reportedBy.role})</Text>
                   </div>
                 </Row>
@@ -567,10 +584,10 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                     {alert.acknowledgedBy.map((ack) => (
                       <Row key={ack.id} alignItems="center" justifyContent="between" class="p-3 bg-warning-50 rounded-lg">
                         <div>
-                          <span class="font-medium text-neutral-900">{ack.name}</span>
-                          <span class="text-sm text-neutral-600 ml-2">({ack.role})</span>
+                          <span class="font-medium text-neutral-darker">{ack.name}</span>
+                          <span class="text-sm text-neutral-normal ml-2">({ack.role})</span>
                         </div>
-                        <span class="text-sm text-neutral-500">
+                        <span class="text-sm text-neutral-normal">
                           {new Date(ack.timestamp).toLocaleTimeString()}
                         </span>
                       </Row>
@@ -601,15 +618,15 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
               <Stack gap="3">
                 {alert.requiredActions.map((action) => (
                   <div key={action.id} class={`p-4 rounded-lg border ${
-                    action.status === 'completed' ? 'bg-success-50 border-green-200' :
+                    action.status === 'completed' ? 'bg-success-50 border-success-light' :
                     action.status === 'in-progress' ? 'bg-primary-50 border-primary-200' :
-                    action.status === 'failed' ? 'bg-error-50 border-red-200' :
-                    'bg-neutral-50 border-neutral-200'
+                    action.status === 'failed' ? 'bg-error-50 border-error-light' :
+                    'bg-neutral-lighter border-neutral-light'
                   }`}>
                     <Row alignItems="center" justifyContent="between">
                       <div class="flex-1">
                         <Row alignItems="center" gap="2">
-                          <span class="font-medium text-neutral-900">{action.action}</span>
+                          <span class="font-medium text-neutral-darker">{action.action}</span>
                           {action.required && (
                             <Badge variant="flat" color="error" shade="light" size="sm" pill>
                               Required
@@ -629,7 +646,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                           action.status === 'completed' ? 'bg-success-100 text-success-800' :
                           action.status === 'in-progress' ? 'bg-primary-100 text-primary-800' :
                           action.status === 'failed' ? 'bg-error-100 text-error-800' :
-                          'bg-neutral-100 text-neutral-800'
+                          'bg-neutral-lighter text-neutral-darker'
                         }`}>
                           {action.status.replace('-', ' ').toUpperCase()}
                         </span>
@@ -651,10 +668,10 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
               <div class="mt-6 p-4 bg-primary-50 rounded-lg">
                 <Row alignItems="center" justifyContent="between">
                   <div>
-                    <span class="font-medium text-neutral-900">Progress: </span>
+                    <span class="font-medium text-neutral-darker">Progress: </span>
                     <span class="text-primary-600">{completedActions}/{alert.requiredActions.length} completed</span>
                   </div>
-                  <div class="w-32 bg-neutral-200 rounded-full h-2">
+                  <div class="w-32 bg-neutral-light rounded-full h-2">
                     <div 
                       class="bg-primary-600 h-2 rounded-full transition-all duration-300" 
                       style={`width: ${(completedActions / alert.requiredActions.length) * 100}%`}
@@ -670,18 +687,18 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
               <Text as="h3" weight="semibold" size="lg" color="blue-900" class="mb-4">Responding Teams</Text>
               <Stack gap="4">
                 {alert.respondingTeams?.map((team) => (
-                  <div key={team.id} class="border border-neutral-200 rounded-lg p-4">
+                  <div key={team.id} class="border border-neutral-light rounded-lg p-4">
                     <Row alignItems="center" justifyContent="between" class="mb-3">
                       <div>
                         <Text as="h4" weight="medium" color="gray-900">{team.name}</Text>
-                        <span class="text-sm text-neutral-600 capitalize">{team.type} Team</span>
+                        <span class="text-sm text-neutral-normal capitalize">{team.type} Team</span>
                       </div>
                       <div class="text-right">
                         <span class={`px-3 py-1 rounded-full text-sm font-medium ${
                           team.status === 'on-scene' ? 'bg-success-100 text-success-800' :
                           team.status === 'en-route' ? 'bg-primary-100 text-primary-800' :
                           team.status === 'dispatched' ? 'bg-warning-100 text-warning-800' :
-                          'bg-neutral-100 text-neutral-800'
+                          'bg-neutral-lighter text-neutral-darker'
                         }`}>
                           {team.status.replace('-', ' ').toUpperCase()}
                         </span>
@@ -693,15 +710,15 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                     
                     <Row gap="2">
                       {team.members.map((member) => (
-                        <Row key={member.id} alignItems="center" justifyContent="between" class="p-2 bg-neutral-50 rounded">
+                        <Row key={member.id} alignItems="center" justifyContent="between" class="p-2 bg-neutral-lighter rounded">
                           <div>
-                            <span class="text-sm font-medium text-neutral-900">{member.name}</span>
-                            <span class="text-xs text-neutral-600 ml-2">({member.role})</span>
+                            <span class="text-sm font-medium text-neutral-darker">{member.name}</span>
+                            <span class="text-xs text-neutral-normal ml-2">({member.role})</span>
                           </div>
                           <span class={`px-2 py-1 text-xs rounded-full ${
                             member.status === 'responding' ? 'bg-success-100 text-success-800' :
                             member.status === 'available' ? 'bg-primary-100 text-primary-800' :
-                            'bg-neutral-100 text-neutral-800'
+                            'bg-neutral-lighter text-neutral-darker'
                           }`}>
                             {member.status}
                           </span>
@@ -711,7 +728,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                   </div>
                 )) || (
                   <div class="text-center py-8">
-                    <Icon icon="user" class="text-neutral-300 text-4xl mb-3" />
+                    <Icon icon="user" class="text-neutral-light text-4xl mb-3" />
                     <Text as="p" color="gray-600">No teams dispatched yet</Text>
                   </div>
                 )}
@@ -748,17 +765,17 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
               <Stack gap="3">
                 {alert.communications?.map((comm) => (
                   <div key={comm.id} class={`p-3 rounded-lg ${
-                    comm.urgent ? 'bg-error-50 border border-red-200' : 'bg-neutral-50'
+                    comm.urgent ? 'bg-error-50 border border-error-light' : 'bg-neutral-lighter'
                   }`}>
                     <Row alignItems="start" justifyContent="between">
                       <div class="flex-1">
                         <Row alignItems="center" gap="2" class="mb-1">
-                          <span class="font-medium text-neutral-900">{comm.from}</span>
+                          <span class="font-medium text-neutral-darker">{comm.from}</span>
                           <span class={`px-2 py-1 text-xs rounded-full ${
                             comm.type === 'instruction' ? 'bg-primary-100 text-primary-800' :
                             comm.type === 'update' ? 'bg-success-100 text-success-800' :
-                            comm.type === 'request' ? 'bg-orange-100 text-orange-800' :
-                            'bg-neutral-100 text-neutral-800'
+                            comm.type === 'request' ? 'bg-warning-lighter text-warning-darker' :
+                            'bg-neutral-lighter text-neutral-darker'
                           }`}>
                             {comm.type}
                           </span>
@@ -769,18 +786,18 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
                           )}
                         </Row>
                         <Text as="p" color="gray-700">{comm.message}</Text>
-                        <div class="text-xs text-neutral-500 mt-1">
+                        <div class="text-xs text-neutral-normal mt-1">
                           To: {comm.to.join(', ')}
                         </div>
                       </div>
-                      <span class="text-xs text-neutral-500">
+                      <span class="text-xs text-neutral-normal">
                         {new Date(comm.timestamp).toLocaleTimeString()}
                       </span>
                     </Row>
                   </div>
                 )) || (
                   <div class="text-center py-8">
-                    <Icon icon="message-square" class="text-neutral-300 text-4xl mb-3" />
+                    <Icon icon="message-square" class="text-neutral-light text-4xl mb-3" />
                     <Text as="p" color="gray-600">No communications yet</Text>
                   </div>
                 )}
@@ -829,6 +846,7 @@ export const EmergencyAlert = component$<EmergencyAlertProps>((props) => {
           </Row>
         </div>
       </Modal>
+    </div>
     </div>
   );
 });

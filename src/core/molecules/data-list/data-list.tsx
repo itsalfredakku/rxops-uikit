@@ -371,8 +371,9 @@ export const DataList = component$<DataListProps>(({
   );
 
   return (
-    <div 
-      class={containerClasses}
+    <div class="themed-content">
+      <div 
+        class={containerClasses}
       style={style}
       {...rest}
     >
@@ -423,6 +424,7 @@ export const DataList = component$<DataListProps>(({
           <Slot name="footer" />
         </Column>
       )}
+    </div>
     </div>
   );
 });

@@ -160,8 +160,8 @@ describe('HealthDashboard', () => {
     );
 
     // Check for different status colors applied via CSS classes
-    expect(screen.outerHTML).toContain('text-green-600'); // normal status
-    expect(screen.outerHTML).toContain('text-yellow-600'); // warning status
+    expect(screen.outerHTML).toContain('text-success-normal'); // normal status
+    expect(screen.outerHTML).toContain('text-warning-normal'); // warning status
   });
 
   it('should display upcoming appointments', async () => {
